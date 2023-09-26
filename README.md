@@ -7,7 +7,7 @@ Notes are continuously updated.
 |_📄 Email Analysis.md
 |_📄 Other resources.md
 |_📄 Privilege Escalation.md
-|_📄 Headers.md
+|_📄 Method & Headers.md
 |_📄 README.md
 |_📂 CTF Methodology
     |_📄 CTF Methodology.md
