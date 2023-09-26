@@ -30,7 +30,6 @@ Notes are continuously updated.
     |_📄 Forensics.md
     |_📄 Offensive general.md
     |_📄 Offensive Web App.md
-|_📂 Vulnerabable code
-    |_📄 indexJS.md
+|_📂 Images
 
 ```
