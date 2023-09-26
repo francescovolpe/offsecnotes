@@ -25,6 +25,7 @@ Notes are continuously updated.
     |_📄 Path traversal.md
     |_📄 Information disclosure vulnerabilities.md
     |_📄 Business logic vulnerabilities.md
+    |_📄 File upload vulnerabilities.md
 |_📂 Tool list
     |_📄 Defence.md
     |_📄 Forensics.md
