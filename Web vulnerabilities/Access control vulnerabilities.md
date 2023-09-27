@@ -30,7 +30,7 @@ Access control is the application of constraints on who or what is authorized to
 
 ## Horizontal privilege escalation
 - `https://insecure-website.com/myaccount?id=123`
-  - Change id user
+  - Change id user (IDOR)
 - Application might use globally unique identifiers (GUID) to identify users
   - However, the GUIDs belonging to other users might be disclosed elsewhere in the application where users are referenced, such as user messages or reviews.
 - An application does detect when the user is not permitted to access the resource and returns a redirect to the login page
