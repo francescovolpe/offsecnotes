@@ -16,3 +16,10 @@
 #### Security
 `$_SERVER['REMOTE_ADDR']` contains actual physical IP address that the web server received the connection from and that the response will be sent to.<br>
 `$_SERVER['HTTP_X_FORWARDED_FOR']` <b><ins>this value is easily spoofed.</ins></b> Try to add it in a request before you are blocked and change the value before you are blocked.
+
+## Referrer-Policy
+- The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+- Aside from the HTTP header, <ins>you can set this policy in HTML.</ins>
+#### Security
+- Bypass validation CSRF attack when an application use referer header to defende against CSRF attacks
+- https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Web%20vulnerabilities/Cross-site%20request%20forgery%20(CSRF).md#referer-based-validation-bypass
