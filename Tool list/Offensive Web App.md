@@ -2,9 +2,9 @@
 Resource | Description 
 --- | ---
 Burp Suite | -
-Nessus | Vulnerability scanner
 Nikto | Vulnerability scanner
 [DNSDumpster](https://dnsdumpster.com/) | Dns recon & research, find & lookup dns records
+[SecurityHeaders](https://securityheaders.com/) | Anaylize HTTP headers
 [Wappalyzer](https://www.wappalyzer.com/) | Technology profiler
 [Wayback Machine](https://archive.org/web/) | -
 [Gobuster](https://github.com/OJ/gobuster) | Directory/File, DNS and VHost busting tool
