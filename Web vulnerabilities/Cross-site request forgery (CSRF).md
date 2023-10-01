@@ -77,7 +77,7 @@ Some applications make use of the HTTP Referer header to attempt to defend again
   - Note 1: add Referrer-Policy: unsafe-url
     - One way to set it in html: ` <meta name="referrer" content="unsafe-url" /> `
   - Note 2: Firefox 87 new default Referrer Policy ‘strict-origin-when-cross-origin’ trimming user sensitive information like path and query string to protect privacy. (https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/)
-  - Note 3: Instead of use http://attacker-website.com/vulnerable-website.com that looks strange you can use http://attacker-website.com/ and add <script>history.pushState('', '', '/attacker-website.com')</script> 
+  - Note 3: Instead of use http://attacker-website.com/vulnerable-website.com that looks strange you can use http://attacker-website.com/ and add ` <script>history.pushState('', '', '/attacker-website.com')</script> `
 
 More info about setting Referer-Policy: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
 
