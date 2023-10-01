@@ -73,5 +73,8 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 - Validation of Referer can be circumvented
   - ` http://vulnerable-website.com.attacker-website.com/csrf-attack `
   - ` http://attacker-website.com/csrf-attack?vulnerable-website.com `
+  - ` http://attacker-website.com/vulnerable-website.com `
+  - Note1: add Referrer-Policy: unsafe-url
+  - Note2: Firefox 87 new default Referrer Policy ‘strict-origin-when-cross-origin’ trimming user sensitive information like path and query string to protect privacy. 
 
 
