@@ -22,10 +22,10 @@ Note: servers typically won't execute files unless they have been configured to 
  
 ### Overriding the server configuration
 - Many servers also allow developers to create special configuration files within individual directories in order to override or add to one or more of the global settings.
-- Apache servers, for example, will load a directory-specific configuration from a file called `.htaccess`
+- Apache servers -> `.htaccess`
 - Web servers use these kinds of configuration files when present, but you're not normally allowed to access them using HTTP requests
-- <ins>You may find servers that fail to stop you from uploading your own malicious configuration file</ins>
-- Even if the file extension you need is blacklisted, you may be able to trick the server into mapping an arbitrary, custom file extension to an executable MIME type
+- <ins>if the file extension is blacklisted, you may be able to trick the server into mapping an arbitrary, custom file extension to an executable MIME type</ins>
+  - Example: ` AddType application/x-httpd-php .<EXTENSION> `
 
 ### Obfuscating file extensions
 - Case sensitive `exploit.pHp`
