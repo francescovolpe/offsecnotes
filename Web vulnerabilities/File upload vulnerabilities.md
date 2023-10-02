@@ -1,6 +1,22 @@
 # File upload vulnerabilities
 Note: servers typically won't execute files unless they have been configured to do so. In some cases the contents of the file may still be served as plain text
 
+- [File upload vulnerabilities](#file-upload-vulnerabilities)
+  * [Exploiting flawed validation of file uploads](#exploiting-flawed-validation-of-file-uploads)
+    + [Flawed file type validation](#flawed-file-type-validation)
+    + [Preventing file execution in user-accessible directories](#preventing-file-execution-in-user-accessible-directories)
+    + [Insufficient blacklisting of dangerous file types](#insufficient-blacklisting-of-dangerous-file-types)
+    + [Overriding the server configuration](#overriding-the-server-configuration)
+    + [Obfuscating file extensions](#obfuscating-file-extensions)
+    + [Flawed validation of the file's contents](#flawed-validation-of-the-file-s-contents)
+    + [Exploiting file upload race conditions](#exploiting-file-upload-race-conditions)
+    + [Race conditions in URL-based file uploads](#race-conditions-in-url-based-file-uploads)
+  * [Exploiting file upload vulnerabilities without remote code execution](#exploiting-file-upload-vulnerabilities-without-remote-code-execution)
+    + [Uploading malicious client-side scripts](#uploading-malicious-client-side-scripts)
+    + [Exploiting vulnerabilities in the parsing of uploaded files](#exploiting-vulnerabilities-in-the-parsing-of-uploaded-files)
+  * [Uploading files using PUT](#uploading-files-using-put)
+  * [Prevent file upload vulnerabilities](#prevent-file-upload-vulnerabilities)
+
 ## Exploiting flawed validation of file uploads
 
 ### Flawed file type validation
