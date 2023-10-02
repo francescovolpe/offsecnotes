@@ -1,6 +1,4 @@
 # File upload vulnerabilities
-- [Exploiting flawed validation of file uploads](#exploiting-flawed-validation-of-file-uploads)
-  * [Flawed file type validation](#flawed-file-type-validation)
 Note: servers typically won't execute files unless they have been configured to do so. In some cases the contents of the file may still be served as plain text
 
 ## Exploiting flawed validation of file uploads
