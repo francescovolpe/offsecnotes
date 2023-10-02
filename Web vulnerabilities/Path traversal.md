@@ -1,4 +1,6 @@
 # Path traversal
+1. [Bypass defences](https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Web%20vulnerabilities/Path%20traversal.md#bypass-defences)
+2. [Defences](https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Web%20vulnerabilities/Path%20traversal.md#defences)
 
 - ` <img src="/loadImage?filename=218.png"> `
 - An attacker can request the following URL to retrieve the /etc/passwd file from the server's filesystem
