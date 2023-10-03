@@ -23,3 +23,9 @@
 #### Security
 - Bypass validation CSRF attack when an application use referer header to defende against CSRF attacks
 - https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Web%20vulnerabilities/Cross-site%20request%20forgery%20(CSRF).md#referer-based-validation-bypass
+
+## X-Original-URL / X-Rewrite-URL
+- Some applications support non-standard headers such these in order to allow overriding the target URL in requests with the one specified in the header value.
+#### Security
+- This behavior can be leveraged in a situation in which the application is behind a component that applies access control restriction based on the request URL.
+- https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Web%20vulnerabilities/Access%20control%20vulnerabilities.md#broken-access-control-resulting-from-platform-misconfiguration
