@@ -22,6 +22,7 @@ Access control is the application of constraints on who or what is authorized to
 - Try another HTTP method
 - Some application frameworks support various non-standard HTTP headers to <ins>override the URL in the original</ins> request, such as `X-Original-URL` and `X-Rewrite-URL`
   - Get / (you can receive a response because you can do the request) but the server will reply with the URL in the X-Original-URL / X-Rewrite-URL
+  - In general try to send GET / and X-Original-URL: /donotexist1 -> if it's not found it works
 - There are many other headers that can be set to localhost. Search on [hacktricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses)
 
 ### Broken access control resulting from URL-matching discrepancies
