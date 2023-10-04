@@ -2,7 +2,7 @@
 
 - [Usernames enumeration](#usernames-enumeration)
 - [Passwords](#passwords)
-  * [Evasion](#evasion)
+- [Evasion](#evasion)
 
 
 ## Usernames enumeration
@@ -21,7 +21,7 @@
 - Wordlist
 - Create wordlist with CeWL
 
-### Evasion
+## Evasion
 - IP block?
   - The counter for the number of failed attempts resets if the IP owner logs in successfully.
     - Make sure that concurrent requests is set to 1. (In burp -> resource pool)
