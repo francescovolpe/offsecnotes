@@ -1,5 +1,18 @@
 # Access control vulnerabilities
 
+- [General info](#general-info)
+- [Vertical privilege escalation](#vertical-privilege-escalation)
+  * [Unprotected functionality](#unprotected-functionality)
+  * [Parameter-based access control methods](#parameter-based-access-control-methods)
+  * [Broken access control resulting from platform misconfiguration](#broken-access-control-resulting-from-platform-misconfiguration)
+  * [Broken access control resulting from URL-matching discrepancies](#broken-access-control-resulting-from-url-matching-discrepancies)
+- [Horizontal privilege escalation](#horizontal-privilege-escalation)
+- [Access control vulnerabilities in multi-step processes](#access-control-vulnerabilities-in-multi-step-processes)
+- [Referer-based access control](#referer-based-access-control)
+- [Location-based access control](#location-based-access-control)
+- [Prevention](#prevention)
+
+## General info
 Access control is the application of constraints on who or what is authorized to perform actions or access resources
 
 ## Vertical privilege escalation
@@ -8,7 +21,7 @@ Access control is the application of constraints on who or what is authorized to
   - This might be accessible by any user, not only administrative users
     - -> Brute-force etc.
 - `https://insecure-website.com/administrator-panel-yb556`
-  - less predictable URL -> maybe the URL might be disclosed in JavaScript that constructs the user interface based on the user's role
+  - Less predictable URL -> maybe the URL might be disclosed in JavaScript that constructs the user interface based on the user's role
 
 ### Parameter-based access control methods
 - Some applications determine the user's access rights or role at login, and then store this information in a user-controllable location. This could be:
