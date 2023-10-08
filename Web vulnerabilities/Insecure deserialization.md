@@ -56,3 +56,49 @@ if ($login['password'] == $password) {
 - NOTE 2: When working directly with binary formats, use the Hackvertor extension (Burp Suite)
 
 ## Magic methods
+- Magic methods are a special subset of methods that you do not have to explicitly invoke. They are invoked automatically whenever a particular event or scenario occurs
+- Developers can add magic methods to a class in order to predetermine what code should be executed when the corresponding event or scenario occurs (example: `__construct()` )
+- Some languages have magic methods that are invoked automatically during the deserialization process
+- In Java deserialization, the ObjectInputStream.readObject() method is used to read data from the initial byte stream and essentially acts like a constructor for "re-initializing" a serialized object.
+```
+private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
+{
+    // implementation
+}
+```
+- They allow you to pass data from a serialized object into the website's code before the object is fully deserialized.
+
+## Injecting arbitrary objects
+- Deserialization methods do not typically check what they are deserializing.
+- You can pass in objects of any serializable class that is available to the website, and the object will be deserialized.
+- This allows an attacker to create instances of arbitrary classes.
+- If an attacker has access to the source code, they can study all of the available classes in detail.
+  - To construct a simple exploit, look for classes containing deserialization magic methods,
+  - Then check whether any of them perform dangerous operations on controllable data.
+  - Then pass in a serialized object of this class to use its magic method for an exploit.
+ 
+## Gadget chains
+- A "gadget" is a snippet of code that exists in the application that can help an attacker to achieve a particular goal.
+- The attacker's goal might simply be to invoke a method that will pass their input into another gadget
+- (many insecure deserialization vulnerabilities will only be exploitable through the use of gadget chains)
+
+### Working with pre-built gadget chains
+- Manually identifying gadget chains can be a fairly arduous process, and is almost impossible without source code access.
+- But if a gadget chain in Java's Apache Commons Collections library can be exploited on one website, any other website that implements this library may also be exploitable using the same chain.
+
+#### ysoserial (tool) & PHP Generic Gadget Chains
+- ysoserial
+  - It lets you pick a provided gadget chain for a target library, input a command to execute, and generates a serialized object accordingly. It reduces the laborious task of manually crafting gadget chains, though some trial and error remains.
+  - TO DO...
+
+### Working with documented gadget chains
+If no dedicated tool exists for exploiting known gadget chains in the target application's framework, consider searching online for documented exploits to adapt manually
+
+## Creating your own exploit
+TO DO ...
+
+## PHAR deserialization
+TO DO ...
+
+## Exploiting deserialization using memory corruption
+TO DO ...
