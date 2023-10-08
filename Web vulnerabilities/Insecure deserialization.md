@@ -14,9 +14,9 @@
     + [ysoserial (tool) & PHP Generic Gadget Chains](#ysoserial--tool----php-generic-gadget-chains)
   * [Working with documented gadget chains](#working-with-documented-gadget-chains)
 - [Creating your own exploit](#creating-your-own-exploit)
-- [Prevent](#prevent)
 - [PHAR deserialization](#phar-deserialization)
 - [Exploiting deserialization using memory corruption](#exploiting-deserialization-using-memory-corruption)
+- [Prevent](#prevent)
 
 ## General info
 - Serialization is the process of converting complex data structures, such as objects and their fields, into a "flatter" format that can be sent and received as a sequential stream of bytes.
@@ -119,10 +119,11 @@ If no dedicated tool exists for exploiting known gadget chains in the target app
 ## Creating your own exploit
 TO DO ...
 
-## Prevent
-TO DO...
 ## PHAR deserialization
 TO DO ...
 
 ## Exploiting deserialization using memory corruption
 TO DO ...
+
+## Prevent
+TO DO...
