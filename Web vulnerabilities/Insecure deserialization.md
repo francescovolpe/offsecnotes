@@ -55,6 +55,9 @@ if ($login['password'] == $password) {
 - NOTE 2: When working directly with binary formats, use the Hackvertor extension (Burp Suite)
 - REMEMBER: when modifying data types in any serialized object format -> remember to update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized)
 
+## Using application functionality
+- Consider "Delete user" functionality, the user's profile picture is deleted by accessing the file path in the $user->image_location attribute
+- If this $user was created from a serialized object, an attacker could exploit this by passing in a modified object with the image_location set to an arbitrary file path
 
 ## Magic methods
 - Magic methods are a special subset of methods that you do not have to explicitly invoke. They are invoked automatically whenever a particular event or scenario occurs
