@@ -27,6 +27,7 @@ Notes are continuously updated.
     |_📄 Business logic vulnerabilities.md
     |_📄 File upload vulnerabilities.md
     |_📄 Access control vulnerabilities.md
+    |_📄 Insecure deserialization.md
 |_📂 Tool list
     |_📄 Defence.md
     |_📄 Forensics.md
