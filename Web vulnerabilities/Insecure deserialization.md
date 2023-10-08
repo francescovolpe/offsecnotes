@@ -32,7 +32,7 @@ The native methods for PHP serialization are `serialize()` and `unserialize()`. 
 - If an attacker spotted this serialized object in an HTTP request, they might decode it to find the following byte stream: 
 - `O:4:"User":2:{s:8:"username";s:6:"carlos";s:7:"isAdmin";b:0;}`
 - An attacker could simply change the boolean value of the attribute to 1 (true), re-encode the object
-```
+- ```
 $user = unserialize($_COOKIE);
 if ($user->isAdmin === true) {
 // allow access to admin interface
