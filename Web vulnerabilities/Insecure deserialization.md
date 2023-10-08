@@ -32,10 +32,27 @@ The native methods for PHP serialization are `serialize()` and `unserialize()`. 
 - If an attacker spotted this serialized object in an HTTP request, they might decode it to find the following byte stream: 
 - `O:4:"User":2:{s:8:"username";s:6:"carlos";s:7:"isAdmin";b:0;}`
 - An attacker could simply change the boolean value of the attribute to 1 (true), re-encode the object
-- ```
+```
 $user = unserialize($_COOKIE);
 if ($user->isAdmin === true) {
 // allow access to admin interface
 }
 ```
+- In isolation, this has no effect
+- This simple scenario is not common in the wild
 
+### Modifying data types
+- PHP -> if you perform a loose comparison `(==)` between an integer and a string, PHP will attempt to convert the string to an integer, meaning that 5 == "5" evaluates to `true`
+- `0 == "Example string" // true`
+```
+$login = unserialize($_COOKIE)
+if ($login['password'] == $password) {
+// log in successfully
+}
+```
+- Attacker modified the password attribute so that it contained the integer `0` -> authentication bypass
+- NOTE 1: this is only possible because deserialization preserves the data type
+- REMEMBER: when modifying data types in any serialized object format -> remember to update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized)
+- NOTE 2: When working directly with binary formats, use the Hackvertor extension (Burp Suite)
+
+## Magic methods
