@@ -14,7 +14,7 @@
 - encode: ` %2e%2e%2f `
 - double-encode: ` %252e%252e%252f `
 - require to start with the expected base folder es. `/var/www/images` -> `filename=/var/www/images/../../../etc/passwd`
-- require to end with an expected file extension es. `.php` -> `filename=../../../etc/passwd%00.png`
+- require to end with an expected file extension es. `.png` -> `filename=../../../etc/passwd%00.png`
 - others
 
 ## Defences
