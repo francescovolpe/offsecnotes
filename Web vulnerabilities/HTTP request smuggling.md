@@ -21,3 +21,39 @@ b
 q=smuggling
 0
 ```
+
+## How to perform an HTTP request smuggling attack
+- CL.TE: the front-end server uses the `Content-Length` header and the back-end server uses the `Transfer-Encoding` header.
+```
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Content-Length: 13
+Transfer-Encoding: chunked
+
+0
+
+SMUGGLED
+```
+  - Front-end server:
+    - Processes Content-Length header, detects a 13-byte request body (up to "SMUGGLED").
+    - Forwards request to back-end server.
+
+  - Back-end server:
+    - Processes Transfer-Encoding header, assumes chunked encoding.
+    - Handles the first zero-length chunk, ending the request.
+    - The remaining bytes ("SMUGGLED") are left unprocessed.
+    - Back-end server considers these bytes as the start of the next request in the sequence.
+
+- TE.CL: the front-end server uses the `Transfer-Encoding` header and the back-end server uses the `Content-Length` header.
+  - Front-end server:
+    - Processes Transfer-Encoding header, assumes chunked encoding.
+    - Handles the first chunk (8 bytes) up to the line after "SMUGGLED."
+    - Handles the second zero-length chunk, ending the request.
+    - Forwards the request to the back-end server.
+
+  - Back-end server:
+    - Processes Content-Length header, detects a 3-byte request body (up to the line after "8").
+    - The following bytes, starting with "SMUGGLED," are left unprocessed.
+    - The back-end server considers these bytes as the start of the next request in the sequence.
+- TE.TE: the front-end and back-end servers both support the `Transfer-Encoding` header, but one of the servers can be induced not to process it by obfuscating the header in some way.
+
