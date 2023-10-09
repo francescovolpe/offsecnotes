@@ -28,6 +28,7 @@ Notes are continuously updated.
     |_📄 File upload vulnerabilities.md
     |_📄 Access control vulnerabilities.md
     |_📄 Insecure deserialization.md
+    |_📄 HTTP request smuggling.md
 |_📂 Tool list
     |_📄 Defence.md
     |_📄 Forensics.md
