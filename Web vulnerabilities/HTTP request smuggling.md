@@ -11,7 +11,8 @@
   - The `Content-Length header` specifies the length of the message body in bytes
   - The `Transfer-Encoding` header specify that the message body uses chunked encoding. This means that the message body contains one or more chunks of data
     - Each chunk comprises a size in hexadecimal bytes, a newline, and the chunk's content. The message concludes with a zero-sized chunk.
-    - ```POST /search HTTP/1.1
+```
+POST /search HTTP/1.1
 Host: normal-website.com
 Content-Type: application/x-www-form-urlencoded
 Transfer-Encoding: chunked
