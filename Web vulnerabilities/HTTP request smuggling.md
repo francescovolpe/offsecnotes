@@ -44,7 +44,17 @@ SMUGGLED
     - The remaining bytes ("SMUGGLED") are left unprocessed.
     - Back-end server considers these bytes as the start of the next request in the sequence.
 
-- TE.CL: the front-end server uses the `Transfer-Encoding` header and the back-end server uses the `Content-Length` header.
+- <b>TE.CL</b>: the front-end server uses the `Transfer-Encoding` header and the back-end server uses the `Content-Length` header.
+```
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Content-Length: 3
+Transfer-Encoding: chunked
+
+8
+SMUGGLED
+0
+```
   - Front-end server:
     - Processes Transfer-Encoding header, assumes chunked encoding.
     - Handles the first chunk (8 bytes) up to the line after "SMUGGLED."
@@ -55,5 +65,36 @@ SMUGGLED
     - Processes Content-Length header, detects a 3-byte request body (up to the line after "8").
     - The following bytes, starting with "SMUGGLED," are left unprocessed.
     - The back-end server considers these bytes as the start of the next request in the sequence.
-- TE.TE: the front-end and back-end servers both support the `Transfer-Encoding` header, but one of the servers can be induced not to process it by obfuscating the header in some way.
 
+- <b>TE.TE</b>: the front-end and back-end servers both support the `Transfer-Encoding` header, but one of the servers can be induced not to process it by obfuscating the header in some way.
+  - TO DO ...
+
+## Finding HTTP request smuggling vulnerabilities
+### Finding CL.TE vulnerabilities using timing techniques
+```
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Transfer-Encoding: chunked
+Content-Length: 4
+
+1
+A
+X
+```
+The back-end server processes the first chunk using the Transfer-Encoding header, leading to an observable time delay while awaiting the next chunk.
+
+### Finding TE.CL vulnerabilities using timing techniques
+```
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Transfer-Encoding: chunked
+Content-Length: 6
+
+0
+
+X
+```
+- The back-end server, relying on the Content-Length header, waits for additional message body content, resulting in a noticeable time delay.
+- NOTE: The timing-based test for TE.CL vulnerabilities will potentially disrupt other application users if the application is vulnerable to the CL.TE variant of the vulnerability. So to be stealthy and minimize disruption, you should use the CL.TE test first and continue to the TE.CL test only if the first test is unsuccessful.
+
+### Confirming HTTP request smuggling vulnerabilities using differential responses
