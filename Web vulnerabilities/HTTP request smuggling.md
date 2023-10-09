@@ -23,7 +23,7 @@ q=smuggling
 ```
 
 ## How to perform an HTTP request smuggling attack
-- CL.TE: the front-end server uses the `Content-Length` header and the back-end server uses the `Transfer-Encoding` header.
+- <b>CL.TE</b>: the front-end server uses the `Content-Length` header and the back-end server uses the `Transfer-Encoding` header.
 ```
 POST / HTTP/1.1
 Host: vulnerable-website.com
