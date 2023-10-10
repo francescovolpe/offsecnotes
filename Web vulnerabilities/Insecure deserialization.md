@@ -56,8 +56,8 @@ if ($user->isAdmin === true) {
 // allow access to admin interface
 }
 ```
-- In isolation, this has no effect
-- This simple scenario is not common in the wild
+- NOTE 1: In isolation, this has no effect
+- NOTE 2: This simple scenario is not common in the wild
 
 ### Modifying data types
 - PHP -> if you perform a loose comparison `(==)` between an integer and a string, PHP will attempt to convert the string to an integer, meaning that 5 == "5" evaluates to `true`
