@@ -60,17 +60,13 @@ Transfer-Encoding: chunked\r\n
 \r\n
 0\r\n
 \r\n
-SMUGGLED
+SMUGGLEDGET /second HTTP/1.1\r\n
+Host: vulnerable-website.com\r\n
+...
 ```
-  - Front-end server:
-    - Processes Content-Length header, detects a 13-byte request body (up to "SMUGGLED").
-    - Forwards request to back-end server.
+- Content-Length: 0\r\n\r\nSMUGGLED -> 13
+- SMUGGLED ES.: GET / HTTP/1.1\r\nfoo: a
 
-  - Back-end server:
-    - Processes Transfer-Encoding header, assumes chunked encoding.
-    - Handles the first zero-length chunk, ending the request.
-    - The remaining bytes ("SMUGGLED") are left unprocessed.
-    - Back-end server considers these bytes as the start of the next request in the sequence.
 
 - <b>TE.CL</b>: the front-end server uses the `Transfer-Encoding` header and the back-end server uses the `Content-Length` header.
 ```
