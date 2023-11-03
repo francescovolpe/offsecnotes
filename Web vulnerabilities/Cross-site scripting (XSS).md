@@ -30,6 +30,17 @@ function unsafe(t) {
 - Stored XSS, where the malicious script comes from the website's database.
   - POST example: `comment=%3Cscript%3E%2F*%2BBad%2Bstuff%2Bhere...%2B*%2F%3C%2Fscript%3E`
 - DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code.
+  - ```
+    <script>
+    function trackSearch(query) {
+      document.write('<img src="/resources/images/tracker.gif?searchTerms='+query+'">');
+    }
+    var query = (new URLSearchParams(window.location.search)).get('search');
+    if(query) {
+      trackSearch(query);
+    }
+    </script>
+    ```
 
 
 
