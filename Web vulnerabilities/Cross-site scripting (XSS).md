@@ -6,6 +6,24 @@ Cross-site scripting works by manipulating a vulnerable web site so that it retu
 ## Alert() limitation
 TO DO
 
+## Do not use alert(1)
+```
+<textarea id="script" onchange=("unsafe(this.value)"></textarea><br>
+<iframe id="result" sandbox="allow-scripts allow-modals"></iframe>
+```
+```
+document.session = "secret"
+function unsafe(t) {
+  var i = document.getElementById('result'); // get the <iframe>
+  i.srcdoc = "<body><script>document.write("+t+");<"+"/script><body>";
+}
+```
+- Try alert(1) and you see it works... but
+- alert(document.session) won't work... why?
+- alert(window.origin) or alert(document.domain) and you'll see it's empty
+  - this is because the sandboxed iframe also has a different origin. It's isolated from the website it is embedded into and you cannot steal the secret session.
+- Use alert(document.domain) or alert(window.origin) instead 
+
 ## Types of XSS
 - Reflected XSS, where the malicious script comes from the current HTTP request.
   - `https://insecure-website.com/search?term=<script>/*+Bad+stuff+here...+*/</script>`
