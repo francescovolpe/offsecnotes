@@ -41,7 +41,7 @@ function unsafe(t) {
     }
     </script>
     ```
-  - Get request https://insecure-website.com/index?search="><script>alert(document.domain)<%2Fscript>
+  - Get request `https://insecure-website.com/index?search="><script>alert(document.domain)<%2Fscript>`
 
 
 
