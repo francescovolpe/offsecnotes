@@ -42,6 +42,6 @@ function unsafe(t) {
     </script>
     ```
   - Get request `https://insecure-website.com/index?search="><script>alert(document.domain)<%2Fscript>`
-
+  - Some sinks: https://portswigger.net/web-security/cross-site-scripting/dom-based#which-sinks-can-lead-to-dom-xss-vulnerabilities
 
 
