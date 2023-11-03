@@ -42,6 +42,12 @@ function unsafe(t) {
     </script>
     ```
   - Get request `https://insecure-website.com/index?search="><script>alert(document.domain)<%2Fscript>`
-  - Note: here there are some sinks: https://portswigger.net/web-security/cross-site-scripting/dom-based#which-sinks-can-lead-to-dom-xss-vulnerabilities
+  - Methodology
+    - 1. Look for any script that has a source that we can control (you can use domxsswiki)
+      2. Use javascript debugger to walk through the script and realize that there is also a sink
+      3. Exploit it 
+  - Note: here there are some sources and sinks
+    - https://github.com/wisec/domxsswiki/wiki
+    - https://portswigger.net/web-security/cross-site-scripting/dom-based#which-sinks-can-lead-to-dom-xss-vulnerabilities
 
 
