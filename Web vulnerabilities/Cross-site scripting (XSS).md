@@ -50,4 +50,11 @@ function unsafe(t) {
     - https://github.com/wisec/domxsswiki/wiki
     - https://portswigger.net/web-security/cross-site-scripting/dom-based#which-sinks-can-lead-to-dom-xss-vulnerabilities
 
+### Sources and sinks in third-party dependencies
+To do...
+
+### DOM XSS combined with reflected and stored data
+- If a script reads some data from the URL and writes it to a dangerous sink, then the vulnerability is entirely client-side. (there is no processing from the server) 
+- Reflected DOM vulnerabilities occur when the server-side application processes data from a request and echoes the data in the response. A script on the page then processes the reflected data in an unsafe way, ultimately writing it to a dangerous sink.
+- `eval('var data = "reflected string"');`
 
