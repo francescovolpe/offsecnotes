@@ -43,8 +43,8 @@ function unsafe(t) {
     ```
   - Get request `https://insecure-website.com/index?search="><script>alert(document.domain)<%2Fscript>`
   - Methodology
-    - 1. Look for any script that has a source that we can control (you can use domxsswiki)
-      2. Use javascript debugger to walk through the script and realize that there is also a sink
+      1. Look for any script that has a sinks
+      2. See if you can control the sink
       3. Exploit it 
   - Note: here there are some sources and sinks
     - https://github.com/wisec/domxsswiki/wiki
@@ -57,4 +57,5 @@ To do...
 - If a script reads some data from the URL and writes it to a dangerous sink, then the vulnerability is entirely client-side. (there is no processing from the server) 
 - Reflected DOM vulnerabilities occur when the server-side application processes data from a request and echoes the data in the response. A script on the page then processes the reflected data in an unsafe way, ultimately writing it to a dangerous sink.
 - `eval('var data = "reflected string"');`
+
 
