@@ -1,4 +1,4 @@
-# Javascript ecurity considerations
+# Javascript security considerations
 ## Javascript eval() - DOM XSS 
 - In all these case an alert will appear
     - `let text = alert();`
