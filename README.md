@@ -8,6 +8,7 @@ Notes are continuously updated.
 |_📄 Other resources.md
 |_📄 Privilege Escalation.md
 |_📄 Methods & Headers.md
+|_📄 Javascript security considerations.md
 |_📄 README.md
 |_📂 CTF Methodology
     |_📄 CTF Methodology.md
