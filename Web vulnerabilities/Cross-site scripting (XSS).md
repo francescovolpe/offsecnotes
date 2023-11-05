@@ -56,6 +56,8 @@ To do...
 ### DOM XSS combined with reflected and stored data
 - If a script reads some data from the URL and writes it to a dangerous sink, then the vulnerability is entirely client-side. (there is no processing from the server) 
 - Reflected DOM vulnerabilities occur when the server-side application processes data from a request and echoes the data in the response. A script on the page then processes the reflected data in an unsafe way, ultimately writing it to a dangerous sink.
-- `eval('var data = "reflected string"');`
+  - `eval('var data = "reflected string"');`
+- In a stored DOM XSS vulnerability, the server receives data from one request, stores it, and then includes the data in a later response. A script within the later response contains a sink which then processes the data in an unsafe way.
+  - `element.innerHTML = comment.author`
 
 
