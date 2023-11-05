@@ -49,6 +49,7 @@ function unsafe(t) {
   - Note: here there are some sources and sinks
     - https://github.com/wisec/domxsswiki/wiki
     - https://portswigger.net/web-security/cross-site-scripting/dom-based#which-sinks-can-lead-to-dom-xss-vulnerabilities
+  - Note 2: DOM Invader (Burp Suite tool) is a browser-based tool that helps you test for DOM XSS vulnerabilities using a variety of sources and sinks. 
 
 ### Sources and sinks in third-party dependencies
 To do...
