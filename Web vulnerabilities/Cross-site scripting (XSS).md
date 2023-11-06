@@ -51,7 +51,7 @@ function unsafe(t) {
     - https://portswigger.net/web-security/cross-site-scripting/dom-based#which-sinks-can-lead-to-dom-xss-vulnerabilities
   - Note 2: DOM Invader (Burp Suite tool) is a browser-based tool that helps you test for DOM XSS vulnerabilities using a variety of sources and sinks. 
 
-### Sources and sinks in third-party dependencies
+### DOM XSS - Sources and sinks in third-party dependencies
 To do...
 
 ### DOM XSS combined with reflected and stored data
@@ -61,4 +61,20 @@ To do...
 - In a stored DOM XSS vulnerability, the server receives data from one request, stores it, and then includes the data in a later response. A script within the later response contains a sink which then processes the data in an unsafe way.
   - `element.innerHTML = comment.author`
 
+## Cross-site scripting contexts
+### XSS between HTML tags
+```
+<script>alert(document.domain)</script>
+<img src=1 onerror=alert(1)>
+```
+### XSS in HTML tag attributes
+- When the XSS context is into an HTML tag attribute value, you might sometimes be able to terminate the attribute value, close the tag, and introduce a new one.
+- `"><script>alert(document.domain)</script>`
+- More commonly in this situation, angle brackets are blocked or encoded. In this case you can introduce a new attribute that creates a scriptable context.
+- `" autofocus onfocus=alert(document.domain) x="`
+- Sometimes the XSS context is into a type of HTML tag attribute that itself can create a scriptable context.
+  - If the XSS context is into the href attribute of an anchor tag, you can use the javascript pseudo-protocol to execute script
+  - `<a href="javascript:alert(document.domain)">`
+- accesskey
+  - <b>TO DO</b>
 
