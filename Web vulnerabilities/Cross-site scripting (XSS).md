@@ -67,6 +67,10 @@ To do...
 <script>alert(document.domain)</script>
 <img src=1 onerror=alert(1)>
 ```
+- Bypass WAF
+  - If you receive an error like "tag <img> is not allowed" or "event is not allowed", use XSS cheat sheet to discover a tag and event that work.
+  - Note: understand how a payload works
+    - `<body onresize="print()">` with this payload (for reflected XSS) you need an exploit server and iframe tag
 ### XSS in HTML tag attributes
 - When the XSS context is into an HTML tag attribute value, you might sometimes be able to terminate the attribute value, close the tag, and introduce a new one.
 - `"><script>alert(document.domain)</script>`
