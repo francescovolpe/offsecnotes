@@ -16,6 +16,8 @@
 - Different status code 
 - Response times (a website might only check whether the password is correct if the username is valid)
   - entering an excessively long password that the website takes noticeably longer to handle
+- Account locking? (after a certain number of trials)
+  - This can help to enumerate usernames
 
 ## Passwords
 - Wordlist
@@ -28,6 +30,4 @@
   - Try to bypass by adding X-Forwarded-For header
   - What happen when you guess the password? The error message is different? (try with your account)
     - ---> Even if you have been locked out, keep guessing the password
-- Account locking? (after a certain number of trials)
-  - This can help to enumerate usernames
-  - ## [TODO] User rate limiting
+- ## [TODO] User rate limiting
