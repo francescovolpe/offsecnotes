@@ -1,4 +1,4 @@
-# Command
+# Commands
 
 #### Hydra https-post-form
 Note: Not add the schema -> website.net instead of https://website.net
