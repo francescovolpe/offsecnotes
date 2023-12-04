@@ -28,6 +28,6 @@
   - Try to bypass by adding X-Forwarded-For header
   - What happen when you guess the password? The error message is different? (try with your account)
     - ---> Even if you have been locked out, keep guessing the password
-- Account locking?
+- Account locking? (after a certain number of trials)
   - This can help to enumerate usernames
   - ## [TODO] User rate limiting
