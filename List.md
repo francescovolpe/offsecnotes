@@ -27,3 +27,33 @@ js/digests.js
 js/tokens.js
 js/cookies.js
 ```
+
+#### Top 25 Local File Inclusion (LFI) Parameters
+- https://twitter.com/trbughunters/status/1279768631845494787
+```
+?cat={payload}
+?dir={payload}
+?action={payload}
+?board={payload}
+?date={payload}
+?detail={payload}
+?file={payload}
+?download={payload}
+?path={payload}
+?folder={payload}
+?prefix={payload}
+?include={payload}
+?page={payload}
+?inc={payload}
+?locate={payload}
+?show={payload}
+?doc={payload}
+?site={payload}
+?type={payload}
+?view={payload}
+?content={payload}
+?document={payload}
+?layout={payload}
+?mod={payload}
+?conf={payload}
+```
