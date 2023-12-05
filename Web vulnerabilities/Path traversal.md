@@ -17,6 +17,12 @@
 - require to end with an expected file extension es. `.png` -> `filename=../../../etc/passwd%00.png`
 - others
 
+## Suggestions
+- Don't always trust error messages
+  - GET /image?filename=/etc/passwd ---> "No such file"
+    - Try to add null byte
+    - Try to add null byte and extension ----> %00.png
+
 ## Defences
 - Avoid passing user-supplied input to filesystem APIs
 - Use two layers of defense to prevent attacks
