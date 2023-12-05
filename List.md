@@ -35,16 +35,16 @@ js/cookies.js
   
 <summary>Top 25 Parameters</summary>
   
-##### Links
-- https://owasp.org/www-project-top-25-parameters/
-- https://github.com/lutfumertceylan/top25-parameter/tree/master
-##### Vulnerabilities
-- Cross-Site Scripting
-- Server-Side Request Forgery
-- Local File Inclusion
-- SQL Injection
-- Remote Code Execution
-- Open Redirect
+- Links
+  - https://owasp.org/www-project-top-25-parameters/
+  - https://github.com/lutfumertceylan/top25-parameter/tree/master
+- Vulnerabilities
+  - Cross-Site Scripting
+  - Server-Side Request Forgery
+  - Local File Inclusion
+  - SQL Injection
+  - Remote Code Execution
+  - Open Redirect
 </details>
 
 
