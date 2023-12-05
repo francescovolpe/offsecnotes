@@ -28,32 +28,15 @@ js/tokens.js
 js/cookies.js
 ```
 
-#### Top 25 Local File Inclusion (LFI) Parameters
-- https://twitter.com/trbughunters/status/1279768631845494787
-```
-?cat={payload}
-?dir={payload}
-?action={payload}
-?board={payload}
-?date={payload}
-?detail={payload}
-?file={payload}
-?download={payload}
-?path={payload}
-?folder={payload}
-?prefix={payload}
-?include={payload}
-?page={payload}
-?inc={payload}
-?locate={payload}
-?show={payload}
-?doc={payload}
-?site={payload}
-?type={payload}
-?view={payload}
-?content={payload}
-?document={payload}
-?layout={payload}
-?mod={payload}
-?conf={payload}
-```
+#### Top 25 Parameters
+##### Links
+- https://owasp.org/www-project-top-25-parameters/
+- https://github.com/lutfumertceylan/top25-parameter/tree/master
+##### Vulnerabilities
+- Cross-Site Scripting
+- Server-Side Request Forgery
+- Local File Inclusion
+- SQL Injection
+- Remote Code Execution
+- Open Redirect
+
