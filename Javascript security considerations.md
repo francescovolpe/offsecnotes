@@ -32,5 +32,11 @@ el.innerHTML = name; // harmless in this case
     - In this case you can use `const name = "<img src='x' onerror='alert(1)'>";`
 
 
-
-
+## Javascript location
+- In JavaScript, the location variable represents the object that provides information about the URL (Uniform Resource Locator) of the current document
+```
+<script>
+location = 'https://google.it';
+</script>
+```
+- The browser will interpret this assignment as a command to change the location of the current web page and redirect it to "https://google.it."
