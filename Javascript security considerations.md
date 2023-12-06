@@ -40,3 +40,15 @@ location = 'https://google.it';
 </script>
 ```
 - The browser will interpret this assignment as a command to change the location of the current web page and redirect it to "https://google.it."
+
+## Javascript href Attribute
+| Value | Description | 
+| ------------- | ------------- |
+| URL | The URL of the link. |
+
+Possible values:
+- An absolute URL - points to another web site (like href="http://www.example.com/default.htm")
+- A relative URL - points to a file within a web site (like href="default.htm")
+- Link to an element with a specified id within the page (like href="#section2")
+- Other protocols (like https://, ftp://, mailto:, file:, etc..)
+- <b>A script (like href="javascript:alert('Hello');")</b>
