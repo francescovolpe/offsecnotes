@@ -87,3 +87,17 @@ To do...
   - Substitute `'` `"` and viceversa
   - Space is not needed
     - `<link rel="canonical" href='https://website.net/?'accesskey='X'onclick='alert(1)'/>`
+
+### XSS into JavaScript
+- Terminating the existing script (I don't really know why this works but it works)
+  - The browser incorrectly interprets the `'</script>'` sequence within the string as the end of the script block, prematurely stopping the execution of your JavaScript script and generating an error.
+```
+<script>
+...
+var input = 'controllable data here';
+...
+</script>
+```
+```
+</script><img src=1 onerror=alert(document.domain)>
+```
