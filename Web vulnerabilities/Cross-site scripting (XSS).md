@@ -109,7 +109,13 @@ To do...
       ```
   - Some applications try to escape single quote characters with a backslash but often forget to escape the backslash itself.
     - ` ';alert(document.domain)// ` is converted to `\';alert(document.domain)//` so your input could be `\';alert(document.domain)//` which gets converted to `\\';alert(document.domain)//`
-
+  - Making use of HTML-encoding
+    - When the XSS context is some existing JavaScript within a quoted tag attribute, such as an event handler, it is possible to make use of HTML-encoding to work around input filters.
+      - `<a href="#" onclick="... var input='controllable data here'; ...">`
+      - `&apos;-alert(document.domain)-&apos;`
+      - The browser HTML-decodes the value of the onclick attribute before the JavaScript is interpreted
+      - HTML encode: https://html.spec.whatwg.org/multipage/named-characters.html
+      - Note: you cannot use `&quot;` -> `"` to close onclick attribute. Remember: The browser HTML-decode the value of the onlick attribute but not the entire structure
 
 ## Exploiting cross-site scripting vulnerabilities
 ### Exploiting cross-site scripting to steal cookies
