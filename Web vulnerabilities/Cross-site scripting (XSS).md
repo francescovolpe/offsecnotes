@@ -109,3 +109,17 @@ To do...
       ```
   - Some applications try to escape single quote characters with a backslash but often forget to escape the backslash itself.
     - ` ';alert(document.domain)// ` is converted to `\';alert(document.domain)//` so your input could be `\';alert(document.domain)//` which gets converted to `\\';alert(document.domain)//`
+
+
+## Exploiting cross-site scripting vulnerabilities
+### Exploiting cross-site scripting to steal cookies
+- Send the victim's cookies to your own domain
+- Limitation:
+  - The victim might not be logged in.
+  - Many applications hide their cookies from JavaScript using the `HttpOnly` flag.
+  - Sessions might be locked to additional factors like the user's IP address.
+  - The session might time out before you're able to hijack it.
+### Exploiting cross-site scripting to capture passwords
+To do
+### Exploiting cross-site scripting to perform CSRF
+To do
