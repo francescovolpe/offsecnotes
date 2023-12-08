@@ -128,6 +128,8 @@ To do...
         ```
         ${alert(document.domain)}
         ```
+### XSS via client-side template injection
+To do
         
 ## Exploiting cross-site scripting vulnerabilities
 ### Exploiting cross-site scripting to steal cookies
