@@ -116,7 +116,19 @@ To do...
       - The browser HTML-decodes the value of the onclick attribute before the JavaScript is interpreted
       - HTML encode: https://html.spec.whatwg.org/multipage/named-characters.html
       - Note: you cannot use `&quot;` -> `"` to close onclick attribute. Remember: The browser HTML-decode the value of the onlick attribute but not the entire structure
-
+  - XSS in JavaScript template literals
+    - JavaScript template literals are string literals that allow embedded JavaScript expressions (Template literals are encapsulated in backticks)
+      - ```
+        <script>
+        ...
+        var input = `controllable data here`;
+        ...
+        </script>
+        ```
+        ```
+        ${alert(document.domain)}
+        ```
+        
 ## Exploiting cross-site scripting vulnerabilities
 ### Exploiting cross-site scripting to steal cookies
 - Send the victim's cookies to your own domain
