@@ -33,6 +33,7 @@ Notes are continuously updated.
     |_📄 Insecure deserialization.md
     |_📄 HTTP request smuggling.md
     |_📄 Cross-site scripting (XSS).md
+    |_📄 SQL injection.md
 |_📂 Tool list
     |_📄 Defence.md
     |_📄 Forensics.md
