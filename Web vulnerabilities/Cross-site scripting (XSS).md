@@ -132,14 +132,24 @@ To do...
 To do
         
 ## Exploiting cross-site scripting vulnerabilities
-### Exploiting cross-site scripting to steal cookies
+#Exploiting cross-site scripting to steal cookies
 - Send the victim's cookies to your own domain
-- Limitation:
-  - The victim might not be logged in.
-  - Many applications hide their cookies from JavaScript using the `HttpOnly` flag.
-  - Sessions might be locked to additional factors like the user's IP address.
-  - The session might time out before you're able to hijack it.
-### Exploiting cross-site scripting to capture passwords
-To do
-### Exploiting cross-site scripting to perform CSRF
-To do
+  - Limitation:
+    - The victim might not be logged in.
+    - Many applications hide their cookies from JavaScript using the `HttpOnly` flag.
+    - Sessions might be locked to additional factors like the user's IP address.
+    - The session might time out before you're able to hijack it.
+- Exploiting cross-site scripting to capture passwords
+- Exploiting cross-site scripting to perform CSRF
+  - When CSRF occurs as a standalone vulnerability, it can be patched using strategies like anti-CSRF tokens. However, these strategies do not provide any protection if an XSS vulnerability is also present.
+  - If the site use a token you can get it doing a first request and then add the token in a second request
+
+## Content security policy
+- CSP restrit the resources (such as scripts and images) that a page can load and restricting whether a page can be framed by other pages
+- CSP defends against XSS attacks in the following ways
+  - Restricting Inline Scripts
+    - `<script>document.body.innerHTML='defaced'</script>` will not work
+  - Restricting Remote Scripts
+    - `<script src="https://evil.com/hacked.js"></script>` will not work
+  - Restricting Unsafe JavaScript
+  - Others https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html
