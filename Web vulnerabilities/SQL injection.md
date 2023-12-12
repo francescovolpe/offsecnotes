@@ -15,3 +15,42 @@
 - If your condition reaches an UPDATE or DELETE statement, for example, it can result in an accidental loss of data.
 
 ## SQL injection UNION attacks
+- Requirements
+  - How many columns are being returned from the original query
+  - Which columns returned from the original query are of a suitable data type to hold the results from the injected query
+
+### Determining the number of columns required
+- First way: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs
+  - Example (the injection point is a quoted string within the `WHERE` clause)
+  - ```
+    ' ORDER BY 1--
+    ' ORDER BY 2--
+    ' ORDER BY 3--
+    etc.
+    ```
+- Second way: submitting a series of `UNION SELECT` payloads specifying a different number of null values
+  - NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct. 
+  - ```
+    ' UNION SELECT NULL--
+    ' UNION SELECT NULL,NULL--
+    ' UNION SELECT NULL,NULL,NULL--
+    etc.
+    ```
+- Note: the application might actually return the database error in its HTTP response, but may return a generic error or simply return no results
+
+### Database-specific syntax
+- Example:
+  - Oracle: every `SELECT` query must use the `FROM` keyword and specify a valid table
+  - MySQL: the double-dash sequence must be followed by a space
+  - https://portswigger.net/web-security/sql-injection/cheat-sheet
+
+### Finding columns with a useful data type
+- Do you want a string?
+  - ```
+    ' UNION SELECT 'a',NULL,NULL,NULL--
+    ' UNION SELECT NULL,'a',NULL,NULL--
+    ' UNION SELECT NULL,NULL,'a',NULL--
+    ' UNION SELECT NULL,NULL,NULL,'a'--
+   ```
+  - Error example: Conversion failed when converting the varchar value 'a' to data type int.
+   - If no error occurs and the response includes the injected string, the column is suitable for retrieving string data.
