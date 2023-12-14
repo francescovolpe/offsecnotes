@@ -80,3 +80,7 @@
   - `SELECT * FROM all_tab_columns WHERE table_name = 'USERS'`
     - `SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'`
 
+### Retrieving multiple values within a single column
+- You can retrieve multiple values together within this single column by concatenating the values together
+- `' UNION SELECT username || '~' || password FROM users--`
+  - https://portswigger.net/web-security/sql-injection/cheat-sheet
