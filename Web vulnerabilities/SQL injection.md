@@ -76,5 +76,7 @@
     - `SELECT * FROM information_schema.columns WHERE table_name = 'Users'`
 - Oracle:
   - `SELECT * FROM all_tables`
+    - `SELECT TABLE_NAME FROM all_tables`
   - `SELECT * FROM all_tab_columns WHERE table_name = 'USERS'`
+    - `SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'`
 
