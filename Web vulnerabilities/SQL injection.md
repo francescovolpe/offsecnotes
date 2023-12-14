@@ -65,8 +65,14 @@
 - Listing the contents of the database
 - Most database types (except Oracle) have a set of views called the information schema
   - `information_schema.tables `
+    - |TABLE_CATALOG | TABLE_SCHEMA | TABLE_NAME | TABLE_TYPE |
+      | -- | -- | -- | -- |
+      | MyDatabase | dbo | Products | BASE TABLE |
     - ` SELECT * FROM information_schema.tables`
   - ` information_schema.columns `
+    - | TABLE_CATALOG |TABLE_SCHEMA | TABLE_NAME | COLUMN_NAME | DATA_TYPE |
+      | -- | -- | -- | -- | -- |
+      |MyDatabase | dbo | Users | UserId | int |
     - `SELECT * FROM information_schema.columns WHERE table_name = 'Users'`
 - Oracle:
   - `SELECT * FROM all_tables`
