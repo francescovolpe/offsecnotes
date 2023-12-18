@@ -132,13 +132,13 @@ To do...
 To do
         
 ## Exploiting cross-site scripting vulnerabilities
-#Exploiting cross-site scripting to steal cookies
-- Send the victim's cookies to your own domain
-  - Limitation:
-    - The victim might not be logged in.
-    - Many applications hide their cookies from JavaScript using the `HttpOnly` flag.
-    - Sessions might be locked to additional factors like the user's IP address.
-    - The session might time out before you're able to hijack it.
+- Exploiting cross-site scripting to steal cookies
+  - Send the victim's cookies to your own domain
+    - Limitation:
+      - The victim might not be logged in.
+      - Many applications hide their cookies from JavaScript using the `HttpOnly` flag.
+      - Sessions might be locked to additional factors like the user's IP address.
+      - The session might time out before you're able to hijack it.
 - Exploiting cross-site scripting to capture passwords
 - Exploiting cross-site scripting to perform CSRF
   - When CSRF occurs as a standalone vulnerability, it can be patched using strategies like anti-CSRF tokens. However, these strategies do not provide any protection if an XSS vulnerability is also present.
