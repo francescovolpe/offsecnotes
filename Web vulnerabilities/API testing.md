@@ -1,5 +1,6 @@
 # API testing
 
+## API Recon
 - You need to find out as much information about the API as possible
   - Discover API endpoint
   - Input data the API processes (compulsory and optional parameters).
