@@ -13,3 +13,9 @@
 
 - If you identify the resource endpoint `/api/swagger/v1/users/123` use a list of common paths to directly fuzz for documentation
   - `/api/swagger/v1`, `/api/swagger`, `/api`
+ 
+## Identifying API endpoints
+- Browsing application
+  - (even if you have access to documentaion, as it may be inaccurate)
+- Look out for JavaScript files (These can contain references to API endpoints)
+  - Suggestion: JS Link Finder BApp 
