@@ -98,6 +98,7 @@ To do...
         ...
         </script>
         ```
+        Payload:
         ```
         </script><img src=1 onerror=alert(document.domain)>
         ```
