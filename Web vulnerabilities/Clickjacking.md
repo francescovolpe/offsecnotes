@@ -3,7 +3,25 @@
 - Clickjacking is a type of attack where a user is deceived into clicking on something on a hidden website by making them click on something else on a decoy website.
 - The method involves embedding an invisible, interactive web page (or multiple pages) that contains a button or hidden link, typically within an iframe. This iframe is then placed over the expected content of the user's decoy web page.
 - Clickjacking attacks are not mitigated by the CSRF token as a target session is established with content loaded from an authentic website and with all requests happening on-domain
-
+```
+<style>
+    iframe {
+        position:relative;
+        width:$width_value;
+        height: $height_value;
+        opacity: $opacity;
+        z-index: 2;
+    }
+    div {
+        position:absolute;
+        top:$top_value;
+        left:$side_value;
+        z-index: 1;
+    }
+</style>
+<div>Test</div>
+<iframe src=""></iframe>
+```
 ## Clickjacking with prefilled form input
 
 .. To do
