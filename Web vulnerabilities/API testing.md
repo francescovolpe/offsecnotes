@@ -53,6 +53,7 @@ Changing the content type may enable you to
   - In addition, send a PATCH request with an invalid isAdmin parameter value:
   - `{"username": "wiener","email": "wiener@example.com", "isAdmin": "foo",}`
   - If the application behaves differently, this may suggest that the invalid value impacts the query logic, but the valid value doesn't. This may indicate that the parameter can be successfully updated by the user. (Set it to true)
+    - Note: We change isAdmin to "foo" because we want see if the user input is processed. If we get an error may indicate that the user input is being processed
 
 ## Preventing vulnerabilities in APIs
 - Secure your documentation if you don't intend your API to be publicly accessible.
