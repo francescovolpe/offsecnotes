@@ -1,17 +1,5 @@
 # Access control vulnerabilities
 
-- [General info](#general-info)
-- [Vertical privilege escalation](#vertical-privilege-escalation)
-  * [Unprotected functionality](#unprotected-functionality)
-  * [Parameter-based access control methods](#parameter-based-access-control-methods)
-  * [Broken access control resulting from platform misconfiguration](#broken-access-control-resulting-from-platform-misconfiguration)
-  * [Broken access control resulting from URL-matching discrepancies](#broken-access-control-resulting-from-url-matching-discrepancies)
-- [Horizontal privilege escalation](#horizontal-privilege-escalation)
-- [Access control vulnerabilities in multi-step processes](#access-control-vulnerabilities-in-multi-step-processes)
-- [Referer-based access control](#referer-based-access-control)
-- [Location-based access control](#location-based-access-control)
-- [Prevention](#prevention)
-
 ## General info
 Access control is the application of constraints on who or what is authorized to perform actions or access resources
 
@@ -64,7 +52,7 @@ Imagine a website where access controls are correctly applied to the first and s
   - You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action
 
 ## Location-based access control
-- geographical location
+- Geographical location
   - Web proxies, VPNs, or manipulation of client-side geolocation mechanisms
 
 ## Prevention
