@@ -35,7 +35,8 @@
     - When this is set with the `allow-forms` or `allow-scripts` values and the `allow-top-navigation` value is omitted then the frame buster script can be neutralized as the iframe cannot check whether or not it is the top window
 
 ## Combining clickjacking with a DOM XSS attack
-- To do
+- The attacker has first identified the XSS exploit.
+- The XSS exploit is then combined with the iframe target URL so that the user clicks on the button or link and consequently executes the DOM XSS attack.
 
 ## Multistep clickjacking
 - Attacker manipulation of inputs to a target website may necessitate multiple actions
