@@ -23,8 +23,7 @@
 <iframe src=""></iframe>
 ```
 ## Clickjacking with prefilled form input
-
-.. To do
+- Some websites that require form completion and submission permit prepopulation of form inputs using GET parameters prior to submission
 
 ## Frame busting scripts
 - Clickjacking attacks can occur whenever websites can be framed. To prevent such attacks, techniques focus on limiting the framing ability of websites. A common client-side defense implemented through web browsers is the use of frame-busting or frame-breaking scripts.
