@@ -28,8 +28,10 @@
 
 ## Frame busting scripts
 - Clickjacking attacks can occur whenever websites can be framed. To prevent such attacks, techniques focus on limiting the framing ability of websites. A common client-side defense implemented through web browsers is the use of frame-busting or frame-breaking scripts.
-- ` <iframe id="victim_website" src="https://victim-website.com" sandbox="allow-forms"></iframe> `
-- When this is set with the `allow-forms` or `allow-scripts` values and the `allow-top-navigation` value is omitted then the frame buster script can be neutralized as the iframe cannot check whether or not it is the top window
+  - These can be implemented via proprietary browser JavaScript add-ons or extensions such as NoScript (make all frames visible, prevent clicking on invisible frames, etc.)
+- An effective attacker workaround against frame busters is to use the HTML5 iframe `sandbox` attribute.
+    - ` <iframe id="victim_website" src="https://victim-website.com" sandbox="allow-forms"></iframe> `
+    - When this is set with the `allow-forms` or `allow-scripts` values and the `allow-top-navigation` value is omitted then the frame buster script can be neutralized as the iframe cannot check whether or not it is the top window
 
 ## Combining clickjacking with a DOM XSS attack
 - Some websites that require form completion and submission permit prepopulation of form inputs using GET parameters prior to submission
