@@ -61,6 +61,7 @@ Imagine a website where access controls are correctly applied to the first and s
 - You can't load /admin but
   - `/admin/deleteUser` inspects the Referer header (from /admin)
     - Change it to make request to this endpoint
+  - The main problem is to know sub-pages (you can brute-force them) and eventually parameters to perform an action
 
 ## Location-based access control
 - geographical location
