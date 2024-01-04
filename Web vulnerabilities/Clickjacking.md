@@ -32,8 +32,8 @@
 - When this is set with the `allow-forms` or `allow-scripts` values and the `allow-top-navigation` value is omitted then the frame buster script can be neutralized as the iframe cannot check whether or not it is the top window
 
 ## Combining clickjacking with a DOM XSS attack
-
-.. To do
+Some websites that require form completion and submission permit prepopulation of form inputs using GET parameters prior to submission
+- https://website.com/account?email=test@test.com
 
 ## Multistep clickjacking
 - Attacker manipulation of inputs to a target website may necessitate multiple actions
