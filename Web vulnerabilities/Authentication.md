@@ -1,10 +1,5 @@
 # Authentication
 
-- [Usernames enumeration](#usernames-enumeration)
-- [Passwords](#passwords)
-- [Evasion](#evasion)
-
-
 ## Usernames enumeration
 - admin, administrator
 - firstname.lastname@somecompany.com
@@ -27,7 +22,7 @@
 - IP block?
   - The counter for the number of failed attempts resets if the IP owner logs in successfully.
     - Make sure that concurrent requests is set to 1. (In burp -> resource pool)
-  - Try to bypass by adding X-Forwarded-For header
+  - Try to bypass by adding `X-Forwarded-For` header
   - What happen when you guess the password? The error message is different? (try with your account)
     - ---> Even if you have been locked out, keep guessing the password
 - ## [TODO] User rate limiting
