@@ -7,13 +7,15 @@ Notes are continuously updated.
 |_📄 Email Analysis.md
 |_📄 Other resources.md
 |_📄 Privilege Escalation.md
-|_📄 Methods & Headers.md
-|_📄 Javascript security considerations.md
 |_📄 Commands.md
 |_📄 List.md
 |_📄 README.md
 |_📂 CTF Methodology
     |_📄 CTF Methodology.md
+|_📂 Web
+    |_📄 Methods & Headers.md
+    |_📄 Javascript security considerations.md
+    |_📄 Resources.md
 |_📂 Web vulnerabilities
     |_📄 Authentication.md
     |_📄 Cross-site request forgery (CSRF).md
