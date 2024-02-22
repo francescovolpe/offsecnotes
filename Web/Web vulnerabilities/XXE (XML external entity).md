@@ -1,4 +1,4 @@
-# XML external entity ()
+# XXE (XML external entity)
 
 ### What is XML
 - Some applications use the XML format to transmit data between the browser and the server.
