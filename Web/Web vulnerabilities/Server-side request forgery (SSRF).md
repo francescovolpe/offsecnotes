@@ -36,11 +36,11 @@ Out-of-band
 - Double encoding (bypass blacklist for the path)
 - Registering your own domain name that resolves to 127.0.0.1. You can use spoofed.burpcollaborator.net for this purpose
 - Providing a URL that you control, which subsequently redirects to the target URL. Try using different redirect codes, as well as different protocols for the target URL. For example, switching from an http: to https
-- ## devo capire meglio ultimi due punti
 
 ### SSRF with whitelist-based input filters
 - Add credentials: ```https://expected-host:fakepassword@evil-host```
-- https://expected-host.evil-host
+- `https://expected-host.evil-host`
+- URL encode and URL double encode 
 - Many other ways 
   - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery/url-format-bypass
   - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Server%20Side%20Request%20Forgery/README.md
@@ -48,3 +48,8 @@ Out-of-band
 ### Bypassing SSRF filters via open redirection
 - It works because the application first validates that the supplied api URL is on an allowed domain
 - ```api=http://domain.net/product?productId=6&path=http://192.168.0.68/admin```
+
+## Finding hidden attack surface for SSRF vulnerabilities
+- Partial URLs in requests
+- URLs within data formats (ex. in XML)
+- SSRF via the Referer header (Some applications use server-side analytics software to tracks visitors)
