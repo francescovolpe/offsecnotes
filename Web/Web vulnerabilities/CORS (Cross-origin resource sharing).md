@@ -1,4 +1,4 @@
-# Cross-origin resource sharing (CORS)
+# CORS (Cross-origin resource sharing)
 
 
 ## What is the same-origin policy (SOP)?
