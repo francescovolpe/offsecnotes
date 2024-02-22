@@ -1,4 +1,4 @@
-# Cross-site request forgery (CSRF)
+# CSRF (Cross-site request forgery)
 
 ## Impact
 - The attacker causes the victim user to carry out an action unintentionally
