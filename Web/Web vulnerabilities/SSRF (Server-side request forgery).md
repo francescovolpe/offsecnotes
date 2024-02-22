@@ -1,4 +1,4 @@
-# Server-side request forgery 
+# SSRF (Server-side request forgery)
 
 ## Impact
 - Unauthorized actions or access to data within the organization
