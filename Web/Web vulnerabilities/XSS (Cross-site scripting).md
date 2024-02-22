@@ -1,4 +1,4 @@
-# Cross-site scripting (XSS)
+# XSS (Cross-site scripting)
 
 ## General info
 Cross-site scripting works by manipulating a vulnerable web site so that it returns malicious JavaScript to users
