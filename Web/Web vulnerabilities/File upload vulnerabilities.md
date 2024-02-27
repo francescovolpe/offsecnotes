@@ -6,16 +6,13 @@ Servers typically won't execute files unless they have been configured to do so.
 ## Exploiting flawed validation of file uploads
 
 ### Flawed file type validation
-- When we upload binary files (like png) the content type multipart/form-data is preferred
-- The message body is split into separate parts for each of the form's inputs
-- Each part contains a `Content-Disposition` header and may also contain their own `Content-Type` header which tells the server the MIME type of the data that was submitted using this input
-  - <ins>Change it to an allow MIME type</ins>. Ex. `image/jpeg`
+When we upload binary files (like png) the content type multipart/form-data is preferred. The message body is split into separate parts for each of the form's inputs. Each part contains a `Content-Disposition` header and may also contain their own `Content-Type` header which tells the server the MIME type of the data that was submitted using this input
+  - <ins>Change Content-Type to an allow MIME type</ins>. Ex. `image/jpeg`
 
 ### Preventing file execution in user-accessible directories
 - One defence: stop the server from executing any scripts that do slip through the net
 - Web servers often use the filename field in `multipart/form-data` requests to determine the name and location where the file should be saved.
-  - <ins>Change filename field (also combining path traversal)</ins>
-- To note: the requests will often be handled by additional servers behind the scenes (ex. load balancer), which may also be configured differently
+  - <ins>Change filename field combining path traversal</ins>
 
 ### Insufficient blacklisting of dangerous file types
 - <ins>Change extensions</ins>
@@ -58,7 +55,7 @@ Payload example:
 ÿØÿî
 <?php echo system($_GET['cmd']); ?>
 ```
-#### Polyglot
+#### Polyglot (on exiftool)
 - <ins>Create a polyglot JPEG file containing malicious code within its metadata</ins>
   - `exiftool -Comment="<?php echo 'START ' . file_get_contents('/etc/passwd') . ' END'; ?>" <YOUR-INPUT-IMAGE>.jpg -o polyglot.php`
     - This works if you can upload a php extension file. This works why you have a real image file (that bypass rescritions) but when you open the image it's executed as php script.
