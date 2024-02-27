@@ -39,7 +39,13 @@ Servers typically won't execute files unless they have been configured to do so.
 - Others..
 
 ### Flawed validation of the file's contents
-To do...
+- More secure servers try to verify that the contents of the file actually match what is expected
+  - Ex 1: verify certain intrinsic properties of an image, such as its dimensions
+  - Ex 2: certain file types may always contain a specific sequence of bytes in their header or footer
+    - JPEG files always begin with the bytes `FF D8 FF`.
+- Bypass -> <ins>Create a polyglot JPEG file containing malicious code within its metadata</ins>
+  - `exiftool -Comment="<?php echo 'START ' . file_get_contents('/etc/passwd') . ' END'; ?>" <YOUR-INPUT-IMAGE>.jpg -o polyglot.php`
+    - This works if you can upload a php extension file. This works why you have a real image file (that bypass rescritions) but when you open the image it's executed as php script.
 
 ### Exploiting file upload race conditions
 - Some websites upload the file directly to the main filesystem and then remove it again if it doesn't pass validation. This kind of behavior is typical in websites that rely on anti-virus software and the like to check for malware.
