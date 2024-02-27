@@ -9,7 +9,7 @@ Servers typically won't execute files unless they have been configured to do so.
 - When we upload binary files (like png) the content type multipart/form-data is preferred
 - The message body is split into separate parts for each of the form's inputs
 - Each part contains a `Content-Disposition` header and may also contain their own `Content-Type` header which tells the server the MIME type of the data that was submitted using this input
-  - Change it to an allow MIME type
+  - <ins>Change it to an allow MIME type</ins>. Ex. `image/jpeg`
 
 ### Preventing file execution in user-accessible directories
 - One defence: stop the server from executing any scripts that do slip through the net
