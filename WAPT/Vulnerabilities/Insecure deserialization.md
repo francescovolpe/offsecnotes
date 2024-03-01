@@ -1,22 +1,4 @@
 # Insecure deserialization
-- [General info](#general-info)
-- [How to identify insecure deserialization](#how-to-identify-insecure-deserialization)
-  * [PHP serialization format](#php-serialization-format)
-  * [Java serialization format](#java-serialization-format)
-- [Manipulating serialized objects](#manipulating-serialized-objects)
-  * [Modifying object attributes](#modifying-object-attributes)
-  * [Modifying data types](#modifying-data-types)
-- [Using application functionality](#using-application-functionality)
-- [Magic methods](#magic-methods)
-- [Injecting arbitrary objects](#injecting-arbitrary-objects)
-- [Gadget chains](#gadget-chains)
-  * [Working with pre-built gadget chains](#working-with-pre-built-gadget-chains)
-    + [ysoserial (tool) & PHP Generic Gadget Chains](#ysoserial--tool----php-generic-gadget-chains)
-  * [Working with documented gadget chains](#working-with-documented-gadget-chains)
-- [Creating your own exploit](#creating-your-own-exploit)
-- [PHAR deserialization](#phar-deserialization)
-- [Exploiting deserialization using memory corruption](#exploiting-deserialization-using-memory-corruption)
-- [Prevent](#prevent)
 
 ## General info
 - Serialization is the process of converting complex data structures, such as objects and their fields, into a "flatter" format that can be sent and received as a sequential stream of bytes.
