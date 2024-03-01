@@ -33,9 +33,9 @@
   - It's a collection of multiple types of lists used during security assessments. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more.
 
 ## Extension
-- <b>Wappalyzer (extension)</b>
+- <b>Wappalyzer</b>
   - Technology profiler
-- <b>User-Agent Switcher and Manager (extension)</b>
+- <b>User-Agent Switcher and Manage</b>
   - Alter your user-agent string
 - <b>Multi-Account Containers</b>
   - It create a separate browser environment for each account you are testing. Good for testing RBAC issues
