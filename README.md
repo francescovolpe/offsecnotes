@@ -4,8 +4,6 @@ Personal collection of multiple cyber security notes. Notes include vulnerabilit
 Notes are continuously updated.
 
 ```
-
-
 |_📂 PT
     |_📄 Privilege Escalation
     |_📄 Tools
@@ -39,6 +37,5 @@ Notes are continuously updated.
 |_📂 Wordlists
 |_📂 Other resources
 |_📂 CTF Methodology
-
 |_📄 README.md
 ```
