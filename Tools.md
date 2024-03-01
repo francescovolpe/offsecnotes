@@ -22,14 +22,18 @@
 - <b>Hydra</b>
   - Brute force online password cracking program
 
-## Websites & extension
+## Websites
 - <b>securityheaders.com</b>
   - Anaylize HTTP headers
 - <b>archive.org/web</b>
   - Wayback Machine
 - <b>crackstation.net</b>
   - Password Hash Cracker
-- <b>wappalyzer (extension)</b>
+- <b>github.com/danielmiessler/SecLists</b>
+  - It's a collection of multiple types of lists used during security assessments. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more.
+
+## Extension
+- <b>Wappalyzer (extension)</b>
   - Technology profiler
 - <b>User-Agent Switcher and Manager (extension)</b>
   - Alter your user-agent string
@@ -41,6 +45,7 @@
   - This application mirrors Android devices (video and audio) connected via USB or over TCP/IP
 
 # General pentest
+## Software
 - <b>Nmap</b>
   - Network discovery and security auditing
 - <b>Netcat</b>
@@ -64,3 +69,13 @@
   - Steghide cracker
 - <b>revshells.com</b>
   - Reverse Shell Generator
+
+## Websites
+- <b>hashcat.net/wiki/doku.php?id=example_hashes</b>
+  - Example hashes
+- <b>gchq.github.io/CyberChef</b>
+  - The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis
+- <b>iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml</b>
+  - Service Name and Transport Protocol Port Number Registry
+- <b>github.com/danielmiessler/SecLists</b>
+  - It's a collection of multiple types of lists used during security assessments. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more.
