@@ -16,25 +16,25 @@
         |_📄 Javascript security considerations
         |_📄 Resources
     |_📂 Vulnerabilities
-        |_📄 Authentication
-        |_📄 Cross-site request forgery (CSRF)
+        |_📄 XSS (Cross-site scripting)
+        |_📄 SQLi (SQL injection)
+        |_📄 CSRF (Cross-site request forgery)
+        |_📄 SSRF (Server-side request forgery)
+        |_📄 XXE (XML external entity)
+        |_📄 CORS (Cross-origin resource sharing)
         |_📄 OS command injection
-        |_📄 Server-side request forgery (SSRF)
-        |_📄 XML external entity (XXE)
-        |_📄 Cross-origin resource sharing (CORS)
-        |_📄 Clickjacking
-        |_📄 WebSockets Test
-        |_📄 Race conditions
-        |_📄 HTTP Host header attacks
+        |_📄 Authentication
         |_📄 Path traversal
+        |_📄 Clickjacking
+        |_📄 File upload vulnerabilities
         |_📄 Information disclosure vulnerabilities
         |_📄 Business logic vulnerabilities
-        |_📄 File upload vulnerabilities
         |_📄 Access control vulnerabilities
+        |_📄 WebSockets
+        |_📄 Race conditions
+        |_📄 HTTP Host header attacks
         |_📄 Insecure deserialization
         |_📄 HTTP request smuggling
-        |_📄 Cross-site scripting (XSS)
-        |_📄 SQL injection
 |_📂 Wordlists
 |_📂 Resources
 |_📂 CTF Methodology
