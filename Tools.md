@@ -1,8 +1,7 @@
 # Web pentest
 ## Software
 - <b>Burp suite</b>
-- <b>wappalyzer (extension)</b>
-  - Technology profiler
+  - Application security testing
 - <b>Gobuster</b>
   - Directory/File, DNS and VHost busting tool
 - <b>Wfuzz</b>
@@ -18,46 +17,50 @@
 - <b>xnLinkFinder</b>
   - A python tool used to discover endpoints, potential parameters, and a target specific wordlist for a given target.
   - I use it to crawling a target
-- CMSeeK
+- <b>CMSeeK</b>
   - CMS Detection and Exploitation suite
-- Hydra
+- <b>Hydra</b>
   - Brute force online password cracking program
 
-## Websites
+## Websites & extension
 - <b>securityheaders.com</b>
   - Anaylize HTTP headers
 - <b>archive.org/web</b>
   - Wayback Machine
-- crackstation.net
+- <b>crackstation.net</b>
   - Password Hash Cracker
+- <b>wappalyzer (extension)</b>
+  - Technology profiler
+- <b>User-Agent Switcher and Manager (extension)</b>
+  - Alter your user-agent string
 
 # Mobile pentest
-- Jadx
+- <b>Jadx</b>
   - Dex to Java decompiler
-- Scrcpy
+- <b>Scrcpy</b>
   - This application mirrors Android devices (video and audio) connected via USB or over TCP/IP
 
 # General pentest
-- Nmap
+- <b>Nmap</b>
   - Network discovery and security auditing
-- Netcat
+- <b>Netcat</b>
   - Network utility
   - I use it to open a shell or transfer files
-- Enum4Linux
+- <b>Enum4Linux</b>
   - Enum4linux is a tool for enumerating information from Windows and Samba systems
-- Metasploit
+- <b>Metasploit</b>
   - A tool for developing and executing exploit code against a remote target machine
-- Hashcat
+- <b>Hashcat</b>
   - Password cracker
-- John The Ripper
+- <b>John The Ripper</b>
   - Hash cracking tools. I use this if I have to crack a password of a zip for example
-- CeWL & FAB
+- <b>CeWL & FAB</b>
   - Custom Word List Generator & Meta data extraction techniques to create author/creator lists
-- zzzteph.github.io/weakpass/generator
+- <b>zzzteph.github.io/weakpass/generator</b>
   - Generate a wordlist based on specific input data
-- hashes.com/en/tools/hash_identifier
+- <b>hashes.com/en/tools/hash_identifier</b>
   - Identify hash types
-- stegseek
+- <b>stegseek</b>
   - Steghide cracker
-- revshells.com
+- <b>revshells.com</b>
   - Reverse Shell Generator
