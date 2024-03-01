@@ -35,7 +35,7 @@ Notes are continuously updated.
         |_📄 Cross-site scripting (XSS).md
         |_📄 SQL injection.md
 |_📂 Wordlists
-|_📂 Other resources
+|_📂 Resources
 |_📂 CTF Methodology
 |_📄 README.md
 ```
