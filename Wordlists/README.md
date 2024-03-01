@@ -1,4 +1,4 @@
-# List
+# Wordlists
 <details>
 <summary>Javascript path files used to store sensitive information in Web Application</summary>
   
