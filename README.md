@@ -1,6 +1,6 @@
-# Cyber Security Notes
+# Cyber Offensive Notes
 
-- Personal collection of multiple cyber security notes. 
+- Personal collection of multiple offensive security notes. 
 - Notes include vulnerabilities, techniques, tools, site and more. 
 - Notes are continuously updated.
 
