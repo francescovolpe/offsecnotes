@@ -1,7 +1,8 @@
 # Cyber Security Notes
 
-Personal collection of multiple cyber security notes. Notes include vulnerabilities, techniques, tools, site and more. <br>
-Notes are continuously updated.
+- Personal collection of multiple cyber security notes. 
+-Notes include vulnerabilities, techniques, tools, site and more. 
+- Notes are continuously updated.
 
 ```
 |_📂 PT
