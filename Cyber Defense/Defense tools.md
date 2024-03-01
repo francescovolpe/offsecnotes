@@ -1,4 +1,4 @@
-# List of defence tools 
+# Defense tools 
 
 Resource | Description
 --- | ---
