@@ -1,7 +1,4 @@
 # Path traversal
-1. [General info](https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Web%20vulnerabilities/Path%20traversal.md#general-info)
-2. [Bypass defences](https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Web%20vulnerabilities/Path%20traversal.md#bypass-defences)
-3. [Defences](https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Web%20vulnerabilities/Path%20traversal.md#defences)
 
 ## General info
 - ` <img src="/loadImage?filename=218.png"> `
