@@ -17,6 +17,8 @@
 - <b>xnLinkFinder</b>
   - A python tool used to discover endpoints, potential parameters, and a target specific wordlist for a given target.
   - I use it to crawling a target
+- <b>waybackurls</b>
+  - Fetch all the URLs that the Wayback Machine knows about for a domain
 - <b>CMSeeK</b>
   - CMS Detection and Exploitation suite
 - <b>Hydra</b>
