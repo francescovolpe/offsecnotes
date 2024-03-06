@@ -22,13 +22,16 @@ Depend on two key factors:
 3. Get the response cached
 
 ### Identify and evaluate unkeyed inputs
-TO DO
+- Adding random inputs to requests and observing whether or not they have an effect on the response.
+  - This can be obvious, such as reflecting the input in the response directly, or triggering an entirely different response
+- Use Param Miner extension (Guess headers)
 
 ### Elicit a harmful response from the back-end server
-TO DO
+- Evaluate exactly how the website processes it
+  - See if the input is reflected in the response from the server without being properly sanitized
 
 ### Get the response cached
-TO DO
+- A cached response may depend on all kinds of factors, such as the file extension, content type, route, status code, and response headers
 
 ## Exploiting cache design flaws
 ### Using web cache poisoning to deliver an XSS attack
@@ -46,17 +49,6 @@ Cache-Control: public
 - `X-Forwarded-Host` is unkeyed
 - -> `X-Forwarded-Host: a."><script>alert(1)</script>"`
 - If this response was cached, all users who accessed `/en?region=uk` would be served this XSS payload
-
-### Using web cache poisoning to exploit unsafe handling of resource imports
-```
-GET / HTTP/1.1
-Host: innocent-website.com
-X-Forwarded-Host: evil-user.net
-User-Agent: Mozilla/5.0 Firefox/57.0
-
-HTTP/1.1 200 OK
-<script src="https://evil-user.net/static/analytics.js"></script>
-```
 
 ### Using web cache poisoning to exploit cookie-handling vulnerabilities
 ```
