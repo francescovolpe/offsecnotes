@@ -79,6 +79,7 @@ X-Forwarded-Host: bad-stuff-here
 - Other techniques you can find on the web `"common domain-validation flaws"`
 
 ## Exploit the HTTP Host header
+TO DO...
 
 ## Defences
 TO DO...
