@@ -10,11 +10,9 @@
     |_📄 Tools
 |_📂 WAPT
     |_📂 Tools
-    |_📂 Images
     |_📂 Notes
         |_📄 Methods & Headers
         |_📄 Javascript security considerations
-        |_📄 Resources
     |_📂 Vulnerabilities
         |_📄 XSS (Cross-site scripting)
         |_📄 SQLi (SQL injection)
