@@ -35,6 +35,9 @@
   - Password Hash Cracker
 - <b>github.com/danielmiessler/SecLists</b>
   - It's a collection of multiple types of lists used during security assessments. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more.
+- <b>caniuse.com</b>
+  - "Can I use" provides up-to-date browser support tables for support of front-end web technologies on desktop and mobile web browsers
+
 
 ## Extension
 - <b>Wappalyzer</b>
