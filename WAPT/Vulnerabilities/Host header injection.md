@@ -79,7 +79,11 @@ X-Forwarded-Host: bad-stuff-here
 - Other techniques you can find on the web `"common domain-validation flaws"`
 
 ## Exploit the HTTP Host header
-TO DO...
+- Password reset poisoning
+  - The website sends an email to the user that contains a link for resetting their password: `https://normal-website.com/reset?token=0a1b2c3d4e5f6g7h8i9j`.
+  - Intercept the resulting HTTP request and modify the Host header so that it points to a domain that they control.
+    - The attacker can now visit the real URL for the vulnerable website and supply the victim's stolen token via the corresponding parameter.
+
 
 ## Defences
 TO DO...
