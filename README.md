@@ -35,6 +35,7 @@
         |_📄 HTTP Host header attacks
         |_📄 Insecure deserialization
         |_📄 HTTP request smuggling
+        |_📄 Web cache poisoning
 |_📂 Wordlists
 |_📂 Resources
 |_📂 CTF Methodology
