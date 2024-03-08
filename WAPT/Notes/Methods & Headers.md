@@ -21,7 +21,7 @@
 - Aside from the HTTP header, <ins>you can set this policy in HTML.</ins>
 #### Security
 - Bypass validation CSRF attack when an application use referer header to defende against CSRF attacks
-- [https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Web%20vulnerabilities/Cross-site%20request%20forgery%20(CSRF).md#referer-based-validation-bypass](Link)
+- [https://github.com/francescovolpe/Offensive-Security-Notes/blob/main/WAPT/Vulnerabilities/CSRF%20(Cross-site%20request%20forgery).md#referer-based-validation-bypass](https://github.com/francescovolpe/Offensive-Security-Notes/blob/main/WAPT/Vulnerabilities/CSRF%20(Cross-site%20request%20forgery).md#referer-based-validation-bypass)
 
 ## X-Original-URL / X-Rewrite-URL
 - Some applications support non-standard headers such these in order to allow overriding the target URL in requests with the one specified in the header value.
