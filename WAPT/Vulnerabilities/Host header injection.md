@@ -83,7 +83,12 @@ X-Forwarded-Host: bad-stuff-here
   - The website sends an email to the user that contains a link for resetting their password: `https://normal-website.com/reset?token=0a1b2c3d4e5f6g7h8i9j`.
   - Intercept the resulting HTTP request and modify the Host header so that it points to a domain that they control.
     - The attacker can now visit the real URL for the vulnerable website and supply the victim's stolen token via the corresponding parameter.
-
+- Exploiting classic server-side vulnerabilities
+  - Ex. SQLi, etc.
+- Accessing restricted functionality
+  - Admin panel with host: localhost
+- Accessing internal websites with virtual host brute-forcing
+  - Note: companies sometimes make the mistake of hosting publicly accessible websites and private, internal sites on the same server
 
 ## Defences
 TO DO...
