@@ -3,6 +3,7 @@
 ## TRACE Method
 - The web server will respond to requests that use the TRACE method by echoing in its response the exact request that was received.
 - Occasionally leads to the disclosure of sensitive information such as internal <b><ins>authentication headers appended by reverse proxies</ins></b>.
+  - Example an authorization header
 - This functionality could historically be used to bypass the HttpOnly cookie flag on cookies, but this is no longer possible in modern web browsers
 
 ![text](https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/WAPT/Images/HTTP%20TRACE.png)
