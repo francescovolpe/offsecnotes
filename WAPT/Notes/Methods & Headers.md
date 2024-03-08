@@ -6,8 +6,6 @@
   - Example an authorization header
 - This functionality could historically be used to bypass the HttpOnly cookie flag on cookies, but this is no longer possible in modern web browsers
 
-![text](https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/WAPT/Images/HTTP%20TRACE.png)
-
 ## X-Forwarded-For
 
 - This is a de-facto standard header for identifying the originating IP address of a client connecting to a web server through a proxy server.
