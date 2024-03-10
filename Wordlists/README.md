@@ -23,10 +23,10 @@
 /js/hashes.js
 /js/salts.js
 /js/nonces.js
-js/signatures.js
-js/digests.js
-js/tokens.js
-js/cookies.js
+/js/signatures.js
+/js/digests.js
+/js/tokens.js
+/js/cookies.js
 ```
 </details>
 
