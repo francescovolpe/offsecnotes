@@ -89,6 +89,10 @@ X-Forwarded-Host: bad-stuff-here
   - Admin panel with host: localhost
 - Accessing internal websites with virtual host brute-forcing
   - Note: companies sometimes make the mistake of hosting publicly accessible websites and private, internal sites on the same server
+- Web cache poisoning via the Host header
+  - Client-side vulnerabilities like XSS aren't exploitable if they're caused by the Host header, as attackers can't manipulate a victim's browser to generate a harmful host.
+  - However, if the target uses a web cache, it may be possible to turn this useless
+
 
 ## Defences
 TO DO...
