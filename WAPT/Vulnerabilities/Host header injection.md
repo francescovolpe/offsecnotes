@@ -92,6 +92,7 @@ X-Forwarded-Host: bad-stuff-here
 - Web cache poisoning via the Host header
   - Client-side vulnerabilities like XSS aren't exploitable if they're caused by the Host header, as attackers can't manipulate a victim's browser to generate a harmful host.
   - However, if the target uses a web cache, it may be possible to turn this useless
+- Accessing internal websites with virtual host brute-forcing
 
 
 ## Defences
