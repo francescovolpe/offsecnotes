@@ -93,7 +93,10 @@ X-Forwarded-Host: bad-stuff-here
   - Client-side vulnerabilities like XSS aren't exploitable if they're caused by the Host header, as attackers can't manipulate a victim's browser to generate a harmful host.
   - However, if the target uses a web cache, it may be possible to turn this useless
 - Accessing internal websites with virtual host brute-forcing
-
+- Routing-based SSRF
+  - If load balancers and reverse proxies are insecurely configured to forward requests based on an unvalidated Host header, they can be manipulated into misrouting requests to an arbitrary system of the attacker's choice
+  - The next step is to see if you can exploit this behavior to access internal-only systems
+    - You can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
 
 ## Defences
 TO DO...
