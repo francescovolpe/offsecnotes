@@ -96,7 +96,8 @@ X-Forwarded-Host: bad-stuff-here
 - Routing-based SSRF
   - If load balancers and reverse proxies are insecurely configured to forward requests based on an unvalidated Host header, they can be manipulated into misrouting requests to an arbitrary system of the attacker's choice
   - The next step is to see if you can exploit this behavior to access internal-only systems
-    - You can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
+    - Identify private IP addresses...
+    - Or you can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
 
 ## Defences
 TO DO...
