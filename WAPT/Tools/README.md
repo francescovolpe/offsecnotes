@@ -5,7 +5,7 @@ Here I want to mention the tools I use if I want to perform a single task depend
 ---
 
 
-**Files/Directory discovery**
+**Enumerating web resources**
 - **hakrawler** *Web crawler, quick discovery of endpoints and assets within a web application*
   - You can set depth
   - `echo https://example.com | hakrawler`
