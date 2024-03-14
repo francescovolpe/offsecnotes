@@ -3,4 +3,5 @@
 /.FUZZ
 /-FUZZ
 /~FUZZ
+/_FUZZ
 ```
