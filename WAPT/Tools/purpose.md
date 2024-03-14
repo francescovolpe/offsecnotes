@@ -12,7 +12,12 @@
   - `waybackurls https://example.com`
 
 **Out of band vulnerabilities**
-- **Burp collaborator**
+- **Burp collaborator** (burp extension)
   - Keep in mind that many companies filtering and block outbound traffic to the default collaborator domain.
 - **webhook.site** *Webhook.site generates a free, unique URL and e-mail address and lets you see everything that’s sent there instantly.*
   - Alternative to burp collaborator.
+
+**Broken Access Control**
+- **Multi-Account Containers** (extension) *It create a separate browser environment for each account you are testing*
+- **Autorize** (burp extension)
+  - Automatically repeats every request with the session of the low privileged user
