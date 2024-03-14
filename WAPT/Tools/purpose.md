@@ -28,3 +28,12 @@
 **Vulnerability scanner**
 - **Nikto**
   - `nikto.pl -h http://example.com`
+
+**Testing vulnerability**
+- RCE: **Commix** *Automated All-in-One OS Command Injection Exploitation Tool*
+- SQLi: **Sqlmap** *Automatic SQL injection and database takeover tool*
+- File upload: **Upload_Bypass** *A simple tool for bypassing file upload restrictions.*
+
+**Password cracking**
+- **Hydra** *Brute force online password cracking program*
+- **crackstation** *Password Hash Cracker*
