@@ -36,4 +36,4 @@
 
 **Password cracking**
 - **Hydra** *Brute force online password cracking program*
-- **crackstation** *Password Hash Cracker*
+- **crackstation** *CrackStation uses massive pre-computed lookup tables to crack password hashes*
