@@ -1,4 +1,6 @@
 # Tools
+Many times I see an endless list of tools used to perform a single task and I never know which one to choose from these lists. 
+Here I want to mention the tools I use if I want to perform a single task depending on the objective
 
 **Files/Directory discovery**
 - **hakrawler** *Web crawler, quick discovery of endpoints and assets within a web application*
