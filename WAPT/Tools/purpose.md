@@ -7,6 +7,9 @@
 - **feroxbuster** *A fast, simple, recursive content discovery*
   - You can set depth (recursion), extract links from response body
   - `feroxbuster -u https://example.com -x html,php,js,txt,pdf,json`
+- **ffuf** *Web fuzzer*
+  - Use ffuf instead of feroxbuster when you need deeper customization
+  - `ffuf -w /path/to/wordlist -u https://example.com/file-FUZZ`
 - **waybackurls** *Fetch all the URLs that the Wayback Machine knows about for a domain*
   - Uncover historical data about a website
   - `waybackurls https://example.com`
@@ -21,3 +24,7 @@
 - **Multi-Account Containers** (extension) *It create a separate browser environment for each account you are testing*
 - **Autorize** (burp extension)
   - Automatically repeats every request with the session of the low privileged user
+
+**Vulnerability scanner**
+- **Nikto**
+  - `nikto.pl -h http://example.com`
