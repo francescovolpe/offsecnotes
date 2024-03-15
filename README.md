@@ -9,6 +9,7 @@
     |_📄 Privilege Escalation
     |_📄 Tools
 |_📂 WAPT
+    |_📂 Tips
     |_📂 Tools
     |_📂 Notes
         |_📄 Methods & Headers
