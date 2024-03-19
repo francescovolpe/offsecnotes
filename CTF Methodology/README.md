@@ -12,7 +12,7 @@
       - Password is required?
         - ` ssh2john id_rsa > id_rsa.hash `
         - Crack it
-  - SMB
+  - Samba (SMB)
     - ` smbclient -L //\<IP\> `
     - ` enum4linux \<IP\> `
     - Check HackTricks
