@@ -98,7 +98,8 @@ X-Forwarded-Host: bad-stuff-here
   - The next step is to see if you can exploit this behavior to access internal-only systems
     - Identify private IP addresses...
     - Or you can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
-
+- Connection state attacks
+  - 
 ## Defences
 TO DO...
 
