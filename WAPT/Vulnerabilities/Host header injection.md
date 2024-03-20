@@ -99,7 +99,5 @@ X-Forwarded-Host: bad-stuff-here
     - Identify private IP addresses...
     - Or you can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
 - Connection state attacks
-  - 
-## Defences
-TO DO...
-
+  - You may encounter servers that only perform thorough validation on the first request they receive over a new connection. So, you can potentially bypass this validation by sending an innocent-looking initial request then following up with your malicious one down the same connection. 
+  - NOTE: you need to set up a single connection!!!
