@@ -17,7 +17,6 @@
 ## OAuth authentication
 - Although not originally intended for this purpose, OAuth has evolved into a means of authenticating users as well.
 - From an end-user perspective, the result of OAuth authentication is something that broadly resembles SAML-based single sign-on (SSO).
-
 - OAuth authentication is generally implemented as follows:
   - The user chooses the option to log in with their social media account. The client application then uses the social media site's OAuth service to request access to some data that it can use to identify the user. This could be the email address that is registered with their account, for example.
   - After receiving an access token, the client application requests this data from the resource server, typically from a dedicated /userinfo endpoint.
@@ -32,3 +31,4 @@
 
 ## Vulnerabilities in the OAuth client application
 ### Improper implementation of the implicit grant type
+### Flawed CSRF protection
