@@ -1,5 +1,6 @@
 # CTF Methodology
 
+## General
 - Take note of CTF keywords
   - CTF name -> Reference to any technology?
 - Themed CTF?
@@ -35,9 +36,6 @@
   - Hydra bruteforce
     - Fasttrack.txt
     - Rockyou.txt
- 
-## Windows Active Directory penetration testing
- - Awesome materials https://github.com/Jean-Francois-C/Windows-Penetration-Testing
 
 ## WebServer
 - View source code
@@ -58,6 +56,14 @@
 - Check if server is running an extension/app. Example if you find a dir called "webdav", search what webdav is.
 - Any strange or suspicious images?
   - Steganography
+- Parameters?
+  - Command injection
+  - SQLi
+  - File inclusion (LFI/RFI) https://sushant747.gitbooks.io/total-oscp-guide/content/local_file_inclusion.html
+    - Bypassing php-execution
+      ```http://example.com/index.php?page=php://filter/convert.base64-encode/resource=index```
+  - SSRF
+  - XXE
       
 ## Strange strings?
 - Hash? ->  https://hashes.com/en/tools/hash_identifier
@@ -69,15 +75,6 @@
 - Try all cyberchef decodings
 - Can I use this string/key somewhere? Ex. key to decrypt?
 - Google search 
-
-## Parameters?
-- Command injection
-- SQLi
-- File inclusion (LFI/RFI) https://sushant747.gitbooks.io/total-oscp-guide/content/local_file_inclusion.html
-  - Bypassing php-execution
-    ```http://example.com/index.php?page=php://filter/convert.base64-encode/resource=index```
-- SSRF
-- XXE
 
 ## Steganography
 - General
