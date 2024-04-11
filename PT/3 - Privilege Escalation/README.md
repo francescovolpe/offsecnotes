@@ -42,7 +42,7 @@
 ### Windows 
 <details>
 <summary>UAC Bypass</summary>
-  
+ 
 - User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
 - UACME
   - Prerequisites:
