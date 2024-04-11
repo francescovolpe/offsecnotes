@@ -99,7 +99,8 @@
 
 <details>
 <summary>Credential Dumping (Mimikatz - Kiwi - Hashdump)</summary>
-
+  
+- Prerequisites: NT AUTHORITY\SYSTEM user
 1) Method (Metasploit - Meterpreter)
    - `hashdump`
 
