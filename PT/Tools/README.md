@@ -1,9 +1,3 @@
-# Mobile pentest
-- <b>Jadx</b>
-  - Dex to Java decompiler
-- <b>Scrcpy</b>
-  - This application mirrors Android devices (video and audio) connected via USB or over TCP/IP
-
 # General pentest
 ## Software
 - <b>Nmap</b>
