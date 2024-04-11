@@ -97,6 +97,13 @@
       
 </details>
 
+<details>
+<summary>Credential Dumping (Mimikatz - Kiwi - Hashdump)</summary>
+
+1) Method (Metasploit - Meterpreter)
+   - `hashdump`
+
+</details>
 
 - Powershell History
 - Saved Windows Credentials
