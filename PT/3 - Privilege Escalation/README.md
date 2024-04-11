@@ -82,6 +82,22 @@
 
 </details>
 
+<details>
+<summary>Password in configuration file (Unattend.xml)</summary>
+
+- An answer file is an XML-based file that contains setting definitions and values to use during Windows Setup. Answer files (or Unattend files) are used by Administrators when they are setting up fresh images as it allows for an automated setup for Windows systems.
+- ```
+  C:\unattend.xml
+  C:\Windows\Panther\Unattend.xml
+  C:\Windows\Panther\Unattend\Unattend.xml
+  C:\Windows\system32\sysprep.xml
+  C:\Windows\system32\sysprep\sysprep.xml
+  ```
+- Extract password and decode it (from base64)
+      
+</details>
+
+
 - Powershell History
 - Saved Windows Credentials
   - cmdkey /list
@@ -94,9 +110,11 @@
 - Unpatched Software
 
 # Resource
+https://juggernaut-sec.com/blog/
 Resource | Description 
 --- | ---
 [GTFOBins](https://gtfobins.github.io/) | GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems
+
 [LinPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) | Linux Privilege Escalation Awesome Script
 [pspy](https://github.com/DominicBreuker/pspy) | Monitor linux processes without root permissions
 [Priv2Admin](https://github.com/gtworek/Priv2Admin)  | Windows Privileges with Windows OS privileges
