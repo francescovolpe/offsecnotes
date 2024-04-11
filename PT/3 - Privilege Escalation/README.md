@@ -65,6 +65,7 @@
 </details>
 
 <details>
+<summary>Impersonate Tokens</summary>
   
 - With msfconsole: `load incognito`
 - `list_tokens -u`
@@ -80,6 +81,7 @@
 - Of course you can repeat the process to become NT AUTHORITY\SYSTEM
 
 </details>
+
 - Powershell History
 - Saved Windows Credentials
   - cmdkey /list
