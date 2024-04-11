@@ -65,7 +65,6 @@
 </details>
 
 <details>
-<summary>Impersonate Tokens</summary>
   
 - With msfconsole: `load incognito`
 - `list_tokens -u`
