@@ -12,3 +12,5 @@
   - OSINT Framework provides the collection of OSINT tools based on various categories
 - <b>github.com/gtworek/Priv2Admin</b>
   - Windows Privileges with Windows OS privileges
+- **juggernaut-sec.com/blog**
+  - Very useful for privesc and active directory hacking
