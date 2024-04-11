@@ -44,7 +44,7 @@
   - User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
   - UACME
     - Prerequisites:
-      1 -  User must be a member of the Administrators group.
+      1.  User must be a member of the Administrators group.
          - `net localgroup administrators`
       2. Full interactive shell with the victim (a common nc.exe shell is not enough).
          - You can use meterpreter
