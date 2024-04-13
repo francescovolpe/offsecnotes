@@ -3,8 +3,9 @@
 
 - Connect to ftp server
   - `ftp <ip>` and then login
-- Check anonymous login (with nmap script or anonymous user)
+- Check anonymous login (with nmap script ftp-anon or anonymous user)
 - Brute force login
+- Search exploit for vulnerable version
 
     
 </details>
