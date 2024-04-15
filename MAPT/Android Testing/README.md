@@ -12,5 +12,12 @@
     
 </details>
 
+<details>
+<summary>Backup</summary>
+
+- To backup one application, with its apk
+    - `adb backup -apk <package_name> -f <backup_name>.adb`
+    
+</details>
 
 
