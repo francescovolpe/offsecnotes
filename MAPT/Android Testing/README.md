@@ -1,4 +1,36 @@
 <details>
+<summary>SSL Pinning</summary>
+    
+</details>
+
+<details>
+<summary>Root Detection</summary>
+    
+</details>
+
+<details>
+<summary>Emulator Detection</summary>
+    
+</details>
+
+<details>
+<summary>Sensitive data in ADB Logcat Logs</summary>
+
+- `adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"`
+    
+</details>
+
+<details>
+<summary>Sensitive data/info stored in Local Storage</summary>
+    
+</details>
+
+<details>
+<summary>Sensitive data/info in Application Memory</summary>
+    
+</details>
+
+<details>
 <summary>Decode & Decompile APK</summary>
 
 - `apktool d -o App/ <APPLICATION_NAME>.apk`
@@ -35,9 +67,4 @@
     
 </details>
 
-<details>
-<summary>Testing logs for sensitive data</summary>
 
-- `adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"`
-    
-</details>
