@@ -20,4 +20,12 @@
     
 </details>
 
+<details>
+<summary>Identify compilers, packers, obfuscators, and other weird stuff</summary>
+
+- To backup one application, with its apk
+    - `apkid  --scan-depth 0 -r <apk_filename>.apk`
+    
+</details>
+
 
