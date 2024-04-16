@@ -34,3 +34,10 @@
 - `semgrep -c <path>/rules/ <path>/target_src/sources`
     
 </details>
+
+<details>
+<summary>Testing logs for sensitive data</summary>
+
+- `adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"`
+    
+</details>
