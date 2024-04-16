@@ -28,4 +28,10 @@
     
 </details>
 
+<details>
+<summary>Static tests</summary>
 
+- `jadx -d target_src <apk_filename>.apk`
+- `semgrep -c <path>/rules/ <path>/target_src/sources`
+    
+</details>
