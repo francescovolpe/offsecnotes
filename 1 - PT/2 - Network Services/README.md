@@ -8,7 +8,6 @@
 - Brute force login
 - Search exploit for vulnerable version
 
-    
 </details>
 
 <details>
@@ -19,6 +18,14 @@
 - If you have a username try using the it as the password
 - Brute force login
 - Search exploit for vulnerable version
+
+</details>
+
+<details>
+<summary>SMB</summary>
+
+- If v1 is enabled - EternalBlue exploit (check with nmap --> smb-protocols)
+- 
 
     
 </details>
