@@ -65,6 +65,7 @@
 <details>
 <summary>Backup</summary>
 
+- Check `android:allowBackup="true"` in the Manifest.xml
 - To backup one application, with its apk
     - `adb backup -apk <package_name> -f <backup_name>.adb`
     
