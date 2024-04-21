@@ -1,3 +1,4 @@
+## General
 <details>
 <summary>Decode & Decompile APK</summary>
 
@@ -11,6 +12,23 @@
 - `jadx -d App <APPLICATION_NAME>.apk`
     
 </details>
+
+<details>
+<summary>Identify compilers, packers, obfuscators, and other weird stuff</summary>
+
+- `apkid  --scan-depth 0 -r <apk_filename>.apk`
+    
+</details>
+
+<details>
+<summary>Static tests</summary>
+
+- `jadx -d target_src <apk_filename>.apk`
+- `semgrep -c <path>/rules/ <path>/target_src/sources`
+    
+</details>
+
+## Testing
 
 <details>
 <summary>SSL Pinning</summary>
@@ -52,19 +70,5 @@
     
 </details>
 
-<details>
-<summary>Identify compilers, packers, obfuscators, and other weird stuff</summary>
-
-- `apkid  --scan-depth 0 -r <apk_filename>.apk`
-    
-</details>
-
-<details>
-<summary>Static tests</summary>
-
-- `jadx -d target_src <apk_filename>.apk`
-- `semgrep -c <path>/rules/ <path>/target_src/sources`
-    
-</details>
 
 
