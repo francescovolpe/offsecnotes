@@ -39,5 +39,11 @@
   - psexec (impacket or metasploit)
     - can be used to pass NTLM hashes as password
 
-    
+</details>
+
+<details>
+<summary>PHP</summary>
+
+- Famous exploit: php_cgi_arg_injection (up to version 5.3.12 and 5.4.2 )
+
 </details>
