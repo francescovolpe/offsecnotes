@@ -34,7 +34,8 @@
 - Obtain Information
   - `enum4linux -a [-u "<username>" -p "<passwd>"] <IP>`
 - Command execution
-  - to do
+  - `smbmap -H <ip> -u <user> -p <pass> -x 'ipconfig'`
+  - psexec (impacket or metasploit)
 
     
 </details>
