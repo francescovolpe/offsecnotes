@@ -26,6 +26,7 @@
 
 - If you have a username try using the it as the password
 - Brute force login
+- Search exploit for vulnerable version
 - If v1 is enabled - EternalBlue exploit (check with nmap --> smb-protocols)
 - List shared folders
   - `smbclient --no-pass -L //<IP>` Null user
@@ -36,6 +37,7 @@
 - Command execution
   - `smbmap -H <ip> -u <user> -p <pass> -x 'ipconfig'`
   - psexec (impacket or metasploit)
+    - can be used to pass NTLM hashes as password
 
     
 </details>
