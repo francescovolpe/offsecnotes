@@ -34,7 +34,7 @@
     - Example: `smbclient -U 'admin%admin' -L //<IP>`
 - Obtain Information
   - `enum4linux -a [-u "<username>" -p "<passwd>"] <IP>`
-- Command execution **//I think you need administrator account ...**
+- Command execution (authenticated) **//I think you need administrator account ...**
   - `smbmap -H <ip> -u <user> -p <pass> -x 'ipconfig'`
   - psexec (impacket or metasploit)
     - can be used to pass NTLM hashes as password
