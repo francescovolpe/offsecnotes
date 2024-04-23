@@ -38,6 +38,7 @@
   - `smbmap -H <ip> -u <user> -p <pass> -x 'ipconfig'`
   - psexec (impacket or metasploit)
     - can be used to pass NTLM hashes as password
+    - `python3 psexec.py Administrator@ip`
 
 </details>
 
