@@ -37,7 +37,16 @@
 
 <details>
 <summary>Root Detection</summary>
-    
+
+- Missing Root Detection	
+- Check if is it bypassable or not using frida/Objection
+  - `frida --codeshare dzonerzy/fridantiroot -f YOUR_BINARY`
+- Identify RASP
+  - Analyze source code
+  - `apkid  --scan-depth 0 -r <apk_filename>.apk`
+- Bypass protection analyzing the code and/or with frida
+
+<br><br>
 </details>
 
 <details>
