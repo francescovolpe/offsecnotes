@@ -4,7 +4,7 @@
 - ` <img src="/loadImage?filename=218.png"> `
 - An attacker can request the following URL to retrieve the /etc/passwd file from the server's filesystem
 - ` https://insecure-website.com/loadImage?filename=../../../etc/passwd `
-- On Windows, both ../ and ..\ are valid directory traversal sequences
+- On Windows, both `../` and `..\` are valid directory traversal sequences
 
 ## Bypass defences
 - elimination (strip):  `../ ` -> `....// `
