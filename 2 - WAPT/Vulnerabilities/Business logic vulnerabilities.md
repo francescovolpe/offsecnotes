@@ -1,8 +1,6 @@
 # Business logic vulnerabilities
 
 - Business logic vulnerabilities are flaws in the design and implementation of an application that allow an attacker to elicit unintended behavior.
-- Also known as "application logic vulnerabilities" or simply "logic flaws".
-- Although individual instances of logic flaws differ hugely, they can share many common themes.
 
 ## Example
 - Excessive trust in client-side controls
