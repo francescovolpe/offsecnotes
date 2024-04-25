@@ -22,7 +22,7 @@
 </details>
 
 <details>
-<summary>SMB</summary>
+<summary>SMB & Samba</summary>
 
 - If you have a username try using it as password
 - Brute force login
