@@ -4,7 +4,7 @@
 - Connect to ftp server
   - `ftp <ip>` and then login
 - Check anonymous login (with nmap script ftp-anon or anonymous user)
-- If you have a username try using it as the password
+- If you have a username try using it as password
 - Brute force login
 - Search exploit for vulnerable version
 
@@ -15,7 +15,7 @@
 
 - Connect to SSH
   - `ssh <username>@<ip>` and then login
-- If you have a username try using it as the password
+- If you have a username try using it as password
 - Brute force login
 - Search exploit for vulnerable version
 
@@ -24,7 +24,7 @@
 <details>
 <summary>SMB</summary>
 
-- If you have a username try using it as the password
+- If you have a username try using it as password
 - Brute force login
 - Search exploit for vulnerable version
 - If v1 is enabled - EternalBlue exploit (check with nmap --> smb-protocols)
