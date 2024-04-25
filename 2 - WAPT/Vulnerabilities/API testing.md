@@ -22,6 +22,7 @@
 
 ### Identifying supported HTTP methods
 - Test all potential methods when you're investigating API endpoints
+  - Use HTTP verbs list in Burp Intruder
 
 ### Identifying supported content types
 Changing the content type may enable you to
@@ -36,7 +37,7 @@ Changing the content type may enable you to
   - Fuzz the `/update` with a list of other common functions, such as `delete` and `add`
   - Use wordlists based on common API naming
 
-## Finding hidden parameters
+### Finding hidden parameters
 - Wordlists
   - Burp Intruder, Param miner BApp
 
