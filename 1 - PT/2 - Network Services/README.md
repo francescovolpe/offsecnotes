@@ -43,6 +43,16 @@
 </details>
 
 <details>
+<summary>MYSQL</summary>
+
+- Connect: `mysql -h <Hostname> -u root`
+- If you have a username try using it as password
+- Brute force login
+  - Try with `root` default user
+
+</details>
+
+<details>
 <summary>PHP</summary>
 
 - Famous exploit: php_cgi_arg_injection (up to version 5.3.12 and 5.4.2 )
