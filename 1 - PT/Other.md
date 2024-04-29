@@ -13,6 +13,11 @@
 - There are many other methods to add and execute
   - https://gist.github.com/api0cradle/cdd2d0d0ec9abb686f0e89306e277b8f
 
+### AV evasion with shellter:
+- Shellter is a dynamic shellcode injection tool aka dynamic PE infector. It can be used in order to inject shellcode into native Windows applications (currently 32-bit apps only). The shellcode can be something yours or something generated through a framework, such as Metasploit. Shellter takes advantage of the original structure of the PE file and doesn’t apply any modification such as changing memory access permissions in sections (unless the user wants to), adding an extra section with RWE access, and whatever would look dodgy under an AV scan.
+- Install (https://www.kali.org/tools/shellter/)
+  
+
 
 
 
