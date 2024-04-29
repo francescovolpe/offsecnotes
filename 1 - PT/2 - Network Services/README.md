@@ -50,6 +50,6 @@
 </details>
 
 #### Other ports
-Most of the services identified by the Nmap scan are easily recognizable, however, there are a few open ports on a target system that do not have a service banner. To learn more about this port and the service running on the port, we can perform banner grabbing with Netcat
+Most of the services identified by the Nmap scan are easily recognizable, however, it's possibile that there are a few open ports on a target system that do not have a service banner. To learn more about these port and the service running, we can perform banner grabbing with Netcat
 - `netcat <ip> <port>`
 
