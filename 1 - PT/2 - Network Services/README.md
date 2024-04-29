@@ -49,10 +49,7 @@
 
 </details>
 
-<details>
-<summary>Other ports</summary>
+#### Other ports
+Most of the services identified by the Nmap scan are easily recognizable, however, there are a few open ports on a target system that do not have a service banner. To learn more about this port and the service running on the port, we can perform banner grabbing with Netcat
+- `netcat <ip> <port>`
 
-- Most of the services identified by the Nmap scan are easily recognizable, however, there are a few open ports on a target system that do not have a service banner. To learn more about this port and the service running on the port, we can perform banner grabbing with Netcat
-  - `netcat <ip> <port>`
-
-</details>
