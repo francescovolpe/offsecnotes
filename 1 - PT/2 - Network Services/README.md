@@ -48,3 +48,11 @@
 - Famous exploit: php_cgi_arg_injection (up to version 5.3.12 and 5.4.2 )
 
 </details>
+
+<details>
+<summary>Other ports</summary>
+
+- Most of the services identified by the Nmap scan are easily recognizable, however, there are a few open ports on a target system that do not have a service banner. To learn more about this port and the service running on the port, we can perform banner grabbing with Netcat
+  - `netcat <ip> <port>`
+
+</details>
