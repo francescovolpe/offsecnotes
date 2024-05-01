@@ -22,7 +22,7 @@
 </details>
 
 <details>
-<summary>$\huge{\text{SMB & Samba}}$</summary>
+<summary>$\huge{\text{SMB | Samba}}$</summary>
 
 - If you have a username try using it as password
 - Brute force login
