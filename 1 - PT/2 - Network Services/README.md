@@ -1,5 +1,5 @@
 <details>
-<summary>FTP</summary>
+<summary>$\huge{\text{FTP}}$</summary>
 
 - Connect to ftp server
   - `ftp <ip>` and then login
@@ -11,7 +11,7 @@
 </details>
 
 <details>
-<summary>SSH</summary>
+<summary>$\huge{\text{SSH}}$</summary>
 
 - Connect to SSH
   - `ssh <username>@<ip>` and then login
@@ -22,7 +22,7 @@
 </details>
 
 <details>
-<summary>SMB & Samba</summary>
+<summary>$\huge{\text{SMB & Samba}}$</summary>
 
 - If you have a username try using it as password
 - Brute force login
@@ -43,7 +43,7 @@
 </details>
 
 <details>
-<summary>MYSQL</summary>
+<summary>$\huge{\text{MYSQL}}$</summary>
 
 - Connect: `mysql -h <Hostname> -u root`
 - If you have a username try using it as password
@@ -53,7 +53,7 @@
 </details>
 
 <details>
-<summary>PHP</summary>
+<summary>$\huge{\text{PHP}}$</summary>
 
 - Famous exploit: php_cgi_arg_injection (up to version 5.3.12 and 5.4.2 )
 
