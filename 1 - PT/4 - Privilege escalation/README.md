@@ -232,5 +232,3 @@ Useful for persinstence...
 - **github.com/carlospolop/PEASS-ng/tree/master/linPEAS** *Linux Privilege Escalation Awesome Script*
 - **github.com/DominicBreuker/pspy** *Monitor linux processes without root permissions*
 - **github.com/gtworek/Priv2Admin** *Windows Privileges with Windows OS privileges*
-
-</details>
