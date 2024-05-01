@@ -225,6 +225,7 @@ Useful for persinstence...
 - [GTFObins](https://gtfobins.github.io)
 
 <br><br>
+</details>
 
 # Resource
 - **juggernaut-sec.com/blog/** Windows/Linux privesc and active directory hacking
