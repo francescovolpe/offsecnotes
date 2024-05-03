@@ -56,17 +56,20 @@
 <br>
 </details>
 
-
-# Port Scanning
+<details>
+<summary>$\huge{\text{Port Scanning}}$</summary>
+  
 - To understand the differences between port scans you can use the nmap documentation
-- `nmap -p- 192.168.1.5`
-  - Scan all TCP ports
+- `nmap -p- 192.168.1.5` : Scan all TCP ports
+<br>
 
-# Script engine
-- For more info read nmap documentation
+**Script engine** : For more info read nmap documentation
 - `--script <filename>|<category>|<directory>|<expression>`
-- `-sC`
-  - Runs a script scan using the default script set. It is the equivalent of --script=default
+- `-sC`: Runs a script scan using the default script set. It is the equivalent of --script=default
   - NOTE: there are many categories. Some of the scripts in this category are considered intrusive and may not run on a network target without permissions. 
-- `nmap --script "default or safe"`
-  - Load all scripts that are in the default, safe, or both categories.
+- `nmap --script "default or safe"` : Load all scripts that are in the default, safe, or both categories.
+    
+<br>
+</details>
+
+
