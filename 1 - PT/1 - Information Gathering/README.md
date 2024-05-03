@@ -1,3 +1,33 @@
+<details>
+<summary>$\huge{\text{Website Recon}}$</summary>
+
+- **host** : dns lookup - to get pub ip of website and email servers
+  - ```
+    root@debian:~# host ine.com
+    ine.com has address 76.76.21.21
+    ine.com mail is handled by 10 alt4.aspmx.l.google.com.
+    ine.com mail is handled by 5 alt1.aspmx.l.google.com.
+    ine.com mail is handled by 5 alt2.aspmx.l.google.com.
+    ine.com mail is handled by 1 aspmx.l.google.com.
+    ine.com mail is handled by 10 alt3.aspmx.l.google.com.
+    ```
+- Web App **Technology** Fingerprinting
+  - wappalyzer (extension)
+  - builtwith (extension)
+  - `whatweb linux.com`
+- Look for **hidden directory/files**:
+  - `http://website.com/robots.txt`
+  - `http://website.com/sitemap.xml`
+- **whois** : is a protocol used for querying databases that store an Internet resource's registered users or assignees
+  - website
+  - `whois linux.com`
+- **sitereport.netcraft.com** : it gives a lot of information
+- **WAF** Detection
+  - `wafw00f http://example.com -a`
+
+<br>
+</details>
+
 # Host Discovery
 - `nmap -sn 192.168.1.0/24`
   - The default host discovery done with -sn consists of an **ICMP echo request**
