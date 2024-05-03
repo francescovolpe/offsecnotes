@@ -39,7 +39,9 @@
 <br>
 </details>
 
-# Host Discovery
+<details>
+<summary>$\huge{\text{Host Discovery}}$</summary>
+  
 - `nmap -sn 192.168.1.0/24`
   - The default host discovery done with -sn consists of an **ICMP echo request**
   - But when a privileged user tries to scan targets on a local ethernet network, **ARP requests** are used
@@ -50,6 +52,10 @@
   - `-PA` (ACK flag is set instead of the SYN flag). Default port: 80
   - `-PU` (sends a UDP packet). Default port: 40125
   - `-PY` (sends an SCTP packet). Default port: 80
+    
+<br>
+</details>
+
 
 # Port Scanning
 - To understand the differences between port scans you can use the nmap documentation
