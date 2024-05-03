@@ -45,7 +45,7 @@ Note: if you have a valid user credential you can authenticate in windows target
 - With msfconsole: `load incognito`
 - `list_tokens -u`
 - `impersonate_token <token_name>`
-- You may need to migrate process to a <user> process
+- You may need to migrate process to a \<user> process
   - Ex. `getpid` : 2628, `ps` :
     |PID  | PPID | Name | Arch | Session | User | Path|
     | ---  | --- | --- | ---  | --- | --- | --- |
