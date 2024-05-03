@@ -21,7 +21,6 @@
 - **whois** : is a protocol used for querying databases that store an Internet resource's registered users or assignees
   - website
   - `whois linux.com`
-- **sitereport.netcraft.com** : it gives a lot of information
 - **WAF** Detection
   - `wafw00f http://example.com -a`
 - **Subdomain** enumeration
@@ -32,6 +31,10 @@
   - *exploit-db.com/google-hacking-database*
 - **waybackmachine**
   - *web.archive.org*
+- **All in one**
+  - **sitereport.netcraft.com** : gives a lot of information abount a domain
+  - **theHarvester** : gathers names, emails, IPs, subdomains, and URLs by using multiple public resources
+    - `theHarvester -d example.com -b google,linkedin,dnsdumpster,duckduckgo`
 
 <br>
 </details>
