@@ -24,6 +24,14 @@
 - **sitereport.netcraft.com** : it gives a lot of information
 - **WAF** Detection
   - `wafw00f http://example.com -a`
+- **Subdomain** enumeration
+  - sublist3r : enumerates subdomains using search engines such as Google. It support also bruteforce
+  - `sublist3r -d example.com`
+- **Google Dorks**
+  - site,filetype,inurl,intitle,cache
+  - *exploit-db.com/google-hacking-database*
+- **waybackmachine**
+  - *web.archive.org*
 
 <br>
 </details>
