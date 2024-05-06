@@ -59,7 +59,7 @@
 <details>
 <summary>$\huge{\text{Port Scanning}}$</summary>
   
-- To understand the differences between port scans you can use the nmap documentation
+-  Use nmap documentation to understand the differences between port scans
 - `nmap -p- 192.168.1.5` : Scan all TCP ports
 <br>
 
