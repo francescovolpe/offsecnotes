@@ -148,7 +148,7 @@ Useful for persinstence...
 - Search scripts that execute programs or programs. : Search for any vulnerable version. One example: chkrootkit v0.49 (running as root)
   - `ps aux`
 
-<br><br>
+<br>
 </details>
 
 <details>
@@ -157,7 +157,7 @@ Useful for persinstence...
 - `find / -not -type l -perm -o+w ` : world-writable files
   - Example: maybe you can edit shadow file...
 
-<br><br>
+<br>
 </details>
 
 <details>
@@ -166,7 +166,7 @@ Useful for persinstence...
 - `sudo -l`
   - search on gtfobins how to exploit
 
-<br><br>
+<br>
 </details>
 
 <details>
@@ -192,7 +192,7 @@ Useful for persinstence...
 - `./binary_name` : run the binary
 
 
-<br><br>
+<br>
 </details>
 
 <details>
