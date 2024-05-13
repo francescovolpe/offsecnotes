@@ -89,7 +89,7 @@ Note: if you have a valid user credential you can authenticate in windows target
 <summary>$\huge{\text{Credential Dumping (Mimikatz - Kiwi - Hashdump)}}$</summary>
     
 - Prerequisites: User must be a member a local Administrators.
-1) Method (Metasploit - Meterpreter)
+1) hashdump (Metasploit - Meterpreter)
    - You may need to migrate meterpreter to NT AUTHORITY\SYSTEM process (ex. `migrate <PID explorer.exe>`)
    - `hashdump`
 2) Kiwi (Metasploit - Meterpreter)
