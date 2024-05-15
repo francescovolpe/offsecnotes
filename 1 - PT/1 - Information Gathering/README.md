@@ -14,7 +14,7 @@
 - Web App **Technology** Fingerprinting
   - wappalyzer (extension)
   - builtwith (extension)
-  - `whatweb linux.com`
+  - `whatweb website.com`
 - Look for **hidden directory/files**:
   - `http://website.com/robots.txt`
   - `http://website.com/sitemap.xml`
@@ -22,10 +22,10 @@
   - website
   - `whois linux.com`
 - **WAF** Detection
-  - `wafw00f http://example.com -a`
+  - `wafw00f http://website.com -a`
 - **Subdomain** enumeration
   - sublist3r : enumerates subdomains using search engines such as Google. It support also bruteforce
-  - `sublist3r -d example.com`
+  - `sublist3r -d website.com`
 - **Google Dorks**
   - site,filetype,inurl,intitle,cache
   - *exploit-db.com/google-hacking-database*
