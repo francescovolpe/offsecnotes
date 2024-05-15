@@ -33,3 +33,5 @@
   - Service Name and Transport Protocol Port Number Registry
 - <b>github.com/danielmiessler/SecLists</b>
   - It's a collection of multiple types of lists used during security assessments. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more.
+- **https://regex101.com/**
+  - Analyze regex
