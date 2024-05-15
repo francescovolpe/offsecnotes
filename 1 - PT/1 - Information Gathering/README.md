@@ -61,6 +61,7 @@
   
 -  Use nmap documentation to understand the differences between port scans
 - `nmap -p- 192.168.1.5` : Scan all TCP ports
+- Suggestion for udp scan: `nmap -sU --top-ports 25 <ip>`
 <br>
 
 **Script engine** : For more info read nmap documentation
