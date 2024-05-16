@@ -11,8 +11,14 @@
     ine.com mail is handled by 1 aspmx.l.google.com.
     ine.com mail is handled by 10 alt3.aspmx.l.google.com.
     ```
+- **whois** : is a protocol used for querying databases that store an Internet resource's registered users or assignees
+  - website
+  - `whois linux.com`
 - **DNS enumeration**
   - dnsdumpster.com
+- **Subdomain** enumeration
+  - sublist3r : enumerates subdomains using search engines such as Google. It support also bruteforce
+  - `sublist3r -d website.com`
 - Web App **Technology** Fingerprinting
   - wappalyzer (extension)
   - builtwith (extension)
@@ -20,14 +26,10 @@
 - Look for **hidden directory/files**:
   - `http://website.com/robots.txt`
   - `http://website.com/sitemap.xml`
-- **whois** : is a protocol used for querying databases that store an Internet resource's registered users or assignees
-  - website
-  - `whois linux.com`
 - **WAF** Detection
   - `wafw00f http://website.com -a`
-- **Subdomain** enumeration
-  - sublist3r : enumerates subdomains using search engines such as Google. It support also bruteforce
-  - `sublist3r -d website.com`
+- Download **website source**
+  - httrack
 - **Google Dorks**
   - site,filetype,inurl,intitle,cache
   - *exploit-db.com/google-hacking-database*
