@@ -36,6 +36,7 @@
 - **waybackmachine**
   - *web.archive.org*
 - **All in one**
+  - **amass** : network mapping and external asset discovery using open source information gathering and active reconnaissance techniques
   - **sitereport.netcraft.com** : gives a lot of information abount a domain
   - **theHarvester** : gathers names, emails, IPs, subdomains, and URLs by using multiple public resources
     - `theHarvester -d example.com -b google,linkedin,dnsdumpster,duckduckgo`
