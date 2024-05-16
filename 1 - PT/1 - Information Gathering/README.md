@@ -11,7 +11,7 @@
     ine.com mail is handled by 1 aspmx.l.google.com.
     ine.com mail is handled by 10 alt3.aspmx.l.google.com.
     ```
-- **dns enumeration**
+- **DNS enumeration**
   - dnsdumpster.com
 - Web App **Technology** Fingerprinting
   - wappalyzer (extension)
