@@ -1,20 +1,15 @@
 <details>
 <summary>$\huge{\text{Website Recon}}$</summary>
 
-- **host** : dns lookup - to get pub ip of website and email servers
-  - ```
-    root@debian:~# host ine.com
-    ine.com has address 76.76.21.21
-    ine.com mail is handled by 10 alt4.aspmx.l.google.com.
-    ine.com mail is handled by 5 alt1.aspmx.l.google.com.
-    ine.com mail is handled by 5 alt2.aspmx.l.google.com.
-    ine.com mail is handled by 1 aspmx.l.google.com.
-    ine.com mail is handled by 10 alt3.aspmx.l.google.com.
-    ```
 - **whois** : is a protocol used for querying databases that store an Internet resource's registered users or assignees
   - website
   - `whois linux.com`
 - **DNS enumeration**
+  - `dig +short a zonetransfer.me` : list of ipv4 address
+  - `dig +short mx zonetransfer.me` : list of email servers
+  - `dig +short ns zonetransfer.me` : list of DNS servers for the domain
+  - `dig axfr zonetransfer.me @nsztm1.digi.ninja.` : get a copy of the zone from the primary server. (**zone transfer attack**)
+- **DNS automatic enumeration**
   - dnsdumpster.com
   - dnsrecon (tool)
 - **Subdomain** enumeration
