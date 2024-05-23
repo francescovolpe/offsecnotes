@@ -6,7 +6,8 @@
   - IMPORTANT NOTE: /basic and /basic/ are different... so pay attention to set the correct path
 - Other: https://github.com/gnebbia/hydra_notes
 - HTTP LOGIN
-  - `hydra -l admin -P /usr/share/wordlists/rockyou.txt <IP> https-post-form "/db/index.php:password=^PASS^&remember=yes&login=Log+In&proc_login=true:Incorrect password"`
+  - `hydra -L <users_file> -P <password_file> <url> http[s]-[post|get]-form \
+"index.php:param1=value1&param2=value2&user=^USER^&pwd=^PASS^&paramn=valn:[F|S]=messageshowed"`
 
 <br>
 </details>
