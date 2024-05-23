@@ -1,21 +1,41 @@
 <details>
-<summary>$\huge{\text{Website Recon}}$</summary>
+<summary>$\huge{\text{whois}}$</summary>
 
-- **whois** : is a protocol used for querying databases that store an Internet resource's registered users or assignees
+- It is a protocol used for querying databases that store an Internet resource's registered users or assignees
   - website
   - `whois linux.com`
-- **DNS enumeration**
+    
+<br>
+</details>
+
+<details>
+<summary>$\huge{\text{DNS Enumeration}}$</summary>
+
+- Manual
   - `dig +short a zonetransfer.me` : list of ipv4 address
   - `dig +short mx zonetransfer.me` : list of email servers
   - `dig +short ns zonetransfer.me` : list of DNS servers for the domain
   - `dig axfr zonetransfer.me @nsztm1.digi.ninja.` : get a copy of the zone from the primary server. (**zone transfer attack**)
     - *AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone.*
-- **DNS automatic enumeration**
+- Automatic
   - dnsdumpster.com
   - dnsrecon (tool)
-- **Subdomain** enumeration
-  - sublist3r : enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
-  - `sublist3r -d website.com`
+    
+<br>
+</details>
+
+<details>
+<summary>$\huge{\text{Subdomain enumeration}}$</summary>
+
+- sublist3r : enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
+- `sublist3r -d website.com`
+    
+<br>
+</details>
+
+<details>
+<summary>$\huge{\text{Website Recon}}$</summary>
+
 - Web App **Technology** Fingerprinting
   - wappalyzer (extension)
   - builtwith (extension)
