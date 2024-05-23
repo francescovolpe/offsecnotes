@@ -16,6 +16,7 @@
   - `whois linux.com`
 - **DNS enumeration**
   - dnsdumpster.com
+  - dnsrecon (tool)
 - **Subdomain** enumeration
   - sublist3r : enumerates subdomains using search engines such as Google. It support also bruteforce
   - `sublist3r -d website.com`
