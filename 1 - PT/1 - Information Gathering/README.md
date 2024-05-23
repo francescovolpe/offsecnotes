@@ -18,7 +18,7 @@
   - dnsdumpster.com
   - dnsrecon (tool)
 - **Subdomain** enumeration
-  - sublist3r : enumerates subdomains using search engines such as Google. It support also bruteforce
+  - sublist3r : enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
   - `sublist3r -d website.com`
 - Web App **Technology** Fingerprinting
   - wappalyzer (extension)
