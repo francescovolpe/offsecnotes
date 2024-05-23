@@ -57,7 +57,7 @@
 </details>
 
 <details>
-<summary>$\huge{\text{}}$</summary>
+<summary>$\huge{\text{All in one}}$</summary>
 
 - **amass** : network mapping and external asset discovery using open source information gathering and active reconnaissance techniques
 - **sitereport.netcraft.com** : gives a lot of information about a domain
