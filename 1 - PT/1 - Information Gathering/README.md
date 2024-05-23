@@ -42,7 +42,7 @@
 </details>
 
 <details>
-<summary>$\huge{\text{Host Discovery}}$</summary>
+<summary>$\huge{\text{Host Discovery (nmap)}}$</summary>
   
 - `nmap -sn 192.168.1.0/24`
   - The default host discovery done with -sn consists of an **ICMP echo request**
@@ -59,7 +59,7 @@
 </details>
 
 <details>
-<summary>$\huge{\text{Port Scanning}}$</summary>
+<summary>$\huge{\text{Port Scanning (nmap)}}$</summary>
   
 -  Use nmap documentation to understand the differences between port scans
 - `nmap -p- 192.168.1.5` : Scan all TCP ports
