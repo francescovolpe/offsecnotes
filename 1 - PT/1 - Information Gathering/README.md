@@ -1,5 +1,5 @@
 <details>
-<summary>$\huge{\text{whois}}$</summary>
+<summary>$\huge{\text{Whois}}$</summary>
 
 - It is a protocol used for querying databases that store an Internet resource's registered users or assignees
   - website
@@ -52,12 +52,18 @@
   - *exploit-db.com/google-hacking-database*
 - **waybackmachine**
   - *web.archive.org*
-- **All in one**
-  - **amass** : network mapping and external asset discovery using open source information gathering and active reconnaissance techniques
-  - **sitereport.netcraft.com** : gives a lot of information about a domain
-  - **theHarvester** : gathers names, emails, IPs, subdomains, and URLs by using multiple public resources
-    - `theHarvester -d example.com -b google,linkedin,dnsdumpster,duckduckgo`
 
+<br>
+</details>
+
+<details>
+<summary>$\huge{\text{}}$</summary>
+
+- **amass** : network mapping and external asset discovery using open source information gathering and active reconnaissance techniques
+- **sitereport.netcraft.com** : gives a lot of information about a domain
+- **theHarvester** : gathers names, emails, IPs, subdomains, and URLs by using multiple public resources
+  - `theHarvester -d example.com -b google,linkedin,dnsdumpster,duckduckgo`
+    
 <br>
 </details>
 
