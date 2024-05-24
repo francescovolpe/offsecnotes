@@ -14,6 +14,7 @@
 - Manual
   - `dig +short a zonetransfer.me` : list of ipv4 address
   - `dig +short mx zonetransfer.me` : list of email servers
+  - `dig +short -x 192.246.126.3` : reverse lookups
   - `dig +short ns zonetransfer.me` : list of DNS servers for the domain
   - `dig axfr zonetransfer.me @nsztm1.digi.ninja.` : get a copy of the zone from the primary server. (**zone transfer attack**)
     - *AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone.*
