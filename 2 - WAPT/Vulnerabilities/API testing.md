@@ -27,7 +27,7 @@
 <summary>$\huge{\text{Identifying API endpoints}}$</summary>
 
 - Browsing application
-  - (even if you have access to documentaion, as it may be inaccurate)
+  - (even if you have access to documentation, as it may be inaccurate)
 - Look out for JavaScript files (These can contain references to API endpoints)
   - Suggestion: JS Link Finder BApp 
     
