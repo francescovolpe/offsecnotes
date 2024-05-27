@@ -2,10 +2,7 @@
 
 ## Windows
 
-Note: if you have a valid user credential you can authenticate in windows target from SMB, RDP, WinRM\
-
-
-
+Note: if you have a valid user credential you can authenticate in windows target from SMB, RDP, WinRM
 
 ### Automation script
 
