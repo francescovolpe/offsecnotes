@@ -1,3 +1,4 @@
 # Table of contents
 
-* [Page](README.md)
+* [Offensive Security Notes](README.md)
+* [Resources](resources.md)
