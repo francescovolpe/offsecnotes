@@ -2,9 +2,9 @@
 
 
 
-<details>
 
-<summary>$\huge{\text{Whois}}$</summary>
+
+## Whois
 
 * It is a protocol used for querying databases that store an Internet resource's registered users or assignees
   * website
@@ -13,7 +13,7 @@
 \
 
 
-</details>
+
 
 <details>
 
