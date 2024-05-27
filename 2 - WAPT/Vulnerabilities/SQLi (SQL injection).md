@@ -2,6 +2,7 @@
 
 <details>
 <summary>$\huge{\text{SQL Injection Cheatsheet}}$</summary>
+<br>
 
 - https://tib3rius.com/sqli
     
@@ -10,6 +11,7 @@
 
 <details>
 <summary>$\huge{\text{How to detect SQL injection vulnerabilities}}$</summary>
+<br>
 
 - The single quote character `'` and look for errors or other anomalies.
 - Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.
@@ -22,6 +24,7 @@
 
 <details>
 <summary>$\huge{\text{SQL injection in different parts of the query}}$</summary>
+<br>
 
 - Most SQL injection vulnerabilities occur within the `WHERE` clause of a `SELECT` query.
 - However, SQL injection vulnerabilities can occur at any location (UPDATE, INSERT, SELECT [column, table], ORDER BY)
@@ -31,6 +34,7 @@
 
 <details>
 <summary>$\huge{\text{Warning: OR 1=1 }}$</summary>
+<br>
 
 - If your condition reaches an UPDATE or DELETE statement, for example, it can result in an accidental loss of data.
     
@@ -39,6 +43,7 @@
 
 <details>
 <summary>$\huge{\text{SQL injection UNION attacks}}$</summary>
+<br>
 
 - Requirements
   - How many columns are being returned from the original query
@@ -51,6 +56,7 @@
 <dl><dd><dl><dd>
 <details>
 <summary>$\huge{\text{Determining the number of columns required}}$</summary>
+<br>
 
 - First way: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs
   - Example (the injection point is a quoted string within the `WHERE` clause)
@@ -77,6 +83,7 @@
 <dl><dd><dl><dd>
 <details>
 <summary>$\huge{\text{Database-specific syntax}}$</summary>
+<br>
 
 - Example:
   - Oracle: every `SELECT` query must use the `FROM` keyword and specify a valid table
@@ -90,6 +97,7 @@
 <dl><dd><dl><dd>
 <details>
 <summary>$\huge{\text{Finding columns with a useful data type}}$</summary>
+<br>
 
 - Do you want a string?
   - ```
@@ -108,6 +116,7 @@
 <dl><dd><dl><dd>
 <details>
 <summary>$\huge{\text{Examining the database}}$</summary>
+<br>
 
 | Database type 	| Query |
 | ----- | ----- |
@@ -141,6 +150,7 @@
 <dl><dd><dl><dd>
 <details>
 <summary>$\huge{\text{Retrieving multiple values within a single column}}$</summary>
+<br>
 
 - You can retrieve multiple values together within this single column by concatenating the values together
 - `' UNION SELECT username || '~' || password FROM users--`
@@ -152,6 +162,7 @@
 
 <details>
 <summary>$\huge{\text{Blind SQL Injection}}$</summary>
+<br>
 
 - Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
     
@@ -161,6 +172,7 @@
 <dl><dd><dl><dd>
 <details>
 <summary>$\huge{\text{Exploiting blind SQL injection by triggering conditional responses}}$</summary>
+<br>
 
 - `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'`
   - …xyz' AND '1'='1
