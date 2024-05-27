@@ -1,7 +1,35 @@
 # Wordlists
+
 <details>
-<summary>Javascript path files used to store sensitive information in Web Application</summary>
-  
+<summary>$\huge{\text{OneListForAll}}$</summary>
+
+- Rockyou for web fuzzing
+- Very useful, especially "onelistforallmicro.txt"
+  - https://github.com/six2dez/OneListForAll
+    
+<br>
+</details>
+
+<details>
+<summary>$\huge{\text{Top 25 Parameters}}$</summary>
+
+- Links
+  - https://owasp.org/www-project-top-25-parameters/
+  - https://github.com/lutfumertceylan/top25-parameter/tree/master
+- Vulnerabilities
+  - Cross-Site Scripting
+  - Server-Side Request Forgery
+  - Local File Inclusion
+  - SQL Injection
+  - Remote Code Execution
+  - Open Redirect
+    
+<br>
+</details>
+
+<details>
+<summary>$\huge{\text{Javascript path files used to store sensitive information in Web Application}}$</summary>
+
 ```
 /js/config.js
 /js/credentials.js
@@ -28,32 +56,6 @@
 /js/tokens.js
 /js/cookies.js
 ```
-</details>
-
-
-<details>
-  
-<summary>Top 25 Parameters</summary>
-  
-- Links
-  - https://owasp.org/www-project-top-25-parameters/
-  - https://github.com/lutfumertceylan/top25-parameter/tree/master
-- Vulnerabilities
-  - Cross-Site Scripting
-  - Server-Side Request Forgery
-  - Local File Inclusion
-  - SQL Injection
-  - Remote Code Execution
-  - Open Redirect
-</details>
-
-<details>
-<summary>$\huge{\text{OneListForAll}}$</summary>
-
-- Rockyou for web fuzzing
-- Very useful, especially "onelistforallmicro.txt"
-  - https://github.com/six2dez/OneListForAll
     
 <br>
-</details>
-
+</details> 
