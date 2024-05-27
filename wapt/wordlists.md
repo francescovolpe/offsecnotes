@@ -1,21 +1,14 @@
 # Wordlists
 
-<details>
 
-<summary>$\huge{\text{OneListForAll}}$</summary>
+
+## OneListForAll
 
 * Rockyou for web fuzzing
 * Very useful, especially "onelistforallmicro.txt"
   * https://github.com/six2dez/OneListForAll
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Top 25 Parameters}}$</summary>
+## Top 25 Parameters
 
 * Links
   * https://owasp.org/www-project-top-25-parameters/
@@ -28,14 +21,7 @@
   * Remote Code Execution
   * Open Redirect
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Javascript path files used to store sensitive information in Web Application}}$</summary>
+## Javascript path files used to store sensitive information in Web Application
 
 ```
 /js/config.js
@@ -63,8 +49,3 @@
 /js/tokens.js
 /js/cookies.js
 ```
-
-\
-
-
-</details>
