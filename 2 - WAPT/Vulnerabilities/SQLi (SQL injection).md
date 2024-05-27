@@ -1,28 +1,57 @@
 # SQL injection
 
-## SQL Injection Cheatsheet
-- https://tib3rius.com/sqli
+<details>
+<summary>$\huge{\text{SQL Injection Cheatsheet}}$</summary>
 
-## How to detect SQL injection vulnerabilities
+- https://tib3rius.com/sqli
+    
+<br>
+</details>
+
+<details>
+<summary>$\huge{\text{How to detect SQL injection vulnerabilities}}$</summary>
+
 - The single quote character `'` and look for errors or other anomalies.
 - Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.
 - Boolean conditions such as `OR 1=1` and `OR 1=2`, and look for differences in the application's responses.
 - Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
 - OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.
+    
+<br>
+</details>
 
-## SQL injection in different parts of the query
+<details>
+<summary>$\huge{\text{SQL injection in different parts of the query}}$</summary>
+
 - Most SQL injection vulnerabilities occur within the `WHERE` clause of a `SELECT` query.
 - However, SQL injection vulnerabilities can occur at any location (UPDATE, INSERT, SELECT [column, table], ORDER BY)
+    
+<br>
+</details>
 
-## Warning: OR 1=1 
+<details>
+<summary>$\huge{\text{Warning: OR 1=1 }}$</summary>
+
 - If your condition reaches an UPDATE or DELETE statement, for example, it can result in an accidental loss of data.
+    
+<br>
+</details>
 
-## SQL injection UNION attacks
+<details>
+<summary>$\huge{\text{SQL injection UNION attacks}}$</summary>
+
 - Requirements
   - How many columns are being returned from the original query
   - Which columns returned from the original query are of a suitable data type to hold the results from the injected query
+    
+<br>
+</details>
 
-### Determining the number of columns required
+
+<dl><dd><dl><dd>
+<details>
+<summary>$\huge{\text{Determining the number of columns required}}$</summary>
+
 - First way: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs
   - Example (the injection point is a quoted string within the `WHERE` clause)
   - ```
@@ -41,13 +70,27 @@
     ```
 - Note: the application might actually return the database error in its HTTP response, but may return a generic error or simply return no results
 
-### Database-specific syntax
+<br>
+</details>
+</dd></dl></dd></dl>
+
+<dl><dd><dl><dd>
+<details>
+<summary>$\huge{\text{Database-specific syntax}}$</summary>
+
 - Example:
   - Oracle: every `SELECT` query must use the `FROM` keyword and specify a valid table
   - MySQL: the double-dash sequence must be followed by a space
   - https://portswigger.net/web-security/sql-injection/cheat-sheet
 
-### Finding columns with a useful data type
+<br>
+</details>
+</dd></dl></dd></dl>
+
+<dl><dd><dl><dd>
+<details>
+<summary>$\huge{\text{Finding columns with a useful data type}}$</summary>
+
 - Do you want a string?
   - ```
     ' UNION SELECT 'a',NULL,NULL,NULL--
@@ -58,7 +101,14 @@
   - Error example: Conversion failed when converting the varchar value 'a' to data type int.
    - If no error occurs and the response includes the injected string, the column is suitable for retrieving string data.
 
-## Examining the database 
+<br>
+</details>
+</dd></dl></dd></dl>
+
+<dl><dd><dl><dd>
+<details>
+<summary>$\huge{\text{Examining the database}}$</summary>
+
 | Database type 	| Query |
 | ----- | ----- |
 | Microsoft, MySQL | 	SELECT @@version |
@@ -83,15 +133,35 @@
   - `SELECT * FROM all_tab_columns WHERE table_name = 'USERS'`
     - `SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'`
 
-### Retrieving multiple values within a single column
+<br>
+</details>
+</dd></dl></dd></dl>
+
+
+<dl><dd><dl><dd>
+<details>
+<summary>$\huge{\text{Retrieving multiple values within a single column}}$</summary>
+
 - You can retrieve multiple values together within this single column by concatenating the values together
 - `' UNION SELECT username || '~' || password FROM users--`
   - https://portswigger.net/web-security/sql-injection/cheat-sheet
 
-## Blind SQL Injection
-- Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
+<br>
+</details>
+</dd></dl></dd></dl>
 
-### Exploiting blind SQL injection by triggering conditional responses
+<details>
+<summary>$\huge{\text{Blind SQL Injection}}$</summary>
+
+- Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
+    
+<br>
+</details>
+
+<dl><dd><dl><dd>
+<details>
+<summary>$\huge{\text{Exploiting blind SQL injection by triggering conditional responses}}$</summary>
+
 - `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'`
   - …xyz' AND '1'='1
     - The query to return results, because the injected `AND '1'='1` condition is true. As a result, the "Welcome back" message is displayed. 
@@ -106,3 +176,9 @@
     - ... Confirm that the first character of the password is `s`
   - We can continue this process to systematically determine the full password for the Administrator user.
 - `SUBSTRING` is called `SUBSTR` on some types of database (https://portswigger.net/web-security/sql-injection/cheat-sheet)
+
+<br>
+</details>
+</dd></dl></dd></dl>
+
+
