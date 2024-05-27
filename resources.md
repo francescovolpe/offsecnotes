@@ -4,8 +4,10 @@ Tags: `x-bug-bounty` , `x-ctf` , `x-techniques` , `x-write-up` , `x-blog` , `x-o
 \
 
 
+* **book.hacktricks.xyz**
 * **github.com/swisskyrepo/PayloadsAllTheThings**
 * **hackingarticles.in**
+* **portswigger.net/web-security**
 * **exploit-notes.hdks.org** `x-bug-bounty` `x-ctf` `x-techniques`
   * _Sticky notes for pentesting. Search hacking techniques and tools for penetration testings, bug bounty, CTF._
 * **pentester.land** `x-bug-bounty` , `x-write-up` , `x-blog`

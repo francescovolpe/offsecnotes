@@ -4,16 +4,16 @@
 * [Resources](resources.md)
 * [CTF Methodology](ctf-methodology.md)
 
-## PT
+## Penetration test
 
-* [1 - Information Gathering](pt/1-information-gathering.md)
-* [2 - Network Services Exploitation](pt/2-network-services-exploitation.md)
-* [3 - Post-Exploitation](pt/3-post-exploitation.md)
-* [4 - Privilege Escalation](pt/4-privilege-escalation.md)
-* [AV Evasion](pt/av-evasion.md)
-* [Other](pt/other.md)
-* [Tools](pt/tools.md)
-* [Commands](pt/commands.md)
+* [1 - Information Gathering](penetration-test/1-information-gathering.md)
+* [2 - Network Services Exploitation](penetration-test/2-network-services-exploitation.md)
+* [3 - Post-Exploitation](penetration-test/3-post-exploitation.md)
+* [4 - Privilege Escalation](penetration-test/4-privilege-escalation.md)
+* [AV Evasion](penetration-test/av-evasion.md)
+* [Other](penetration-test/other.md)
+* [Tools](penetration-test/tools.md)
+* [Commands](penetration-test/commands.md)
 
 ## MAPT
 
