@@ -18,4 +18,4 @@ Tags: `x-bug-bounty` , `x-ctf` , `x-techniques` , `x-write-up` , `x-blog` , `x-o
   * _Exploit and priv-esc with Windows OS privileges_
 * **juggernaut-sec.com/blog** `x-priv-esc` , `x-active-directory`
   * _Very useful for privesc and active directory hacking_
-* _github.com/neilmadhava/EJPTv2-Notes_ `x-cert`
+* _**github.com/neilmadhava/EJPTv2-Notes**_ `x-cert`
