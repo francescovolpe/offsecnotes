@@ -1,8 +1,6 @@
 # API testing
 
-<details>
-
-<summary>$\huge{\text{API Recon}}$</summary>
+## API Recon
 
 * You need to find out as much information about the API as possible
   * Discover API endpoint
@@ -10,54 +8,28 @@
   * Supported HTTP methods and media formats.
   * Rate limits and authentication mechanisms.
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Discovering API documentation}}$</summary>
+## Discovering API documentation
 
 * Endpoints that may refer to API documentation:
   * `/api`, `/swagger/index.html`, `/openapi.json`
 * If you identify the resource endpoint `/api/swagger/v1/users/123` use a list of common paths to directly fuzz for documentation
   * `/api/swagger/v1`, `/api/swagger`, `/api`
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Identifying API endpoints}}$</summary>
+## Identifying API endpoints
 
 * Browsing application
   * (even if you have access to documentation, as it may be inaccurate)
 * Look out for JavaScript files (These can contain references to API endpoints)
   * Suggestion: JS Link Finder BApp
 
-\
 
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Identifying supported HTTP methods}}$</summary>
+## Identifying supported HTTP methods
 
 * Test all potential methods when you're investigating API endpoints
   * Use HTTP verbs list in Burp Intruder
 
-\
 
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Identifying supported content types}}$</summary>
+## Identifying supported content types
 
 Changing the content type may enable you to
 
@@ -67,39 +39,18 @@ Changing the content type may enable you to
 * To change the content type, modify the Content-Type header, then reformat the request body accordingly
   * Suggestion: Content type converter BApp automatically convert data submitted within requests between XML and JSON
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Fuzzing to find hidden endpoints}}$</summary>
+## Fuzzing to find hidden endpoints
 
 * `PUT /api/user/update`
   * Fuzz the `/update` with a list of other common functions, such as `delete` and `add`
   * Use wordlists based on common API naming
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Finding hidden parameters}}$</summary>
+## Finding hidden parameters
 
 * Wordlists
   * Burp Intruder, Param miner BApp
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Mass assignment vulnerabilities}}$</summary>
+## Mass assignment vulnerabilities
 
 * Software frameworks sometime allow developers to automatically bind HTTP request parameters into program code variables or objects to make using that framework easier on developers
 * Consider `PATCH /api/users/` which enables users to update their username and email and includes the following JSON
@@ -115,14 +66,7 @@ Changing the content type may enable you to
   * If the application behaves differently, this may suggest that the invalid value impacts the query logic, but the valid value doesn't. This may indicate that the parameter can be successfully updated by the user. (Set it to true)
     * Note: We change isAdmin to "foo" because we want see if the user input is processed. If we get an error may indicate that the user input is being processed
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Preventing vulnerabilities in APIs}}$</summary>
+## Preventing vulnerabilities in APIs
 
 * Secure your documentation if you don't intend your API to be publicly accessible.
 * Ensure your documentation is kept up to date so that legitimate testers have full visibility of the API's attack surface.
@@ -130,8 +74,3 @@ Changing the content type may enable you to
 * Validate that the content type is expected for each request or response.
 * Use generic error messages to avoid giving away information that may be useful for an attacker.
 * Use protective measures on all versions of your API, not just the current production version. To prevent mass assignment vulnerabilities, allowlist the properties that can be updated by the user, and blocklist sensitive properties that shouldn't be updated by the user.
-
-\
-
-
-</details>
