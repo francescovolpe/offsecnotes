@@ -48,6 +48,7 @@
 * [Tools](wapt/tools.md)
 * [Burp Suite](wapt/burp-suite/README.md)
   * [Extension](wapt/burp-suite/extension.md)
+  * [logger++ filters](wapt/burp-suite/logger++-filters.md)
 * [Wordlists](wapt/wordlists.md)
 * [Tips](wapt/tips.md)
 * [Notes](wapt/notes/README.md)
