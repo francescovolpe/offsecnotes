@@ -1,25 +1,11 @@
 # SQLi injection
 
-<details>
 
-<summary>$\huge{\text{SQL Injection Cheatsheet}}$</summary>
-
-\
-
+## SQL Injection Cheatsheet
 
 * https://tib3rius.com/sqli
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Overview}}$</summary>
-
-\
-
+## Overview
 
 **How to detect SQL injection vulnerabilities**
 
@@ -40,33 +26,13 @@
 
 * If your condition reaches an UPDATE or DELETE statement, for example, it can result in an accidental loss of data.
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{SQL injection UNION attacks}}$</summary>
-
-\
-
+## SQL injection UNION attacks
 
 * Requirements
   * How many columns are being returned from the original query
   * Which columns returned from the original query are of a suitable data type to hold the results from the injected query
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Determining the number of columns required}}$</summary>
-
-\
-
+## Determining the number of columns required
 
 * First way: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs
   * Example (the injection point is a quoted string within the `WHERE` clause)
@@ -86,34 +52,14 @@
     ```
 * Note: the application might actually return the database error in its HTTP response, but may return a generic error or simply return no results
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Database-specific syntax}}$</summary>
-
-\
-
+## Database-specific syntax
 
 * Example:
   * Oracle: every `SELECT` query must use the `FROM` keyword and specify a valid table
   * MySQL: the double-dash sequence must be followed by a space
   * https://portswigger.net/web-security/sql-injection/cheat-sheet
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Finding columns with a useful data type}}$</summary>
-
-\
-
+## Finding columns with a useful data type
 
 * Do you want a string?
   * ```
@@ -125,17 +71,7 @@
   * Error example: Conversion failed when converting the varchar value 'a' to data type int.
   * If no error occurs and the response includes the injected string, the column is suitable for retrieving string data.
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Examining the database}}$</summary>
-
-\
-
+## Examining the database
 
 * `' UNION SELECT @@version--`
 * Listing the contents of the database
@@ -156,47 +92,17 @@
   * `SELECT * FROM all_tab_columns WHERE table_name = 'USERS'`
     * `SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'`
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Retrieving multiple values within a single column}}$</summary>
-
-\
-
+## Retrieving multiple values within a single column
 
 * You can retrieve multiple values together within this single column by concatenating the values together
 * `' UNION SELECT username || '~' || password FROM users--`
   * https://portswigger.net/web-security/sql-injection/cheat-sheet
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Blind SQL Injection}}$</summary>
-
-\
-
+## Blind SQL Injection
 
 * Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Triggering conditional responses}}$</summary>
-
-\
-
+## Triggering conditional responses
 
 * `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'`
   * …xyz' AND '1'='1
@@ -213,17 +119,7 @@
   * We can continue this process to systematically determine the full password for the Administrator user.
 * `SUBSTRING` is called `SUBSTR` on some types of database (https://portswigger.net/web-security/sql-injection/cheat-sheet)
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Error-based SQL injection}}$</summary>
-
-\
-
+## Error-based SQL injection
 
 * Problem: Some applications carry out SQL queries but their behavior doesn't change, regardless of whether the query returns any data. The technique "Triggering conditional responses" won't work, because injecting different boolean conditions makes no difference to the application's responses.
 * It's often possible to induce the application to return a different response depending on whether a SQL error occurs and extract or infer sensitive data from the database, even in blind contexts.
@@ -234,8 +130,3 @@
 * You can use this to determine whether the injected condition is true.
 * `xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a`
 * Note: There are different ways of triggering conditional errors, and different techniques work best on different database types. See SQL cheat sheet
-
-\
-
-
-</details>
