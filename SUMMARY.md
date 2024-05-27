@@ -2,12 +2,15 @@
 
 * [Offensive Security Notes](README.md)
 * [Resources](resources.md)
-* [CTF Methodology](ctf-methodology/README.md)
-  * [1 - Information Gathering](ctf-methodology/1-information-gathering.md)
-  * [2 - Network Services Exploitation](ctf-methodology/2-network-services-exploitation.md)
-  * [4 - Privilege Escalation](ctf-methodology/4-privilege-escalation.md)
-  * [3 - Post-Exploitation](ctf-methodology/3-post-exploitation.md)
-  * [AV Evasion](ctf-methodology/av-evasion.md)
-  * [Other](ctf-methodology/other.md)
-  * [Commands](ctf-methodology/commands.md)
-  * [Tools](ctf-methodology/tools.md)
+* [CTF Methodology](ctf-methodology.md)
+
+## PT
+
+* [1 - Information Gathering](pt/1-information-gathering.md)
+* [2 - Network Services Exploitation](pt/2-network-services-exploitation.md)
+* [3 - Post-Exploitation](pt/3-post-exploitation.md)
+* [4 - Privilege Escalation](pt/4-privilege-escalation.md)
+* [AV Evasion](pt/av-evasion.md)
+* [Other](pt/other.md)
+* [Tools](pt/tools.md)
+* [Commands](pt/commands.md)
