@@ -171,7 +171,7 @@
 
 <dl><dd><dl><dd>
 <details>
-<summary>$\huge{\text{Exploiting blind SQL injection by triggering conditional responses}}$</summary>
+<summary>$\huge{\text{Triggering conditional responses}}$</summary>
 <br>
 
 - `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'`
