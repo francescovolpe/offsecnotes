@@ -1,6 +1,6 @@
 # Resources
 
-Tags: `bug-bounty` , `ctf` , `techniques` , `write-up` , `blog` ,  `osint` , `priv-esc` , `active-directory`
+Tags: `bug-bounty` , `ctf` , `techniques` , `write-up` , `blog` ,  `osint` , `priv-esc` , `active-directory` , `cert`
 <br><br>
 
 - **github.com/swisskyrepo/PayloadsAllTheThings**
@@ -15,3 +15,4 @@ Tags: `bug-bounty` , `ctf` , `techniques` , `write-up` , `blog` ,  `osint` , `pr
   - *Exploit and priv-esc with Windows OS privileges*
 - **juggernaut-sec.com/blog** `priv-esc` , `active-directory`
   - *Very useful for privesc and active directory hacking*
+- *github.com/neilmadhava/EJPTv2-Notes* `cert`
