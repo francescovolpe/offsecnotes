@@ -193,4 +193,24 @@
 </details>
 </dd></dl></dd></dl>
 
+<dl><dd><dl><dd>
+<details>
+<summary>$\huge{\text{Error-based SQL injection}}$</summary>
+<br>
+
+- Problem: Some applications carry out SQL queries but their behavior doesn't change, regardless of whether the query returns any data. The technique "Triggering conditional responses" won't work, because injecting different boolean conditions makes no difference to the application's responses.
+- It's often possible to induce the application to return a different response depending on whether a SQL error occurs and extract or infer sensitive data from the database, even in blind contexts.
+- `xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a`
+  - The CASE expression evaluates to 'a', which does not cause any error.
+- `xyz' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a`
+  - It evaluates to 1/0, which causes a divide-by-zero error.
+-  You can use this to determine whether the injected condition is true.
+  -  `xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a`
+- Note: There are different ways of triggering conditional errors, and different techniques work best on different database types. See SQL cheat sheet
+
+
+<br>
+</details>
+</dd></dl></dd></dl>
+
 
