@@ -1,23 +1,13 @@
 # 1 - Information Gathering
 
-
-
-
-
 ## Whois
 
 * It is a protocol used for querying databases that store an Internet resource's registered users or assignees
   * website
   * `whois linux.com`
 
-\
 
-
-
-
-<details>
-
-<summary>$\huge{\text{DNS Enumeration}}$</summary>
+## DNS Enumeration
 
 * Manual
   * `dig +short a zonetransfer.me` : list of ipv4 address
@@ -30,26 +20,15 @@
   * dnsdumpster.com
   * dnsrecon (tool)
 
-\
 
 
-</details>
-
-<details>
-
-<summary>$\huge{\text{Subdomain enumeration}}$</summary>
+## Subdomain enumeration
 
 * sublist3r : enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
 * `sublist3r -d website.com`
 
-\
 
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Website Recon}}$</summary>
+## Website Recon
 
 * Web App **Technology** Fingerprinting
   * wappalyzer (extension)
@@ -68,29 +47,14 @@
 * **waybackmachine**
   * _web.archive.org_
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{All in one}}$</summary>
+## All in one
 
 * **amass** : network mapping and external asset discovery using open source information gathering and active reconnaissance techniques
 * **sitereport.netcraft.com** : gives a lot of information about a domain
 * **theHarvester** : gathers names, emails, IPs, subdomains, and URLs by using multiple public resources
   * `theHarvester -d example.com -b google,linkedin,dnsdumpster,duckduckgo`
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Host Discovery (nmap)}}$</summary>
-
+## Host Discovery (nmap)
 * `nmap -sn 192.168.1.0/24`
   * The default host discovery done with -sn consists of an **ICMP echo request**
   * But when a privileged user tries to scan targets on a local ethernet network, **ARP requests** are used
@@ -102,19 +66,11 @@
   * `-PU` (sends a UDP packet). Default port: 40125
   * `-PY` (sends an SCTP packet). Default port: 80
 
-\
-
-
-</details>
-
-<details>
-
-<summary>$\huge{\text{Port Scanning (nmap)}}$</summary>
+## Port Scanning (nmap)
 
 * Use nmap documentation to understand the differences between port scans
 * `nmap -p- 192.168.1.5` : Scan all TCP ports
-* Suggestion for udp scan: `nmap -sU --top-ports 25 <ip>`\
-
+* Suggestion for udp scan: `nmap -sU --top-ports 25 <ip>`
 
 **Script engine** : For more info read nmap documentation
 
@@ -122,8 +78,3 @@
 * `-sC`: Runs a script scan using the default script set. It is the equivalent of --script=default
   * NOTE: there are many categories. Some of the scripts in this category are considered intrusive and may not run on a network target without permissions.
 * `nmap --script "default or safe"` : Load all scripts that are in the default, safe, or both categories.
-
-\
-
-
-</details>
