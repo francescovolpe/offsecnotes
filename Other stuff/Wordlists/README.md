@@ -47,5 +47,13 @@
   - Open Redirect
 </details>
 
+<details>
+<summary>$\huge{\text{OneListForAll}}$</summary>
 
+- Rockyou for web fuzzing
+- Very useful, especially "onelistforallmicro.txt"
+  - https://github.com/six2dez/OneListForAll
+    
+<br>
+</details>
 
