@@ -6,4 +6,4 @@
 
 ## Website view
 
-* [https://francescovolpe.gitbook.io/offsecnotes](https://francescovolpe.gitbook.io/offensive-security-notes)
+* [[https://francescovolpe.gitbook.io/offsecnotes](https://francescovolpe.gitbook.io/offensive-security-notes)](https://francescovolpe.gitbook.io/offensive-security-notes/)
