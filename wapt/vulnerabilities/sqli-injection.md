@@ -1,6 +1,5 @@
 # SQLi injection
 
-
 ## SQL Injection Cheatsheet
 
 * https://tib3rius.com/sqli
@@ -13,14 +12,12 @@
 * Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.
 * Boolean conditions such as `OR 1=1` and `OR 1=2`, and look for differences in the application's responses.
 * Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
-* OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.\
-
+* OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.\\
 
 **SQL injection in different parts of the query**
 
 * Most SQL injection vulnerabilities occur within the `WHERE` clause of a `SELECT` query.
-* However, SQL injection vulnerabilities can occur at any location (UPDATE, INSERT, SELECT \[column, table], ORDER BY)\
-
+* However, SQL injection vulnerabilities can occur at any location (UPDATE, INSERT, SELECT \[column, table], ORDER BY)\\
 
 **Warning: OR 1=1**
 
@@ -130,3 +127,17 @@
 * You can use this to determine whether the injected condition is true.
 * `xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a`
 * Note: There are different ways of triggering conditional errors, and different techniques work best on different database types. See SQL cheat sheet
+
+## Time-based SQL injection
+
+* Condition: As SQL queries are normally processed synchronously by the application, delaying the execution of a SQL query also delays the HTTP response.
+* Triggering time delays depending on whether an injected condition is true or false
+
+```
+'; IF (1=2) WAITFOR DELAY '0:0:10'--    
+'; IF (1=1) WAITFOR DELAY '0:0:10'--
+```
+
+* The first does not trigger a delay (false), the second does (true)
+* We can retrieve data by testing one character at a time
+* `'; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--`\
