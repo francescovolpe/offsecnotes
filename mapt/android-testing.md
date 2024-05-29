@@ -2,28 +2,22 @@
 
 ## General
 
-
-
-### Decode &#x26; Decompile APK
+### Decompile (decode) APK
 
 * `apktool d -o App/ <APPLICATION_NAME>.apk`
-
 
 ### Decompile to (near) source code
 
 * `jadx -d App <APPLICATION_NAME>.apk`
 
-
 ### Identify compilers, packers, obfuscators, and other weird stuff
 
 * `apkid --scan-depth 0 -r <apk_filename>.apk`
-
 
 ### Static tests
 
 * `jadx -d target_src <apk_filename>.apk`
 * `semgrep -c <path>/rules/ <path>/target_src/sources`
-
 
 ## Testing
 
@@ -31,7 +25,6 @@
 
 * Missing SSL Pinning
 * Bypass protection analyzing the code and/or with frida
-
 
 ### Root Detection
 
@@ -64,7 +57,6 @@
 2. `memory search <where_you_want> --string` to search a specific string or
    * `memory dump all appMemoryDump` to dump all
    * `strings appMemoryDump > appMemoryDump.txt`
-
 
 ### Backup
 
