@@ -1,24 +1,8 @@
 # Table of contents
 
 * [Offensive Security Notes](README.md)
-* [Resources](resources.md)
 * [CTF Methodology](ctf-methodology.md)
-
-## Penetration test
-
-* [1 - Information Gathering](penetration-test/1-information-gathering.md)
-* [2 - Network Services Exploitation](penetration-test/2-network-services-exploitation.md)
-* [3 - Post-Exploitation](penetration-test/3-post-exploitation.md)
-* [4 - Privilege Escalation](penetration-test/4-privilege-escalation.md)
-* [AV Evasion](penetration-test/av-evasion.md)
-* [Other](penetration-test/other.md)
-* [Tools](penetration-test/tools.md)
-* [Commands](penetration-test/commands.md)
-
-## MAPT
-
-* [Tools](mapt/tools.md)
-* [Android testing](mapt/android-testing.md)
+* [Resources](resources.md)
 
 ## WAPT
 
@@ -54,3 +38,19 @@
 * [Notes](wapt/notes/README.md)
   * [Method & Headers](wapt/notes/method-and-headers.md)
   * [Javascript security considerations](wapt/notes/javascript-security-considerations.md)
+
+## Penetration test
+
+* [1 - Information Gathering](penetration-test/1-information-gathering.md)
+* [2 - Network Services Exploitation](penetration-test/2-network-services-exploitation.md)
+* [3 - Post-Exploitation](penetration-test/3-post-exploitation.md)
+* [4 - Privilege Escalation](penetration-test/4-privilege-escalation.md)
+* [AV Evasion](penetration-test/av-evasion.md)
+* [Other](penetration-test/other.md)
+* [Tools](penetration-test/tools.md)
+* [Commands](penetration-test/commands.md)
+
+## MAPT
+
+* [Tools](mapt/tools.md)
+* [Android testing](mapt/android-testing.md)
