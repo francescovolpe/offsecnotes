@@ -41,10 +41,10 @@
 * You can convert ("disassembler") dex to smali using baksmali tool
 * **Example**
   * ```java
-    int x = 42    //java
+    int x = 42         //java
     ```
   * ```
-    13 00 2A 00    //dev file contains this hex sequence
+    13 00 2A 00        //dev file contains this hex sequence
     ```
   * ```
     const/16 v0, 42    //smali
