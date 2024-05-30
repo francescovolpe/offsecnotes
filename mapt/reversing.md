@@ -54,7 +54,7 @@
 
 ## Apktool
 
-Apktool is a tool for reverse engineering Android apps. It can decode resources to **nearly** original form and **rebuild** them after making some modifications. (and other stuff)
+Apktool is a tool for reverse engineering Android apps. It can decode (and disassemble) resources to **nearly** original form and **rebuild** them after making some modifications. (and other stuff)
 
 * `apktool d -o App/ <app_name>.apk`
 *   In this way you can read .smali code (so you don't need baksmali), AndroidManifest.xml, etc.
