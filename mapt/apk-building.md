@@ -4,8 +4,6 @@ All information contained here was extracted from the incredible work of Michael
 
 
 
-
-
 ### Android Application Project <a href="#proj" id="proj"></a>
 
 Note that the directory names are conventional — they could be any name. Additionally, the contents of each directory could be spread across multiple folders.
@@ -53,7 +51,7 @@ It almost always embodies the following files and directories, though only `Andr
 
 
 
-## Building
+## Building process
 
 1.  📁 res (withouth res/values) and 🗎 AndroidManifest.xml are compiled (aapt \[compile] tool)
 

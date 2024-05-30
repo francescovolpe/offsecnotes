@@ -53,5 +53,6 @@
 ## MAPT
 
 * [APK Building](mapt/apk-building.md)
+* [Reversing](mapt/reversing.md)
 * [Tools](mapt/tools.md)
 * [Android testing](mapt/android-testing.md)
