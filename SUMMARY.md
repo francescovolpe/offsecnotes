@@ -19,6 +19,7 @@
   * [HTTP request smuggling](wapt/vulnerabilities/http-request-smuggling.md)
   * [Information disclosure vulnerabilities](wapt/vulnerabilities/information-disclosure-vulnerabilities.md)
   * [Insecure deserialization](wapt/vulnerabilities/insecure-deserialization.md)
+  * [NoSQL injection](wapt/vulnerabilities/nosql-injection.md)
   * [OAuth 2.0](wapt/vulnerabilities/oauth-2.0.md)
   * [OS command injection](wapt/vulnerabilities/os-command-injection.md)
   * [Path traversal](wapt/vulnerabilities/path-traversal.md)
