@@ -1,12 +1,24 @@
 # Android testing
 
-## Compiling process
+## Android Build Process <a href="#id-4f13" id="id-4f13"></a>
+
+Android studio build system is based on Gradle. Gradle has a lot of plugins. Android Gradle Plugin (AGP) is one of them which manages the full build process through several tools and steps to convert an android project to an APK or AAB.
+
+### 1 - Resource Compilation
+
+* AGP uses AAPT tools for this task.&#x20;
+* AAPT compile:
+  1. All the resource under res directory like layout files, drawables etc&#x20;
+  2. AndroidManifest.xml file
+* To binary format and generate R.java file
+
+### 2 - Compiling process
 
 1. Write application in java or kotlin
 2. The source code is compiled (using javac or kotlinc)  into Java bytecode (.class files)
 3. Java bytecode is compiled to Dalvik bytecode (.dex files) using the d8 tool. This is the format that the platform actually understands
 
-### Dex format
+#### Dex format
 
 ```
 6465780A 30333800 7A44CBBB FB4AE841 0286C06A 8DF19000
@@ -38,11 +50,11 @@ V&~~D8{"min-api":26,"version":"v0.1.14"}ÅÄÃ
 
 * More info: [https://www.bugsnag.com/blog/dex-and-d8/](https://www.bugsnag.com/blog/dex-and-d8/)
 
-### Reverse
+## Reverse
 
 * Binary Dalvik bytecode (.dex files) are not easy to read or modify
 * So there are tools out there to convert to and from a human readable representation. The most common human readable format is known as **Smali.** We can say that Smali acting like assembly language.
-* You can convert dex to smali using baksmali tool
+* You can convert ("disassembler") dex to smali using baksmali tool
 * **Example**
   * ```java
     int x = 42    //java
