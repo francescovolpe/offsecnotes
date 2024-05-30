@@ -15,8 +15,8 @@
         * `ssh2john id_rsa > id_rsa.hash`
         * Crack it
   * Samba (SMB)
-    * `smbclient -L //\<IP\>`
-    * `enum4linux \<IP\>`
+    * `smbclient -L //<IP>`&#x20;
+    * `enum4linux <IP>`
     * Check HackTricks
   * FTP
     * Anonymous login
