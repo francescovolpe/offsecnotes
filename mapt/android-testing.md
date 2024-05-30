@@ -1,17 +1,5 @@
 # Android testing
 
-## Android Build Process <a href="#id-4f13" id="id-4f13"></a>
-
-
-
-### Decompile (decode) APK
-
-* `apktool d -o App/ <APPLICATION_NAME>.apk`
-
-### Decompile to (near) source code
-
-* `jadx -d App <APPLICATION_NAME>.apk`
-
 ### Identify compilers, packers, obfuscators, and other weird stuff
 
 * `apkid --scan-depth 0 -r <apk_filename>.apk`
