@@ -10,7 +10,7 @@ Android studio build system is based on Gradle. Gradle has a lot of plugins. And
 * AAPT compile:
   1. All the resource under res directory like layout files, drawables etc&#x20;
   2. AndroidManifest.xml file
-* To binary format and generate R.java file
+* To binary format ~~and generate R.java file~~
 
 ### 2 - Compiling process
 

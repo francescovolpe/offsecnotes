@@ -52,5 +52,6 @@
 
 ## MAPT
 
+* [APK Building](mapt/apk-building.md)
 * [Tools](mapt/tools.md)
 * [Android testing](mapt/android-testing.md)
