@@ -22,12 +22,10 @@
 * Look out for JavaScript files (These can contain references to API endpoints)
   * Suggestion: JS Link Finder BApp
 
-
 ## Identifying supported HTTP methods
 
 * Test all potential methods when you're investigating API endpoints
   * Use HTTP verbs list in Burp Intruder
-
 
 ## Identifying supported content types
 
@@ -36,7 +34,7 @@ Changing the content type may enable you to
 * Trigger errors that disclose useful information.
 * Bypass flawed defenses.
 * Take advantage of differences in processing logic. For example, an API may be secure when handling JSON data but susceptible to injection attacks when dealing with XML.
-* To change the content type, modify the Content-Type header, then reformat the request body accordingly
+  * To change the content type, modify the Content-Type header, then reformat the request body accordingly
   * Suggestion: Content type converter BApp automatically convert data submitted within requests between XML and JSON
 
 ## Fuzzing to find hidden endpoints
