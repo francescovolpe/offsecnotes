@@ -8,7 +8,7 @@
 
 * [Vulnerabilities](wapt/vulnerabilities/README.md)
   * [API testing](wapt/vulnerabilities/api-testing.md)
-  * [Access control vulnerabilities](wapt/vulnerabilities/access-control-vulnerabilities.md)
+  * [BAC (Broken access control)](wapt/vulnerabilities/access-control-vulnerabilities.md)
   * [Authentication](wapt/vulnerabilities/authentication.md)
   * [Business logic vulnerabilities](wapt/vulnerabilities/business-logic-vulnerabilities.md)
   * [Clickjacking](wapt/vulnerabilities/clickjacking.md)

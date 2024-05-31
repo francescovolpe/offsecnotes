@@ -1,12 +1,10 @@
-# Access control vulnerabilities
+# BAC (Broken access control)
 
 ## General info
 
 Access control is the application of constraints on who or what is authorized to perform actions or access resources.
 
-## Vertical privilege escalation
-
-### Unprotected functionality
+## Unprotected functionality
 
 * `https://insecure-website.com/admin`
   * This might be accessible by any user, not only administrative users
@@ -14,7 +12,7 @@ Access control is the application of constraints on who or what is authorized to
 * `https://insecure-website.com/administrator-panel-yb556`
   * Less predictable URL -> maybe the URL might be disclosed in JavaScript that constructs the user interface based on the user's role
 
-### Parameter-based access control methods
+## Parameter-based access control methods
 
 * Some applications determine the user's access rights or role at login, and then store this information in a user-controllable location. This could be:
   * A hidden field
@@ -23,7 +21,7 @@ Access control is the application of constraints on who or what is authorized to
   * `https://insecure-website.com/login/home.jsp?admin=true`
   * `https://insecure-website.com/login/home.jsp?role=1`
 
-### Broken access control resulting from platform misconfiguration
+## Platform misconfiguration
 
 * Try another HTTP method
 * Some application frameworks support various non-standard HTTP headers to override the URL in the original request, such as `X-Original-URL` and `X-Rewrite-URL`
@@ -31,13 +29,13 @@ Access control is the application of constraints on who or what is authorized to
   * In general try to send `GET /` and `X-Original-URL: /donotexist1` -> if it's not found it works
 * There are many other headers that can be set to localhost. Search on [hacktricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses)
 
-### Broken access control resulting from URL-matching discrepancies
+## URL-matching discrepancies
 
 * `/ADMIN/DELETEUSER` instead `/admin/deleteUser`
 * `/admin/deleteUser.anything` instead `/admin/deleteUser`
 * Again [hacktricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses)
 
-## Horizontal privilege escalation
+## Other
 
 * `https://insecure-website.com/myaccount?id=123`
   * Change id user (IDOR)
