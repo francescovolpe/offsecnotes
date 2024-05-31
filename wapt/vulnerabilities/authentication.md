@@ -2,8 +2,7 @@
 
 ## Usernames enumeration
 
-* `admin`, `administrator`
-* `firstname.lastname@somecompany.com`
+* `admin`, `administrator` ,`firstname.lastname@somecompany.com`
 * Are you able to access user profiles without logging in?
 * Check HTTP responses to see if any email addresses are disclosed
 * Enter a valid username but an incorrect password -> sometimes the login says user X does not exist
