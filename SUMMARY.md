@@ -48,7 +48,6 @@
 * [4 - Privilege Escalation](penetration-test/4-privilege-escalation.md)
 * [AV Evasion](penetration-test/av-evasion.md)
 * [Other](penetration-test/other.md)
-* [Tools](penetration-test/tools.md)
 * [Commands](penetration-test/commands.md)
 
 ## MAPT
