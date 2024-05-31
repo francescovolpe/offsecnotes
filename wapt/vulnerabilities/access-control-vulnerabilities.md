@@ -11,6 +11,7 @@ Access control is the application of constraints on who or what is authorized to
     * \-> Brute-force etc.
 * `https://insecure-website.com/administrator-panel-yb556`
   * Less predictable URL -> maybe the URL might be disclosed in JavaScript that constructs the user interface based on the user's role
+* If you have an admin account you can try to repet the request with a noraml user cookie. (autorize burp extension can be useful)
 
 ## Parameter-based access control methods
 
