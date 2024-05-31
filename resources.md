@@ -1,6 +1,6 @@
 # Resources
 
-Tags: `x-bug-bounty` , `x-ctf` , `x-techniques` , `x-write-up` , `x-blog` , `x-osint` , `x-priv-esc` , `x-active-directory` , `x-cert`\
+Tags: `x-bug-bounty` , `x-ctf` , `x-techniques` , `x-write-up` , `x-blog` , `x-osint` , `x-priv-esc` , `x-active-directory` , `x-cert, x-mobile`\
 \
 
 
@@ -19,3 +19,5 @@ Tags: `x-bug-bounty` , `x-ctf` , `x-techniques` , `x-write-up` , `x-blog` , `x-o
 * **juggernaut-sec.com/blog** `x-priv-esc` , `x-active-directory`
   * _Very useful for privesc and active directory hacking_
 * _**github.com/neilmadhava/EJPTv2-Notes**_ `x-cert`
+* **https://stinger.io/mobile/intro** `x-mobile`
+

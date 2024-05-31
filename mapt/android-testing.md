@@ -38,9 +38,39 @@
 
 ### Sensitive data/info stored in Local Storage
 
+* ```
+  objection -g 'App Name' run env
+  ```
+  * This will print out the locations of the applications Files, Caches and other directories
 * `/data/data/<package_name>` : Data app location folder
 * Check for sensitive information/data store on Shared Preferences or not
 * Check if sensitive information/data is stored in the local storage database using strong encryption on or not
+
+<pre><code>find . -type f -exec grep -ali sqlite {} \;
+find . -type f -exec grep -ali data {} \;
+find . -type f -iname \*.sqlite
+find . -type f -iname \*.sqlite3
+find . -type f -iname \*.db
+
+find . -iname \*.realm
+
+find . -iname \*.cblite
+find . -iname \*.cblite2
+<strong>
+</strong><strong>find . -iname \*.txt
+</strong>find . -iname \*.xml
+find . -iname \*.json
+
+find . -iname \*.cer
+find . -iname \*.pem
+find . -iname \*.cert
+find . -iname \*.crt
+find . -iname \*.pub
+find . -iname \*.key
+find . -iname \*.pfx
+find . -iname \*.p12
+find . -iname \*.pkcs7
+</code></pre>
 
 ### Sensitive data/info in Application Memory
 
