@@ -8,8 +8,8 @@
 
 * [Vulnerabilities](wapt/vulnerabilities/README.md)
   * [API testing](wapt/vulnerabilities/api-testing.md)
-  * [BAC (Broken access control)](wapt/vulnerabilities/access-control-vulnerabilities.md)
   * [Authentication](wapt/vulnerabilities/authentication.md)
+  * [BAC (Broken access control)](wapt/vulnerabilities/access-control-vulnerabilities.md)
   * [Business logic vulnerabilities](wapt/vulnerabilities/business-logic-vulnerabilities.md)
   * [Clickjacking](wapt/vulnerabilities/clickjacking.md)
   * [CORS (Cross-origin resource sharing)](wapt/vulnerabilities/cors-cross-origin-resource-sharing.md)
