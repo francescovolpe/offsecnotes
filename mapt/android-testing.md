@@ -7,6 +7,7 @@
 ### Static tests
 
 * `jadx -d target_src <apk_filename>.apk`
+* [https://github.com/mindedsecurity/semgrep-rules-android-security](https://github.com/mindedsecurity/semgrep-rules-android-security)
 * `semgrep -c <path>/rules/ <path>/target_src/sources`
 
 ## Testing
