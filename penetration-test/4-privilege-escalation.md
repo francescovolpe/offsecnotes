@@ -47,14 +47,13 @@ Note: if you have a valid user credential you can authenticate in windows target
     ```
 * `impersonate_token <token_name>`
   * `impersonate_token ATTACKDEFENSE\\Administrator` **NOTE: the two backslashes**
-* You may need to migrate process to a \<user> process
-  *   Ex. `getpid` : 2628, `ps` :
+*   You may need to migrate process to a \<user> process
 
-      | PID  | PPID | Name           | Arch | Session | User                        | Path                    |
-      | ---- | ---- | -------------- | ---- | ------- | --------------------------- | ----------------------- |
-      | 2628 | 4780 | WHAYQtsbkO.exe |      | 1       |                             |                         |
-      | ...  | ...  | ...            | ...  | ...     | ...                         | ...                     |
-      | 2948 | 2036 | explorer.exe   | X64  | 1       | ATTACKDEFENSE\Administrator | C:\Windows\explorer.exe |
+    * Ex. `getpid`: 2628, `ps:`
+
+
+
+    <table><thead><tr><th width="89">PID</th><th width="76">PPID</th><th>Name</th><th width="79">Arch</th><th width="92">Session</th><th>User</th><th>Path</th></tr></thead><tbody><tr><td>2628</td><td>4780</td><td>WHAYQtsbkO.exe</td><td></td><td>1</td><td></td><td></td></tr><tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr><tr><td>2948</td><td>2036</td><td>explorer.exe</td><td>X64</td><td>1</td><td>ATTACKDEFENSE\Administrator</td><td>C:\Windows\explorer.exe</td></tr></tbody></table>
 * `getpid` : 2948
 * Of course you can repeat the process to become NT AUTHORITY\SYSTEM
 
