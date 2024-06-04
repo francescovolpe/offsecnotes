@@ -8,8 +8,6 @@
 * [Network Services Exploitation](i-penetration-test/2-network-services-exploitation.md)
 * [Post-Exploitation](i-penetration-test/3-post-exploitation.md)
 * [Privilege Escalation](i-penetration-test/4-privilege-escalation.md)
-* [Other](i-penetration-test/other.md)
-* [Commands](i-penetration-test/commands.md)
 
 ## II - WAPT
 
@@ -57,4 +55,6 @@
 
 * [Appendix A. Antivirus Evasion](i-penetration-test/av-evasion.md)
 * [Appendix B. CTF Methodology](ctf-methodology.md)
+* [Appendix C. Commands](commands.md)
+* [Uncategorized](other.md)
 * [Resources](resources.md)

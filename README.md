@@ -16,23 +16,26 @@
   Chapter 2: Network Services Exploitation
   Chapter 3: Post-Exploitation
   Chapter 4: Privilage Escalation
-  Chapter 5: Other
-  Chapter 6: Commands
   
   II - WAPT
-  Chapter 7: Vulnerabilities
-  Chapter 8: Tools
-  Chapter 9: Burp Suite
-  Chapter 10: Tips
-  Chapter 11: Notes
+  Chapter 5: Vulnerabilities
+  Chapter 6: Tools
+  Chapter 7: Tips
+  Chapter 8: Notes
   
   III - MAPT
-  Chapter 12: APK Building
-  Chapter 13: Reversing
-  Chapter 14: Android Testing
+  Chapter 9: APK Building
+  Chapter 10: Reversing
+  Chapter 11: Android Testing
  
   Appendix A. Antivirus Evasion
   Appendix B. CTF Methodology
+  Appendix C. Commands
+  Appendix D. Burp Suite
+  Appendix E. Wordlists
+  
+  Uncategorized
+  
   Resources
 ```
 {% endcode %}
