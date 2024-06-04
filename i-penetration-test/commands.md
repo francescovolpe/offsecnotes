@@ -1,4 +1,4 @@
-# Commands
+# Appendix C. Commands
 
 ## Hydra
 
@@ -8,5 +8,3 @@
 * Other: https://github.com/gnebbia/hydra\_notes
 * HTTP LOGIN
   * `hydra -L <users_file> -P <password_file> <url> http[s]-[post|get]-form \ "index.php:param1=value1&param2=value2&user=^USER^&pwd=^PASS^&paramn=valn:[F|S]=messageshowed"`
-
-
