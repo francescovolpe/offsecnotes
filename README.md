@@ -30,10 +30,9 @@
   Chapter 12: APK Building
   Chapter 13: Reversing
   Chapter 14: Android Testing
-  
-  CTF Methodology
-  Resources
-  
+ 
   Appendix A. Antivirus Evasion
+  Appendix B. CTF Methodology
+  Resources
 ```
 {% endcode %}

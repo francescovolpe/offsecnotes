@@ -55,6 +55,6 @@
 
 ***
 
-* [CTF Methodology](ctf-methodology.md)
+* [Appendix A. Antivirus Evasion](i-penetration-test/av-evasion.md)
+* [Appendix B. CTF Methodology](ctf-methodology.md)
 * [Resources](resources.md)
-* [Appendix A. Antivirus Evasion](av-evasion.md)
