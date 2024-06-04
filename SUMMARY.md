@@ -8,7 +8,6 @@
 * [Network Services Exploitation](i-penetration-test/2-network-services-exploitation.md)
 * [Post-Exploitation](i-penetration-test/3-post-exploitation.md)
 * [Privilege Escalation](i-penetration-test/4-privilege-escalation.md)
-* [AV Evasion](i-penetration-test/av-evasion.md)
 * [Other](i-penetration-test/other.md)
 * [Commands](i-penetration-test/commands.md)
 
@@ -58,3 +57,4 @@
 
 * [CTF Methodology](ctf-methodology.md)
 * [Resources](resources.md)
+* [Appendix A. Antivirus Evasion](av-evasion.md)
