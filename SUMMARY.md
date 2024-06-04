@@ -1,8 +1,6 @@
 # Table of contents
 
 * [Offensive Security Notes](README.md)
-* [CTF Methodology](ctf-methodology.md)
-* [Resources](resources.md)
 
 ## I - WAPT
 
@@ -55,3 +53,8 @@
 * [APK Building](iii-mapt/apk-building.md)
 * [Reversing](iii-mapt/reversing.md)
 * [Android testing](iii-mapt/android-testing.md)
+
+***
+
+* [CTF Methodology](ctf-methodology.md)
+* [Resources](resources.md)
