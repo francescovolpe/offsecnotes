@@ -11,21 +11,21 @@
 ```markup
   Index
   
-  I - WAPT
-  Chapter 1: Vulnerabilities
-  Chapter 2: Tools
-  Chapter 3: Burp Suite
-  Chapter 4: Tips
-  Chapter 5: Notes
+  I - PENETRATION TEST
+  Chapter 1: Information Gathering
+  Chapter 2: Network Services Exploitation
+  Chapter 3: Post-Exploitation
+  Chapter 4: Privilage Escalation
+  Chapter 5: AV Evasion
+  Chapter 6: Other
+  Chapter 7: Commands
   
-  II - PENETRATION TEST
-  Chapter 6: Information Gathering
-  Chapter 7: Network Services Exploitation
-  Chapter 8: Post-Exploitation
-  Chapter 9: Privilage Escalation
-  Chapter 10: AV Evasion
-  Chapter 11: Other
-  Chapter 12: Commands
+  II - WAPT
+  Chapter 8: Vulnerabilities
+  Chapter 9: Tools
+  Chapter 10: Burp Suite
+  Chapter 11: Tips
+  Chapter 12: Notes
   
   III - MAPT
   Chapter 13: APK Building
