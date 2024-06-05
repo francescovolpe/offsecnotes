@@ -15,3 +15,16 @@
   * NOTE: full path
 * There are many other methods to add and execute
   * https://gist.github.com/api0cradle/cdd2d0d0ec9abb686f0e89306e277b8f
+
+
+
+Tips
+
+**Finding hidden directory**
+
+```
+/.FUZZ
+/-FUZZ
+/~FUZZ
+/_FUZZ
+```

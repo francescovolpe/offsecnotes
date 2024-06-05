@@ -36,7 +36,6 @@
   * [XXE (XML external entity)](ii-wapt/vulnerabilities/xxe-xml-external-entity.md)
   * [XSS (Cross-site scripting)](ii-wapt/vulnerabilities/xss-cross-site-scripting.md)
 * [Tools](ii-wapt/tools.md)
-* [Tips](ii-wapt/tips.md)
 * [Notes](ii-wapt/notes/README.md)
   * [Method & Headers](ii-wapt/notes/method-and-headers.md)
   * [Javascript security considerations](ii-wapt/notes/javascript-security-considerations.md)
