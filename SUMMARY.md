@@ -48,7 +48,7 @@
 
 ## IV - Cheatsheet
 
-* [Penetration Test](iv-cheatsheet/penetration-test.md)
+* [PENETRATION TEST](iv-cheatsheet/penetration-test.md)
 * [WAPT](iv-cheatsheet/wapt.md)
 * [MAPT](iv-cheatsheet/mapt.md)
 
