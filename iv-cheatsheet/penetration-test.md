@@ -55,7 +55,6 @@ ssh <username>@<ip>
 # 25 - SMTP
 nc <ip> <port> # Get domain name
 smtp-user-enum -U <directory_path> -t <ip> # Automatic Username Bruteforce
-
 # Manual Username Bruteforce
 nc <ip> <port>
 220 openmailbox.xyz ESMTP Postfix: Welcome to our mail server.
