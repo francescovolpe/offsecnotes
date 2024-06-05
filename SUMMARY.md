@@ -49,17 +49,18 @@
 ## IV - Cheatsheet
 
 * [PENETRATION TEST](iv-cheatsheet/penetration-test.md)
-* [WAPT](iv-cheatsheet/wapt.md)
-* [MAPT](iv-cheatsheet/mapt.md)
+
+## Appendix
+
+* [Appendix A. Antivirus Evasion](appendix/av-evasion.md)
+* [Appendix B. CTF Methodology](appendix/ctf-methodology.md)
+* [Appendix C. Commands](appendix/commands.md)
+* [Appendix D. Burp Suite](appendix/burp-suite/README.md)
+  * [Extension](appendix/burp-suite/extension.md)
+  * [logger++ filters](appendix/burp-suite/logger++-filters.md)
+* [Appendix E. Wordlists](appendix/wordlists.md)
 
 ***
 
-* [Appendix A. Antivirus Evasion](i-penetration-test/av-evasion.md)
-* [Appendix B. CTF Methodology](ctf-methodology.md)
-* [Appendix C. Commands](i-penetration-test/commands.md)
-* [Appendix D. Burp Suite](burp-suite/README.md)
-  * [Extension](burp-suite/extension.md)
-  * [logger++ filters](burp-suite/logger++-filters.md)
-* [Appendix E. Wordlists](wordlists.md)
 * [Uncategorized](i-penetration-test/other.md)
 * [Resources](resources.md)
