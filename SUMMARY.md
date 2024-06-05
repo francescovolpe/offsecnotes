@@ -46,6 +46,12 @@
 * [Reversing](iii-mapt/reversing.md)
 * [Android testing](iii-mapt/android-testing.md)
 
+## IV - Cheatsheet
+
+* [Penetration Test](iv-cheatsheet/penetration-test.md)
+* [WAPT](iv-cheatsheet/wapt.md)
+* [MAPT](iv-cheatsheet/mapt.md)
+
 ***
 
 * [Appendix A. Antivirus Evasion](i-penetration-test/av-evasion.md)
