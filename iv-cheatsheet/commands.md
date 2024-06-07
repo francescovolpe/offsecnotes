@@ -1,4 +1,14 @@
-# Appendix C. Commands
+# Tools Commands
+
+## Enumerating web resources
+
+```sh
+# Web fuzzer
+ffuf -w /path/to/wordlist -u https://example.com/file-FUZZ
+
+# Fetch all the URLs that the Wayback Machine knows about for a domain
+waybackurls https://example.com
+```
 
 ## Brute force
 

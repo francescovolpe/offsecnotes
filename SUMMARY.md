@@ -49,16 +49,16 @@
 ## IV - Cheatsheet
 
 * [OS Commands](iv-cheatsheet/os-commands.md)
+* [Tools Commands](iv-cheatsheet/commands.md)
 
 ## Appendix
 
 * [Appendix A. Antivirus Evasion](appendix/av-evasion.md)
 * [Appendix B. CTF Methodology](appendix/ctf-methodology.md)
-* [Appendix C. Commands](appendix/commands.md)
-* [Appendix D. Burp Suite](appendix/burp-suite/README.md)
+* [Appendix C. Burp Suite](appendix/burp-suite/README.md)
   * [Extension](appendix/burp-suite/extension.md)
   * [logger++ filters](appendix/burp-suite/logger++-filters.md)
-* [Appendix E. Wordlists](appendix/wordlists.md)
+* [Appendix D. Wordlists](appendix/wordlists.md)
 
 ***
 
