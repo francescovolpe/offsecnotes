@@ -10,7 +10,7 @@ ctrl + e # go the the end of line
 ctrl + z # sleep program
 
 #Encode file to Base64
-base64 -w 0 file
+base64 -w 0 file.txt
 # Count Lines
 wc -l <file> #
 # Count Chars
@@ -18,14 +18,14 @@ wc -c
 # Sort and delete duplicates
 cat file | sort | uniq 
 #Replace string inside a file
-sed -i 's/OLD/NEW/g' path/file
+sed -i 's/OLD/NEW/g' file.txt
 
 #Decompress
-tar -xvzf /path/to/yourfile.tgz
-tar -xvjf /path/to/yourfile.tbz
-bzip2 -d /path/to/yourfile.bz2
+tar -xvzf file.tgz
+tar -xvjf file.tbz
+bzip2 -d file.bz2
 tar jxf file.tar.bz2
-gunzip /path/to/yourfile.gz
+gunzip file.gz
 unzip file.zip
 7z -x file.7z
 sudo apt-get install xz-utils; unxz file.xz
