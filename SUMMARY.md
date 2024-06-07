@@ -29,7 +29,7 @@
   * [OS command injection](ii-wapt/vulnerabilities/os-command-injection.md)
   * [Path traversal](ii-wapt/vulnerabilities/path-traversal.md)
   * [Race conditions](ii-wapt/vulnerabilities/race-conditions.md)
-  * [SQLi injection](ii-wapt/vulnerabilities/sqli-injection.md)
+  * [SQL injection](ii-wapt/vulnerabilities/sqli-injection.md)
   * [SSRF (Server-side request forgery)](ii-wapt/vulnerabilities/ssrf-server-side-request-forgery.md)
   * [Web cache poisoning](ii-wapt/vulnerabilities/web-cache-poisoning.md)
   * [WebSockets](ii-wapt/vulnerabilities/websockets.md)
