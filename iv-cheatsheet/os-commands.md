@@ -43,6 +43,9 @@ tasklist /svc
 schtasks /query /fo list /v
 :: Automation : JAWS - https://github.com/411Hall/JAWS
 powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1 -OutputFilename JAWS-Enum.txt
+
+:: Change Windows user password
+net user &#x3C;username> &#x3C;new_pass>
 </code></pre>
 
 ### Linux
@@ -101,4 +104,8 @@ crontab -l
 ls -al /etc/cron*
 # display the contents of all cronjob files
 cat /etc/cron* 
+
+# Change Linux user password (Copy output and past it in /etc/shadow)
+openssl passwd -1 -salt &#x3C;salt> &#x3C;new_pass> # -1 means weakest algorithm, -6 means strongest
+
 </code></pre>
