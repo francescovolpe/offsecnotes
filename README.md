@@ -28,7 +28,7 @@
   Chapter 10: Android Testing
   
   IV - CHEATSHEET
-  Chapter 11: Penetration Test
+  Chapter 11: OS Commands
  
   Appendix A. Antivirus Evasion
   Appendix B. CTF Methodology
