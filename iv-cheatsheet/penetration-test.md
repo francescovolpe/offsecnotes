@@ -1,3 +1,10 @@
+---
+description: >-
+  This cheatsheet contains all the commands present in the chapter "I -
+  PENETRATION TEST". They are not a substitute for the reference chapter. These
+  are just commands, not descriptions of techniques!
+---
+
 # Penetration test
 
 ## Information Gathering
