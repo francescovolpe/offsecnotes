@@ -48,7 +48,8 @@
 
 ## IV - Cheatsheet
 
-* [PENETRATION TEST](iv-cheatsheet/penetration-test.md)
+* [Penetration test](iv-cheatsheet/penetration-test.md)
+* [Enumeration](iv-cheatsheet/enumeration.md)
 
 ## Appendix
 
