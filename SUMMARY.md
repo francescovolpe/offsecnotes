@@ -49,7 +49,7 @@
 ## IV - Cheatsheet
 
 * [Penetration test](iv-cheatsheet/penetration-test.md)
-* [Enumeration](iv-cheatsheet/enumeration.md)
+* [OS Commands](iv-cheatsheet/os-commands.md)
 
 ## Appendix
 

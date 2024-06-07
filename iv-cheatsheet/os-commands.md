@@ -1,6 +1,8 @@
-# Enumeration
+# OS Commands
 
-## Windows
+## Target machine
+
+### Windows
 
 <pre class="language-batch"><code class="lang-batch">:: System info
 systeminfo
@@ -43,7 +45,7 @@ schtasks /query /fo list /v
 powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1 -OutputFilename JAWS-Enum.txt
 </code></pre>
 
-## Linux
+### Linux
 
 <pre class="language-sh"><code class="lang-sh"># System info
 # Print linux distro version (Contains a message or system identification to be printed before the login prompt)
