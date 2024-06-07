@@ -3,6 +3,12 @@
 ## Attacker machine
 
 ```sh
+ctrl + c # terminate the currently running command
+ctrl + r # search the current terminal session’s command history
+ctrl + a # go to the start of line
+ctrl + e # go the the end of line
+ctrl + z # sleep program
+
 #Encode file to Base64
 base64 -w 0 file
 # Count Lines
