@@ -21,3 +21,17 @@ hydra -L <users_file> -P <password_file> <url> http[s]-[post|get]-form \ "index.
 # Service
 hydra -L user.txt -P pass.txt <ip> <protocol> 
 ```
+
+## Vulnerability Scanner
+
+```sh
+nikto.pl -h http://example.com
+```
+
+## Automatic exploitation
+
+```sh
+# SQL
+# Capture the request (burp/zap) and create a req.txt file
+sqlmap -r req.txt
+```
