@@ -19,21 +19,20 @@
   
   II - WAPT
   Chapter 5: Vulnerabilities
-  Chapter 6: Tools
-  Chapter 7: Notes
+  Chapter 6: Notes
   
   III - MAPT
-  Chapter 8: APK Building
-  Chapter 9: Reversing
-  Chapter 10: Android Testing
+  Chapter 7: APK Building
+  Chapter 8: Reversing
+  Chapter 9: Android Testing
   
   IV - CHEATSHEET
-  Chapter 11: OS Commands
+  Chapter 10: OS Commands
+  Chapter 11: Tools Commands
  
   Appendix A. Antivirus Evasion
   Appendix B. CTF Methodology
-  Appendix C. Commands
-  Appendix D. Burp Suite
+  Appendix C. Tools
   Appendix E. Wordlists
   
   Uncategorized
