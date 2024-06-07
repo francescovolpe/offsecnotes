@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Offensive Security Notes](README.md)
+* [The Hacker's Handbook](README.md)
 
 ## I - Penetration test
 
