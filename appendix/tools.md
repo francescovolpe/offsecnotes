@@ -1,4 +1,4 @@
-# Tools
+# Appendix C. Tools
 
 Many times I see an endless list of tools used to perform a single task and I never know which one to choose from these lists. Here I want to mention the tools I use if I want to perform a single task depending on the objective.
 
@@ -47,3 +47,10 @@ Many times I see an endless list of tools used to perform a single task and I ne
 
 * **Hydra** _Brute force online password cracking program_
 * **crackstation** _CrackStation uses massive pre-computed lookup tables to crack password hashes_
+
+**Burp Suite Extension**
+
+* **PwnFox** _provide usefull tools for your security audit_
+  * Single click BurpProxy
+  * Containers Profiles (it will automatically add a X-PwnFox-Color header to hightlight the query in Burp)
+  * Other: https://github.com/yeswehack/PwnFox

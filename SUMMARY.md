@@ -35,7 +35,6 @@
   * [WebSockets](ii-wapt/vulnerabilities/websockets.md)
   * [XXE (XML external entity)](ii-wapt/vulnerabilities/xxe-xml-external-entity.md)
   * [XSS (Cross-site scripting)](ii-wapt/vulnerabilities/xss-cross-site-scripting.md)
-* [Tools](ii-wapt/tools.md)
 * [Notes](ii-wapt/notes/README.md)
   * [Method & Headers](ii-wapt/notes/method-and-headers.md)
   * [Javascript security considerations](ii-wapt/notes/javascript-security-considerations.md)
@@ -55,9 +54,7 @@
 
 * [Appendix A. Antivirus Evasion](appendix/av-evasion.md)
 * [Appendix B. CTF Methodology](appendix/ctf-methodology.md)
-* [Appendix C. Burp Suite](appendix/burp-suite/README.md)
-  * [Extension](appendix/burp-suite/extension.md)
-  * [logger++ filters](appendix/burp-suite/logger++-filters.md)
+* [Appendix C. Tools](appendix/tools.md)
 * [Appendix D. Wordlists](appendix/wordlists.md)
 
 ***
