@@ -1,5 +1,33 @@
 # OS Commands
 
+## Attacker machine
+
+```sh
+#Encode file to Base64
+base64 -w 0 file
+# Count Lines
+wc -l <file> #
+# Count Chars
+wc -c
+# Sort and delete duplicates
+cat file | sort | uniq 
+#Replace string inside a file
+sed -i 's/OLD/NEW/g' path/file
+
+#Decompress
+tar -xvzf /path/to/yourfile.tgz
+tar -xvjf /path/to/yourfile.tbz
+bzip2 -d /path/to/yourfile.bz2
+tar jxf file.tar.bz2
+gunzip /path/to/yourfile.gz
+unzip file.zip
+7z -x file.7z
+sudo apt-get install xz-utils; unxz file.xz
+
+#Clipboard
+xclip -sel c < cat file.txt
+```
+
 ## Target machine
 
 ### Windows
