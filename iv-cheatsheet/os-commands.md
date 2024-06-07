@@ -50,7 +50,8 @@ net user &#x3C;username> &#x3C;new_pass>
 
 ### Linux
 
-<pre class="language-sh"><code class="lang-sh"># System info
+```sh
+# System info
 # Print linux distro version (Contains a message or system identification to be printed before the login prompt)
 cat /etc/issue 
 # Print certain system information.
@@ -68,11 +69,11 @@ dpkg -l
 
 # Enumerate Users
 whoami
-groups &#x3C;user>
+groups <user>
 # Creates a user
-useradd -m &#x3C;user> -s /bin/bash
+useradd -m <user> -s /bin/bash
 # Add bob to root group
-usermod -aG root &#x3C;user>
+usermod -aG root <user>
 # ssh session enumerate
 lastlog
 # log of users logged in
@@ -95,8 +96,8 @@ route # Note: gateway is important... it can be a DNS server, DHCP server or all
 # Display the host ARP cache
 arp -a
 
-<strong># Processes &#x26; services
-</strong>ps aux | grep root # Useful for privesc
+# Processes & services
+ps aux | grep root # Useful for privesc
 top # dynamic real-time view of a running system (like task manager)
 # display cronjob for the root user
 crontab -l
@@ -106,6 +107,7 @@ ls -al /etc/cron*
 cat /etc/cron* 
 
 # Change Linux user password (Copy output and past it in /etc/shadow)
-openssl passwd -1 -salt &#x3C;salt> &#x3C;new_pass> # -1 means weakest algorithm, -6 means strongest
+openssl passwd -1 -salt <salt> <new_pass> # -1 means weakest algorithm, -6 means strongest
 
-</code></pre>
+```
+
