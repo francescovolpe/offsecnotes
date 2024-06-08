@@ -1,11 +1,10 @@
-# 1 - Information Gathering
+# Information Gathering
 
 ## Whois
 
 * It is a protocol used for querying databases that store an Internet resource's registered users or assignees
   * website
-  * `whois linux.com`
-
+  * `whois example.com`
 
 ## DNS Enumeration
 
@@ -20,25 +19,22 @@
   * dnsdumpster.com
   * dnsrecon (tool)
 
-
-
 ## Subdomain enumeration
 
 * sublist3r : enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
-* `sublist3r -d website.com`
-
+* `sublist3r -d example.com`
 
 ## Website Recon
 
 * Web App **Technology** Fingerprinting
   * wappalyzer (extension)
   * builtwith (extension)
-  * `whatweb website.com`
+  * `whatweb example.com`
 * Look for **hidden directory/files**:
-  * `http://website.com/robots.txt`
-  * `http://website.com/sitemap.xml`
+  * `http://example.com/robots.txt`
+  * `http://example.com/sitemap.xml`
 * **WAF** Detection
-  * `wafw00f http://website.com -a`
+  * `wafw00f http://example.com -a`
 * Download **website source**
   * httrack
 * **Google Dorks**
@@ -55,6 +51,7 @@
   * `theHarvester -d example.com -b google,linkedin,dnsdumpster,duckduckgo`
 
 ## Host Discovery (nmap)
+
 * `nmap -sn 192.168.1.0/24`
   * The default host discovery done with -sn consists of an **ICMP echo request**
   * But when a privileged user tries to scan targets on a local ethernet network, **ARP requests** are used
