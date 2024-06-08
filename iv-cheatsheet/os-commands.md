@@ -31,7 +31,7 @@ unzip file.zip
 sudo apt-get install xz-utils; unxz file.xz
 
 #Clipboard
-xclip -sel c < cat file.txt
+xclip -sel c < file.txt
 ```
 
 ## Target machine
