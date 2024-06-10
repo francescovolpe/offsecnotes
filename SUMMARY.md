@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Intro](README.md)
+* [Offensive Security Notes](README.md)
 
 ## I - Penetration test
 
