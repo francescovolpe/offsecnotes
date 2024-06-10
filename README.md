@@ -1,5 +1,10 @@
 ---
+cover: .gitbook/assets/logo.png
+coverY: 0
 layout:
+  cover:
+    visible: true
+    size: hero
   title:
     visible: true
   description:
@@ -13,6 +18,8 @@ layout:
 ---
 
 # Offensive Security Notes
+
+
 
 * Personal collection of multiple offensive security notes.
 * Notes include vulnerabilities, techniques, tools, sites and other stuff.
