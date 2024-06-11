@@ -111,6 +111,8 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 * `{"username":{"$ne":"invalid"},"password":{"$ne":"invalid"}}`
 * This query returns all login credentials where both the username and password are not equal to `invalid`. As a result, you're logged into the application as the first user in the collection.
 
+## Extract data
+
 
 
 \
