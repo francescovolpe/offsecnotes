@@ -2,7 +2,12 @@
 
 ## Rules
 
-If you have a single password and you have reason to believe that the password may have suffered only a small change you can use rules.
+Use rules when:&#x20;
+
+* You have a single (or few passwords) password and you have reason to believe that the password may have suffered only a small change&#x20;
+* You have much time
+
+
 
 * **FIRST CHOICE**:  best64 (now best66).  Fast, works well.
   * [https://github.com/hashcat/hashcat/blob/master/rules/best66.rule](https://github.com/hashcat/hashcat/blob/master/rules/best66.rule)
