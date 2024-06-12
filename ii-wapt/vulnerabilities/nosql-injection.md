@@ -78,6 +78,9 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
   * `{"username":"wiener"}` -> `{"username":{"$ne":"invalid"}}`
 * URL parameters:
   * `username=wiener` -> `username[$ne]=invalid`
+
+
+
 * If this doesn't work, you can try the following (or use Content Type Converter burp exts):
   1. Convert the request method from `GET` to `POST`.
   2. Change the `Content-Type` header to `application/json`.
@@ -166,7 +169,7 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 ## Timing based injection
 
-* Database error doesn't cause a difference in the application's response? Trigger a conditional time delay
+Database error doesn't cause a difference in the application's response? Trigger a conditional time delay
 
 1. Load the page several times to determine a baseline loading time.
 2. Insert a timing based payload into the input. Example `{"$where": "sleep(5000)"}`
