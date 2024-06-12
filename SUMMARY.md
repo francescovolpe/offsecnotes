@@ -12,14 +12,14 @@
 ## II - WAPT
 
 * [Vulnerabilities](ii-wapt/vulnerabilities/README.md)
-  * [API testing](ii-wapt/vulnerabilities/api-testing.md)
+  * [API](ii-wapt/vulnerabilities/api-testing.md)
   * [Authentication](ii-wapt/vulnerabilities/authentication.md)
   * [BAC (Broken access control)](ii-wapt/vulnerabilities/access-control-vulnerabilities.md)
   * [Business logic vulnerabilities](ii-wapt/vulnerabilities/business-logic-vulnerabilities.md)
   * [Clickjacking](ii-wapt/vulnerabilities/clickjacking.md)
   * [CORS (Cross-origin resource sharing)](ii-wapt/vulnerabilities/cors-cross-origin-resource-sharing.md)
   * [CSRF (Cross-site request forgery)](ii-wapt/vulnerabilities/csrf-cross-site-request-forgery.md)
-  * [File upload vulnerabilities](ii-wapt/vulnerabilities/file-upload-vulnerabilities.md)
+  * [File upload](ii-wapt/vulnerabilities/file-upload-vulnerabilities.md)
   * [Host header injection](ii-wapt/vulnerabilities/host-header-injection.md)
   * [HTTP request smuggling](ii-wapt/vulnerabilities/http-request-smuggling.md)
   * [Information disclosure vulnerabilities](ii-wapt/vulnerabilities/information-disclosure-vulnerabilities.md)
