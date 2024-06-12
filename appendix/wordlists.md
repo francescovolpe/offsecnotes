@@ -1,6 +1,6 @@
 # Appendix D. Wordlists
 
-## Rules for password bruteforce
+## Rules (password bruteforce)
 
 * **FIRST CHOICE**:  best64 (now best66).  Fast, works well.
   * [https://github.com/hashcat/hashcat/blob/master/rules/best66.rule](https://github.com/hashcat/hashcat/blob/master/rules/best66.rule)
