@@ -47,6 +47,7 @@ Many times I see an endless list of tools used to perform a single task and I ne
 
 * **Hydra** _Brute force online password cracking program_
 * **crackstation** _CrackStation uses massive pre-computed lookup tables to crack password hashes_
+* [https://weakpass.com/generate](https://weakpass.com/generate) **Generate wordlist based on rules**
 
 **Burp Suite Extension**
 
