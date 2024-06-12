@@ -1,4 +1,0 @@
-# Appendix E: Password Cracking
-
-##
-
