@@ -21,6 +21,7 @@ cat file | sort | uniq
 sed -i 's/OLD/NEW/g' file.txt
 
 #Decompress
+tar -xvzf file.tar.gz
 tar -xvzf file.tgz
 tar -xvjf file.tbz
 bzip2 -d file.bz2
