@@ -17,7 +17,7 @@
   
   II - WAPT
   Chapter 5: Vulnerabilities
-  Chapter 6: Notes
+  Chapter 6: Web Security notes
   
   III - MAPT
   Chapter 7: APK Building
