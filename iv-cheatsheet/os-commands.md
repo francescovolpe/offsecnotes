@@ -25,7 +25,7 @@ tar -xvzf file.tar.gz
 tar -xvzf file.tgz
 tar -xvjf file.tbz
 bzip2 -d file.bz2
-tar jxf file.tar.bz2
+tar -jxf file.tar.bz2
 gunzip file.gz
 unzip file.zip
 7z -x file.7z
