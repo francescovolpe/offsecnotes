@@ -41,7 +41,6 @@ Many times I see an endless list of tools used to perform a single task and I ne
 
 * RCE: **Commix** _Automated All-in-One OS Command Injection Exploitation Tool_
 * SQLi: **Sqlmap** _Automatic SQL injection and database takeover tool_
-* File upload: **Upload\_Bypass** _A simple tool for bypassing file upload restrictions._
 
 **Password cracking**
 
