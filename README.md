@@ -32,6 +32,7 @@
   Appendix B. CTF Methodology
   Appendix C. Tools
   Appendix D. Wordlists
+  Appendix E: Cracking passwords
   
   Uncategorized
   

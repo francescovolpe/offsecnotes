@@ -56,6 +56,7 @@
 * [Appendix B. CTF Methodology](appendix/ctf-methodology.md)
 * [Appendix C. Tools](appendix/tools.md)
 * [Appendix D. Wordlists](appendix/wordlists.md)
+* [Appendix E: Cracking passwords](appendix/appendix-e-cracking-passwords.md)
 
 ***
 

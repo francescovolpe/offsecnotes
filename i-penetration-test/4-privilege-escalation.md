@@ -6,8 +6,8 @@ Note: if you have a valid user credential you can authenticate in windows target
 
 ### Automation script
 
-* https://github.com/itm4n/PrivescCheck : useful for gather information
-* `powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"` : run from command prompt
+* https://github.com/itm4n/PrivescCheck: useful for gather information
+* `powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"` run from command prompt
 
 ### UAC Bypass
 
@@ -119,7 +119,7 @@ Note: if you have a valid user credential you can authenticate in windows target
 
 ### Weak Permissions
 
-* `find / -not -type l -perm -o+w` : world-writable files
+* `find / -not -type l -perm -o+w`: world-writable files
   * Example: maybe you can edit shadow file...
 
 ### Sudo
