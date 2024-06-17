@@ -1,4 +1,4 @@
-# SQLi injection
+# SQL injection
 
 ## SQL Injection Cheatsheet
 
@@ -99,7 +99,7 @@
 
 * Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
 
-## Triggering conditional responses
+### Triggering conditional responses
 
 * `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'`
   * …xyz' AND '1'='1
@@ -116,7 +116,7 @@
   * We can continue this process to systematically determine the full password for the Administrator user.
 * `SUBSTRING` is called `SUBSTR` on some types of database (https://portswigger.net/web-security/sql-injection/cheat-sheet)
 
-## Error-based SQL injection
+### Error-based SQL injection
 
 * Problem: Some applications carry out SQL queries but their behavior doesn't change, regardless of whether the query returns any data. The technique "Triggering conditional responses" won't work, because injecting different boolean conditions makes no difference to the application's responses.
 * It's often possible to induce the application to return a different response depending on whether a SQL error occurs and extract or infer sensitive data from the database, even in blind contexts.
@@ -128,7 +128,7 @@
 * `xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a`
 * Note: There are different ways of triggering conditional errors, and different techniques work best on different database types. See SQL cheat sheet
 
-## Time-based SQL injection
+### Time-based SQL injection
 
 * Condition: As SQL queries are normally processed synchronously by the application, delaying the execution of a SQL query also delays the HTTP response.
 * Triggering time delays depending on whether an injected condition is true or false
