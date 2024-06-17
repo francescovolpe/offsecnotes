@@ -25,12 +25,9 @@ Note that the directory names are conventional — they could be any name. Addit
         * 📁 **cpp**: holds native code written in C/C++.
 
 
-    *   #### Libraries <a href="#proj-lib" id="proj-lib"></a>
-
-        * 📁 **libs**: comprises Java `.jar` and/or Android `.aar` archive files mostly for the compilation phase.
-        * 📁 **lib**: contains native shared `.so` and/or static `.a` library files.
-
-
+    * #### Libraries <a href="#proj-lib" id="proj-lib"></a>
+      * 📁 **libs**: comprises Java `.jar` and/or Android `.aar` archive files mostly for the compilation phase.
+      * 📁 **lib**: contains native shared `.so` and/or static `.a` library files.
 
 
 
@@ -55,10 +52,10 @@ It almost always embodies the following files and directories, though only `Andr
 
 1.  📁 res (withouth res/values) and 🗎 AndroidManifest.xml are compiled (aapt \[compile] tool)
 
-    * \-> 🗎  R.java, 🗎  resouces.asrc, 📁 res (compiled), 🗎 AndroidManifest.xml (compiled)
+    * \-> 🗎 R.java, 🗎 resouces.asrc, 📁 res (compiled), 🗎 AndroidManifest.xml (compiled)
 
 
-2. 📁 java,  📁 libs**,** 🗎  R.java, 🗎 android.jar are compiled (java compiler \[ex. javac] and/or kotlin compiler \[ex. kotlinc])
+2. 📁 java,  📁 libs**,** 🗎 R.java, 🗎 android.jar are compiled (java compiler \[ex. javac] and/or kotlin compiler \[ex. kotlinc])
    *   &#x20;\-> Java bytecode (`.class`) files. These are then compiled/converted (d8 tool)
 
        * \-> Dalvik bytecode (`.dex`) file/s
@@ -70,20 +67,4 @@ It almost always embodies the following files and directories, though only `Andr
     * \-> .apk (unsigned)
 
 
-5. zipalign and apksigner to sign the APK and make it installable and updateable on an Android device\
-
-
-
-
-
-
-\
-\
-
-
-\
-
-
-\
-
-
+5. zipalign and apksigner to sign the APK and make it installable and updateable on an Android device

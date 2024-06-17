@@ -71,12 +71,3 @@ Decompile to (near) source code. (Dex to Java).
 * `jadx-gui`
 * decode `AndroidManifest.xml` and other resources from `resources.arsc`
 * deobfuscator included
-
-\
-
-
-
-
-\
-
-
