@@ -9,7 +9,7 @@
   * (3) [https://github.com/hashcat/hashcat/blob/master/rules/InsidePro-HashManager.rule](https://github.com/hashcat/hashcat/blob/master/rules/InsidePro-HashManager.rule)
   * You can also combine them...
 * **FOURTH CHOICE**: OneRuleToRuleThemAll. (\~50k). The best
-  * [https://github.com/NotSoSecure/password\_cracking\_rules/tree/master](https://github.com/NotSoSecure/password\_cracking\_rules/tree/master)
+  * [https://github.com/NotSoSecure/password\_cracking\_rules/blob/master/OneRuleToRuleThemAll.rule](https://github.com/NotSoSecure/password\_cracking\_rules/blob/master/OneRuleToRuleThemAll.rule)
 
 
 
