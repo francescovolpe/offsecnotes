@@ -24,15 +24,13 @@
   Chapter 8: Reversing
   Chapter 9: Android Testing
   
-  IV - CHEATSHEET
-  Chapter 10: OS Commands
-  Chapter 11: Tools Commands
- 
-  Appendix A. Antivirus Evasion
-  Appendix B. CTF Methodology
-  Appendix C. Tools
-  Appendix D. Wordlists
-  Appendix E: Cracking passwords
+  IV - Miscellaneous
+  Chapter 10: OS/Tools Commands
+  Chapter 11: Antivirus Evasion
+  Chapter 12: CTF Methodology
+  Chapter 13: Tools
+  Chapter 14: Wordlists
+  Chapter 15: Cracking passwords
   
   Uncategorized
   

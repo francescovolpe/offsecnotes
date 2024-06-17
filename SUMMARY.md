@@ -45,18 +45,14 @@
 * [Reversing](iii-mapt/reversing.md)
 * [Android testing](iii-mapt/android-testing.md)
 
-## IV - Cheatsheet
+## IV - Miscellaneous
 
-* [OS Commands](iv-cheatsheet/os-commands.md)
-* [Tools Commands](iv-cheatsheet/commands.md)
-
-## Appendix
-
-* [Appendix A. Antivirus Evasion](appendix/av-evasion.md)
-* [Appendix B. CTF Methodology](appendix/ctf-methodology.md)
-* [Appendix C. Tools](appendix/tools.md)
-* [Appendix D. Wordlists](appendix/wordlists.md)
-* [Appendix E: Cracking passwords](appendix/appendix-e-cracking-passwords.md)
+* [OS/Tools Commands](iv-miscellaneous/os-commands.md)
+* [Antivirus Evasion](iv-miscellaneous/av-evasion.md)
+* [CTF Methodology](iv-miscellaneous/ctf-methodology.md)
+* [Tools](iv-miscellaneous/tools.md)
+* [Wordlists](iv-miscellaneous/wordlists.md)
+* [Cracking passwords](iv-miscellaneous/cracking-passwords.md)
 
 ***
 
