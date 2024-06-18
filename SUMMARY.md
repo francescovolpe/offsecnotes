@@ -38,6 +38,7 @@
 * [Web security notes](ii-wapt/notes/README.md)
   * [Method & Headers](ii-wapt/notes/method-and-headers.md)
   * [Javascript](ii-wapt/notes/javascript-security-considerations.md)
+* [Automation](ii-wapt/automation.md)
 
 ## III - MAPT
 
@@ -47,11 +48,10 @@
 
 ## IV - Miscellaneous
 
-* [OS/Tools Commands](iv-miscellaneous/os-commands.md)
+* [OS Commands](iv-miscellaneous/os-commands.md)
 * [Antivirus Evasion](iv-miscellaneous/av-evasion.md)
 * [CTF Methodology](iv-miscellaneous/ctf-methodology.md)
-* [Tools](iv-miscellaneous/tools.md)
-* [Wordlists](iv-miscellaneous/wordlists.md)
+* [Burp Suite](iv-miscellaneous/tools.md)
 * [Cracking passwords](iv-miscellaneous/cracking-passwords.md)
 
 ***

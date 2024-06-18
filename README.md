@@ -17,19 +17,19 @@
   
   II - WAPT
   Chapter 5: Vulnerabilities
-  Chapter 6: Web Security notes
+  Chapter 6: Automation
+  Chapter 7: Web Security notes
   
   III - MAPT
-  Chapter 7: APK Building
-  Chapter 8: Reversing
-  Chapter 9: Android Testing
+  Chapter 8: APK Building
+  Chapter 9: Reversing
+  Chapter 10: Android Testing
   
   IV - Miscellaneous
-  Chapter 10: OS/Tools Commands
-  Chapter 11: Antivirus Evasion
-  Chapter 12: CTF Methodology
-  Chapter 13: Tools
-  Chapter 14: Wordlists
+  Chapter 11: OS Commands
+  Chapter 12: Antivirus Evasion
+  Chapter 13: CTF Methodology
+  Chapter 14: Burp Suite
   Chapter 15: Cracking passwords
   
   Uncategorized

@@ -1,8 +1,6 @@
-# OS/Tools Commands
+# OS Commands
 
-## OS Commands
-
-### Attacker machine
+## Attacker machine
 
 ```sh
 ctrl + c # terminate the currently running command
@@ -37,9 +35,9 @@ sudo apt-get install xz-utils; unxz file.xz
 xclip -sel c < file.txt
 ```
 
-### Target machine
+## Target machine
 
-#### Windows
+### Windows
 
 <pre class="language-batch"><code class="lang-batch">:: System info
 systeminfo
@@ -85,7 +83,7 @@ powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1 -OutputFilename JAW
 net user &#x3C;username> &#x3C;new_pass>
 </code></pre>
 
-#### Linux
+### Linux
 
 ```sh
 # System info
@@ -146,32 +144,4 @@ cat /etc/cron*
 # Change Linux user password (Copy output and past it in /etc/shadow)
 openssl passwd -1 -salt <salt> <new_pass> # -1 means weakest algorithm, -6 means strongest
 
-```
-
-
-
-## Tools Commands
-
-### Enumerating web resources
-
-```sh
-# Web fuzzer
-ffuf -w /path/to/wordlist -u https://example.com/file-FUZZ
-
-# Fetch all the URLs that the Wayback Machine knows about for a domain
-waybackurls https://example.com
-```
-
-### Vulnerability Scanner
-
-```sh
-nikto.pl -h http://example.com
-```
-
-### Automatic exploitation
-
-```sh
-# SQL
-# Capture the request (burp/zap) and create a req.txt file
-sqlmap -r req.txt
 ```

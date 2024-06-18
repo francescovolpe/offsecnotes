@@ -1,30 +1,4 @@
-# Appendix C. Tools
-
-Many times I see an endless list of tools used to perform a single task and I never know which one to choose from these lists. Here I want to mention the tools I use if I want to perform a single task depending on the objective.
-
-***
-
-**Enumerating web resources**
-
-* **hakrawler** _Web crawler, quick discovery of endpoints and assets within a web application_
-  * You can set depth
-  * `echo https://example.com | hakrawler`
-* **feroxbuster** _A fast, simple, recursive content discovery_
-  * You can set depth (recursion), extract links from response body
-  * `feroxbuster -u https://example.com -x html,php,js,txt,pdf,json`
-* **ffuf** _Web fuzzer_
-  * Use ffuf instead of feroxbuster when you need deeper customization
-  * `ffuf -w /path/to/wordlist -u https://example.com/file-FUZZ`
-* **waybackurls** _Fetch all the URLs that the Wayback Machine knows about for a domain_
-  * Uncover historical data about a website
-  * `waybackurls https://example.com`
-
-**Out of band vulnerabilities**
-
-* **Burp collaborator** (burp extension)
-  * Keep in mind that many companies filtering and block outbound traffic to the default collaborator domain.
-* **webhook.site** _Webhook.site generates a free, unique URL and e-mail address and lets you see everything that’s sent there instantly._
-  * Alternative to burp collaborator.
+# Burp Suite
 
 **Broken Access Control**
 
@@ -32,25 +6,22 @@ Many times I see an endless list of tools used to perform a single task and I ne
 * **Autorize** (burp extension)
   * Automatically repeats every request with the session of the low privileged user
 
-**Vulnerability scanner**
+**PwnFox**
 
-* **Nikto**
-  * `nikto.pl -h http://example.com`
+PwnFox _provide useful tools for your security audit_
 
-**Testing vulnerability**
+* Single click BurpProxy
+* Containers Profiles (it will automatically add a X-PwnFox-Color header to hightlight the query in Burp)
+* Other: https://github.com/yeswehack/PwnFox
 
-* RCE: **Commix** _Automated All-in-One OS Command Injection Exploitation Tool_
-* SQLi: **Sqlmap** _Automatic SQL injection and database takeover tool_
+**Out of band vulnerabilities**
 
-**Password cracking**
+&#x20;Many companies filtering and block outbound traffic to the default collaborator domain.
 
-* **Hydra** _Brute force online password cracking program_
-* **crackstation** _CrackStation uses massive pre-computed lookup tables to crack password hashes_
-* [https://weakpass.com/generate](https://weakpass.com/generate) **Generate wordlist based on rules**
+* **webhook.site** _Webhook.site generates a free, unique URL and e-mail address and lets you see everything that’s sent there instantly._
 
-**Burp Suite Extension**
+**Logger ++ filters: Top 25 Parameters**
 
-* **PwnFox** _provide usefull tools for your security audit_
-  * Single click BurpProxy
-  * Containers Profiles (it will automatically add a X-PwnFox-Color header to hightlight the query in Burp)
-  * Other: https://github.com/yeswehack/PwnFox
+* Vulnerabilities (Cross-Site Scripting, Server-Side Request Forgery, Local File Inclusion, SQL Injection, Remote Code Execution, Open Redirect)
+* https://owasp.org/www-project-top-25-parameters/
+* https://github.com/lutfumertceylan/top25-parameter/tree/master
