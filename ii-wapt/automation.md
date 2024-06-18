@@ -2,8 +2,8 @@
 
 ## Enumerating web resources
 
-<pre class="language-sh"><code class="lang-sh"># Web fuzzer
-ffuf -w wordlist.txt -u https://example.com/file-FUZZ
+<pre class="language-sh"><code class="lang-sh"># Web fuzzer 
+ffuf -w wordlist.txt -u https://example.com/file-FUZZ- c
 
 <strong># Recursive content discovery
 </strong># You can set depth (recursion), extract links from response body
