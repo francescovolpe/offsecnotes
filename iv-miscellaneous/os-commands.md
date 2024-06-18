@@ -1,4 +1,4 @@
-# OS Commands
+# Useful Commands
 
 ## Attacker machine
 
@@ -21,15 +21,15 @@ cat file | sort | uniq
 sed -i 's/OLD/NEW/g' file.txt
 
 #Decompress
-tar -xvzf file.tar.gz
-tar -xvzf file.tgz
-tar -xvjf file.tbz
-bzip2 -d file.bz2
-tar -jxf file.tar.bz2
-gunzip file.gz
-unzip file.zip
-7z -x file.7z
-sudo apt-get install xz-utils; unxz file.xz
+7z -x file.7z                # .7z
+bzip2 -d file.bz2            # .bz2
+gunzip file.gz               # .gz
+tar -xvzf file.tar.gz        # .tar.gz
+tar -jxf file.tar.bz2        # .tar.bz2
+tar -xvjf file.tbz           # .tbz
+tar -xvzf file.tgz           # .tgz
+unzip file.zip               # .zip
+unxz file.xz                 # .xz            (apt install xz-utils)
 
 #Clipboard
 xclip -sel c < file.txt
