@@ -48,11 +48,11 @@
 
 ## IV - Miscellaneous
 
-* [OS Commands](iv-miscellaneous/os-commands.md)
+* [Useful Commands](iv-miscellaneous/os-commands.md)
+* [Cracking passwords](iv-miscellaneous/cracking-passwords.md)
+* [Burp Suite](iv-miscellaneous/tools.md)
 * [Antivirus Evasion](iv-miscellaneous/av-evasion.md)
 * [CTF Methodology](iv-miscellaneous/ctf-methodology.md)
-* [Burp Suite](iv-miscellaneous/tools.md)
-* [Cracking passwords](iv-miscellaneous/cracking-passwords.md)
 
 ***
 

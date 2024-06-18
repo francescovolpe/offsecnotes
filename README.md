@@ -26,11 +26,11 @@
   Chapter 10: Android Testing
   
   IV - Miscellaneous
-  Chapter 11: OS Commands
-  Chapter 12: Antivirus Evasion
-  Chapter 13: CTF Methodology
-  Chapter 14: Burp Suite
-  Chapter 15: Cracking passwords
+  Chapter 11: Useful Commands
+  Chapter 12: Cracking passwords
+  Chapter 13: Burp Suite
+  Chapter 14: Antivirus Evasion
+  Chapter 15: CTF Methodology
   
   Uncategorized
   
