@@ -9,7 +9,7 @@ ctrl + a # go to the start of line
 ctrl + e # go the the end of line
 ctrl + z # sleep program
 
-#Encode file to Base64
+# Encode file to Base64
 base64 -w 0 file.txt
 # Count Lines
 wc -l <file> #
@@ -17,10 +17,10 @@ wc -l <file> #
 wc -c
 # Sort and delete duplicates
 cat file | sort | uniq 
-#Replace string inside a file
+# Replace string inside a file
 sed -i 's/OLD/NEW/g' file.txt
 
-#Decompress
+# Decompress
 7z -x file.7z                # .7z
 bzip2 -d file.bz2            # .bz2
 gunzip file.gz               # .gz
@@ -31,8 +31,13 @@ tar -xvzf file.tgz           # .tgz
 unzip file.zip               # .zip
 unxz file.xz                 # .xz            (apt install xz-utils)
 
-#Clipboard
+# Clipboard
 xclip -sel c < file.txt
+
+# Search strings inside files
+grep -ri password # search password (case insensitive) in all subdirectory
+grep -Ei 'pass|user' file.txt # search pass or user strings in file.txt
+grep -Eri 'pass|user' # search pass or user strings in all subdirectory
 ```
 
 ## Target machine
