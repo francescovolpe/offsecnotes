@@ -132,6 +132,9 @@ route # Note: gateway is important... it can be a DNS server, DHCP server or all
 arp -a
 
 # Processes & services
+ps aux # Display all process. It use windows size (truncation)
+ps auxw # Use 132 columns to display info, instead of the window size.
+ps auxww # ps will use as many columns as necessary.
 ps aux | grep root # Useful for privesc
 top # dynamic real-time view of a running system (like task manager)
 # display cronjob for the root user
