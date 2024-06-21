@@ -2,22 +2,24 @@
 
 ## Whois
 
-* It is a protocol used for querying databases that store an Internet resource's registered users or assignees
-  * website
-  * `whois example.com`
+It is a protocol used for querying databases that store an Internet resource's registered users or assignees
+
+* website
+* `whois example.com`
 
 ## DNS Enumeration
 
 **Manual**
 
-* ```sh
-  dig +short a zonetransfer.me      # list of ipv4 address
-  dig +short mx zonetransfer.me     # list of email servers
-  dig +short -x 192.246.126.3       # reverse lookups
-  dig +short ns zonetransfer.me     # list of DNS servers for the domain
-  dig axfr zonetransfer.me @nsztm1.digi.ninja. # get a copy of the zone from the primary server. (zone transfer attack)
-  ```
-  * _AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone._
+```sh
+dig +short a zonetransfer.me      # list of ipv4 address
+dig +short mx zonetransfer.me     # list of email servers
+dig +short -x 192.246.126.3       # reverse lookups
+dig +short ns zonetransfer.me     # list of DNS servers for the domain
+dig axfr zonetransfer.me @nsztm1.digi.ninja. # get a copy of the zone from the primary server. (zone transfer attack)
+```
+
+_NOTE: AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone._
 
 **Automatic**
 
@@ -70,11 +72,12 @@
 
 ## Port Scanning (nmap)
 
-* Use nmap documentation to understand the differences between port scans
-* ```sh
-  nmap -p- 192.168.1.5          # Scan all TCP ports
-  nmap -sU --top-ports 25 <ip>  # Suggestion for udp scan
-  ```
+Use nmap documentation to understand the differences between port scans
+
+```sh
+nmap -p- 192.168.1.5          # Scan all TCP ports
+nmap -sU --top-ports 25 <ip>  # Suggestion for udp scan
+```
 
 **Script engine**: For more info read nmap documentation
 
