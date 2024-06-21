@@ -1,6 +1,6 @@
 # Useful Commands
 
-## Attacker machine
+## Linux
 
 ```sh
 ctrl + c # terminate the currently running command
@@ -38,11 +38,73 @@ xclip -sel c < file.txt
 grep -ri password # search password (case insensitive) in all subdirectory
 grep -Ei 'pass|user' file.txt # search pass or user strings in file.txt
 grep -Eri 'pass|user' # search pass or user strings in all subdirectory
+
+# Change Linux user password (Copy output and past it in /etc/shadow)
+openssl passwd -1 -salt <salt> <new_pass> # -1 means weakest algorithm, -6 means strongest
 ```
 
-## Target machine
+### Enumeration
 
-### Windows
+```sh
+# System info
+# Print linux distro version (Contains a message or system identification to be printed before the login prompt)
+cat /etc/issue 
+# Print certain system information.
+uname -a 
+# Print environment variables
+env 
+# hardware info
+lscpu
+# RAM usage
+free -h
+# disk usage
+df -h
+# list packages installed with version
+dpkg -l
+
+# Enumerate Users
+whoami
+groups <user>
+# Creates a user
+useradd -m <user> -s /bin/bash
+# Add bob to root group
+usermod -aG root <user>
+# ssh session enumerate
+lastlog
+# log of users logged in
+last
+
+# Enumerate Network
+ip a # Useful also to discover other network
+# display hostname
+cat /etc/hostname
+# maps IP addresses to domain (Useful to discover internal domain you can access)
+cat /etc/hosts
+# display the domain name server (Many times it is the default gateway)
+cat /etc/resolv.conf
+
+# Display the network connections
+netstat -tulpn
+# Display the host ARP cache
+arp -a
+# View and modify the routing table
+route # Note: gateway is important... it can be a DNS server, DHCP server or all in one
+
+# Processes & services
+ps aux # Display all process. It use windows size (truncation)
+ps auxw # Use 132 columns to display info, instead of the window size.
+ps auxww # ps will use as many columns as necessary.
+ps aux | grep root # Useful for privesc
+top # dynamic real-time view of a running system (like task manager)
+# display cronjob for the root user
+crontab -l
+# display all file that contains cronjob
+ls -al /etc/cron*
+# display the contents of all cronjob files
+cat /etc/cron* 
+```
+
+## Windows
 
 <pre class="language-batch"><code class="lang-batch">:: System info
 systeminfo
@@ -87,69 +149,3 @@ powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1 -OutputFilename JAW
 :: Change Windows user password
 net user &#x3C;username> &#x3C;new_pass>
 </code></pre>
-
-### Linux
-
-```sh
-# System info
-# Print linux distro version (Contains a message or system identification to be printed before the login prompt)
-cat /etc/issue 
-# Print certain system information.
-uname -a 
-# Print environment variables
-env 
-# hardware info
-lscpu
-# RAM usage
-free -h
-# disk usage
-df -h
-# list packages installed with version
-dpkg -l
-
-# Enumerate Users
-whoami
-groups <user>
-# Creates a user
-useradd -m <user> -s /bin/bash
-# Add bob to root group
-usermod -aG root <user>
-# ssh session enumerate
-lastlog
-# log of users logged in
-last
-
-# Enumerate Network
-ip a # Useful also to discover other network
-# display hostname
-cat /etc/hostname
-# maps IP addresses to domain (Useful to discover internal domain you can access)
-cat /etc/hosts
-# display the domain name server (Many times it is the default gateway)
-cat /etc/resolv.conf
-
-# Meterpreter
-# Display the network connections
-netstat
-# View and modify the routing table
-route # Note: gateway is important... it can be a DNS server, DHCP server or all in one
-# Display the host ARP cache
-arp -a
-
-# Processes & services
-ps aux # Display all process. It use windows size (truncation)
-ps auxw # Use 132 columns to display info, instead of the window size.
-ps auxww # ps will use as many columns as necessary.
-ps aux | grep root # Useful for privesc
-top # dynamic real-time view of a running system (like task manager)
-# display cronjob for the root user
-crontab -l
-# display all file that contains cronjob
-ls -al /etc/cron*
-# display the contents of all cronjob files
-cat /etc/cron* 
-
-# Change Linux user password (Copy output and past it in /etc/shadow)
-openssl passwd -1 -salt <salt> <new_pass> # -1 means weakest algorithm, -6 means strongest
-
-```
