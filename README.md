@@ -1,9 +1,8 @@
 # offsecnotes
 
-* Personal collection of offensive security notes.
-* Notes include vulnerabilities, techniques, tools, sites and other stuff.
-* Notes are continuously updated.
-* https://francescovolpe.gitbook.io/offsecnotes
+Personal collection of continuously updated offensive security notes.
+
+https://francescovolpe.gitbook.io/offsecnotes
 
 {% code fullWidth="false" %}
 ```markup
