@@ -35,7 +35,7 @@
   * [WebSockets](ii-wapt/vulnerabilities/websockets.md)
   * [XXE (XML external entity)](ii-wapt/vulnerabilities/xxe-xml-external-entity.md)
   * [XSS (Cross-site scripting)](ii-wapt/vulnerabilities/xss-cross-site-scripting.md)
-* [Web security notes](ii-wapt/notes/README.md)
+* [Web security](ii-wapt/notes/README.md)
   * [Method & Headers](ii-wapt/notes/method-and-headers.md)
   * [Javascript](ii-wapt/notes/javascript-security-considerations.md)
 * [Automation](ii-wapt/automation.md)

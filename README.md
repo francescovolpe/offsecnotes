@@ -17,7 +17,7 @@ https://francescovolpe.gitbook.io/offsecnotes
   II - WAPT
   Chapter 5: Vulnerabilities
   Chapter 6: Automation
-  Chapter 7: Web Security notes
+  Chapter 7: Web Security
   
   III - MAPT
   Chapter 8: APK Building
