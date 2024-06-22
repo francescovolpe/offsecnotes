@@ -1,6 +1,6 @@
 # Cracking passwords
 
-## Cracking offline passwords
+## Cracking hash
 
 * [**crackstation**](https://crackstation.net/) _CrackStation uses massive pre-computed lookup tables to crack password hashes_
 
