@@ -48,7 +48,7 @@
 
 ## IV - Miscellaneous
 
-* [Cracking passwords](iv-miscellaneous/cracking-passwords.md)
+* [Password Cracking](iv-miscellaneous/password-cracking.md)
 * [Burp Suite](iv-miscellaneous/tools.md)
 * [Antivirus Evasion](iv-miscellaneous/av-evasion.md)
 * [CTF Methodology](iv-miscellaneous/ctf-methodology.md)

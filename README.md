@@ -25,7 +25,7 @@ https://francescovolpe.gitbook.io/offsecnotes
   Chapter 10: Android Testing
   
   IV - Miscellaneous
-  Chapter 11: Cracking passwords
+  Chapter 11: Password Cracking
   Chapter 12: Burp Suite
   Chapter 13: Antivirus Evasion
   Chapter 14: CTF Methodology
