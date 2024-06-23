@@ -11,7 +11,7 @@ https://francescovolpe.gitbook.io/offsecnotes
   I - PENETRATION TEST
   Chapter 1: Information Gathering
   Chapter 2: Network Services Exploitation
-  Chapter 3: Post-Exploitation & commands
+  Chapter 3: Post-Exploitation & Commands
   Chapter 4: Privilage Escalation
   
   II - WAPT
