@@ -6,7 +6,7 @@
 
 * [Information Gathering](i-penetration-test/1-information-gathering.md)
 * [Network Services Exploitation](i-penetration-test/2-network-services-exploitation.md)
-* [Post-Exploitation](i-penetration-test/3-post-exploitation.md)
+* [Post-Exploitation & commands](i-penetration-test/3-post-exploitation.md)
 * [Privilege Escalation](i-penetration-test/4-privilege-escalation.md)
 
 ## II - WAPT
