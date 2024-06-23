@@ -1,4 +1,8 @@
-# Cracking passwords
+# Password Cracking
+
+## Identify hash
+
+* [hashes.com](https://hashes.com/en/tools/hash\_identifier) _Identify and detect unknown hashes_
 
 ## Cracking hash
 
