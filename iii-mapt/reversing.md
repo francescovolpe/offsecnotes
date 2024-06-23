@@ -44,7 +44,7 @@
     int x = 42         //java
     ```
   * ```
-    13 00 2A 00        //dev file contains this hex sequence
+    13 00 2A 00        //dex file contains this hex sequence
     ```
   * ```
     const/16 v0, 42    //smali
