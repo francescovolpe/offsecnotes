@@ -48,7 +48,6 @@
 
 ## IV - Miscellaneous
 
-* [Useful Commands](iv-miscellaneous/os-commands.md)
 * [Cracking passwords](iv-miscellaneous/cracking-passwords.md)
 * [Burp Suite](iv-miscellaneous/tools.md)
 * [Antivirus Evasion](iv-miscellaneous/av-evasion.md)
