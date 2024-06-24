@@ -105,4 +105,10 @@ Steal another user's token and use it change their password
 
 ## Change password
 
-Brute-force password when you enter your current password.
+* Look for a hidden username paramer (control it)
+  * Brute-force password when you enter your current password.
+  * **TIPS**: notice different behavior.&#x20;
+    * current password: wrong, new-password-1=XXX, new-password-2=XXX
+    * current password: wrong, new-password-1=XXX, new-password-2=YYY
+    * current password: \<right>, new-password-1=XXX, new-password-2=XXX
+    * current password: \<right>, new-password-1=XXX, new-password-2=YYY
