@@ -114,12 +114,12 @@ Note: if you have a valid user credential you can authenticate in windows target
 
 ### Vulnerable program
 
-* Search scripts that execute programs or programs. : Search for any vulnerable version. One example: chkrootkit v0.49 (running as root)
+* Search scripts that execute programs or programs. Search for any vulnerable version. One example: chkrootkit v0.49 (running as root)
   * `ps aux`
 
 ### Weak Permissions
 
-* `find / -not -type l -perm -o+w`: world-writable files
+* `find / -not -type l -perm -o+w` world-writable files
   * Example: maybe you can edit shadow file...
 
 ### Sudo

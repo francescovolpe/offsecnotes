@@ -8,7 +8,7 @@ https://francescovolpe.gitbook.io/offsecnotes
 ```markup
   Index
   
-  I - PENETRATION TEST
+  I - NPT
   Chapter 1: Information Gathering
   Chapter 2: Network Services Exploitation
   Chapter 3: Post-Exploitation & Commands

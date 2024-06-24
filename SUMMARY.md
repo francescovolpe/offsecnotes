@@ -2,12 +2,12 @@
 
 * [offsecnotes](README.md)
 
-## I - Penetration test
+## I - NPT
 
-* [Information Gathering](i-penetration-test/1-information-gathering.md)
-* [Network Services Exploitation](i-penetration-test/2-network-services-exploitation.md)
-* [Post-Exploitation & Commands](i-penetration-test/3-post-exploitation.md)
-* [Privilege Escalation](i-penetration-test/4-privilege-escalation.md)
+* [Information Gathering](i-npt/1-information-gathering.md)
+* [Network Services Exploitation](i-npt/2-network-services-exploitation.md)
+* [Post-Exploitation & Commands](i-npt/3-post-exploitation.md)
+* [Privilege Escalation](i-npt/4-privilege-escalation.md)
 
 ## II - WAPT
 
