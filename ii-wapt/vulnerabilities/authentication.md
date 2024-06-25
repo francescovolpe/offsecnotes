@@ -95,7 +95,8 @@ username=<victim>&new-password-1=<whatever>&new-password-2=<whatever>&forgot-pas
 **Resetting passwords using a URL (static token)**
 
 * Poor implementation can use guessable parameter `http://vulnerable-website.com/reset-password?user=victim-user`
-* The token should expire after a short period of time and be destroyed immediately after the password has been reset. Some websites don't revalidate tokens on form submission, allowing attackers to reset any user's password by deleting the token from their own account's reset form.
+
+
 
 **Resetting passwords using a URL (dynamic token)**
 
