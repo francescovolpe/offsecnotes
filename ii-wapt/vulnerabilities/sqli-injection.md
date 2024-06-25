@@ -23,13 +23,19 @@
 
 * If your condition reaches an UPDATE or DELETE statement, for example, it can result in an accidental loss of data.
 
+**Database-specific syntax**
+
+* Example:
+  * Oracle: every `SELECT` query must use the `FROM` keyword and specify a valid table
+  * MySQL: the double-dash sequence must be followed by a space
+
 ## SQL injection UNION attacks
 
 * Requirements
   * How many columns are being returned from the original query
   * Which columns returned from the original query are of a suitable data type to hold the results from the injected query
 
-## Determining the number of columns required
+### Determining the number of columns required
 
 * First way: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs
   * Example (the injection point is a quoted string within the `WHERE` clause)
@@ -49,14 +55,9 @@
     ```
 * Note: the application might actually return the database error in its HTTP response, but may return a generic error or simply return no results
 
-## Database-specific syntax
 
-* Example:
-  * Oracle: every `SELECT` query must use the `FROM` keyword and specify a valid table
-  * MySQL: the double-dash sequence must be followed by a space
-  * https://portswigger.net/web-security/sql-injection/cheat-sheet
 
-## Finding columns with a useful data type
+### Finding columns with a useful data type
 
 * Do you want a string?
   * ```
@@ -68,7 +69,7 @@
   * Error example: Conversion failed when converting the varchar value 'a' to data type int.
   * If no error occurs and the response includes the injected string, the column is suitable for retrieving string data.
 
-## Examining the database
+### Examining the database
 
 * `' UNION SELECT @@version--`
 * Listing the contents of the database
@@ -89,11 +90,10 @@
   * `SELECT * FROM all_tab_columns WHERE table_name = 'USERS'`
     * `SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'`
 
-## Retrieving multiple values within a single column
+### Retrieving multiple values within a single column
 
 * You can retrieve multiple values together within this single column by concatenating the values together
 * `' UNION SELECT username || '~' || password FROM users--`
-  * https://portswigger.net/web-security/sql-injection/cheat-sheet
 
 ## Blind SQL Injection
 
