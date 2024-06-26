@@ -29,6 +29,10 @@
   * Oracle: every `SELECT` query must use the `FROM` keyword and specify a valid table
   * MySQL: the double-dash sequence must be followed by a space
 
+**Encode payload in the cookie**
+
+* Remember that you can encode also in the cookie value. This may be useful with payload that use `;`.
+
 ## SQL injection UNION attacks
 
 * Requirements
