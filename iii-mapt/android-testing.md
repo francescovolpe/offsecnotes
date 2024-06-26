@@ -40,7 +40,7 @@
 
 * `objection -g 'App Name' run env`
   * This will print out the locations of the applications Files, Caches and other directories
-* `/data/data/<package_name>`: Data app location folder
+* `/data/data/<package_name>` Data app location folder
 * Check for sensitive information/data store on Shared Preferences or not
 * Check if sensitive information/data is stored in the local storage database using strong encryption on or not
 
@@ -73,7 +73,7 @@ find . -iname \*.pkcs7
 
 ### Sensitive data/info in Application Memory
 
-1. `objection -g 'exampleapp' explore`: Start objection
+1. `objection -g 'exampleapp' explore` Start objection
 2. `memory search <where_you_want> --string` to search a specific string or
    * `memory dump all appMemoryDump` to dump all
    * `strings appMemoryDump > appMemoryDump.txt`
