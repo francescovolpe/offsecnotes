@@ -61,7 +61,6 @@
     ' UNION SELECT NULL,NULL,'a',NULL--
     ' UNION SELECT NULL,NULL,NULL,'a'--
     ```
-  * Error example: Conversion failed when converting the varchar value 'a' to data type int.
   * If no error occurs and the response includes the injected string, the column is suitable for retrieving string data.
 
 ### Examining the database
