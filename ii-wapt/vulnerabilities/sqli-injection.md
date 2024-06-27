@@ -196,14 +196,14 @@ An application might carry out a SQL query asynchronously (another thread execut
 
 ## Small tips
 
-* Sometimes when you try to break syntax you receive a response that does not indicate the parameter is vulnerable. <mark style="color:purple;">**Build a query that provides a response indicating the parameter is vulnerable**</mark> ... Example:
+* Sometimes when you try to break syntax you receive a response that does not indicate the parameter is vulnerable. <mark style="color:purple;">**Check if there is a "default" \[error] response**</mark> or <mark style="color:purple;">**Build a valid query**</mark> that provides a response indicating the parameter is vulnerable ... Example:
   * &#x20;`/stockcheck?productID=1` and the response tell you 3 units (stock check)
   * `/stockcheck?productID='` and the response tell you 0 units ... in all case that you break...
   * &#x20;`/stockcheck?productID=1 OR 1=1` the response give you units for all product...
 * <mark style="color:purple;">**Don't always use**</mark><mark style="color:purple;">** **</mark><mark style="color:purple;">**`'`**</mark> **to check**. Similar to the above case, it would be pointless
   * `/stockcheck?productID=1` . You know that exists a productID=2? Ok, try to inject `1+1` (instead of `1 OR 1=1` that it can be dangerous).
 * Remember that you can <mark style="color:purple;">**encode the cookie value**</mark>. This may be useful with payload that use `;`.
-* Remember that SQL injection vulnerabilities can occur at <mark style="color:purple;">**any location**</mark> (UPDATE, INSERT, SELECT \[column, table], ORDER BY)
+* Remember that <mark style="color:purple;">**SQLi can occur at any location**</mark> (UPDATE, INSERT, SELECT \[column, table], ORDER BY)
 * <mark style="color:purple;">**SQLi can be even in XML/JSON**</mark>...
   *   If there are some protection, try <mark style="color:purple;">**XML encode**</mark>.
 
