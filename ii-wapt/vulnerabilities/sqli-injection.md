@@ -200,7 +200,7 @@ An application might carry out a SQL query asynchronously (another thread execut
   * &#x20;`/stockcheck?productID=1` and the response tell you 3 units (stock check)
   * `/stockcheck?productID='` and the response tell you 0 units ... in all case that you break...
   * &#x20;`/stockcheck?productID=1 OR 1=1` the response give you units for all product...
-* <mark style="color:purple;">**Don't always use**</mark><mark style="color:purple;">** **</mark><mark style="color:purple;">**`'`**</mark> **to check**. Similar to the above case, it would be pointless
+* <mark style="color:purple;">**Don't always use**</mark><mark style="color:purple;">** **</mark><mark style="color:purple;">**`'`**</mark> to check. Similar to the above case, it would be pointless
   * `/stockcheck?productID=1` . You know that exists a productID=2? Ok, try to inject `1+1` (instead of `1 OR 1=1` that it can be dangerous).
 * Remember that you can <mark style="color:purple;">**encode the cookie value**</mark>. This may be useful with payload that use `;`.
 * Remember that <mark style="color:purple;">**SQLi can occur at any location**</mark> (UPDATE, INSERT, SELECT \[column, table], ORDER BY)
