@@ -8,6 +8,18 @@
 
 * [**crackstation**](https://crackstation.net/) _CrackStation uses massive pre-computed lookup tables to crack password hashes_
 
+## Cracking shadow
+
+```sh
+# unshadow use also GECOS information (field containing information about the user).
+unshadow passwd.txt shadow.txt > unshadowed.txt
+
+# sha512crypt [$6$] - With wordlist
+hashcat -a 0 -m 1800 hash.txt wordlist.txt
+# sha512crypt [$6$] - With wordlist and rules
+hashcat -a 0 -m 1800 hash.txt wordlist.txt -r /usr/share/hashcat/rules/best64.rule
+```
+
 ## Cracking online passwords
 
 ```sh
