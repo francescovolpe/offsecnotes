@@ -32,3 +32,8 @@
 * Choose one of the AST\ALL options to apply to current payload: `1`
 * In the result you will get the result obfuscated code. Copy and save the code
 * Set listener (ex. multi/handler), download the exe on the target machine and execute
+
+## Tips
+
+* See the process of antivirus with `ps auxww`.  Sometimes you can see that the antivirus exclude some directory ...&#x20;
+  * `clamscan -r --exclude-dir=/test /` . Upload the file in `/test`.
