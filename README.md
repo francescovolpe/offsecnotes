@@ -36,7 +36,7 @@ Personal collection of continuously updated offensive security notes.
 IV - **MISCELLANEOUS**
 
 * [password-cracking.md](iv-miscellaneous/password-cracking.md "mention")
-* [tools.md](iv-miscellaneous/tools.md "mention")
+* [burp-suite.md](iv-miscellaneous/burp-suite.md "mention")
 * [av-evasion.md](iv-miscellaneous/av-evasion.md "mention")
 * [ctf-methodology.md](iv-miscellaneous/ctf-methodology.md "mention")
 
