@@ -24,7 +24,7 @@ Personal collection of continuously updated offensive security notes.
 **II - WAPT**
 
 * [vulnerabilities](ii-wapt/vulnerabilities/ "mention")
-* [notes](ii-wapt/notes/ "mention")
+* [web-security](ii-wapt/web-security/ "mention")
 * [automation.md](ii-wapt/automation.md "mention")
 
 **III - MAPT**
