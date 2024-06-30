@@ -16,30 +16,30 @@ Personal collection of continuously updated offensive security notes.
 
 **I - NPT**
 
-* [information-gathering.md](i-npt/information-gathering.md "mention")
-* [network-services-exploitation.md](i-npt/network-services-exploitation.md "mention")
-* [post-exploitation.md](i-npt/post-exploitation.md "mention")
-* [privilege-escalation.md](i-npt/privilege-escalation.md "mention")
+* [Information Gathering](i-npt/information-gathering.md "mention")
+* [Network Services Exploitation](i-npt/network-services-exploitation.md "mention")
+* [Post-Exploitation & Commands](i-npt/post-exploitation.md "mention")
+* [Privilege Escalation](i-npt/privilege-escalation.md "mention")
 
 **II - WAPT**
 
-* [vulnerabilities](ii-wapt/vulnerabilities/ "mention")
-* [web-security](ii-wapt/web-security/ "mention")
-* [automation.md](ii-wapt/automation.md "mention")
+* [Vulnerabilities](ii-wapt/vulnerabilities/ "mention")
+* [Web Security](ii-wapt/web-security/ "mention")
+* [Automation](ii-wapt/automation.md "mention")
 
 **III - MAPT**
 
-* [apk-building.md](iii-mapt/apk-building.md "mention")
-* [reversing.md](iii-mapt/reversing.md "mention")
-* [android-testing.md](iii-mapt/android-testing.md "mention")
+* [APK Building](iii-mapt/apk-building.md "mention")
+* [Reversing](iii-mapt/reversing.md "mention")
+* [Android Testing](iii-mapt/android-testing.md "mention")
 
 IV - **MISCELLANEOUS**
 
-* [password-cracking.md](iv-miscellaneous/password-cracking.md "mention")
-* [burp-suite.md](iv-miscellaneous/burp-suite.md "mention")
-* [av-evasion.md](iv-miscellaneous/av-evasion.md "mention")
-* [ctf-methodology.md](iv-miscellaneous/ctf-methodology.md "mention")
+* [Password Cracking](iv-miscellaneous/password-cracking.md "mention")
+* [Burp Suite](iv-miscellaneous/burp-suite.md "mention")
+* [AV Evasion](iv-miscellaneous/av-evasion.md "mention")
+* [CTF Methodology](iv-miscellaneous/ctf-methodology.md "mention")
 
-[uncategorized.md](uncategorized.md "mention")
+[Uncategorized](uncategorized.md "mention")
 
-[resources.md](resources.md "mention")
+[Resources](resources.md "mention")
