@@ -4,7 +4,7 @@
 
 ## I - NPT
 
-* [Information Gathering](i-npt/1-information-gathering.md)
+* [Information Gathering](i-npt/information-gathering.md)
 * [Network Services Exploitation](i-npt/2-network-services-exploitation.md)
 * [Post-Exploitation & Commands](i-npt/3-post-exploitation.md)
 * [Privilege Escalation](i-npt/4-privilege-escalation.md)
