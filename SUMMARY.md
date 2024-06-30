@@ -50,7 +50,7 @@
 
 * [Password Cracking](iv-miscellaneous/password-cracking.md)
 * [Burp Suite](iv-miscellaneous/burp-suite.md)
-* [Antivirus Evasion](iv-miscellaneous/av-evasion.md)
+* [AV Evasion](iv-miscellaneous/av-evasion.md)
 * [CTF Methodology](iv-miscellaneous/ctf-methodology.md)
 
 ***
