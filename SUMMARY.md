@@ -55,5 +55,5 @@
 
 ***
 
-* [Uncategorized](i-penetration-test/other.md)
+* [Uncategorized](uncategorized.md)
 * [Resources](resources.md)
