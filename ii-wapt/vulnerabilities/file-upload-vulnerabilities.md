@@ -88,6 +88,11 @@ Content-Length: 49
 * Web servers often use the filename field in `multipart/form-data` requests to determine the name and location where the file should be saved.
   * **Change filename field combining path traversal**
 
+## FU without RCE
+
+* If you can upload HTML files or SVG images, you can potentially use tags to create stored XSS payloads
+* For example, you know that the server parses XML-based files, such as Microsoft Office .doc or .xls files, this may be a potential vector for XXE injection attacks.
+
 ## File upload + race conditions
 
 * Some websites upload the file directly to the main filesystem and then remove it again if it doesn't pass validation. This kind of behavior is typical in websites that rely on anti-virus software and the like to check for malware.
@@ -101,17 +106,6 @@ Content-Length: 49
 * If the randomized directory name is generated using pseudo-random functions like PHP's `uniqid()`, it can potentially be brute-forced.
 * Try to extend the amount of time taken to process the file by uploading a larger file
 * If it is processed in chunks, you can potentially take advantage of this by creating a malicious file with the payload at the start, followed by a large number of arbitrary padding bytes
-
-## FU without RCE
-
-### Malicious client-side scripts
-
-* If you can upload HTML files or SVG images, you can potentially use tags to create stored XSS payloads
-* Note that due to SOP restrictions, these will only work if the uploaded file is served from the same origin to which you upload it.
-
-### Vulnerabilities in the parsing of uploaded files
-
-* For example, you know that the server parses XML-based files, such as Microsoft Office .doc or .xls files, this may be a potential vector for XXE injection attacks.
 
 ## Prevent file upload vulnerabilities
 
