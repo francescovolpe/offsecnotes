@@ -6,7 +6,7 @@ Servers typically won't execute files unless they have been configured to do so.
 
 ## Flawed validation of file uploads
 
-### **Flawed file type validation**
+### **Content-Type**
 
 <details>
 
@@ -16,7 +16,7 @@ When we upload binary files (like png) the content type multipart/form-data is p
 
 </details>
 
-* **Change Content-Type to an allow MIME type.** Ex. `image/jpeg`
+* Change Content-Type to an allow MIME type. Ex. `image/jpeg`
 
 ### Blacklisted extensions
 
@@ -32,7 +32,7 @@ When we upload binary files (like png) the content type multipart/form-data is p
   * exploit.p.phphp
   * Others..
 
-### Flawed validation of the file's contents
+### File content validation
 
 * More secure servers try to verify that the contents of the file actually match what is expected
   * Ex 1: verify certain intrinsic properties of an image, such as its dimensions
@@ -61,7 +61,7 @@ Payload example:
   * `exiftool -Comment="<?php echo 'START ' . file_get_contents('/etc/passwd') . ' END'; ?>" <YOUR-INPUT-IMAGE>.jpg -o polyglot.php`
     * This works if you can upload a php extension file. This works why you have a real image file (that bypass rescritions) but when you open the image it's executed as php script.
 
-## Overriding the server configuration
+## Overriding server configuration
 
 * Many servers also allow developers to create special configuration files within individual directories in order to override or add to one or more of the global settings.
 * Apache servers -> `.htaccess`
@@ -82,13 +82,13 @@ Content-Length: 49
 <?php echo file_get_contents('/path/to/file'); ?>
 ```
 
-## **Preventing file execution in user-accessible directories**
+## **FU + PT**
 
 * One defence: stop the server from executing any scripts that do slip through the net
 * Web servers often use the filename field in `multipart/form-data` requests to determine the name and location where the file should be saved.
   * **Change filename field combining path traversal**
 
-## Exploiting file upload race conditions
+## File upload + race conditions
 
 * Some websites upload the file directly to the main filesystem and then remove it again if it doesn't pass validation. This kind of behavior is typical in websites that rely on anti-virus software and the like to check for malware.
 * For the short time that the file exists on the server, the attacker can potentially still execute it.
@@ -102,14 +102,14 @@ Content-Length: 49
 * Try to extend the amount of time taken to process the file by uploading a larger file
 * If it is processed in chunks, you can potentially take advantage of this by creating a malicious file with the payload at the start, followed by a large number of arbitrary padding bytes
 
-## Exploiting file upload vulnerabilities without RCE
+## FU without RCE
 
-### Uploading malicious client-side scripts
+### Malicious client-side scripts
 
 * If you can upload HTML files or SVG images, you can potentially use tags to create stored XSS payloads
 * Note that due to SOP restrictions, these will only work if the uploaded file is served from the same origin to which you upload it.
 
-### Exploiting vulnerabilities in the parsing of uploaded files
+### Vulnerabilities in the parsing of uploaded files
 
 * For example, you know that the server parses XML-based files, such as Microsoft Office .doc or .xls files, this may be a potential vector for XXE injection attacks.
 
