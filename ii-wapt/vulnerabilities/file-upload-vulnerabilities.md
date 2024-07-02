@@ -93,7 +93,7 @@ Content-Length: 49
 * If you can upload HTML files or SVG images, you can potentially use tags to create stored XSS payloads
 * For example, you know that the server parses XML-based files, such as Microsoft Office .doc or .xls files, this may be a potential vector for XXE injection attacks.
 
-## File upload + race conditions
+## FU + Race Conditions
 
 * Some websites upload the file directly to the main filesystem and then remove it again if it doesn't pass validation. This kind of behavior is typical in websites that rely on anti-virus software and the like to check for malware.
 * For the short time that the file exists on the server, the attacker can potentially still execute it.
