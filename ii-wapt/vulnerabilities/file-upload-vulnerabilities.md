@@ -4,7 +4,7 @@
 
 Servers typically won't execute files unless they have been configured to do so. In some cases the contents of the file may still be served as plain text
 
-## Flawed validation of file uploads
+## Flawed validation of FU
 
 ### **Content-Type**
 
