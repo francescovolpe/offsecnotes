@@ -1,4 +1,4 @@
-# File upload vulnerabilities
+# File upload
 
 ## General info
 
@@ -6,22 +6,37 @@ Servers typically won't execute files unless they have been configured to do so.
 
 ## Exploiting flawed validation of file uploads
 
-### Flawed file type validation
+**Flawed file type validation**
+
+<details>
+
+<summary>multipart/form-data</summary>
 
 When we upload binary files (like png) the content type multipart/form-data is preferred. The message body is split into separate parts for each of the form's inputs. Each part contains a `Content-Disposition` header and may also contain their own `Content-Type` header which tells the server the MIME type of the data that was submitted using this input
 
-* Change Content-Type to an allow MIME type. Ex. `image/jpeg`
+</details>
 
-### Preventing file execution in user-accessible directories
+* **Change Content-Type to an allow MIME type.** Ex. `image/jpeg`
+
+**Preventing file execution in user-accessible directories**
 
 * One defence: stop the server from executing any scripts that do slip through the net
 * Web servers often use the filename field in `multipart/form-data` requests to determine the name and location where the file should be saved.
-  * Change filename field combining path traversal
+  * **Change filename field combining path traversal**
 
-### Insufficient blacklisting of dangerous file types
+**Insufficient blacklisting of dangerous file types**
 
 * Change extensions
   * `.php5` etc.
+* Obfuscating file extensions
+  * Case sensitive `exploit.pHp`
+  * `exploit.php.jpg`
+  * `exploit.php.`
+  * `exploit%2Ephp`
+  * `exploit.asp;.jpg`
+  * `exploit.asp%00.jpg`
+  * exploit.p.phphp
+  * Others..
 
 ### Overriding the server configuration
 
@@ -30,17 +45,6 @@ When we upload binary files (like png) the content type multipart/form-data is p
 * Web servers use these kinds of configuration files when present, but you're not normally allowed to access them using HTTP requests
 * if the file extension is blacklisted, you may be able to trick the server into mapping an arbitrary, custom file extension to an executable MIME type
   * Example: `AddType application/x-httpd-php .<EXTENSION>`
-
-### Obfuscating file extensions
-
-* Case sensitive `exploit.pHp`
-* `exploit.php.jpg`
-* `exploit.php.`
-* `exploit%2Ephp`
-* `exploit.asp;.jpg`
-* `exploit.asp%00.jpg`
-* exploit.p.phphp
-* Others..
 
 ### Flawed validation of the file's contents
 
