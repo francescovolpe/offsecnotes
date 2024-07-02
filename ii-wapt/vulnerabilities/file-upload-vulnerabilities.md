@@ -29,7 +29,7 @@ When we upload binary files (like png) the content type multipart/form-data is p
   * `exploit%2Ephp`
   * `exploit.asp;.jpg`
   * `exploit.asp%00.jpg`
-  * exploit.p.phphp
+  * `exploit.p.phphp`
   * Others..
 
 ### File content validation
