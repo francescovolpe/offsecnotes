@@ -1,4 +1,4 @@
-# Information disclosure vulnerabilities
+# Information disclosure
 
 ## Fuzzing
 
@@ -29,4 +29,3 @@
   * Example HTTP TRACE. Occasionally could leads to information disclosure, such as the name of internal authentication headers that may be appended to requests by reverse proxies.
 * Version control history
   * Browsing to `/.git`
-  * TO DO...
