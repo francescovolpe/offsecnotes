@@ -8,7 +8,7 @@
   * Supported HTTP methods and media formats.
   * Rate limits and authentication mechanisms.
 
-## Discovering API documentation
+## API documentation
 
 * Endpoints that may refer to API documentation:
   * `/api`, `/swagger/index.html`, `/openapi.json`
