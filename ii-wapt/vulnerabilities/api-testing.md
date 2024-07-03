@@ -1,4 +1,4 @@
-# API testing
+# API
 
 ## API Recon
 
@@ -15,19 +15,19 @@
 * If you identify the resource endpoint `/api/swagger/v1/users/123` use a list of common paths to directly fuzz for documentation
   * `/api/swagger/v1`, `/api/swagger`, `/api`
 
-## Identifying API endpoints
+## API endpoints
 
 * Browsing application
   * (even if you have access to documentation, as it may be inaccurate)
 * Look out for JavaScript files (These can contain references to API endpoints)
   * Suggestion: JS Link Finder BApp
 
-## Identifying supported HTTP methods
+## Supported HTTP methods
 
 * Test all potential methods when you're investigating API endpoints
   * Use HTTP verbs list in Burp Intruder
 
-## Identifying supported content types
+## Supported content types
 
 Changing the content type may enable you to
 
@@ -37,13 +37,13 @@ Changing the content type may enable you to
   * To change the content type, modify the Content-Type header, then reformat the request body accordingly
   * Suggestion: Content type converter BApp automatically convert data submitted within requests between XML and JSON
 
-## Fuzzing to find hidden endpoints
+## Hidden endpoints
 
 * `PUT /api/user/update`
   * Fuzz the `/update` with a list of other common functions, such as `delete` and `add`
   * Use wordlists based on common API naming
 
-## Finding hidden parameters
+## Hidden parameters
 
 * Wordlists
   * Burp Intruder, Param miner BApp
