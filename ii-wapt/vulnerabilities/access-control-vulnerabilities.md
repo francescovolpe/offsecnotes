@@ -1,4 +1,4 @@
-# BAC (Broken access control)
+# BAC
 
 ## General info
 
@@ -13,7 +13,7 @@ Access control is the application of constraints on who or what is authorized to
   * Less predictable URL -> maybe the URL might be disclosed in JavaScript that constructs the user interface based on the user's role
 * If you have an admin account you can try to repet the request with a noraml user cookie. (autorize burp extension can be useful)
 
-## Parameter-based access control methods
+## Parameter-based
 
 * Some applications determine the user's access rights or role at login, and then store this information in a user-controllable location. This could be:
   * A hidden field
@@ -21,6 +21,18 @@ Access control is the application of constraints on who or what is authorized to
   * A preset query string parameter
   * `https://insecure-website.com/login/home.jsp?admin=true`
   * `https://insecure-website.com/login/home.jsp?role=1`
+
+## Referer-based
+
+* You can't load `/admin` but
+  * `/admin/deleteUser` inspects the Referer header (from /admin)
+    * Change it to make request to this endpoint
+  * You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action
+
+## Location-based
+
+* Geographical location
+  * Web proxies, VPNs, or manipulation of client-side geolocation mechanisms
 
 ## Platform misconfiguration
 
@@ -52,18 +64,6 @@ Imagine a website where access controls are correctly applied to the first and s
 * Load the form that contains details for a specific user.
 * Submit the changes.
 * Review the changes and confirm.
-
-## Referer-based access control
-
-* You can't load `/admin` but
-  * `/admin/deleteUser` inspects the Referer header (from /admin)
-    * Change it to make request to this endpoint
-  * You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action
-
-## Location-based access control
-
-* Geographical location
-  * Web proxies, VPNs, or manipulation of client-side geolocation mechanisms
 
 ## Prevention
 
