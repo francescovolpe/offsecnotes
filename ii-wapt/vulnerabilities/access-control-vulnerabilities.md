@@ -18,7 +18,7 @@ https://insecure-website.com/admin
 https://insecure-website.com/administrator-panel-yb556
 ```
 
-* If you have an admin account, repet the request with a normal user cookie. (autorize burp extension can be useful)
+If you have an admin account, repet the request with a normal user cookie. (autorize burp extension can be useful)
 
 ## Parameter-based
 
