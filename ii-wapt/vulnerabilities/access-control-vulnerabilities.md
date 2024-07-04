@@ -28,10 +28,7 @@ https://insecure-website.com/administrator-panel-yb556
 ## Referer-based
 
 ```markdown
-## Request
-GET /admin
-## Response
-HTTP/1.1 401 Unauthorized
+# GET /admin --> HTTP/1.1 401 Unauthorized
 
 # Try to request a subpage and set Referer
 GET /admin/deleteUser
