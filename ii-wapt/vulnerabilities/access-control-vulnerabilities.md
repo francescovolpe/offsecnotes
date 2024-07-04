@@ -69,10 +69,7 @@ X-Original-URL: /donotexist1
 ## URL-matching discrepancies
 
 ```markdown
-# Original endpoint
 /admin/deleteUser
-
-# Test
 /ADMIN/DELETEUSER
 /admin/deleteUser.anything
 ```
