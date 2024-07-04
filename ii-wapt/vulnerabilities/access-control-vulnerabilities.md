@@ -33,8 +33,8 @@ GET /admin
 ## Response
 HTTP/1.1 401 Unauthorized
 
-# Try this
-GET /admin
+# Try to request a subpage and set Referer
+GET /admin/deleteUser
 [...]
 Referer: https://vulnerable-website.com/admin 
 ```
