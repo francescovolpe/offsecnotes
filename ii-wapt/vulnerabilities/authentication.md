@@ -40,7 +40,7 @@ In HTTP basic authentication, the client receives an authentication token from t
 
 `Authorization: Basic base64(username:password)`
 
-## Two-factor authentication <a href="#bypassing-two-factor-authentication" id="bypassing-two-factor-authentication"></a>
+## 2FA <a href="#bypassing-two-factor-authentication" id="bypassing-two-factor-authentication"></a>
 
 * Brute-force
 * Bypassing two-factor authentication
@@ -69,8 +69,6 @@ Cookie: account=victim-user
 verification-code=123456
 ```
 
-
-
 ## Remember me option
 
 * Some websites generate this cookie based on a predictable concatenation of static values, such as the username and a timestamp (or maybe even the password).
@@ -78,8 +76,6 @@ verification-code=123456
   * Sometimes this cookie is hashed or encoded (ex. base64)
   * Now try to brute-force other users' cookies to gain access to their accounts
 * If the website uses salt it becomes much more complicated...
-
-
 
 ## Password reset
 
@@ -101,8 +97,6 @@ username=<victim>&new-password-1=<whatever>&new-password-2=<whatever>&forgot-pas
 **Resetting passwords using a URL (dynamic token)**
 
 Steal another user's token and use it change their password
-
-
 
 ## Change password
 
