@@ -9,7 +9,9 @@ Access control is the application of constraints on who or what is authorized to
 ```markdown
 # Direct access
 https://insecure-website.com/admin
+```
 
+```markdown
 # Less predictable URL -> maybe the URL is in JS constructing the user UI
 https://insecure-website.com/administrator-panel-yb556
 ```
@@ -45,14 +47,15 @@ Referer: https://vulnerable-website.com/admin
 
 ## Platform misconfiguration
 
+* Try another HTTP method
+
 ```markdown
-# Try another HTTP method
 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH, TEST
 ```
 
-```markdown
-# Override the URL in the original request [X-Original-URL , X-Rewrite-URL]
-# If it's not found it works
+* Override the URL in the original request \[X-Original-URL , X-Rewrite-URL]. If it's not found it works
+
+```
 Get /
 X-Original-URL: /donotexist1
 ```
@@ -66,15 +69,15 @@ X-Original-URL: /donotexist1
 # Test
 /ADMIN/DELETEUSER
 /admin/deleteUser.anything
-
-# There are many other techniques: search on google or hacktricks [403 & 401 Bypasses]
-# https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses
 ```
+
+There are many other techniques: search on google or hacktricks \[403 & 401 Bypasses]. https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses
 
 ## IDOR
 
+Try other ID / Brute force
+
 ```markdown
-# Try other ID / Brute force
 https://insecure-website.com/myaccount?id=123
 ```
 
