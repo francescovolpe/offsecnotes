@@ -58,7 +58,7 @@ Referer: https://vulnerable-website.com/admin
 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH, TEST
 ```
 
-* Override the URL in the original request \[X-Original-URL , X-Rewrite-URL]. If it's not found it works
+* Override the URL in the original request \[`X-Original-URL` , `X-Rewrite-URL`]. If it's not found it works
 
 ```markdown
 Get /
