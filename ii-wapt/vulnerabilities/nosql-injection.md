@@ -1,17 +1,23 @@
 # NoSQL injection
 
-## NoSQL databases
+<details>
+
+<summary>Introduction to NoSQL databases</summary>
+
+**NoSQL databases**
 
 * They are designed to handle large volumes of unstructured or semi-structured data.
   * benefits in terms of scalability, flexibility, and performance
 * Like SQL databases, users interact with data in NoSQL databases using queries but many NoSQL databases use a wide range of query languages instead of a universal standard like SQL (ex. JSON, XML)
 
-### NoSQL database models <a href="#nosql-database-models" id="nosql-database-models"></a>
+**NoSQL database models**
 
 * Document stores - These store data in flexible, semi-structured documents. They typically use formats such as JSON, BSON, and XML, and are queried in an API or query language. Examples include MongoDB and Couchbase.
 * Key-value stores - These store data in a key-value format. Each data field is associated with a unique key string. Values are retrieved based on the unique key. Examples include Redis and Amazon DynamoDB.
 * Wide-column stores - These organize related data into flexible column families rather than traditional rows. Examples include Apache Cassandra and Apache HBase.
 * Graph databases - These use nodes to store data entities, and edges to store relationships between entities. Examples include Neo4j and Amazon Neptune.
+
+</details>
 
 ### Types of NoSQL injection <a href="#types-of-nosql-injection" id="types-of-nosql-injection"></a>
 
