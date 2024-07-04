@@ -6,13 +6,13 @@ Access control is the application of constraints on who or what is authorized to
 
 ## Unprotected functionality
 
-Direct access
+* Direct access
 
 ```markdown
 https://insecure-website.com/admin
 ```
 
-Less predictable URL -> maybe the URL is in JS constructing the user UI
+* Less predictable URL -> maybe the URL is in JS constructing the user UI
 
 ```
 https://insecure-website.com/administrator-panel-yb556
@@ -22,12 +22,13 @@ https://insecure-website.com/administrator-panel-yb556
 
 ## Parameter-based
 
-* Some applications determine the user's access rights or role at login, and then store this information in a user-controllable location. This could be:
-  * A hidden field
-  * A cookie
-  * A preset query string parameter
-  * `https://insecure-website.com/login/home.jsp?admin=true`
-  * `https://insecure-website.com/login/home.jsp?role=1`
+Some applications determine the user's access rights or role at login, and then store this information in a user-controllable location. This could be:
+
+* A hidden field
+* A cookie
+* A preset query string parameter
+* `https://insecure-website.com/login/home.jsp?admin=true`
+* `https://insecure-website.com/login/home.jsp?role=1`
 
 ## Referer-based
 
@@ -47,8 +48,9 @@ Referer: https://vulnerable-website.com/admin
 
 ## Location-based
 
-* Geographical location
-  * Web proxies, VPNs, or manipulation of client-side geolocation mechanisms
+Geographical location
+
+* Web proxies, VPNs, or manipulation of client-side geolocation mechanisms
 
 ## Platform misconfiguration
 
