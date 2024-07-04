@@ -6,13 +6,15 @@ Access control is the application of constraints on who or what is authorized to
 
 ## Unprotected functionality
 
+Direct access
+
 ```markdown
-# Direct access
 https://insecure-website.com/admin
 ```
 
-```markdown
-# Less predictable URL -> maybe the URL is in JS constructing the user UI
+Less predictable URL -> maybe the URL is in JS constructing the user UI
+
+```
 https://insecure-website.com/administrator-panel-yb556
 ```
 
@@ -29,10 +31,13 @@ https://insecure-website.com/administrator-panel-yb556
 
 ## Referer-based
 
-```markdown
-# GET /admin --> HTTP/1.1 401 Unauthorized
+```
+GET /admin --> HTTP/1.1 401 Unauthorized
+```
 
-# Try to request a subpage and set Referer
+Try to request a subpage and set Referer
+
+```
 GET /admin/deleteUser
 [...]
 Referer: https://vulnerable-website.com/admin 
@@ -55,8 +60,9 @@ GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH, TEST
 
 * Override the URL in the original request \[X-Original-URL , X-Rewrite-URL]. If it's not found it works
 
-```
+```markdown
 Get /
+[...]
 X-Original-URL: /donotexist1
 ```
 
