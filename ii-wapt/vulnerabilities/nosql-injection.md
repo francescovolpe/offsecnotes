@@ -138,8 +138,7 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 * Add `$where` operator as an additional parameter. Send one true request and one false request.
   * `{"username":"wiener","password":"peter", "$where":"0"}`
   * `{"username":"wiener","password":"peter", "$where":"1"}`
-  * Different responses? This may indicate that the JavaScript expression in the `$where` clause is being evaluated\
-
+  * Different responses? This may indicate that the JavaScript expression in the `$where` clause is being evaluated
 
 **INJECT OPERATOR (regex)**
 
