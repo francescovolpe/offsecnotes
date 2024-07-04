@@ -73,14 +73,29 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 ## NoSQL operator injection
 
-* Examples of MongoDB query operators
-  * `$where` - Matches documents that satisfy a JavaScript expression.
-  * `$ne` - Matches all values that are not equal to a specified value.
-  * `$in` - Matches all of the values specified in an array.
-  * `$regex` - Selects documents where values match a specified regular expression.
-* MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/reference/operator/query/](https://www.mongodb.com/docs/manual/reference/operator/query/)
+<details>
+
+<summary>Examples of MongoDB query operators</summary>
+
+* `$where` - Matches documents that satisfy a JavaScript expression.
+
+<!---->
+
+* `$ne` - Matches all values that are not equal to a specified value.
+
+<!---->
+
+* `$in` - Matches all of the values specified in an array.
+
+<!---->
+
+* `$regex` - Selects documents where values match a specified regular expression.
 
 
+
+MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/reference/operator/query/](https://www.mongodb.com/docs/manual/reference/operator/query/)
+
+</details>
 
 * JSON example:
   * `{"username":"wiener"}` -> `{"username":{"$ne":"invalid"}}`
@@ -94,8 +109,6 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
   2. Change the `Content-Type` header to `application/json`.
   3. Add JSON to the message body.
   4. Inject query operators in the JSON.
-
-
 
 ### **Testing**
 
@@ -209,8 +222,6 @@ db.collection.find({ "$where": "Object.keys(this)[0].match('^.{0}a.*')" })
 ```
 
 </details>
-
-
 
 ## Timing based injection
 
