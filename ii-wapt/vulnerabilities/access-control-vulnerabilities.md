@@ -48,7 +48,9 @@ Referer: https://vulnerable-website.com/admin
 ```markdown
 # Try another HTTP method
 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH, TEST
+```
 
+```markdown
 # Override the URL in the original request [X-Original-URL , X-Rewrite-URL]
 # If it's not found it works
 Get /
