@@ -6,12 +6,15 @@ Access control is the application of constraints on who or what is authorized to
 
 ## Unprotected functionality
 
-* `https://insecure-website.com/admin`
-  * This might be accessible by any user, not only administrative users
-    * \-> Brute-force etc.
-* `https://insecure-website.com/administrator-panel-yb556`
-  * Less predictable URL -> maybe the URL might be disclosed in JavaScript that constructs the user interface based on the user's role
-* If you have an admin account you can try to repet the request with a noraml user cookie. (autorize burp extension can be useful)
+```markdown
+# Direct access
+https://insecure-website.com/admin
+
+# Less predictable URL -> maybe the URL is in JS constructing the user UI
+https://insecure-website.com/administrator-panel-yb556
+```
+
+* If you have an admin account you can try to repet the request with a normal user cookie. (autorize burp extension can be useful)
 
 ## Parameter-based
 
@@ -24,10 +27,19 @@ Access control is the application of constraints on who or what is authorized to
 
 ## Referer-based
 
-* You can't load `/admin` but
-  * `/admin/deleteUser` inspects the Referer header (from /admin)
-    * Change it to make request to this endpoint
-  * You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action
+```markdown
+## Request
+GET /admin
+## Response
+HTTP/1.1 401 Unauthorized
+
+# Try this
+GET /admin
+[...]
+Referer: https://vulnerable-website.com/admin 
+```
+
+* You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action.
 
 ## Location-based
 
@@ -36,26 +48,36 @@ Access control is the application of constraints on who or what is authorized to
 
 ## Platform misconfiguration
 
-* Try another HTTP method
-* Some application frameworks support various non-standard HTTP headers to override the URL in the original request, such as `X-Original-URL` and `X-Rewrite-URL`
-  * `Get /` (you can receive a response because you can do the request) but the server will reply with the URL in the X-Original-URL / X-Rewrite-URL
-  * In general try to send `GET /` and `X-Original-URL: /donotexist1` -> if it's not found it works
-* There are many other headers that can be set to localhost. Search on [hacktricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses)
+```markdown
+# Try another HTTP method
+GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH, TEST
+
+# Override the URL in the original request [X-Original-URL , X-Rewrite-URL]
+# If it's not found it works
+Get /
+X-Original-URL: /donotexist1
+```
 
 ## URL-matching discrepancies
 
-* `/ADMIN/DELETEUSER` instead `/admin/deleteUser`
-* `/admin/deleteUser.anything` instead `/admin/deleteUser`
-* Again [hacktricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses)
+```markdown
+# Original endpoint
+/admin/deleteUser
 
-## Other
+# Test
+/ADMIN/DELETEUSER
+/admin/deleteUser.anything
 
-* `https://insecure-website.com/myaccount?id=123`
-  * Change id user (IDOR)
-* Application might use globally unique identifiers (GUID) to identify users
-  * However, the GUIDs belonging to other users might be disclosed elsewhere in the application where users are referenced, such as user messages or reviews.
-* An application does detect when the user is not permitted to access the resource and returns a redirect to the login page
-  * The response containing the redirect might still include some sensitive data belonging to the targeted user
+# There are many other techniques: search on google or hacktricks [403 & 401 Bypasses]
+# https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses
+```
+
+## IDOR
+
+```markdown
+# Try other ID / Brute force
+https://insecure-website.com/myaccount?id=123
+```
 
 ## Access control vulnerabilities in multi-step processes
 
@@ -64,6 +86,16 @@ Imagine a website where access controls are correctly applied to the first and s
 * Load the form that contains details for a specific user.
 * Submit the changes.
 * Review the changes and confirm.
+
+## TIPS
+
+*   Application might use globally unique identifiers (GUID) to identify users
+
+    * However, the GUIDs belonging to other users might be disclosed elsewhere in the application where users are referenced, such as user messages or reviews.
+
+
+* An application does detect when the user is not permitted to access the resource and returns a redirect to the login page
+  * The response containing the redirect might still include some sensitive data belonging to the targeted user
 
 ## Prevention
 
