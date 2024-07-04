@@ -96,11 +96,3 @@ Imagine a website where access controls are correctly applied to the first and s
 
 * An application does detect when the user is not permitted to access the resource and returns a redirect to the login page
   * The response containing the redirect might still include some sensitive data belonging to the targeted user
-
-## Prevention
-
-* Never rely on obfuscation alone for access control.
-* Unless a resource is intended to be publicly accessible, deny access by default.
-* Wherever possible, use a single application-wide mechanism for enforcing access controls.
-* At the code level, make it mandatory for developers to declare the access that is allowed for each resource, and deny access by default.
-* Thoroughly audit and test access controls to ensure they work as designed.
