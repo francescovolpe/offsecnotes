@@ -76,7 +76,7 @@
 
 Note: This technique might not work with multiline files.
 
-## Finding hidden attack surface for XXE injection
+## Hidden attack surface
 
 * **First case** - Requests that contain data in XML format
 * **Second case -** Requests that do not contain any XML
