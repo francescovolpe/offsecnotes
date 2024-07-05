@@ -24,6 +24,7 @@
 * Note: to systematically test for XXE, test each data node in the XML individually using your defined entity to see if it appears in the response.
 
 ```xml
+<! -- Original -->
 <?xml version="1.0" encoding="UTF-8"?>
 <stockCheck><productId>381</productId></stockCheck> 
 ```
