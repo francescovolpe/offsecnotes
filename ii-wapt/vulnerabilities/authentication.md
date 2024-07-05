@@ -35,7 +35,7 @@
   * Check if you can directly skip to "logged-in" pages. Sometimes the webapp doesn't check whether or not you completed the second step.
 * Flawed logic
 
-<pre class="language-http"><code class="lang-http"><strong># 1 step - Normal login with attacker account
+<pre><code><strong># 1 step - Normal login with attacker account
 </strong>POST /login-steps/first HTTP/1.1
 Host: vulnerable-website.com
 [...]
