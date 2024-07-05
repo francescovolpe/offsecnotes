@@ -99,5 +99,27 @@ Note: This technique might not work with multiline files.
     </svg>
     ```
   * This works if it's used image processing library & support SVG images & allow external entity
-* Via modified content type
-  * To do
+* Via modified content type (Some web app will tolerate other content types)
+
+Expected request
+
+```http
+POST /action HTTP/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 7
+
+foo=bar
+```
+
+Sumbit following request
+
+```http
+POST /action HTTP/1.0
+Content-Type: text/xml
+Content-Length: 52
+
+<?xml version="1.0" encoding="UTF-8"?><foo>bar</foo>
+```
+
+
+
