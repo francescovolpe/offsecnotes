@@ -109,4 +109,4 @@
 
 ## PrivEsc
 
-[Privilege escalation](https://github.com/francescovolpe/Cyber-Security-Notes/blob/main/Privilege%20Escalation.md)
+[privilege-escalation.md](../i-npt/privilege-escalation.md "mention")
