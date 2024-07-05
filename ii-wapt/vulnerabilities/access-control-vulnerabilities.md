@@ -38,9 +38,8 @@ GET /admin --> HTTP/1.1 401 Unauthorized
 
 Try to request a subpage and set Referer
 
-```
-GET /admin/deleteUser
-[...]
+```http
+GET /admin/deleteUser HTTP/1.0
 Referer: https://vulnerable-website.com/admin 
 ```
 
@@ -62,9 +61,8 @@ GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH, TEST
 
 * Override the URL in the original request \[`X-Original-URL` , `X-Rewrite-URL`]. If it's not found it works
 
-```markdown
-Get /
-[...]
+```http
+Get / HTTP/1.0
 X-Original-URL: /donotexist1
 ```
 
