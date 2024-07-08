@@ -4,13 +4,9 @@
 
 **SSRF attacks against the server itself**
 
-The normal access controls are bypassed because the request appears to originate from a trusted location
-
 * `api=http://localhost/admin`
 
 **SSRF attacks against other back-end systems**
-
-The application server is able to interact with other back-end systems that are not directly reachable by users
 
 * `api=http://192.168.0.68/admin`
 
@@ -47,8 +43,6 @@ It is more difficult to exploit because you will be able to exploit only well-kn
 * `https://expected-host.evil-host`
 * URL encode and URL double encode
 * Many other ways
-  * https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery/url-format-bypass
-  * https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Server%20Side%20Request%20Forgery/README.md
 
 ### Bypassing SSRF filters via open redirection
 
