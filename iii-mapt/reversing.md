@@ -79,7 +79,7 @@ apktool d <app_name>.apk
 
 # If you have errors when you assemble try this
 apktool -f -r <app_name>.apk
-# Note: This do not decode resouserse
+# Note: This do not decode resources
 ```
 
 **Assemble (Single apk)**
