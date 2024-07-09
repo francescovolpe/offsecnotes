@@ -1,8 +1,12 @@
 # Race conditions
 
-This happens when websites process requests concurrently without proper safeguards, leading to multiple threads accessing the same data simultaneously, causing unintended application behavior due to "collisions." The period of time during which a collision is possible is known as the "race window"
+<details>
 
-## Impact
+<summary>Introduction</summary>
+
+Race conditions occurs when websites process requests concurrently without proper safeguards, leading to multiple threads accessing the same data and causing unintended behavior due to "collisions." The timeframe for potential collisions is called the "race window."
+
+**Impact**
 
 * Redeeming a gift card multiple times
 * Rating a product multiple times
@@ -11,12 +15,37 @@ This happens when websites process requests concurrently without proper safeguar
 * Bypassing an anti-brute-force rate limit
 * Etc.
 
-## Detecting and exploiting limit overrun race conditions with Burp Repeater
+</details>
 
-* Even when sending requests simultaneously, uncontrollable external factors can influence the server's request processing timing and order, making it unpredictable.
-* Burp automatically adjusts the technique
-* Although triggering an exploit often requires just two requests, sending a substantial number of requests like this helps reduce internal latency, referred to as server-side jitter.
+## Detecting and exploiting
 
-## Other
+Even with simultaneous requests, external factors can unpredictably affect server processing. Burp adjusts techniques automatically.&#x20;
 
-To do ...
+Sending many requests helps reduce server-side jitter, even though only two are needed for exploits.
+
+**With Burp Repeater**
+
+1. Add requests in a group
+2. Send group in parallel
+
+**With Turbo Intruder**
+
+1. `Extensions` -> `Turbo Intruder` -> `Send to Turbo Intruder`
+2. Modify the request by replacing the value you want to brute force with `%s`.
+
+```python
+def queueRequests(target, wordlists):
+    engine = RequestEngine(endpoint=target.endpoint,
+                           concurrentConnections=1,
+                           engine=Engine.BURP2
+                           )
+
+    for password in open('/home/francesco/passwords.txt'):
+        engine.queue(target.req, password.rstrip(), gate='race1')
+    engine.openGate('race1')
+
+def handleResponse(req, interesting):
+    table.add(req)
+
+```
+
