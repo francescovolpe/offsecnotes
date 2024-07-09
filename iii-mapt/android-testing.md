@@ -1,12 +1,12 @@
 # Android testing
 
-## Identify compilers, packers, obfuscators, and other weird stuff
+## Identify compilers, packers, obfuscators
 
 ```sh
 apkid --scan-depth 0 -r <apk_filename>.apk
 ```
 
-## Static tests
+## Automatic Static Tests
 
 ```sh
 # https://github.com/mindedsecurity/semgrep-rules-android-security
