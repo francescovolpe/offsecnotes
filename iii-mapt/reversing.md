@@ -76,9 +76,13 @@ In this way you can read .smali code (so you don't need baksmali), AndroidManife
 
 ```sh
 apktool d <app_name>.apk
+
+# If you have errors when you assemble try this
+apktool -f -r <app_name>.apk
+# Note: This do not decode resouserse
 ```
 
-**Assemble**
+**Assemble (Single apk)**
 
 ```sh
 # Assemble (inside the folder of the disassembled apk)
@@ -87,7 +91,7 @@ apktool b .
 java -jar uber-apk-signer.jar -apk <app_name>.apk
 ```
 
-**Splitted APK**
+**Assemble (Splitted apk)**
 
 ```sh
 # Assemble (inside the folder of the disassembled apk)
