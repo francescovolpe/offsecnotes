@@ -2,20 +2,61 @@
 
 ### Identify compilers, packers, obfuscators, and other weird stuff
 
-* `apkid --scan-depth 0 -r <apk_filename>.apk`
+```sh
+apkid --scan-depth 0 -r <apk_filename>.apk
+```
 
 ### Static tests
 
-* `jadx -d target_src <apk_filename>.apk`
-* https://github.com/mindedsecurity/semgrep-rules-android-security
-* `semgrep -c <path>/rules/ <path>/target_src/sources`
+```sh
+# https://github.com/mindedsecurity/semgrep-rules-android-security
+
+# 1. Decompile apk
+jadx -d target_src <apk_filename>.apk
+# 2. Use semgrep
+semgrep -c <path>/rules/ <path>/target_src/sources
+```
 
 ## Testing
 
 ### SSL Pinning
 
-* Missing SSL Pinning
-* Bypass protection analyzing the code and/or with frida
+* **Missing SSL Pinning**
+* **Bypass with objection**
+
+```sh
+# 1. Get package
+adb shell pm list packages
+
+# 2. Objection 
+objection --gadget <com.package.app> explore --startup-command "android sslpinning disable"
+```
+
+* **Bypass with frida**
+
+```sh
+# 1. Get package
+adb shell pm list packages
+
+# 2. Frida
+frida -U --codeshare pcipolloni/universal-android-ssl-pinning-bypass-with-frida -f <com.package.app>
+```
+
+* **Replacing Hard-Coded Sha 256 Hash**
+
+```sh
+# Detection
+# 1. Decompile apk
+# 2. Open jadx-gui
+# 3. Search "sha256/"
+
+# Replace Burp Suite certificate hash
+# 4. Export Certificate in DER format from Burp
+# 5. Convert DER to PEM certificate
+openssl x509 -inform DER -in cacert.cer -out cacert.crt
+# 6. Get Hash
+openssl x509 -in cacert.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+```
 
 ### Root Detection
 
