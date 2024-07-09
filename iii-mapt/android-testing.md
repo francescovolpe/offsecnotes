@@ -1,12 +1,12 @@
 # Android testing
 
-### Identify compilers, packers, obfuscators, and other weird stuff
+## Identify compilers, packers, obfuscators, and other weird stuff
 
 ```sh
 apkid --scan-depth 0 -r <apk_filename>.apk
 ```
 
-### Static tests
+## Static tests
 
 ```sh
 # https://github.com/mindedsecurity/semgrep-rules-android-security
@@ -17,9 +17,7 @@ jadx -d target_src <apk_filename>.apk
 semgrep -c <path>/rules/ <path>/target_src/sources
 ```
 
-## Testing
-
-### SSL Pinning
+## SSL Pinning
 
 * **Missing SSL Pinning**
 * **Bypass with objection**
@@ -58,7 +56,7 @@ openssl x509 -inform DER -in cacert.cer -out cacert.crt
 openssl x509 -in cacert.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
 ```
 
-### Root Detection
+## Root Detection
 
 * Missing Root Detection
 * Check if is it bypassable or not using frida/Objection
@@ -68,16 +66,16 @@ openssl x509 -in cacert.crt -pubkey -noout | openssl pkey -pubin -outform der | 
   * `apkid --scan-depth 0 -r <apk_filename>.apk`
 * Bypass protection analyzing the code and/or with frida
 
-### Emulator Detection
+## Emulator Detection
 
 * Missing Emulator Detection
 * Bypass protection analyzing the code and/or with frida
 
-### Sensitive data in ADB Logcat Logs
+## Sensitive data in ADB Logcat Logs
 
 * `adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"`
 
-### Sensitive data/info stored in Local Storage
+## Sensitive data/info stored in Local Storage
 
 * `objection -g 'App Name' run env`
   * This will print out the locations of the applications Files, Caches and other directories
@@ -112,14 +110,14 @@ find . -iname \*.p12
 find . -iname \*.pkcs7
 ```
 
-### Sensitive data/info in Application Memory
+## Sensitive data/info in Application Memory
 
 1. `objection -g 'exampleapp' explore` Start objection
 2. `memory search <where_you_want> --string` to search a specific string or
    * `memory dump all appMemoryDump` to dump all
    * `strings appMemoryDump > appMemoryDump.txt`
 
-### Backup
+## Backup
 
 * Check `android:allowBackup="true"` in the Manifest.xml
 * To backup one application, with its apk
