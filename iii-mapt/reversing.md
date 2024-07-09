@@ -50,18 +50,51 @@
     const/16 v0, 42    //smali
     ```
 
+## Extract APK
 
+```bash
+# Prints all packages
+adb shell pm list packages
 
-## Apktool
+# Print the path to the .apk of the given installed package name
+# Note: There can be more apk
+adb shell pm path com.android.insecurebankv2
 
-Apktool is a tool for reverse engineering Android apps. It can decode (and disassemble) resources to **nearly** original form and **rebuild** them after making some modifications. (and other stuff)
+# Get apk(s)
+adb pull <path>
+```
 
-* `apktool d -o App/ <app_name>.apk`
-*   In this way you can read .smali code (so you don't need baksmali), AndroidManifest.xml, etc.
+## **Disassemble & Assemble**
 
-    * (NOTE: even if you can extract apk like it was a zip, you can't read file such as AndroidManifest.xml because it's compiled...)
+Apktool is a tool for reverse engineering Android apps. It can decode (and disassemble) resources to **nearly** original form and **rebuild** them after making some modifications. (and other stuff).
 
+In this way you can read .smali code (so you don't need baksmali), AndroidManifest.xml, etc.
 
+* NOTE: even if you can extract apk like it was a zip, you can't read file such as AndroidManifest.xml because it's compiled...)
+
+**Disassemble**
+
+```sh
+apktool d <app_name>.apk
+```
+
+**Assemble**
+
+```sh
+# Assemble (inside the folder of the disassembled apk)
+apktool b .
+# Sign
+java -jar uber-apk-signer.jar -apk <app_name>.apk
+```
+
+**Splitted APK**
+
+```sh
+# Assemble (inside the folder of the disassembled apk)
+java -jar APKEditor.jar m -i <path_splitted_apk> -o <merged.apk>
+# Sign
+java -jar uber-apk-signer.jar -a <merged.apk> --allowResign -o <merged_signed>
+```
 
 ## Jadx
 
