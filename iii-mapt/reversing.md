@@ -58,7 +58,7 @@ adb shell pm list packages
 
 # Print the path to the .apk of the given installed package name
 # Note: There can be more apk
-adb shell pm path com.android.insecurebankv2
+adb shell pm path <com.package.app>
 
 # Get apk(s)
 adb pull <path>
