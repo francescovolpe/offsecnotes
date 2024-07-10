@@ -1,26 +1,27 @@
 # API
 
-## API Recon
-
-* You need to find out as much information about the API as possible
-  * Discover API endpoint
-  * Input data the API processes (compulsory and optional parameters).
-  * Supported HTTP methods and media formats.
-  * Rate limits and authentication mechanisms.
-
 ## API documentation
 
 * Endpoints that may refer to API documentation:
-  * `/api`, `/swagger/index.html`, `/openapi.json`
+
+```
+/api
+/swagger/index.html
+/openapi.json
+```
+
 * If you identify the resource endpoint `/api/swagger/v1/users/123` use a list of common paths to directly fuzz for documentation
-  * `/api/swagger/v1`, `/api/swagger`, `/api`
+
+```
+/api/swagger/v1
+/api/swagger
+/api
+```
 
 ## API endpoints
 
-* Browsing application
-  * (even if you have access to documentation, as it may be inaccurate)
-* Look out for JavaScript files (These can contain references to API endpoints)
-  * Suggestion: JS Link Finder BApp
+* Browsing application (even if you have access to documentation, as it may be inaccurate)
+* Look out for JavaScript files (tip: JS Link Finder BApp)
 
 ## Supported HTTP methods
 
@@ -63,12 +64,3 @@ Changing the content type may enable you to
   * `{"username": "wiener","email": "wiener@example.com", "isAdmin": "foo",}`
   * If the application behaves differently, this may suggest that the invalid value impacts the query logic, but the valid value doesn't. This may indicate that the parameter can be successfully updated by the user. (Set it to true)
     * Note: We change isAdmin to "foo" because we want see if the user input is processed. If we get an error may indicate that the user input is being processed
-
-## Preventing vulnerabilities in APIs
-
-* Secure your documentation if you don't intend your API to be publicly accessible.
-* Ensure your documentation is kept up to date so that legitimate testers have full visibility of the API's attack surface.
-* Apply an allowlist of permitted HTTP methods.
-* Validate that the content type is expected for each request or response.
-* Use generic error messages to avoid giving away information that may be useful for an attacker.
-* Use protective measures on all versions of your API, not just the current production version. To prevent mass assignment vulnerabilities, allowlist the properties that can be updated by the user, and blocklist sensitive properties that shouldn't be updated by the user.

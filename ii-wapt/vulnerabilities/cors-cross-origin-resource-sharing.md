@@ -1,12 +1,25 @@
-# CORS (Cross-origin resource sharing)
+# CORS
 
-## What is the same-origin policy (SOP)?
+<details>
+
+<summary>Same-origin policy (SOP)</summary>
 
 * The same-origin policy restricts scripts on one origin from accessing data from another origin.
+
+<!---->
+
 * An origin consists of a URI scheme, domain and port number.
+
+<!---->
+
 * The same-origin policy controls the access that JavaScript code has to content that is loaded cross-domain. (There are various exceptions)
+
+<!---->
+
 * The SOP allows embedding of images via the `<img>` `<video>` `<script>`.
   * However, while these external resources can be loaded by the page, any JavaScript on the page won't be able to read the contents of these resources.
+
+</details>
 
 ## Cross-origin resource sharing
 

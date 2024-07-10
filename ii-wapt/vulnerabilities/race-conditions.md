@@ -46,7 +46,6 @@ def queueRequests(target, wordlists):
 
 def handleResponse(req, interesting):
     table.add(req)
-
 ```
 
 ## Multi-endpoint race windows <a href="#aligning-multi-endpoint-race-windows" id="aligning-multi-endpoint-race-windows"></a>

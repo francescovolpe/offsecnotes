@@ -12,11 +12,11 @@ It is a protocol used for querying databases that store an Internet resource's r
 **Manual**
 
 ```sh
-dig +short a zonetransfer.me      # list of ipv4 address
-dig +short mx zonetransfer.me     # list of email servers
-dig +short -x 192.246.126.3       # reverse lookups
-dig +short ns zonetransfer.me     # list of DNS servers for the domain
-dig axfr zonetransfer.me @nsztm1.digi.ninja. # get a copy of the zone from the primary server. (zone transfer attack)
+dig +short a zonetransfer.me      # List of ipv4 address
+dig +short mx zonetransfer.me     # List of email servers
+dig +short -x 192.246.126.3       # Reverse lookups
+dig +short ns zonetransfer.me     # List of DNS servers for the domain
+dig axfr zonetransfer.me @nsztm1.digi.ninja. # Get a copy of the zone from the primary server. (zone transfer attack)
 ```
 
 _NOTE: AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone._

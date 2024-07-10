@@ -1,10 +1,17 @@
-# CSRF (Cross-site request forgery)
+# CSRF
 
-## Impact
+<details>
+
+<summary>Impact</summary>
 
 * The attacker causes the victim user to carry out an action unintentionally
   * Change password, email, make a funds transfer
+
+<!---->
+
 * If the victim is a privileged user the attacker might be able to take full control of all the application's
+
+</details>
 
 ## Conditions
 

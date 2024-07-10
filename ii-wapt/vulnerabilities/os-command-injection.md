@@ -3,7 +3,7 @@
 ### Command injection
 
 * `& echo qwerty &`
-  * Placing & after the injected command is generally useful because it separates the injected command from whatever follows the injection point
+  * Placing `&` after the injected command is generally useful because it separates the injected command from whatever follows the injection point
 
 ### Blind OS command
 

@@ -1,15 +1,32 @@
 # Host header injection
 
-## Virtual hosting
+<details>
+
+<summary>Virtual hosting</summary>
 
 * Single web server hosts multiple websites or applications.
+
+<!---->
+
 * Slthough each of these distinct websites will have a different domain name, they all share a common IP address with the server.
+
+<!---->
+
 * Websites hosted in this way on a single server are known as "virtual hosts".
 
-## Routing traffic via an intermediary
+</details>
+
+<details>
+
+<summary>Routing traffic via an intermediary</summary>
 
 * Websites are hosted on distinct back-end servers, but all traffic between the client and servers is routed through an intermediary system.
+
+<!---->
+
 * This could be a simple load balancer or a reverse proxy server of some kind.
+
+</details>
 
 ## HTTP Host header
 
