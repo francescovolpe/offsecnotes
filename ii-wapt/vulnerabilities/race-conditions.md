@@ -49,3 +49,15 @@ def handleResponse(req, interesting):
 
 ```
 
+## Multi-endpoint race windows <a href="#aligning-multi-endpoint-race-windows" id="aligning-multi-endpoint-race-windows"></a>
+
+**Connection warming**
+
+to do
+
+**Abusing rate or resource limits**
+
+to do
+
+\
+\
