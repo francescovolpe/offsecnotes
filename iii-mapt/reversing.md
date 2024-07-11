@@ -78,7 +78,7 @@ In this way you can read .smali code (so you don't need baksmali), AndroidManife
 apktool d <app_name>.apk
 
 # If you have errors when you assemble try this
-apktool -f -r <app_name>.apk
+apktool d -f -r <app_name>.apk
 # Note: This do not decode resources
 ```
 
