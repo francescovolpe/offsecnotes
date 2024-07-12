@@ -37,6 +37,7 @@ objection --gadget <com.package.app> explore --startup-command "android sslpinni
 adb shell pm list packages
 
 # 2. Frida
+frida -U --codeshare akabe1/frida-multiple-unpinning -f <com.package.app>
 frida -U --codeshare pcipolloni/universal-android-ssl-pinning-bypass-with-frida -f <com.package.app>
 ```
 
@@ -58,10 +59,14 @@ openssl x509 -in cacert.crt -pubkey -noout | openssl pkey -pubin -outform der | 
 
 ## Root Detection
 
-* Missing Root Detection
-* Check if is it bypassable or not using frida/Objection
-  * `frida --codeshare dzonerzy/fridantiroot -f YOUR_BINARY`
-* Identify RASP
+* **Missing Root Detection**
+* **Bypass with frida**
+
+```sh
+frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
+```
+
+* **Identify RASP**
   * Analyze source code
   * `apkid --scan-depth 0 -r <apk_filename>.apk`
 * Bypass protection analyzing the code and/or with frida
@@ -73,13 +78,20 @@ openssl x509 -in cacert.crt -pubkey -noout | openssl pkey -pubin -outform der | 
 
 ## Sensitive data in ADB Logcat Logs
 
-* `adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"`
+```sh
+adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"
+```
 
-## Sensitive data/info stored in Local Storage
+## Sensitive data in Local Storage
 
-* `objection -g 'App Name' run env`
-  * This will print out the locations of the applications Files, Caches and other directories
-* `/data/data/<package_name>` Data app location folder
+```sh
+# Print out applications Files, Caches and other directories
+objection -g 'App Name' run env
+
+# Data app location folder
+/data/data/<package_name>
+```
+
 * Check for sensitive information/data store on Shared Preferences or not
 * Check if sensitive information/data is stored in the local storage database using strong encryption on or not
 
@@ -112,13 +124,23 @@ find . -iname \*.pkcs7
 
 ## Sensitive data/info in Application Memory
 
-1. `objection -g 'exampleapp' explore` Start objection
-2. `memory search <where_you_want> --string` to search a specific string or
-   * `memory dump all appMemoryDump` to dump all
-   * `strings appMemoryDump > appMemoryDump.txt`
+```sh
+# Start objection
+objection -g 'exampleapp' explore
+
+# Search a specific string
+memory search <where_you_want> --string
+
+# Dump all and then extract strings
+memory dump all appMemoryDump
+strings appMemoryDump > appMemoryDump.txt
+```
 
 ## Backup
 
 * Check `android:allowBackup="true"` in the Manifest.xml
 * To backup one application, with its apk
-  * `adb backup -apk <package_name> -f <backup_name>.adb`
+
+```sh
+adb backup -apk <package_name> -f <backup_name>.adb
+```

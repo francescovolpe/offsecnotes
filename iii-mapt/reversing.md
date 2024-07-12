@@ -100,11 +100,14 @@ java -jar APKEditor.jar m -i <path_splitted_apk> -o <merged.apk>
 java -jar uber-apk-signer.jar -a <merged.apk> --allowResign -o <merged_signed>
 ```
 
-## Jadx
+## Dex to Java
 
 Decompile to (near) source code. (Dex to Java).
 
-* `jadx -d App <app_name>.apk`
-* `jadx-gui`
-* decode `AndroidManifest.xml` and other resources from `resources.arsc`
-* deobfuscator included
+<pre class="language-sh"><code class="lang-sh"><strong># https://github.com/skylot/jadx
+</strong><strong>
+</strong># Open jadx-gui
+jadx-gui
+<strong># Decompile
+</strong>jadx -d App &#x3C;app_name>.apk
+</code></pre>
