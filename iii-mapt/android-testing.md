@@ -129,7 +129,7 @@ find . -iname \*.pkcs7
 objection -g 'exampleapp' explore
 
 # Search a specific string
-memory search <where_you_want> --string
+memory search <input_string> --string
 
 # Dump all and then extract strings
 memory dump all appMemoryDump
