@@ -1,9 +1,5 @@
 # APK Building
 
-All information contained here was extracted from the incredible work of Michael Zent: https://timeout.userpage.fu-berlin.de/apk-building-on-mobile/en/index.php
-
-
-
 ### Android Application Project <a href="#proj" id="proj"></a>
 
 Note that the directory names are conventional — they could be any name. Additionally, the contents of each directory could be spread across multiple folders.

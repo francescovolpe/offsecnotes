@@ -20,7 +20,7 @@ https://github.com/six2dez/OneListForAll
 ## Vulnerability Scanner
 
 ```sh
-nikto.pl -h http://example.com
+nikto -h http://example.com
 ```
 
 ## Automatic exploitation
