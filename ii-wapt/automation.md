@@ -13,9 +13,17 @@ feroxbuster -u https://example.com -x html,php,js,txt,pdf,json
 waybackurls https://example.com
 </code></pre>
 
-**Wordlists**
+### **Wordlists**
 
-https://github.com/six2dez/OneListForAll
+**Full path**
+
+[onelistforallmicro.txt](https://github.com/six2dez/OneListForAll/blob/main/onelistforallmicro.txt) (18.109 lines)
+
+[onelistforallshort.txt](https://github.com/six2dez/OneListForAll/blob/main/onelistforallshort.txt) (892.361 lines)
+
+**Directory/file**
+
+[directory-list-2.3-medium.txt](https://github.com/daviddias/node-dirbuster/blob/master/lists/directory-list-2.3-medium.txt) (220.560 lines)
 
 ## Vulnerability Scanner
 

@@ -76,7 +76,7 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
 * Missing Emulator Detection
 * Bypass protection analyzing the code and/or with frida
 
-## Sensitive data in ADB Logcat Logs
+## Sensitive data in Logs
 
 ```sh
 adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"
@@ -122,7 +122,7 @@ find . -iname \*.p12
 find . -iname \*.pkcs7
 ```
 
-## Sensitive data/info in Application Memory
+## Sensitive data in Application Memory
 
 ```sh
 # Start objection

