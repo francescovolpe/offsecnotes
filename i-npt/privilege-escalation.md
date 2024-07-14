@@ -6,12 +6,15 @@ Note: if you have a valid user credential you can authenticate in windows target
 
 ### Automation script
 
-* https://github.com/itm4n/PrivescCheck: useful for gather information
-* `powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"` run from command prompt
+```batch
+:: https://github.com/itm4n/PrivescCheck
+powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
+```
 
 ### UAC Bypass
 
-* User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
+User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
+
 * Prerequisites:
   1. User must be a member of the Administrators group.
   2. `net localgroup administrators`
@@ -55,15 +58,17 @@ Note: if you have a valid user credential you can authenticate in windows target
 
 ### Password in configuration file (Unattend.xml)
 
-* An answer file is an XML-based file that contains setting definitions and values to use during Windows Setup. Answer files (or Unattend files) are used by Administrators when they are setting up fresh images as it allows for an automated setup for Windows systems.
-* ```
-  C:\unattend.xml
-  C:\Windows\Panther\Unattend.xml
-  C:\Windows\Panther\Unattend\Unattend.xml
-  C:\Windows\system32\sysprep.xml
-  C:\Windows\system32\sysprep\sysprep.xml
-  ```
-* Extract password and decode it (from base64)
+An answer file is an XML-based file that contains setting definitions and values to use during Windows Setup. Answer files (or Unattend files) are used by Administrators when they are setting up fresh images as it allows for an automated setup for Windows systems.
+
+```
+C:\unattend.xml
+C:\Windows\Panther\Unattend.xml
+C:\Windows\Panther\Unattend\Unattend.xml
+C:\Windows\system32\sysprep.xml
+C:\Windows\system32\sysprep\sysprep.xml
+```
+
+Extract password and decode it (from base64)
 
 ### Credential Dumping (Mimikatz - Kiwi - Hashdump)
 
