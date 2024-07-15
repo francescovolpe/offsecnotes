@@ -12,7 +12,7 @@ apkid --scan-depth 0 -r <apk_filename>.apk
 # https://github.com/mindedsecurity/semgrep-rules-android-security
 
 # 1. Decompile apk
-jadx -d target_src <apk_filename>.apk
+jadx <apk_filename>.apk
 # 2. Use semgrep
 semgrep -c <path>/rules/ <path>/target_src/sources
 ```
