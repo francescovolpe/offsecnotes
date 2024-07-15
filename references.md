@@ -3,6 +3,7 @@
 **NPT**
 
 * [https://github.com/neilmadhava/EJPTv2-Notes](https://github.com/neilmadhava/EJPTv2-Notes)
+* [https://juggernaut-sec.com/blog/](https://juggernaut-sec.com/blog/)
 
 **WAPT**
 
