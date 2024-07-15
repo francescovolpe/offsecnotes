@@ -86,7 +86,7 @@ adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"
 
 ```sh
 # Print out applications Files, Caches and other directories
-objection -g 'App Name' run env
+objection -g <package_name> run env
 
 # Data app location folder
 /data/data/<package_name>
@@ -143,4 +143,6 @@ strings appMemoryDump > appMemoryDump.txt
 
 ```sh
 adb backup -apk <package_name> -f <backup_name>.adb
+
+adb restore <backup_name>.ab
 ```
