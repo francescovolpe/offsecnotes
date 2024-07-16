@@ -61,3 +61,15 @@ In Burp Repeater, try adding a `GET` request for the homepage at the start of yo
 
 Web servers often delay processing if too many requests are sent too quickly. By sending many dummy requests to trigger rate or resource limits, you can create a server-side delay, making the single-packet attack viable even with delayed execution.
 
+## Session-based locking mechanisms <a href="#session-based-locking-mechanisms" id="session-based-locking-mechanisms"></a>
+
+Some frameworks prevent accidental data corruption through request locking. For example, PHP's native session handler processes one request per session at a time.
+
+If your requests are processed sequentially, **try using a different session token for each**.
+
+## Time-sensitive attacks
+
+Example: A password reset token generated solely using a timestamp, can result in identical tokens for different users if **two reset requests are timed to produce the same timestamp**.
+
+\
+\
