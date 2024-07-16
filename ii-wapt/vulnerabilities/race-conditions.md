@@ -52,11 +52,12 @@ def handleResponse(req, interesting):
 
 **Connection warming**
 
-to do
+In Burp Repeater, try adding a `GET` request for the homepage at the start of your tab group, then use the "Send group in sequence" option.&#x20;
+
+* If only the first request has a longer processing time but the rest are fast, ignore the delay and continue testing.&#x20;
+* If inconsistent response times persist, it indicates back-end delay interference. To work around this, use Turbo Intruder to send connection warming requests before your main attack requests.
 
 **Abusing rate or resource limits**
 
-to do
+Web servers often delay processing if too many requests are sent too quickly. By sending many dummy requests to trigger rate or resource limits, you can create a server-side delay, making the single-packet attack viable even with delayed execution.
 
-\
-\
