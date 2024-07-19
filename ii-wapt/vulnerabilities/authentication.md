@@ -5,9 +5,8 @@
 * Some username: `admin`, `administrator` ,`firstname.lastname@somecompany.com`
 * Are you able to access user profiles without logging in?
 * Check HTTP responses to see if any email addresses are disclosed
-* Enter a valid username but an incorrect password -> sometimes the login says user X does not exist (One character out of place makes the messages distinct, even if not visible on the page)
+* Compares responses between a valid user and an invalid user (and incorrect password). \[One character out of place makes the messages distinct, even if not visible on the page]
 * Create account (pay attention)
-* Different status code
 * Response times (a website may only check the password if the username is valid) entering an excessively long password causes a noticeable delay.
 * Account locking? (after a certain number of trials). It could mean that the account exists
 
