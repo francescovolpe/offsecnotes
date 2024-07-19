@@ -43,13 +43,7 @@ GET /admin/deleteUser HTTP/1.0
 Referer: https://vulnerable-website.com/admin 
 ```
 
-* You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action.
-
-## Location-based
-
-Geographical location
-
-* Web proxies, VPNs, or manipulation of client-side geolocation mechanisms
+You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action.
 
 ## Platform misconfiguration
 
