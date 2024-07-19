@@ -28,25 +28,26 @@
 
 </details>
 
-## HTTP Host header
+<details>
 
-```
+<summary>HTTP Host header</summary>
+
+Http host header refers to the Host header to determine the intended back-end
+
+```http
 GET /web-security HTTP/1.1
 Host: portswigger.net
 ```
 
-Http host header refers to the Host header to determine the intended back-end
+</details>
 
-## Testing
-
-* NOTE: Some intercepting proxies derive the target IP address from the Host header directly, which makes this kind of testing all but impossible.
-  * Burp Suite maintains the separation between the Host header and the target IP address (Very important)
+Important note: Some intercepting proxies derive the target IP address from the Host header directly, which makes this kind of testing all but impossible. Burp Suite maintains the separation between the Host header and the target IP address (Very important)
 
 ### Supply an arbitrary Host header
 
 First step is to test what happens when you supply an arbitrary, unrecognized domain name via the Host header
 
-* Sometimes, you will still be able to access the target website even when you supply an unexpected Host header
+* Sometimes, you can still access the target website even if you supply an unexpected Host header.
   * For example, servers are sometimes configured with a default or fallback option
   * Other reasons
 * Invalid Host header error ...
@@ -57,28 +58,28 @@ You might find that your request is blocked as a result of some kind of security
 
 * Some parsing algorithms will omit the port from the Host header (maybe you can also supply a non-numeric port)
 
-```
+```http
 GET /example HTTP/1.1
 Host: vulnerable-website.com:bad-stuff-here
 ```
 
 * Matching logic to allow for arbitrary subdomains
 
-```
+```http
 GET /example HTTP/1.1
 Host: notvulnerable-website.com
 ```
 
 * Alternatively, you could take advantage of a less-secure subdomain that you have already compromised:
 
-```
+```http
 GET /example HTTP/1.1
 Host: hacked-subdomain.vulnerable-website.com
 ```
 
 * Inject duplicate Host headers
 
-```
+```http
 GET /example HTTP/1.1
 Host: vulnerable-website.com
 Host: bad-stuff-here
@@ -88,7 +89,7 @@ Host: bad-stuff-here
   * Officially, the request line should be given precedence when routing the request but, in practice, this isn't always the case
   * Try also change protocol "HTTP", "HTTPS"
 
-```
+```http
 GET https://vulnerable-website.com/ HTTP/1.1
 Host: bad-stuff-here
 ```
@@ -98,7 +99,7 @@ Host: bad-stuff-here
     * If the front-end ignores the indented header, the request will be processed as an ordinary request for vulnerable-website.com
     * Now let's say the back-end ignores the leading space and gives precedence to the first header in the case of duplicates. This discrepancy might allow you to pass arbitrary values via the "wrapped" Host header
 
-```
+```http
 GET /example HTTP/1.1
     Host: bad-stuff-here
 Host: vulnerable-website.com
@@ -110,7 +111,7 @@ Host: vulnerable-website.com
   * You may observe this behavior even when there is no front-end that uses this header.
   * NOTE: there are other headers (X-Host, X-Forwarded-Server, Forwarded, etc.). You can also find with param miner (guess headers)
 
-```
+```http
 GET /example HTTP/1.1
 Host: vulnerable-website.com
 X-Forwarded-Host: bad-stuff-here

