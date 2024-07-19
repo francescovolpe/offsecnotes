@@ -1,6 +1,6 @@
 # API
 
-## API documentation
+API documentation
 
 * Endpoints that may refer to API documentation:
 
@@ -25,8 +25,9 @@
 
 ## Supported HTTP methods
 
-* Test all potential methods when you're investigating API endpoints
-  * Use HTTP verbs list in Burp Intruder
+Test all potential methods when you're investigating API endpoints
+
+Tip: Use HTTP verbs list in Burp Intruder
 
 ## Supported content types
 
@@ -35,32 +36,44 @@ Changing the content type may enable you to
 * Trigger errors that disclose useful information.
 * Bypass flawed defenses.
 * Take advantage of differences in processing logic. For example, an API may be secure when handling JSON data but susceptible to injection attacks when dealing with XML.
-  * To change the content type, modify the Content-Type header, then reformat the request body accordingly
-  * Suggestion: Content type converter BApp automatically convert data submitted within requests between XML and JSON
+
+To change the content type, modify the Content-Type header and reformat the request body
+
+Tip: Content type converter BApp automatically converts request data between XML and JSON.
 
 ## Hidden endpoints
 
-* `PUT /api/user/update`
-  * Fuzz the `/update` with a list of other common functions, such as `delete` and `add`
-  * Use wordlists based on common API naming
+Consider `PUT /api/user/update`
+
+* Fuzz the `/update` with a list of other common functions, such as `delete` and `add`
+* Use wordlists based on common API naming
 
 ## Hidden parameters
 
-* Wordlists
-  * Burp Intruder, Param miner BApp
+* Bruteforce with wordlists
+* Param miner BApp
 
 ## Mass assignment vulnerabilities
 
-* Software frameworks sometime allow developers to automatically bind HTTP request parameters into program code variables or objects to make using that framework easier on developers
-* Consider `PATCH /api/users/` which enables users to update their username and email and includes the following JSON
-  * `{"username": "wiener", "email": "wiener@example.com",}`
-* A concurrent `GET /api/users/123` request returns the following JSON:
-  * `{"id": 123, "name": "John Doe", "email": "john@example.com", "isAdmin": "false"}`
-  * This may indicate that the hidden id and isAdmin parameters are bound to the internal user object, alongside the updated username and email parameters
-* Testing
-  * To test whether you can modify the enumerated isAdmin parameter value, add it to the PATCH request:
-  * `{"username": "wiener", "email": "wiener@example.com", "isAdmin": false,}`
-  * In addition, send a PATCH request with an invalid isAdmin parameter value:
-  * `{"username": "wiener","email": "wiener@example.com", "isAdmin": "foo",}`
-  * If the application behaves differently, this may suggest that the invalid value impacts the query logic, but the valid value doesn't. This may indicate that the parameter can be successfully updated by the user. (Set it to true)
-    * Note: We change isAdmin to "foo" because we want see if the user input is processed. If we get an error may indicate that the user input is being processed
+Software frameworks sometime allow developers to automatically bind HTTP request parameters into program code variables or objects to make using that framework easier on developers.
+
+**Premise**
+
+Consider `PATCH /api/users/` which enables users to update their username and email `{"username": "wiener", "email": "wiener@example.com"}`
+
+A concurrent `GET /api/users/123` request returns the following JSON: `{"id": 123, "name": "John Doe", "email": "john@example.com", "isAdmin": "false"}`
+
+This may indicate that the hidden id and isAdmin parameters are bound to the internal user object, alongside the updated username and email parameters.
+
+
+
+**Testing**
+
+To test whether you can modify the enumerated isAdmin parameter value, send two PATCH request:
+
+* `{"username": "wiener", "email": "wiener@example.com", "isAdmin": false}`
+* `{"username": "wiener","email": "wiener@example.com", "isAdmin": "foo",}`
+
+If the application behaves differently, may suggest that the invalid value impacts the query logic, but the valid value doesn't. This may indicate that the parameter can be successfully updated by the user. (Set it to true)
+
+Note: We change isAdmin to "foo" because we want see if the user input is processed. If we get an error may indicate that the user input is being processed.

