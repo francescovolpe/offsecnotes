@@ -29,7 +29,7 @@ _NOTE: AXFR offers no authentication, so any client can ask a DNS server for a c
 
 ## Subdomain enumeration
 
-* sublist3r: enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
+sublist3r: enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
 
 ```sh
 sublist3r -d example.com
