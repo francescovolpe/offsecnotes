@@ -78,14 +78,14 @@ POST /forgot-password?temp-forgot-password-token=pq4rwbmfxdbstk3igag4pyyt6ev9o3b
 username=<victim>&new-password-1=<whatever>&new-password-2=<whatever>&forgot-pass-token=pq4rwbmfxdbstk3igag4pyyt6ev9o3bi
 ```
 
-
+***
 
 **Resetting passwords using a URL (static token)**
 
 * Poor implementation can use guessable parameter&#x20;
   * `http://vulnerable-website.com/reset-password?user=victim-user`
 
-
+***
 
 **Resetting passwords using a URL (dynamic token)**
 
