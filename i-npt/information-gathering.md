@@ -1,6 +1,6 @@
 # Information Gathering
 
-## <mark style="color:#FFFF00;">Whois</mark>
+## <mark style="color:yellow;">Whois</mark>
 
 It is a protocol used for querying databases that store an Internet resource's registered users or assignees
 
@@ -8,7 +8,7 @@ It is a protocol used for querying databases that store an Internet resource's r
 whois example.com
 ```
 
-## <mark style="color:green;">DNS Enumeration</mark>
+## <mark style="color:yellow;">DNS Enumeration</mark>
 
 **Manual**
 
@@ -20,14 +20,14 @@ dig +short ns zonetransfer.me     # List of DNS servers for the domain
 dig axfr zonetransfer.me @nsztm1.digi.ninja. # Get a copy of the zone from the primary server. (zone transfer attack)
 ```
 
-Note_:_ AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone.
+Note\_:\_ AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone.
 
 **Automatic**
 
 * dnsdumpster.com
 * dnsrecon (tool)
 
-## <mark style="color:green;">Subdomain enumeration</mark>
+## <mark style="color:yellow;">Subdomain enumeration</mark>
 
 sublist3r: enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
 
@@ -35,7 +35,7 @@ sublist3r: enumerates subdomains using search engines such as Google and using D
 sublist3r -d example.com
 ```
 
-## <mark style="color:green;">All in one</mark>
+## <mark style="color:yellow;">All in one</mark>
 
 * **amass**: network mapping and external asset discovery using open source information gathering and active reconnaissance techniques
 * **sitereport.netcraft.com**: gives a lot of information about a domain
@@ -45,7 +45,7 @@ sublist3r -d example.com
 theHarvester -d example.com -b google,linkedin,dnsdumpster,duckduckgo
 ```
 
-## <mark style="color:green;">Host Discovery (nmap)</mark>
+## <mark style="color:yellow;">Host Discovery (nmap)</mark>
 
 **-sn option**
 
@@ -75,7 +75,7 @@ Note: you should also use other ports to better detect hosts... `nmap -sn -PS22-
 * `-PU` (sends a UDP packet). Default port: 40125
 * `-PY` (sends an SCTP packet). Default port: 80
 
-## <mark style="color:green;">Port Scanning (nmap)</mark>
+## <mark style="color:yellow;">Port Scanning (nmap)</mark>
 
 Use nmap documentation to understand the differences between port scans
 
@@ -95,7 +95,7 @@ nmap --script "default or safe" # Load all scripts that are in the default, safe
 
 Note: there are many categories. Some of the scripts in this category are considered intrusive and may not run on a network target without permissions.
 
-## <mark style="color:green;">Website Recon</mark>
+## <mark style="color:yellow;">Website Recon</mark>
 
 * Web App **Technology** Fingerprinting
   * wappalyzer (extension)
@@ -114,4 +114,4 @@ Note: there are many categories. Some of the scripts in this category are consid
 * **waybackmachine**
   * _web.archive.org_
 
-\
+\\
