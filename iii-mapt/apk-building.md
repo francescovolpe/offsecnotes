@@ -1,33 +1,30 @@
 # APK Building
 
-### Android Application Project <a href="#proj" id="proj"></a>
+### <mark style="color:yellow;">Android Application Project</mark> <a href="#proj" id="proj"></a>
 
 Note that the directory names are conventional — they could be any name. Additionally, the contents of each directory could be spread across multiple folders.
 
 * 🗎 **AndroidManifest.xml** declares mainly the app's package name, components, access permissions, as well as hardware and software features the app requires and the API libraries the app needs to be linked against.
 * 🗎 **Signing key** to sign the `.apk` file. This is required to install or update the app on an Android device.
 * 🗎 **android.jar** includes a set of Android platform API classes. Usually this file is already integrated into the toolchain and the programmer doesn't need to take care himself.
-*   Optionals:
+* Optionals:
+  *   #### Resources <a href="#proj-res" id="proj-res"></a>
 
-    *   #### Resources <a href="#proj-res" id="proj-res"></a>
-
-        * 📁 **res**: primarily includes elements appearing in or describing the UI.
-        * 📁 **assets:** stores further files and will be integrated as-is into an APK to access them with ordinary file I/O.
-
-
-    *   **Sources**
-
-        * 📁 **java**: contains code targeting the Java Virtual Machine (JVM), so written in Java and/or Kotlin.
-        * 📁 **cpp**: holds native code written in C/C++.
+      * 📁 **res**: primarily includes elements appearing in or describing the UI.
+      * 📁 **assets:** stores further files and will be integrated as-is into an APK to access them with ordinary file I/O.
 
 
-    * #### Libraries <a href="#proj-lib" id="proj-lib"></a>
-      * 📁 **libs**: comprises Java `.jar` and/or Android `.aar` archive files mostly for the compilation phase.
-      * 📁 **lib**: contains native shared `.so` and/or static `.a` library files.
+  *   **Sources**
+
+      * 📁 **java**: contains code targeting the Java Virtual Machine (JVM), so written in Java and/or Kotlin.
+      * 📁 **cpp**: holds native code written in C/C++.
 
 
+  * #### Libraries <a href="#proj-lib" id="proj-lib"></a>
+    * 📁 **libs**: comprises Java `.jar` and/or Android `.aar` archive files mostly for the compilation phase.
+    * 📁 **lib**: contains native shared `.so` and/or static `.a` library files.
 
-## Android Package (apk)
+## <mark style="color:yellow;">Android Package (apk)</mark>
 
 Simply a ZIP archive with an `.apk` extension
 
@@ -42,9 +39,7 @@ It almost always embodies the following files and directories, though only `Andr
 * 📁 **lib**: contains native shared libraries of the package
 * An APK may contain further files and folders
 
-
-
-## Building process
+## <mark style="color:yellow;">Building process</mark>
 
 1.  📁 res (withouth res/values) and 🗎 AndroidManifest.xml are compiled (aapt \[compile] tool)
 

@@ -20,7 +20,7 @@ dig +short ns zonetransfer.me     # List of DNS servers for the domain
 dig axfr zonetransfer.me @nsztm1.digi.ninja. # Get a copy of the zone from the primary server. (zone transfer attack)
 ```
 
-Note\_:\_ AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone.
+Note: AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone.
 
 **Automatic**
 

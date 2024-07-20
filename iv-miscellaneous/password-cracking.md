@@ -1,14 +1,14 @@
 # Password Cracking
 
-## Identify hash
+## <mark style="color:yellow;">Identify hash</mark>
 
 * [hashes.com](https://hashes.com/en/tools/hash\_identifier) _Identify and detect unknown hashes_
 
-## Cracking hash
+## <mark style="color:yellow;">Cracking hash</mark>
 
 * [**crackstation**](https://crackstation.net/) _CrackStation uses massive pre-computed lookup tables to crack password hashes_
 
-## Cracking shadow
+## <mark style="color:yellow;">Cracking shadow</mark>
 
 ```sh
 # unshadow use also GECOS information (field containing information about the user).
@@ -20,7 +20,7 @@ hashcat -a 0 -m 1800 hash.txt wordlist.txt
 hashcat -a 0 -m 1800 hash.txt wordlist.txt -r /usr/share/hashcat/rules/best64.rule
 ```
 
-## Cracking online passwords
+## <mark style="color:yellow;">Cracking online passwords</mark>
 
 ```sh
 # Basic Authentication 
@@ -32,7 +32,7 @@ hydra -L <users_file> -P <password_file> <url> http[s]-[post|get]-form \ "index.
 hydra -L user.txt -P pass.txt <ip> <protocol> 
 ```
 
-## Rules (password bruteforce)
+## <mark style="color:yellow;">Rules (password bruteforce)</mark>
 
 * **FIRST CHOICE**:  best64 (now best66).  Fast, works well.
   * [https://github.com/hashcat/hashcat/blob/master/rules/best66.rule](https://github.com/hashcat/hashcat/blob/master/rules/best66.rule)
@@ -42,8 +42,6 @@ hydra -L user.txt -P pass.txt <ip> <protocol>
   * You can also combine them...
 * **FOURTH CHOICE**: OneRuleToRuleThemAll. (\~50k). The best
   * [https://github.com/NotSoSecure/password\_cracking\_rules/blob/master/OneRuleToRuleThemAll.rule](https://github.com/NotSoSecure/password\_cracking\_rules/blob/master/OneRuleToRuleThemAll.rule)
-
-
 
 **Generate wordlist based on rules**
 

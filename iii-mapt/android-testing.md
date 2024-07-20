@@ -1,12 +1,12 @@
 # Android testing
 
-## Identify compilers, packers, obfuscators
+## <mark style="color:yellow;">Identify compilers, packers, obfuscators</mark>
 
 ```sh
 apkid --scan-depth 0 -r <apk_filename>.apk
 ```
 
-## Automatic Static Tests
+## <mark style="color:yellow;">Automatic Static Tests</mark>
 
 ```sh
 # https://github.com/mindedsecurity/semgrep-rules-android-security
@@ -17,7 +17,7 @@ jadx <apk_filename>.apk
 semgrep -c <path>/rules/ <path>/target_src/sources
 ```
 
-## SSL Pinning
+## <mark style="color:yellow;">SSL Pinning</mark>
 
 * **Missing SSL Pinning**
 * **Bypass with objection**
@@ -57,7 +57,7 @@ openssl x509 -inform DER -in cacert.cer -out cacert.crt
 openssl x509 -in cacert.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
 ```
 
-## Root Detection
+## <mark style="color:yellow;">Root Detection</mark>
 
 * **Missing Root Detection**
 * **Bypass with frida**
@@ -71,18 +71,18 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
   * `apkid --scan-depth 0 -r <apk_filename>.apk`
 * Bypass protection analyzing the code and/or with frida
 
-## Emulator Detection
+## <mark style="color:yellow;">Emulator Detection</mark>
 
 * Missing Emulator Detection
 * Bypass protection analyzing the code and/or with frida
 
-## Sensitive data in Logs
+## <mark style="color:yellow;">Sensitive data in Logs</mark>
 
 ```sh
 adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"
 ```
 
-## Sensitive data in Local Storage
+## <mark style="color:yellow;">Sensitive data in Local Storage</mark>
 
 ```sh
 # Print out applications Files, Caches and other directories
@@ -95,34 +95,7 @@ objection -g <package_name> run env
 * Check for sensitive information/data store on Shared Preferences or not
 * Check if sensitive information/data is stored in the local storage database using strong encryption on or not
 
-```
-find . -type f -exec grep -ali sqlite {} \;
-find . -type f -exec grep -ali data {} \;
-find . -type f -iname \*.sqlite
-find . -type f -iname \*.sqlite3
-find . -type f -iname \*.db
-
-find . -iname \*.realm
-
-find . -iname \*.cblite
-find . -iname \*.cblite2
-
-find . -iname \*.txt
-find . -iname \*.xml
-find . -iname \*.json
-
-find . -iname \*.cer
-find . -iname \*.pem
-find . -iname \*.cert
-find . -iname \*.crt
-find . -iname \*.pub
-find . -iname \*.key
-find . -iname \*.pfx
-find . -iname \*.p12
-find . -iname \*.pkcs7
-```
-
-## Sensitive data in Application Memory
+## <mark style="color:yellow;">Sensitive data in Application Memory</mark>
 
 ```sh
 # Start objection
@@ -136,7 +109,7 @@ memory dump all appMemoryDump
 strings appMemoryDump > appMemoryDump.txt
 ```
 
-## Backup
+## <mark style="color:yellow;">Backup</mark>
 
 * Check `android:allowBackup="true"` in the Manifest.xml
 * To backup one application, with its apk
