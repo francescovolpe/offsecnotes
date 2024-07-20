@@ -41,9 +41,11 @@ Host: portswigger.net
 
 </details>
 
-Important note: Some intercepting proxies derive the target IP address from the Host header directly, which makes this kind of testing all but impossible. Burp Suite maintains the separation between the Host header and the target IP address (Very important)
+{% hint style="warning" %}
+Some intercepting proxies derive the target IP address from the Host header directly, which makes this kind of testing all but impossible. Burp Suite maintains the separation between the Host header and the target IP address (Very important)
+{% endhint %}
 
-### Supply an arbitrary Host header
+### <mark style="color:yellow;">Supply an arbitrary Host header</mark>
 
 First step is to test what happens when you supply an arbitrary, unrecognized domain name via the Host header
 
@@ -52,7 +54,7 @@ First step is to test what happens when you supply an arbitrary, unrecognized do
   * Other reasons
 * Invalid Host header error ...
 
-### Check for flawed validation & ambiguous requests
+### <mark style="color:yellow;">Check for flawed validation & ambiguous requests</mark>
 
 You might find that your request is blocked as a result of some kind of security measure. For example, some websites will validate whether the Host header matches the SNI from the TLS handshake. You should try to understand how the website parses the Host header
 
@@ -106,10 +108,10 @@ Host: vulnerable-website.com
 ```
 
 * Inject host override headers
-  * The front-end may inject the X-Forwarded-Host header, containing the original value of the Host header from the client's initial request.
-    * For this reason, when an X-Forwarded-Host header is present, many frameworks will refer to this instead.
+  * The front-end may inject the `X-Forwarded-Host` header, containing the original value of the Host header from the client's initial request.
+    * For this reason, when an `X-Forwarded-Host` header is present, many frameworks will refer to this instead.
   * You may observe this behavior even when there is no front-end that uses this header.
-  * NOTE: there are other headers (X-Host, X-Forwarded-Server, Forwarded, etc.). You can also find with param miner (guess headers)
+  * NOTE: there are other headers (`X-Host`, `X-Forwarded-Server`, `Forwarded`, etc.). You can also find with param miner (guess headers)
 
 ```http
 GET /example HTTP/1.1
@@ -119,7 +121,7 @@ X-Forwarded-Host: bad-stuff-here
 
 * Other techniques you can find on the web `"common domain-validation flaws"`
 
-## Exploit the HTTP Host header
+## <mark style="color:yellow;">Exploit the HTTP Host header</mark>
 
 * Password reset poisoning
   * The website sends an email to the user that contains a link for resetting their password: `https://normal-website.com/reset?token=0a1b2c3d4e5f6g7h8i9j`.

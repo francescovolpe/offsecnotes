@@ -20,7 +20,9 @@ dig +short ns zonetransfer.me     # List of DNS servers for the domain
 dig axfr zonetransfer.me @nsztm1.digi.ninja. # Get a copy of the zone from the primary server. (zone transfer attack)
 ```
 
-Note: AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone.
+{% hint style="info" %}
+**Note**: AXFR offers no authentication, so any client can ask a DNS server for a copy of the entire zone.
+{% endhint %}
 
 **Automatic**
 
@@ -93,7 +95,9 @@ nmap -sU --top-ports 25 <ip>  # Suggestion for udp scan
 nmap --script "default or safe" # Load all scripts that are in the default, safe, or both categories.
 ```
 
-Note: there are many categories. Some of the scripts in this category are considered intrusive and may not run on a network target without permissions.
+{% hint style="info" %}
+**Note**: there are many categories. Some of the scripts in this category are considered intrusive and may not run on a network target without permissions.
+{% endhint %}
 
 ## <mark style="color:yellow;">Website Recon</mark>
 

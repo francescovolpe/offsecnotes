@@ -1,13 +1,13 @@
 # Information disclosure
 
-## Fuzzing
+## <mark style="color:yellow;">Fuzzing</mark>
 
 * Add payload positions to parameters and use pre-built wordlists of fuzz strings to test a high volume of different inputs in quick succession.
 * Easily identify differences in responses by comparing HTTP status codes, response times, lengths, and so on.
 * Use grep matching rules to quickly identify occurrences of keywords, such as error, invalid, SELECT, SQL, and so on.
 * Apply grep extraction rules to extract and compare the content of interesting items within responses.
 
-## Common sources of information disclosure
+## <mark style="color:yellow;">Common sources of information disclosure</mark>
 
 * Files for web crawlers
   * /robots.txt

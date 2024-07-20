@@ -2,7 +2,9 @@
 
 ## <mark style="color:yellow;">Windows</mark>
 
-Note: if you have a valid user credential you can authenticate in windows target from SMB, RDP, WinRM
+{% hint style="info" %}
+**Note**: if you have a valid user credential you can authenticate in windows target from SMB, RDP, WinRM
+{% endhint %}
 
 ### <mark style="color:yellow;">Automation script</mark>
 
@@ -153,11 +155,13 @@ crackmapexec smb <ip> -u <administrator> -H <NTLM hash> -x "ipconfig"
 set SMBPass <LM hash>:<NTLM hash>
 ```
 
-Notes:
+{% hint style="info" %}
+**Notes**:
 
 * Empty LM hash: `AAD3B435B51404EEAAD3B435B51404EE` (means its non-use).
   * `AAD3B435B51404EEAAD3B435B51404EE:<NTLM>`
 * With `hashdump` you have the right format
+{% endhint %}
 
 ### <mark style="color:yellow;">Other</mark>
 

