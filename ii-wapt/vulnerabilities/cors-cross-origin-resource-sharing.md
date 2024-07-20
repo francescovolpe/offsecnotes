@@ -96,7 +96,7 @@ Access-Control-Max-Age: 240
 
 </details>
 
-## Vulnerabilities
+## <mark style="color:yellow;">Vulnerabilities</mark>
 
 **Server-generated ACAO header from client-specified Origin header**
 

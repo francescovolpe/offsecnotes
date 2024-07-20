@@ -1,6 +1,6 @@
 # API
 
-API documentation
+## <mark style="color:yellow;">API documentation</mark>
 
 * Endpoints that may refer to API documentation:
 
@@ -18,18 +18,20 @@ API documentation
 /api
 ```
 
-## API endpoints
+## <mark style="color:yellow;">API endpoints</mark>
 
 * Browsing application (even if you have access to documentation, as it may be inaccurate)
 * Look out for JavaScript files (tip: JS Link Finder BApp)
 
-## Supported HTTP methods
+## <mark style="color:yellow;">Supported HTTP methods</mark>
 
 Test all potential methods when you're investigating API endpoints
 
-Tip: Use HTTP verbs list in Burp Intruder
+{% hint style="success" %}
+**Tip**: Use HTTP verbs list in Burp Intruder
+{% endhint %}
 
-## Supported content types
+## <mark style="color:yellow;">Supported content types</mark>
 
 Changing the content type may enable you to
 
@@ -39,21 +41,23 @@ Changing the content type may enable you to
 
 To change the content type, modify the Content-Type header and reformat the request body
 
-Tip: Content type converter BApp automatically converts request data between XML and JSON.
+{% hint style="success" %}
+**Tip**: Content type converter BApp automatically converts request data between XML and JSON.
+{% endhint %}
 
-## Hidden endpoints
+## <mark style="color:yellow;">Hidden endpoints</mark>
 
 Consider `PUT /api/user/update`
 
 * Fuzz the `/update` with a list of other common functions, such as `delete` and `add`
 * Use wordlists based on common API naming
 
-## Hidden parameters
+## <mark style="color:yellow;">Hidden parameters</mark>
 
 * Bruteforce with wordlists
 * Param miner BApp
 
-## Mass assignment vulnerabilities
+## <mark style="color:yellow;">Mass assignment vulnerabilities</mark>
 
 Software frameworks sometime allow developers to automatically bind HTTP request parameters into program code variables or objects to make using that framework easier on developers.
 

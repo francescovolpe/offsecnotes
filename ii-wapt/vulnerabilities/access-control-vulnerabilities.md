@@ -1,10 +1,8 @@
 # BAC
 
-## General info
-
 Access control is the application of constraints on who or what is authorized to perform actions or access resources.
 
-## Unprotected functionality
+## <mark style="color:yellow;">Unprotected functionality</mark>
 
 * Direct access
 
@@ -20,7 +18,7 @@ https://insecure-website.com/administrator-panel-yb556
 
 If you have an admin account, repet the request with a normal user cookie. (autorize burp extension can be useful)
 
-## Parameter-based
+## <mark style="color:yellow;">Parameter-based</mark>
 
 Some applications determine the user's access rights or role at login, and then store this information in a user-controllable location. This could be:
 
@@ -30,7 +28,7 @@ Some applications determine the user's access rights or role at login, and then 
 * `https://insecure-website.com/login/home.jsp?admin=true`
 * `https://insecure-website.com/login/home.jsp?role=1`
 
-## Referer-based
+## <mark style="color:yellow;">Referer-based</mark>
 
 ```
 GET /admin --> HTTP/1.1 401 Unauthorized
@@ -45,7 +43,7 @@ Referer: https://vulnerable-website.com/admin
 
 You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action.
 
-## Platform misconfiguration
+## <mark style="color:yellow;">Platform misconfiguration</mark>
 
 * Try another HTTP method
 
@@ -60,7 +58,7 @@ Get / HTTP/1.0
 X-Original-URL: /donotexist1
 ```
 
-## URL-matching discrepancies
+## <mark style="color:yellow;">URL-matching discrepancies</mark>
 
 ```markdown
 /admin/deleteUser
@@ -70,7 +68,7 @@ X-Original-URL: /donotexist1
 
 There are many other techniques: search on google or hacktricks \[403 & 401 Bypasses]. https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses
 
-## IDOR
+## <mark style="color:yellow;">IDOR</mark>
 
 Try other ID / Brute force
 
@@ -78,7 +76,7 @@ Try other ID / Brute force
 https://insecure-website.com/myaccount?id=123
 ```
 
-## Access control vulnerabilities in multi-step processes
+## <mark style="color:yellow;">Access control vulnerabilities in multi-step processes</mark>
 
 Imagine a website where access controls are correctly applied to the first and second steps, but not to the third step (skip the first two steps):
 
@@ -86,7 +84,7 @@ Imagine a website where access controls are correctly applied to the first and s
 * Submit the changes.
 * Review the changes and confirm.
 
-## TIPS
+## <mark style="color:yellow;">TIPS</mark>
 
 *   Application might use globally unique identifiers (GUID) to identify users
 

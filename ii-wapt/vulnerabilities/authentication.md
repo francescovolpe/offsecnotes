@@ -1,6 +1,6 @@
 # Authentication
 
-## Usernames enumeration
+## <mark style="color:yellow;">Usernames enumeration</mark>
 
 * Some username: `admin`, `administrator` ,`firstname.lastname@somecompany.com`
 * Are you able to access user profiles without logging in?
@@ -10,11 +10,11 @@
 * Response times (a website may only check the password if the username is valid) entering an excessively long password causes a noticeable delay.
 * Account locking? (after a certain number of trials). It could mean that the account exists
 
-## Passwords
+## <mark style="color:yellow;">Passwords</mark>
 
 [password-cracking.md](../../iv-miscellaneous/password-cracking.md "mention")
 
-## Account locking
+## <mark style="color:yellow;">Account locking</mark>
 
 * Guess password with locked account&#x20;
   * With your account locked, send a request with an incorrect password and another with a correct password. Is the response different?
@@ -29,7 +29,7 @@
     * current password: \<right>, new-password-1=XXX, new-password-2=XXX
     * current password: \<right>, new-password-1=XXX, new-password-2=YYY
 
-## 2FA <a href="#bypassing-two-factor-authentication" id="bypassing-two-factor-authentication"></a>
+## <mark style="color:yellow;">2FA</mark> <a href="#bypassing-two-factor-authentication" id="bypassing-two-factor-authentication"></a>
 
 * Brute-force
 * Bypassing two-factor authentication
@@ -58,7 +58,7 @@ Cookie: account=victim-user
 verification-code=123456
 </code></pre>
 
-## Remember me option
+## <mark style="color:yellow;">Remember me option</mark>
 
 Some websites generate this cookie based on a predictable concatenation of static values, such as the username and a timestamp (or maybe even the password).
 
@@ -68,7 +68,7 @@ Some websites generate this cookie based on a predictable concatenation of stati
 
 If the website uses salt it becomes much more complicated...
 
-## Password reset
+## <mark style="color:yellow;">Password reset</mark>
 
 * **Control username parameter**
   * After you receive an email with the URL to reset your password, see if you can control username parameter.

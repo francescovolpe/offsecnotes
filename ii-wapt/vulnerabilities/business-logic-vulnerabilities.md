@@ -1,6 +1,6 @@
 # Business logic vulnerabilities
 
-## Example
+## <mark style="color:yellow;">Examples</mark>
 
 **Excessive trust in client-side controls**
 

