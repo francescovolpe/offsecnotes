@@ -1,6 +1,6 @@
 # Information Gathering
 
-## <mark style="color:green;">Whois</mark>
+## <mark style="color:#FFFF00;">Whois</mark>
 
 It is a protocol used for querying databases that store an Internet resource's registered users or assignees
 
