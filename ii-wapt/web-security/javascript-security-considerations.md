@@ -1,6 +1,6 @@
-# Javascript security considerations
+# Javascript
 
-## Javascript eval() - DOM XSS
+## <mark style="color:yellow;">Javascript eval() - DOM XSS</mark>
 
 * In all these case an alert will appear
   * `let text = alert();`
@@ -15,7 +15,7 @@
   * Note 3: This specific example with JSON works because the site didn't use `JSON.parse(this.responseText)`
   * This 4: This specific example is a case of Reflected DOM XSS
 
-## Javascript replace() problem
+## <mark style="color:yellow;">Javascript replace() problem</mark>
 
 * The replace() method of String values returns a new string with one, some, or all matches of a pattern replaced by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function called for each match.
 * If pattern is a string, only the first occurrence will be replaced. The original string is left unchanged.
@@ -28,7 +28,7 @@ function escapeHTML(html) {
 
 * You can easy bypass this with `<><img src=1 onerror=alert(1)>`
 
-## Javascript innerHTML
+## <mark style="color:yellow;">Javascript innerHTML</mark>
 
 ```
 name = "<script>alert('I am John in an annoying alert!')</script>";
@@ -38,7 +38,7 @@ el.innerHTML = name; // harmless in this case
 * HTML specifies that a `<script>` tag inserted with innerHTML should not execute
   * In this case you can use `const name = "<img src='x' onerror='alert(1)'>";`
 
-## Javascript location
+## <mark style="color:yellow;">Javascript location</mark>
 
 * In JavaScript, the location variable represents the object that provides information about the URL (Uniform Resource Locator) of the current document
 
@@ -50,7 +50,7 @@ location = 'https://google.it';
 
 * The browser will interpret this assignment as a command to change the location of the current web page and redirect it to "https://google.it."
 
-## Javascript href Attribute
+## <mark style="color:yellow;">Javascript href Attribute</mark>
 
 | Value | Description          |
 | ----- | -------------------- |
