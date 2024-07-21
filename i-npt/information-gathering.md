@@ -31,7 +31,7 @@ dig axfr zonetransfer.me @nsztm1.digi.ninja. # Get a copy of the zone from the p
 
 ## <mark style="color:yellow;">Subdomain enumeration</mark>
 
-sublist3r: enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
+**sublist3r**: enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
 
 ```sh
 sublist3r -d example.com
@@ -67,7 +67,11 @@ nmap -sn -PS 192.168.1.5
 
 This option sends an empty TCP packet with the SYN flag set. The default destination port is 80.
 
-Note: you should also use other ports to better detect hosts... `nmap -sn -PS22-25 192.168.1.5`
+{% hint style="info" %}
+**Note**: you should also use other ports to better detect hosts.&#x20;
+
+`nmap -sn -PS22-25 192.168.1.5`
+{% endhint %}
 
 ***
 
@@ -89,7 +93,7 @@ nmap -sU --top-ports 25 <ip>  # Suggestion for udp scan
 **Script engine**: For more info read nmap documentation
 
 * `--script <filename>|<category>|<directory>|<expression>`
-* `-sC` Runs a script scan using the default script set. It is the equivalent of --script=default
+* `-sC` Runs a script scan using the default script set. It is the equivalent of `--script=default`
 
 ```sh
 nmap --script "default or safe" # Load all scripts that are in the default, safe, or both categories.

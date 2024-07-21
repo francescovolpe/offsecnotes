@@ -112,10 +112,11 @@ strings appMemoryDump > appMemoryDump.txt
 ## <mark style="color:yellow;">Backup</mark>
 
 * Check `android:allowBackup="true"` in the Manifest.xml
-* To backup one application, with its apk
 
 ```sh
+# Backup one application with its apk
 adb backup -apk <package_name> -f <backup_name>.adb
 
+# Restore backup
 adb restore <backup_name>.ab
 ```

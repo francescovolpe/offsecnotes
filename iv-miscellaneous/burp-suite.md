@@ -6,6 +6,8 @@
 * **Autorize** (burp extension)
   * Automatically repeats every request with the session of the low privileged user
 
+***
+
 **PwnFox**
 
 PwnFox _provide useful tools for your security audit_
@@ -14,11 +16,15 @@ PwnFox _provide useful tools for your security audit_
 * Containers Profiles (it will automatically add a X-PwnFox-Color header to hightlight the query in Burp)
 * Other: https://github.com/yeswehack/PwnFox
 
+***
+
 **Out of band vulnerabilities**
 
-&#x20;Many companies filtering and block outbound traffic to the default collaborator domain.
+Many companies filtering and block outbound traffic to the default collaborator domain.
 
 * **webhook.site** _Webhook.site generates a free, unique URL and e-mail address and lets you see everything that’s sent there instantly._
+
+***
 
 **Logger ++ filters: Top 25 Parameters**
 

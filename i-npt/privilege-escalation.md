@@ -273,10 +273,3 @@ gcc binary.c -o <loaded_binary>
 * Kernel Exploits
 * Linpeas.sh
 * [GTFObins](https://gtfobins.github.io)
-
-## <mark style="color:yellow;">Resource</mark>
-
-* **gtfobins.github.io** _GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems_
-* **github.com/carlospolop/PEASS-ng/tree/master/linPEAS** _Linux Privilege Escalation Awesome Script_
-* **github.com/DominicBreuker/pspy** _Monitor linux processes without root permissions_
-* **github.com/gtworek/Priv2Admin** _Windows Privileges with Windows OS privileges_
