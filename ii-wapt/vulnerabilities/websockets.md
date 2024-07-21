@@ -2,7 +2,7 @@
 
 WebSocket connections are long-lived HTTP initiations, enabling bidirectional, non-transactional messaging. The connection remains open and idle until a message is sent by either the client or server. WebSocket excels in low-latency and server-triggered message scenarios, like real-time financial data feeds.
 
-## How are WebSocket connections established?
+## <mark style="color:yellow;">How are WebSocket connections established?</mark>
 
 WebSocket connections are normally created using client-side JavaScript like the following:
 
@@ -29,21 +29,21 @@ Upgrade: websocket
 Sec-WebSocket-Accept: 0FFP+2nmNIf/h+4BP36k9uzrYGk=
 ```
 
-## Headers
+## <mark style="color:yellow;">Headers</mark>
 
 * The `Connection` and `Upgrade` headers in the request and response indicate that this is a WebSocket handshake.
 * The `Sec-WebSocket-Version` request header specifies the WebSocket protocol version that the client wishes to use. This is typically 13.
 * The `Sec-WebSocket-Key` request header contains a Base64-encoded random value, which should be randomly generated in each handshake request.
 * The `Sec-WebSocket-Accept` response header contains a hash of the value submitted in the Sec-WebSocket-Key request header, concatenated with a specific string defined in the protocol specification. This is done to prevent misleading responses resulting from misconfigured servers or caching proxies.
 
-## What do WebSocket messages look like?
+## <mark style="color:yellow;">What do WebSocket messages look like?</mark>
 
 * WebSocket messages can contain any content or data format
   * `ws.send("Peter Wiener");`
 * It is common to use json
   * `{"user":"Hal Pline","content":"I wanted to be a Playstation growing up, not a device to answer your inane questions"}`
 
-## WebSockets security vulnerabilities
+## <mark style="color:yellow;">WebSockets security vulnerabilities</mark>
 
 * If inputs are transmitted and processed server-side
   * Server-side attacks (SQLi, XXE, etc.)
@@ -53,11 +53,11 @@ Sec-WebSocket-Accept: 0FFP+2nmNIf/h+4BP36k9uzrYGk=
     * `{"message":"<img src=1 onerror='alert(1)'>"}`
 * Also blind vulnerabilities
 
-## Manipulating WebSocket connections
+## <mark style="color:yellow;">Manipulating WebSocket connections</mark>
 
 To do ...
 
-## Cross-site WebSocket hijacking
+## <mark style="color:yellow;">Cross-site WebSocket hijacking</mark>
 
 An attacker can craft a malicious webpage on their domain, initiating a cross-site WebSocket connection to the susceptible application.
 
@@ -65,10 +65,3 @@ An attacker can craft a malicious webpage on their domain, initiating a cross-si
 * Retrieve sensitive data that the user can access.
   * Cross-site WebSocket hijacking grants the attacker bidirectional access to the vulnerable application via the hijacked WebSocket. If the application utilizes server-generated WebSocket messages to send sensitive user data, the attacker can intercept these messages and capture the victim user's data.
 * Waiting for incoming messages to arrive containing sensitive data.
-
-## Defences
-
-* Use the wss:// protocol
-* Hard code the URL of the WebSockets endpoint, and certainly don't incorporate user-controllable data into this URL.
-* Protect the WebSocket handshake message against CSRF --> token
-* Treat data received via the WebSocket as untrusted in both directions ... like SQLi, XSS, etc.

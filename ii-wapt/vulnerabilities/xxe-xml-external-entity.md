@@ -16,7 +16,7 @@
 
 </details>
 
-## Retrieve files
+## <mark style="color:yellow;">Retrieve files</mark>
 
 1. Introduce (or edit) a DOCTYPE element defining an external entity with the file path.
 2. Edit a data value in the XML returned in the app's response to use the defined external entity.
@@ -35,15 +35,15 @@
 <stockCheck><productId>&xxe;</productId></stockCheck>
 ```
 
-## Perform SSRF attacks
+## <mark style="color:yellow;">Perform SSRF attacks</mark>
 
 ```xml
 <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://internal.vulnerable-website.com/"> ]>
 ```
 
-## Blind XXE
+## <mark style="color:yellow;">Blind XXE</mark>
 
-### Out-of-band (OAST) techniques <a href="#detecting-blind-xxe-using-out-of-band-oast-techniques" id="detecting-blind-xxe-using-out-of-band-oast-techniques"></a>
+### <mark style="color:yellow;">Out-of-band (OAST) techniques</mark> <a href="#detecting-blind-xxe-using-out-of-band-oast-techniques" id="detecting-blind-xxe-using-out-of-band-oast-techniques"></a>
 
 **Detection**
 
@@ -76,7 +76,7 @@
 
 Note: This technique might not work with multiline files.
 
-### Via error messages <a href="#exploiting-blind-xxe-to-retrieve-data-via-error-messages" id="exploiting-blind-xxe-to-retrieve-data-via-error-messages"></a>
+### <mark style="color:yellow;">Via error messages</mark> <a href="#exploiting-blind-xxe-to-retrieve-data-via-error-messages" id="exploiting-blind-xxe-to-retrieve-data-via-error-messages"></a>
 
 Trigger an XML parsing error message with the file contents.&#x20;
 
@@ -89,13 +89,13 @@ Trigger an XML parsing error message with the file contents.&#x20;
 
 Note: This works if you notice an error in the response when detecting with OAST (e.g., the reflected URL entered)
 
-## Hidden attack surface
+## <mark style="color:yellow;">Hidden attack surface</mark>
 
 * **First case** - Requests that contain data in XML format
 * **Second case -** Requests that do not contain any XML
   * **Detection**: Add entity reference that doesn't exist to cause an error  -> ok it's XML ...
 
-### XInclude attacks
+### <mark style="color:yellow;">XInclude attacks</mark>
 
 Some applications receive client-submitted data, embed it on the server-side into an XML document, and then parse the document
 
@@ -106,7 +106,7 @@ XInclude is a part of the XML specification that allows an XML document to be bu
 <xi:include parse="text" href="file:///etc/passwd"/></foo>
 ```
 
-### Via file upload
+### <mark style="color:yellow;">Via file upload</mark>
 
 Some common file formats use XML or contain XML subcomponents. Examples of XML-based formats are office document formats like DOCX and image formats like SVG
 
@@ -120,7 +120,7 @@ Some common file formats use XML or contain XML subcomponents. Examples of XML-b
 
 This works if it's used image processing library & support SVG images & allow external entity
 
-### Via modified content type
+### <mark style="color:yellow;">Via modified content type</mark>
 
 Some web app will tolerate other content types.
 
@@ -143,6 +143,3 @@ Content-Length: 52
 
 <?xml version="1.0" encoding="UTF-8"?><foo>bar</foo>
 ```
-
-
-

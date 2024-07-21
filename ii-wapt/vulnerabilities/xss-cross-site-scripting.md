@@ -1,14 +1,12 @@
-# XSS (Cross-site scripting)
-
-## General info
+# XSS
 
 Cross-site scripting works by manipulating a vulnerable web site so that it returns malicious JavaScript to users
 
-## Alert() limitation
+## <mark style="color:yellow;">Alert() limitation</mark>
 
 TO DO
 
-## Do not use alert(1)
+## <mark style="color:yellow;">Do not use alert(1)</mark>
 
 ```
 <textarea id="script" onchange=("unsafe(this.value)"></textarea><br>
@@ -29,7 +27,7 @@ function unsafe(t) {
   * this is because the sandboxed iframe also has a different origin. It's isolated from the website it is embedded into and you cannot steal the secret session.
 * Use `alert(document.domain)` or `alert(window.origin)` instead
 
-## Types of XSS
+## <mark style="color:yellow;">Types of XSS</mark>
 
 * Reflected XSS, where the malicious script comes from the current HTTP request.
   * `https://insecure-website.com/search?term=<script>/*+Bad+stuff+here...+*/</script>`
@@ -57,11 +55,11 @@ function unsafe(t) {
     * https://portswigger.net/web-security/cross-site-scripting/dom-based#which-sinks-can-lead-to-dom-xss-vulnerabilities
   * Note 2: DOM Invader (Burp Suite tool) is a browser-based tool that helps you test for DOM XSS vulnerabilities using a variety of sources and sinks.
 
-### DOM XSS - Sources and sinks in third-party dependencies
+### <mark style="color:yellow;">DOM XSS - Sources and sinks in third-party dependencies</mark>
 
 To do...
 
-### DOM XSS combined with reflected and stored data
+### <mark style="color:yellow;">DOM XSS combined with reflected and stored data</mark>
 
 * If a script reads some data from the URL and writes it to a dangerous sink, then the vulnerability is entirely client-side. (there is no processing from the server)
 * Reflected DOM vulnerabilities occur when the server-side application processes data from a request and echoes the data in the response. A script on the page then processes the reflected data in an unsafe way, ultimately writing it to a dangerous sink.
@@ -69,9 +67,9 @@ To do...
 * In a stored DOM XSS vulnerability, the server receives data from one request, stores it, and then includes the data in a later response. A script within the later response contains a sink which then processes the data in an unsafe way.
   * `element.innerHTML = comment.author`
 
-## Cross-site scripting contexts
+## <mark style="color:yellow;">Cross-site scripting contexts</mark>
 
-### XSS between HTML tags
+### <mark style="color:yellow;">XSS between HTML tags</mark>
 
 ```
 <script>alert(document.domain)</script>
@@ -83,7 +81,7 @@ To do...
   * Note: understand how a payload works
     * `<body onresize="print()">` with this payload (for reflected XSS) you need an exploit server and iframe tag
 
-### XSS in HTML tag attributes
+### <mark style="color:yellow;">XSS in HTML tag attributes</mark>
 
 * When the XSS context is into an HTML tag attribute value, you might sometimes be able to terminate the attribute value, close the tag, and introduce a new one.
   * `"><script>alert(document.domain)</script>`
@@ -101,7 +99,7 @@ To do...
   * Space is not needed
     * `<link rel="canonical" href='https://website.net/?'accesskey='X'onclick='alert(1)'/>`
 
-### XSS into JavaScript
+### <mark style="color:yellow;">XSS into JavaScript</mark>
 
 * Terminating the existing script (I don't really know why this works but it works)
   * The browser incorrectly interprets the `</script>` sequence within the string as the end of the script block, prematurely stopping the execution of your JavaScript script and generating an error.
@@ -147,11 +145,11 @@ To do...
           ${alert(document.domain)}
           ```
 
-### XSS via client-side template injection
+### <mark style="color:yellow;">XSS via client-side template injection</mark>
 
 To do
 
-## Exploiting cross-site scripting vulnerabilities
+## <mark style="color:yellow;">Exploiting cross-site scripting vulnerabilities</mark>
 
 * Exploiting cross-site scripting to steal cookies
   * Send the victim's cookies to your own domain
@@ -165,7 +163,7 @@ To do
   * When CSRF occurs as a standalone vulnerability, it can be patched using strategies like anti-CSRF tokens. However, these strategies do not provide any protection if an XSS vulnerability is also present.
   * If the site use a token you can get it doing a first request and then add the token in a second request
 
-## Content security policy
+## <mark style="color:yellow;">Content security policy</mark>
 
 * CSP restrit the resources (such as scripts and images) that a page can load and restricting whether a page can be framed by other pages
 * CSP defends against XSS attacks in the following ways

@@ -5,14 +5,14 @@ Two phases:
 1. The attacker must work out how to elicit a response from the back-end server that inadvertently contains some kind of dangerous payload
 2. Once successful, they need to make sure that their response is cached and subsequently served to the intended victims
 
-## Cache keys and cache unkeyed
+## <mark style="color:yellow;">Cache keys and cache unkeyed</mark>
 
 * When the cache receives an HTTP request, it first has to determine whether there is a cached response that it can serve directly.
 * Caches identify equivalent requests by comparing a predefined subset of the request's components, known collectively as the "cache key". (Typically, this would contain the request line and Host header)
 * Components of the request that are not included in the cache key are said to be "unkeyed".
 * \--> If the cache key of an incoming request matches the key of a previous request, then the cache considers them to be equivalent. As a result, it will serve a copy of the cached response that was generated for the original request
 
-## Impact of a web cache poisoning attack
+## <mark style="color:yellow;">Impact of a web cache poisoning attack</mark>
 
 Depend on two key factors:
 
@@ -21,30 +21,30 @@ Depend on two key factors:
 
 * Note: Note that the duration of a cache entry doesn't necessarily affect the impact of web cache poisoning. An attack can usually be scripted in such a way that it re-poisons the cache indefinitely.
 
-## Constructing a web cache poisoning attack
+## <mark style="color:yellow;">Constructing a web cache poisoning attack</mark>
 
 1. Identify and evaluate unkeyed inputs
 2. Elicit a harmful response from the back-end server
 3. Get the response cached
 
-### Identify and evaluate unkeyed inputs
+### <mark style="color:yellow;">Identify and evaluate unkeyed inputs</mark>
 
 * Adding random inputs to requests and observing whether or not they have an effect on the response.
   * This can be obvious, such as reflecting the input in the response directly, or triggering an entirely different response
 * Use Param Miner extension (Guess headers)
 
-### Elicit a harmful response from the back-end server
+### <mark style="color:yellow;">Elicit a harmful response from the back-end server</mark>
 
 * Evaluate exactly how the website processes it
   * See if the input is reflected in the response from the server without being properly sanitized
 
-### Get the response cached
+### <mark style="color:yellow;">Get the response cached</mark>
 
 * A cached response may depend on all kinds of factors, such as the file extension, content type, route, status code, and response headers
 
-## Exploiting cache design flaws
+## <mark style="color:yellow;">Exploiting cache design flaws</mark>
 
-### Using web cache poisoning to deliver an XSS attack
+### <mark style="color:yellow;">Using web cache poisoning to deliver an XSS attack</mark>
 
 ```
 Simplest web cache poisoning vulnerability to exploit is when unkeyed input is reflected in a cacheable response without proper sanitization
@@ -62,7 +62,7 @@ Cache-Control: public
 * \-> `X-Forwarded-Host: a."><script>alert(1)</script>"`
 * If this response was cached, all users who accessed `/en?region=uk` would be served this XSS payload
 
-### Using web cache poisoning to exploit cookie-handling vulnerabilities
+### <mark style="color:yellow;">Using web cache poisoning to exploit cookie-handling vulnerabilities</mark>
 
 ```
 GET /blog/post.php?mobile=1 HTTP/1.1
@@ -77,7 +77,7 @@ Connection: close
 * Note: it is a rare case
   * When cookie-based cache poisoning vulnerabilities exist, they tend to be identified and resolved quickly because legitimate users have accidentally poisoned the cache
 
-### Using multiple headers to exploit web cache poisoning vulnerabilities
+### <mark style="color:yellow;">Using multiple headers to exploit web cache poisoning vulnerabilities</mark>
 
 ```
 GET /random HTTP/1.1
@@ -88,7 +88,7 @@ HTTP/1.1 301 moved permanently
 Location: https://innocent-site.com/random
 ```
 
-### Exploiting responses that expose too much information
+### <mark style="color:yellow;">Exploiting responses that expose too much information</mark>
 
 #### Cache-control directives
 
@@ -112,14 +112,14 @@ Cache-Control: public, max-age=1800
   * Attack only users with that user agent are affected
   * Work out which user agent was most commonly used to access the site (attack to affect the maximum number of users)
 
-### Using web cache poisoning to exploit DOM-based vulnerabilities
+### <mark style="color:yellow;">Using web cache poisoning to exploit DOM-based vulnerabilities</mark>
 
 TO DO
 
-### Chaining web cache poisoning vulnerabilities
+### <mark style="color:yellow;">Chaining web cache poisoning vulnerabilities</mark>
 
 TO DO
 
-## Exploiting cache implementation flaws
+## <mark style="color:yellow;">Exploiting cache implementation flaws</mark>
 
 TO DO
