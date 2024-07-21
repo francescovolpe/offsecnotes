@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src=".gitbook/assets/logo (1).png" alt="" width="188">
+<img src=".gitbook/assets/logo.png" alt="" width="188">
 
 </div>
 
