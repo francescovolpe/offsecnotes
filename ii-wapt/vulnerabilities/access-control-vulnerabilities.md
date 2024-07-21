@@ -48,7 +48,16 @@ You need to know sub-pages (you can brute-force them) and eventually parameters 
 * Try another HTTP method
 
 ```markdown
-GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH, TEST
+GET
+HEAD
+POST
+PUT
+DELETE
+CONNECT
+OPTIONS
+TRACE
+PATCH
+TEST
 ```
 
 * Override the URL in the original request \[`X-Original-URL` , `X-Rewrite-URL`]. If it's not found it works
@@ -84,7 +93,7 @@ Imagine a website where access controls are correctly applied to the first and s
 * Submit the changes.
 * Review the changes and confirm.
 
-## <mark style="color:yellow;">TIPS</mark>
+## <mark style="color:yellow;">Tips</mark>
 
 *   Application might use globally unique identifiers (GUID) to identify users
 

@@ -1,6 +1,6 @@
 # Insecure deserialization
 
-## General info
+## <mark style="color:yellow;">General info</mark>
 
 * Serialization is the process of converting complex data structures, such as objects and their fields, into a "flatter" format that can be sent and received as a sequential stream of bytes.
 * Deserialization is the process of restoring this byte stream to a fully functional replica of the original object.
@@ -8,9 +8,9 @@
 * To prevent a field from being serialized, it must be explicitly marked as "transient" in the class declaration.
 * Insecure deserialization arises because there is a general lack of understanding of how dangerous deserializing user-controllable data can be.
 
-## How to identify insecure deserialization
+## <mark style="color:yellow;">How to identify insecure deserialization</mark>
 
-### PHP serialization format
+### <mark style="color:yellow;">PHP serialization format</mark>
 
 ```
 $user->name = "carlos";
@@ -23,18 +23,18 @@ O:4:"User":2:{s:4:"name":s:6:"carlos"; s:10:"isLoggedIn":b:1;}
 
 The native methods for PHP serialization are `serialize()` and `unserialize()`. If you have source code access, you should start by looking for `unserialize()` anywhere in the code and investigating further.
 
-### Java serialization format
+### <mark style="color:yellow;">Java serialization format</mark>
 
 * Some languages, such as Java, use binary serialization formats
 * Serialized Java objects always begin with the same bytes, which are encoded as `ac ed` in hexadecimal and `rO0` in Base64.
 * Any class that implements the interface `java.io.Serializable` can be serialized and deserialized. If you have source code access, take note of any code that uses the `readObject()` method, which is used to read and deserialize data from an `InputStream`.
 
-## Manipulating serialized objects
+## <mark style="color:yellow;">Manipulating serialized objects</mark>
 
 * You can either edit the object directly in its byte stream form
 * You can write a short script in the corresponding language to create and serialize the new object yourself
 
-### Modifying object attributes
+### <mark style="color:yellow;">Modifying object attributes</mark>
 
 * If an attacker spotted this serialized object in an HTTP request, they might decode it to find the following byte stream:
 * `O:4:"User":2:{s:8:"username";s:6:"carlos";s:7:"isAdmin";b:0;}`
@@ -50,7 +50,7 @@ if ($user->isAdmin === true) {
 * NOTE 1: In isolation, this has no effect
 * NOTE 2: This simple scenario is not common in the wild
 
-### Modifying data types
+### <mark style="color:yellow;">Modifying data types</mark>
 
 * PHP -> if you perform a loose comparison `(==)` between an integer and a string, PHP will attempt to convert the string to an integer, meaning that 5 == "5" evaluates to `true`
 * `0 == "Example string" // true`
@@ -67,12 +67,12 @@ if ($login['password'] == $password) {
 * NOTE 2: When working directly with binary formats, use the Hackvertor extension (Burp Suite)
 * REMEMBER: when modifying data types in any serialized object format -> remember to update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized)
 
-## Using application functionality
+## <mark style="color:yellow;">Using application functionality</mark>
 
 * Consider "Delete user" functionality, the user's profile picture is deleted by accessing the file path in the $user->image\_location attribute
 * If this $user was created from a serialized object, an attacker could exploit this by passing in a modified object with the image\_location set to an arbitrary file path
 
-## Magic methods
+## <mark style="color:yellow;">Magic methods</mark>
 
 * Magic methods are a special subset of methods that you do not have to explicitly invoke. They are invoked automatically whenever a particular event or scenario occurs
 * Developers can add magic methods to a class in order to predetermine what code should be executed when the corresponding event or scenario occurs (example: `__construct()` )
@@ -88,7 +88,7 @@ private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundE
 
 * They allow you to pass data from a serialized object into the website's code before the object is fully deserialized.
 
-## Injecting arbitrary objects
+## <mark style="color:yellow;">Injecting arbitrary objects</mark>
 
 * Deserialization methods do not typically check what they are deserializing.
 * You can pass in objects of any serializable class that is available to the website, and the object will be deserialized.
@@ -98,13 +98,13 @@ private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundE
   * Then check whether any of them perform dangerous operations on controllable data.
   * Then pass in a serialized object of this class to use its magic method for an exploit.
 
-## Gadget chains
+## <mark style="color:yellow;">Gadget chains</mark>
 
 * A "gadget" is a snippet of code that exists in the application that can help an attacker to achieve a particular goal.
 * The attacker's goal might simply be to invoke a method that will pass their input into another gadget
 * (many insecure deserialization vulnerabilities will only be exploitable through the use of gadget chains)
 
-### Working with pre-built gadget chains
+### <mark style="color:yellow;">Working with pre-built gadget chains</mark>
 
 * Manually identifying gadget chains can be a fairly arduous process, and is almost impossible without source code access.
 * But if a gadget chain in Java's Apache Commons Collections library can be exploited on one website, any other website that implements this library may also be exploitable using the same chain.
@@ -115,22 +115,18 @@ private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundE
   * It lets you pick a provided gadget chain for a target library, input a command to execute, and generates a serialized object accordingly. It reduces the laborious task of manually crafting gadget chains, though some trial and error remains.
   * TO DO...
 
-### Working with documented gadget chains
+### <mark style="color:yellow;">Working with documented gadget chains</mark>
 
 If no dedicated tool exists for exploiting known gadget chains in the target application's framework, consider searching online for documented exploits to adapt manually
 
-## Creating your own exploit
+## <mark style="color:yellow;">Creating your own exploit</mark>
 
 TO DO ...
 
-## PHAR deserialization
+## <mark style="color:yellow;">PHAR deserialization</mark>
 
 TO DO ...
 
-## Exploiting deserialization using memory corruption
+## <mark style="color:yellow;">Exploiting deserialization using memory corruption</mark>
 
 TO DO ...
-
-## Prevent
-
-TO DO...

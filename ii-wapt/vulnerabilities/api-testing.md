@@ -69,7 +69,7 @@ A concurrent `GET /api/users/123` request returns the following JSON: `{"id": 12
 
 This may indicate that the hidden id and isAdmin parameters are bound to the internal user object, alongside the updated username and email parameters.
 
-
+***
 
 **Testing**
 

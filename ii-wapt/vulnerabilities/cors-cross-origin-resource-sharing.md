@@ -127,7 +127,10 @@ function reqListener() {
 * Some apps enable access from various sources through a whitelist of permitted origins
 * Suppose `normal-website.com`
 * Use as origin: `hackersnormal-website.com` or `normal-website.com.evil-user.net`
-* Note: you need to know the whitelisted origins..
+
+{% hint style="info" %}
+**Note**: you need to know the whitelisted origins.
+{% endhint %}
 
 **Whitelisted null origin value**
 
@@ -166,4 +169,3 @@ If you find an xss on `subdomain.vulnerable-website.com` inject JavaScript that 
 ```
 https://subdomain.vulnerable-website.com/?xss=<script>cors-stuff-here</script>
 ```
-

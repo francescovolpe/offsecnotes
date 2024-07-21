@@ -23,7 +23,12 @@ Change `Content-Type` to an allow MIME type. Ex. `image/jpeg`
 * Change extensions
 
 ```
-.php, .php3, .php4, .php5, .phtml, .phar
+.php
+.php3
+.php4
+.php5
+.phtml
+.phar
 ```
 
 * Obfuscating file extensions

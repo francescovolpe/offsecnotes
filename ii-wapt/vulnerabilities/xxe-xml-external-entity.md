@@ -87,7 +87,9 @@ Trigger an XML parsing error message with the file contents.&#x20;
 %error;
 ```
 
-Note: This works if you notice an error in the response when detecting with OAST (e.g., the reflected URL entered)
+{% hint style="info" %}
+**Note**: This works if you notice an error in the response when detecting with OAST (e.g., the reflected URL entered)
+{% endhint %}
 
 ## <mark style="color:yellow;">Hidden attack surface</mark>
 

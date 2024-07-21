@@ -89,7 +89,7 @@ Host: bad-stuff-here
 
 * Supply an absolute URL (many servers are also configured to understand requests for absolute URLs)
   * Officially, the request line should be given precedence when routing the request but, in practice, this isn't always the case
-  * Try also change protocol "HTTP", "HTTPS"
+  * Try also change protocol `HTTP`, `HTTPS`
 
 ```http
 GET https://vulnerable-website.com/ HTTP/1.1
