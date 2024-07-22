@@ -1,6 +1,6 @@
 # WebSockets
 
-WebSocket connections are long-lived HTTP initiations, enabling bidirectional, non-transactional messaging. The connection remains open and idle until a message is sent by either the client or server. WebSocket excels in low-latency and server-triggered message scenarios, like real-time financial data feeds.
+WebSocket connections are long-lived HTTP initiations allowing bidirectional messaging. The connection stays open until a message is sent by the client or server. WebSocket is ideal for low-latency and server-triggered messages, such as real-time financial data feeds.
 
 <details>
 
