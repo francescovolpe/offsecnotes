@@ -57,6 +57,16 @@ openssl x509 -inform DER -in cacert.cer -out cacert.crt
 openssl x509 -in cacert.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
 ```
 
+* **Intercept Network Traffic Using Remote Debugging**
+
+This works if the app use webview and cordova-based apps.&#x20;
+
+See [#webview-debug](android-testing.md#webview-debug "mention")
+
+{% hint style="info" %}
+**Note**: if you can't use remote debugging, recompile the app and enable it.
+{% endhint %}
+
 ## <mark style="color:yellow;">Root Detection</mark>
 
 * **Missing Root Detection**
@@ -69,7 +79,8 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
 * **Identify RASP**
   * Analyze source code
   * `apkid --scan-depth 0 -r <apk_filename>.apk`
-* Bypass protection analyzing the code and/or with frida
+* **Bypass protection analyzing the code and/or with frida**
+  * If the app return an error message (ex: "Your device appears to be rooted..."), search this string inside the code
 
 ## <mark style="color:yellow;">Emulator Detection</mark>
 
@@ -120,3 +131,18 @@ adb backup -apk <package_name> -f <backup_name>.adb
 # Restore backup
 adb restore <backup_name>.ab
 ```
+
+## <mark style="color:yellow;">WebView - Debug</mark>
+
+Requirements:
+
+* `setWebContentsDebuggingEnabled` is set to true
+* OR `android:debuggable="true"`  (`setWebContentsDebuggingEnabled` is enabled automatically if the app is declared) More info: [https://developer.android.com](https://developer.android.com/reference/android/webkit/WebView#setWebContentsDebuggingEnabled\(boolean\))
+
+{% hint style="info" %}
+**Note**: the Apache Cordova application automatically gets attached to Chrome’s debugger. (_org.apache.cordova.SystemWebEngine)_
+{% endhint %}
+
+1. Open the application on your phone&#x20;
+2. Open chrome on your machine `chrome://inspect/#devices`
+3. In the “Remote Target” section, you will find the device and the app. Click on `inspect`.

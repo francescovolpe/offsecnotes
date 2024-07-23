@@ -114,5 +114,6 @@ Decompile to (near) source code. (Dex to Java).
 </strong># Open jadx-gui
 jadx-gui
 <strong># Decompile
-</strong>jadx -d App &#x3C;app_name>.apk
+</strong>jadx &#x3C;app_name>.apk
+jadx -d App &#x3C;app_name>.apk
 </code></pre>
