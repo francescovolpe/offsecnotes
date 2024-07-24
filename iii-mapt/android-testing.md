@@ -124,7 +124,7 @@ strings appMemoryDump > appMemoryDump.txt
 
 ## <mark style="color:yellow;">Backup</mark>
 
-* Check `android:allowBackup="true"` in the Manifest.xml
+* Check `android:allowBackup="true"` in the `AndroidManifest.xml`
 
 ```sh
 # Backup one application with its apk
@@ -148,6 +148,7 @@ Requirements:
 1. Open the application on your phone&#x20;
 2. Open chrome on your machine `chrome://inspect/#devices`
 3. In the “Remote Target” section, you will find the device and the app. Click on `inspect`.
+4. Now you can look for Application Storage, Network traffic, etc.
 
 ## <mark style="color:yellow;">Verify deep link</mark>
 
