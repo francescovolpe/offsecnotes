@@ -87,13 +87,15 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
 * Missing Emulator Detection
 * Bypass protection analyzing the code and/or with frida
 
-## <mark style="color:yellow;">Sensitive data in Logs</mark>
+## <mark style="color:yellow;">Sensitive data</mark>
+
+### <mark style="color:yellow;">Logs</mark>
 
 ```sh
 adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"
 ```
 
-## <mark style="color:yellow;">Sensitive data in Local Storage</mark>
+### <mark style="color:yellow;">Local Storage</mark>
 
 ```sh
 # Print out applications Files, Caches and other directories
@@ -106,7 +108,7 @@ objection -g <package_name> run env
 * Check for sensitive information/data store on Shared Preferences or not
 * Check if sensitive information/data is stored in the local storage database using strong encryption on or not
 
-## <mark style="color:yellow;">Sensitive data in Application Memory</mark>
+### <mark style="color:yellow;">Application Memory</mark>
 
 ```sh
 # Start objection
