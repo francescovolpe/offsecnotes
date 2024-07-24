@@ -176,7 +176,7 @@ When the user clicks a deep link, a disambiguation dialog might appear. This dia
 
 Web links are deep links that use the HTTP and HTTPS schemes.
 
-Note: On Android 12 and higher, clicking a web link (not an Android App Link) opens it in a web browser. On earlier Android versions, users may see a disambiguation dialog if multiple apps can handle the web link.
+**Note**: On Android 12 and higher, clicking a web link (not an Android App Link) opens it in a web browser. On earlier Android versions, users may see a disambiguation dialog if multiple apps can handle the web link.
 
 ```xml
 <intent-filter>
@@ -207,4 +207,52 @@ In this case Android attempt to access the **Digital Asset Links** file in order
 
 </details>
 
-*
+**Why this is a security issue?**
+
+Because of Link Hijacking. This happen when a malicious app registers an URI that belongs to the victim app. If mobile OS redirects the user to the malicious app, it can lead to phishing (e.g., the malicious app displays forged UI to lure user passwords) or data leakage (e.g., the deep link may carry sensitive data in the URL parameters such as session IDs).
+
+<table><thead><tr><th width="111">Android </th><th width="187">Victim App installed</th><th>Link supported</th><th>URI</th><th>Behavior</th></tr></thead><tbody><tr><td>-</td><td>N</td><td></td><td><code>geo://</code></td><td><mark style="color:red;">Open in malicious</mark></td></tr><tr><td>&#x3C; 12</td><td>N</td><td></td><td><code>https://google.com</code></td><td><mark style="color:orange;">Dialog appear (browser, malicious app)</mark></td></tr><tr><td>-</td><td>Y</td><td>Scheme URL</td><td><code>geo://</code></td><td><mark style="color:orange;">Dialog appear (malicious app, victim app)</mark></td></tr><tr><td>&#x3C; 12</td><td>Y </td><td>Web Links</td><td> <code>https://google.com</code></td><td><mark style="color:orange;">Dialog appear (browser, malicious app, victim app)</mark></td></tr><tr><td>> 12</td><td>N | Y</td><td></td><td><code>https://google.com</code></td><td><mark style="color:green;">Open in default browser</mark></td></tr><tr><td>> 6 </td><td>Y</td><td>App Links</td><td><code>https://google.com</code></td><td><mark style="color:green;">Open Victim App</mark></td></tr></tbody></table>
+
+{% hint style="info" %}
+**Note**: the victim user have malicious app installed
+{% endhint %}
+
+
+
+**Start an intent**
+
+```sh
+adb shell am start -W -a android.intent.action.VIEW -d "geo://"
+```
+
+
+
+**Testing Scheme URL**
+
+Check if there are any scheme URL. These types of deep links are not secure.
+
+***
+
+**Testing Web Links**
+
+Check if there are any Web Links. If the app can be installed on `Android < 12`, then they are not secure.
+
+***
+
+**Testing App Links**
+
+Check if there are any App Links. If the app can be installed on `Android < 12`, then proceed with testing
+
+* Check for **missing** Digital Asset Links file:
+
+```
+https://myownpersonaldomain.com/.well-known/assetlinks.json
+https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=myownpersonaldomain.com
+```
+
+* Misconfigured
+
+If the OS prompts you to choose between Browser and one or more apps, then the app link Verification process is not correctly implemented.
+
+
+
