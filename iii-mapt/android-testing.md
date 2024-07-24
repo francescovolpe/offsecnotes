@@ -146,3 +146,65 @@ Requirements:
 1. Open the application on your phone&#x20;
 2. Open chrome on your machine `chrome://inspect/#devices`
 3. In the “Remote Target” section, you will find the device and the app. Click on `inspect`.
+
+## <mark style="color:yellow;">Verify deep link</mark>
+
+<details>
+
+<summary>Types of links</summary>
+
+**Scheme URL**
+
+App developers customize any schemes and URIs for their app without any restriction
+
+Ex: `fb://profile`, `geo://`
+
+```xml
+<activity android:name=".MyMapActivity" android:exported="true"...>
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="geo" />
+    </intent-filter>
+</activity>
+```
+
+When the user clicks a deep link, a disambiguation dialog might appear. This dialog allows the user to select one of multiple apps, including your app, that can handle the given deep link
+
+**Web links**
+
+Web links are deep links that use the HTTP and HTTPS schemes.
+
+Note: On Android 12 and higher, clicking a web link (not an Android App Link) opens it in a web browser. On earlier Android versions, users may see a disambiguation dialog if multiple apps can handle the web link.
+
+```xml
+<intent-filter>
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data android:scheme="http" />
+    <data android:host="myownpersonaldomain.com" />
+</intent-filter>
+```
+
+**Android App Links**
+
+Android App Links, available on Android 6.0 (API level 23) and higher, are web links with the `autoVerify` attribute. This lets your app become the default handler for the link type, so when a user clicks an Android App Link, your app opens immediately if installed, without a disambiguation dialog.
+
+```xml
+<intent-filter android:autoVerify="true">
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data android:scheme="http" />
+    <data android:scheme="https" />
+    <data android:host="myownpersonaldomain.com" />
+</intent-filter>
+```
+
+In this case Android attempt to access the **Digital Asset Links** file in order to verify the App Links. **A deep link can be considered an App Link only if the verification is successful.**
+
+</details>
+
+*
