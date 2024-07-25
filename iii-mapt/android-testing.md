@@ -252,3 +252,21 @@ adb shell am start -W -a android.intent.action.VIEW -d "geo://"
     * Digital Asset Links file: `https://myownpersonaldomain.com/.well-known/assetlinks.json` , `https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=myownpersonaldomain.com`
   * Misconfigured
     * If the OS prompts you to choose between Browser and one or more apps, then the app link Verification process is not correctly implemented.
+
+## <mark style="color:yellow;">Task Hijacking</mark>
+
+Task hijacking is a vulnerability that affects Android applications due to the configuration of Task Control features in the AndroidManifest.xml file. This flaw can allow an attacker or a malicious app to take over legitimate apps, potentially leading to information theft.
+
+***
+
+**Prerequisites**
+
+* The app can be installed on **Android SDK version < 28 (Android 9)**. Check `android:minSdkVersion="28"` in `AndroidManifest.xml`
+  * This vulnerability is patched from **Android SDK version 28 (**[**https://developer.android.com/privacy-and-security/risks/strandhogg**](https://developer.android.com/privacy-and-security/risks/strandhogg)**)**
+* `android:launchMode="singleTask"` in `AndroidManifest.xml`
+
+***
+
+**Testing**
+
+to do
