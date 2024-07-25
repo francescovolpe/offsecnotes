@@ -110,6 +110,8 @@ objection -g <package_name> run env
 
 ### <mark style="color:yellow;">Application Memory</mark>
 
+Example: after login see how long the app keeps the password in memory
+
 ```sh
 # Start objection
 objection -g 'exampleapp' explore
@@ -124,7 +126,7 @@ strings appMemoryDump > appMemoryDump.txt
 
 ## <mark style="color:yellow;">Backup</mark>
 
-* Check `android:allowBackup="true"` in the `AndroidManifest.xml`
+Check `android:allowBackup="true"` in the `AndroidManifest.xml`
 
 ```sh
 # Backup one application with its apk
@@ -132,6 +134,16 @@ adb backup -apk <package_name> -f <backup_name>.adb
 
 # Restore backup
 adb restore <backup_name>.ab
+```
+
+## <mark style="color:yellow;">Debuggable</mark>
+
+Check `android:debuggable="true"` in the `AndroidManifest.xml`
+
+If it is enable you can read and extract without **root privileges** all files inside the app internal storage.
+
+```sh
+adb exec-out run-as <package_name> tar c . > output.tar
 ```
 
 ## <mark style="color:yellow;">WebView - Debug</mark>
