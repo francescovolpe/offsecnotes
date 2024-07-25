@@ -261,7 +261,7 @@ Task hijacking is a vulnerability that affects Android applications due to the c
 
 **Prerequisites**
 
-* The app can be installed on **Android SDK version < 28 (Android 9)**. Check `android:minSdkVersion="28"` in `AndroidManifest.xml`
+* The app can be installed on **Android SDK version < 28 (Android 9)**. Check `android:minSdkVersion` is < 28 in `AndroidManifest.xml`
   * This vulnerability is patched from **Android SDK version 28 (**[**https://developer.android.com/privacy-and-security/risks/strandhogg**](https://developer.android.com/privacy-and-security/risks/strandhogg)**)**
 * `android:launchMode="singleTask"` in `AndroidManifest.xml`
 
