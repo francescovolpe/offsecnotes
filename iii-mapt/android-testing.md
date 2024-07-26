@@ -148,7 +148,7 @@ adb exec-out run-as <package_name> tar c . > output.tar
 
 ## <mark style="color:yellow;">WebView - Debug</mark>
 
-Requirements:
+**Requirements:**
 
 * `setWebContentsDebuggingEnabled` is set to true
 * OR `android:debuggable="true"`  (`setWebContentsDebuggingEnabled` is enabled automatically if the app is declared) More info: [https://developer.android.com/reference/android/webkit/WebView#setWebContentsDebuggingEnabled(boolean)](https://developer.android.com/reference/android/webkit/WebView#setWebContentsDebuggingEnabled\(boolean\))
@@ -259,7 +259,7 @@ Task hijacking is a vulnerability that affects Android applications due to the c
 
 **Scenario**
 
-<figure><img src="../.gitbook/assets/Schermata del 2024-07-26 09-22-38.png" alt=""><figcaption><p>Based on "Android Task hijacking" by Evgeny Blashko &#x26; Yury Shabalin in "Positive Hack Days - PHDays VII Hacking conference"</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/task_hijacking.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 **Note**:&#x20;
@@ -271,7 +271,7 @@ Task hijacking is a vulnerability that affects Android applications due to the c
 **Requirements:**
 
 * The app can be installed on **Android SDK version < 28 (Android 9)**. Check `android:minSdkVersion` is < 28 in `AndroidManifest.xml`
-  * This vulnerability is patched from **Android SDK version 28 (**[**https://developer.android.com/privacy-and-security/risks/strandhogg**](https://developer.android.com/privacy-and-security/risks/strandhogg)**)**
+  * This vulnerability is patched from **Android SDK version 28**. [https://developer.android.com/privacy-and-security/risks/strandhogg](https://developer.android.com/privacy-and-security/risks/strandhogg)
 * `android:launchMode="singleTask"` in `AndroidManifest.xml` (necessary for this scenario)
 
 ***
