@@ -162,7 +162,7 @@ adb exec-out run-as <package_name> tar c . > output.tar
 3. In the “Remote Target” section, you will find the device and the app. Click on `inspect`.
 4. Now you can look for Application Storage, Network traffic, etc.
 
-## <mark style="color:yellow;">Verify deep link</mark>
+## <mark style="color:yellow;">Deep link</mark>
 
 <details>
 
