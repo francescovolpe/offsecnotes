@@ -262,7 +262,10 @@ Task hijacking is a vulnerability that affects Android applications due to the c
 <figure><img src="../.gitbook/assets/Schermata del 2024-07-26 09-22-38.png" alt=""><figcaption><p>Based on "Android Task hijacking" by Evgeny Blashko &#x26; Yury Shabalin in "Positive Hack Days - PHDays VII Hacking conference"</p></figcaption></figure>
 
 {% hint style="info" %}
-**Note**: there are many other scenarios, in this case we focus only on this one. For more details on other scenarios: [https://www.youtube.com/watch?v=lLBeoufO\_Bc](https://www.youtube.com/watch?v=lLBeoufO\_Bc). Slide: [https://www.slideshare.net/slideshow/android-task-hijacking/76515201](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)
+**Note**:&#x20;
+
+* There are many other scenarios, in this case we focus only on this one. For more details on other scenarios: [https://www.youtube.com/watch?v=lLBeoufO\_Bc](https://www.youtube.com/watch?v=lLBeoufO\_Bc). Slide: [https://www.slideshare.net/slideshow/android-task-hijacking/76515201](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)
+* The only real remediation is update to `android:minSdkVersion="28"`.
 {% endhint %}
 
 **Requirements:**
@@ -275,8 +278,17 @@ Task hijacking is a vulnerability that affects Android applications due to the c
 
 **Testing**
 
-to do.
+You can use malware apk by ivan sincek. [https://github.com/ivan-sincek/malware-apk](https://github.com/ivan-sincek/malware-apk)
 
-{% hint style="info" %}
-**Note**: the only real remediation is update to `android:minSdkVersion="28"`.
-{% endhint %}
+To hijack a task, modify the task affinity in `AndroidManifest.xml` of `malware.apk` under `MainActivity`. Set it to `PackageNameVictim` and rebuild the APK.
+
+Example:
+
+```xml
+<! -- AndroidManifest.xml victim.apk -->
+<manifest ... package="com.victim.bank" ...>
+
+<! -- AndroidManifest.xml malware.apk -->
+<activity android:name="com.kira.malware.activities.MainActivity" android:exported="true" android:taskAffinity="com.victim.bank" ...>
+```
+
