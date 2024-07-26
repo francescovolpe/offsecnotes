@@ -276,3 +276,7 @@ Requirements
 **Testing**
 
 to do
+
+{% hint style="info" %}
+Note: the only real remediation is ipdate to `android:minSdkVersion="28".`
+{% endhint %}
