@@ -259,7 +259,11 @@ Task hijacking is a vulnerability that affects Android applications due to the c
 
 **Scenario**
 
-<figure><img src="../.gitbook/assets/task_hijacking.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/task_hijacking.png" alt=""><figcaption><p>Based on "Android Task hijacking" by Evgeny Blashko &#x26; Yury Shabalin in "Positive Hack Days - PHDays VII Hacking conference"</p></figcaption></figure>
+
+**Security implication (this scenario)**
+
+When the back button is pressed on `Bank-Main-Activity`, the user will go to the `Mal-Activity 2` .
 
 {% hint style="info" %}
 **Note**:&#x20;
