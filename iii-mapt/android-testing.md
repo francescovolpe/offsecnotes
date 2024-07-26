@@ -3,6 +3,8 @@
 ## <mark style="color:yellow;">Identify compilers, packers, obfuscators</mark>
 
 ```sh
+# https://github.com/rednaga/APKiD
+
 apkid --scan-depth 0 -r <apk_filename>.apk
 ```
 
