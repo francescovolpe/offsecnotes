@@ -257,15 +257,15 @@ adb shell am start -W -a android.intent.action.VIEW -d "geo://"
 
 Task hijacking is a vulnerability that affects Android applications due to the configuration of Task Control features in the AndroidManifest.xml file. This flaw can allow an attacker or a malicious app to take over legitimate apps, potentially leading to information theft.
 
-Scenario
+**Scenario**
 
-<figure><img src="../.gitbook/assets/Schermata del 2024-07-26 09-22-38.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Schermata del 2024-07-26 09-22-38.png" alt=""><figcaption><p>Based on "Android Task hijacking" by Evgeny Blashko &#x26; Yury Shabalin in "Positive Hack Days - PHDays VII Hacking conference"</p></figcaption></figure>
 
 {% hint style="info" %}
-Note: there are many other scenarios, in this case we focus only on this one. For more details on other scenarios: [https://www.youtube.com/watch?v=lLBeoufO\_Bc](https://www.youtube.com/watch?v=lLBeoufO\_Bc). Slide: [https://www.slideshare.net/slideshow/android-task-hijacking/76515201](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)
+**Note**: there are many other scenarios, in this case we focus only on this one. For more details on other scenarios: [https://www.youtube.com/watch?v=lLBeoufO\_Bc](https://www.youtube.com/watch?v=lLBeoufO\_Bc). Slide: [https://www.slideshare.net/slideshow/android-task-hijacking/76515201](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)
 {% endhint %}
 
-Requirements
+**Requirements:**
 
 * The app can be installed on **Android SDK version < 28 (Android 9)**. Check `android:minSdkVersion` is < 28 in `AndroidManifest.xml`
   * This vulnerability is patched from **Android SDK version 28 (**[**https://developer.android.com/privacy-and-security/risks/strandhogg**](https://developer.android.com/privacy-and-security/risks/strandhogg)**)**
@@ -275,8 +275,8 @@ Requirements
 
 **Testing**
 
-to do
+to do.
 
 {% hint style="info" %}
-Note: the only real remediation is ipdate to `android:minSdkVersion="28".`
+**Note**: the only real remediation is update to `android:minSdkVersion="28"`.
 {% endhint %}
