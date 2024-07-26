@@ -255,7 +255,7 @@ adb shell am start -W -a android.intent.action.VIEW -d "geo://"
 
 ## <mark style="color:yellow;">Task Hijacking</mark>
 
-Task hijacking is a vulnerability that affects Android applications due to the configuration of Task Control features in the AndroidManifest.xml file. This flaw can allow an attacker or a malicious app to take over legitimate apps, potentially leading to information theft.
+Task hijacking is a vulnerability that affects Android applications due to the configuration of Task Control features in the `AndroidManifest.xml` file. This flaw can allow an attacker or a malicious app to take over legitimate apps, potentially leading to information theft.
 
 **Scenario**
 
@@ -264,7 +264,7 @@ Task hijacking is a vulnerability that affects Android applications due to the c
 {% hint style="info" %}
 **Note**:&#x20;
 
-* There are many other scenarios, in this case we focus only on this one. For more details on other scenarios: [https://www.youtube.com/watch?v=lLBeoufO\_Bc](https://www.youtube.com/watch?v=lLBeoufO\_Bc). Slide: [https://www.slideshare.net/slideshow/android-task-hijacking/76515201](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)
+* There are many other scenarios, in this case we focus only on this one. For more details on other scenarios: [https://www.youtube.com/watch?v=lLBeoufO\_Bc](https://www.youtube.com/watch?v=lLBeoufO\_Bc). Slides: [https://www.slideshare.net/slideshow/android-task-hijacking/76515201](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)
 * The only real remediation is update to `android:minSdkVersion="28"`.
 {% endhint %}
 
@@ -272,7 +272,7 @@ Task hijacking is a vulnerability that affects Android applications due to the c
 
 * The app can be installed on **Android SDK version < 28 (Android 9)**. Check `android:minSdkVersion` is < 28 in `AndroidManifest.xml`
   * This vulnerability is patched from **Android SDK version 28 (**[**https://developer.android.com/privacy-and-security/risks/strandhogg**](https://developer.android.com/privacy-and-security/risks/strandhogg)**)**
-* `android:launchMode="singleTask"` in `AndroidManifest.xml`
+* `android:launchMode="singleTask"` in `AndroidManifest.xml` (necessary for this scenario)
 
 ***
 
@@ -291,4 +291,3 @@ Example:
 <! -- AndroidManifest.xml malware.apk -->
 <activity android:name="com.kira.malware.activities.MainActivity" android:exported="true" android:taskAffinity="com.victim.bank" ...>
 ```
-
