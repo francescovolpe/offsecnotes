@@ -65,8 +65,8 @@ This allow you to intercpet the traffic in the webview. It's especially useful i
 
 See [#webview-debug](android-testing.md#webview-debug "mention")
 
-{% hint style="info" %}
-**Note**: if you can't use remote debugging, recompile the app and enable it.
+{% hint style="success" %}
+**Tip**: if you can't use remote debugging, recompile the app and enable it.
 {% endhint %}
 
 ## <mark style="color:yellow;">Root Detection</mark>
@@ -247,7 +247,7 @@ adb shell am start -W -a android.intent.action.VIEW -d "geo://"
 
 **Testing**
 
-* **Testing Scheme UR:** Check if there are any scheme URL. These types of deep links are not secure.
+* **Testing Scheme URI:** Check if there are any scheme URL. These types of deep links are not secure.
 * **Testing Web Links:** Check if there are any Web Links. If the app can be installed on `Android < 12`, then they are not secure.
 * **Testing App Links:** Check if there are any App Links. If the app can be installed on `Android < 12`, then proceed with testing.
   * Check for **missing**&#x20;
