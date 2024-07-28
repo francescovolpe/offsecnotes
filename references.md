@@ -16,3 +16,5 @@
 * [https://github.com/Hrishikesh7665/Android-Pentesting-Checklist](https://github.com/Hrishikesh7665/Android-Pentesting-Checklist)
 * [https://mas.owasp.org/MASTG/](https://mas.owasp.org/MASTG/)
 * [https://stinger.io/mobile/android/](https://stinger.io/mobile/android/)
+* [https://github.com/ivan-sincek/android-penetration-testing-cheat-sheet](https://github.com/ivan-sincek/android-penetration-testing-cheat-sheet)
+* [https://developer.android.com/privacy-and-security/security-tips](https://developer.android.com/privacy-and-security/security-tips)
