@@ -27,21 +27,25 @@ function unsafe(t) {
 
 </details>
 
-## <mark style="color:yellow;">Types of XSS</mark>
+## <mark style="color:yellow;">**Reflected XSS**</mark>
 
-* **Reflected XSS**, where the malicious script comes from the current HTTP request.
+The malicious script comes from the current HTTP request.
 
 ```
 https://insecure-website.com/search?term=<script>alert(document.domain)</script>
 ```
 
-* **Stored XSS**, where the malicious script comes from the website's database. POST example:&#x20;
+## <mark style="color:yellow;">**Stored XSS**</mark>
+
+The malicious script comes from the website's database. POST example:&#x20;
 
 ```
 comment=<script>alert(document.domain)</script>
 ```
 
-* **DOM-based XSS**, where the vulnerability exists in client-side code rather than server-side code.
+## <mark style="color:yellow;">**DOM-based XSS**</mark>
+
+The vulnerability exists in client-side code rather than server-side code.
 
 ```html
 <script>
@@ -60,7 +64,7 @@ if(query) {
 https://insecure-website.com/index?search="><script>alert(document.domain)</script>
 ```
 
-**Methodology (DOM XSS)**
+**Methodology**
 
 1. Look for any script that has a sinks
 2. See if you can control the sink
