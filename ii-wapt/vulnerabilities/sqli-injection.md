@@ -129,7 +129,8 @@ Blind SQL injection occurs when an application is vulnerable to SQL injection, b
 
 ### <mark style="color:yellow;">Error-based SQL injection</mark>
 
-* Problem: Some applications carry out SQL queries but their behavior doesn't change, regardless of whether the query returns any data. The technique "Triggering conditional responses" won't work, because injecting different boolean conditions makes no difference to the application's responses.
+Problem: Some applications carry out SQL queries but their behavior doesn't change, regardless of whether the query returns any data. The technique "Triggering conditional responses" won't work, because injecting different boolean conditions makes no difference to the application's responses.
+
 * It's often possible to induce the application to return a different response depending on whether a SQL error occurs and extract or infer sensitive data from the database, even in blind contexts.
 * `xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a`
   * The CASE expression evaluates to 'a', which does not cause any error.

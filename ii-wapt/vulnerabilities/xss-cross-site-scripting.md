@@ -97,8 +97,6 @@ Exploit
 <iframe src="https://vuln.website/" onload="this.contentWindow.postMessage('<img src=1 onerror=print()>','*')">
 ```
 
-### <mark style="color:yellow;">DOM XSS - Sources and sinks in third-party dependencies</mark>
-
 ### <mark style="color:yellow;">**jQuery**</mark>
 
 jQuery's `attr()` function can change the attributes of DOM elements
@@ -301,7 +299,11 @@ Breaking out of a JavaScript string
     * `&apos;-alert(document.domain)-&apos;`
     * The browser HTML-decodes the value of the onclick attribute before the JavaScript is interpreted
     * HTML encode: https://html.spec.whatwg.org/multipage/named-characters.html
-    * Note: you cannot use `&quot;` -> `"` to close onclick attribute. Remember: The browser HTML-decode the value of the onlick attribute but not the entire structure
+
+{% hint style="info" %}
+**Note**: you cannot use `&quot;` -> `"` to close onclick attribute. Remember: The browser HTML-decode the value of the onlick attribute but not the entire structure
+{% endhint %}
+
 * XSS in JavaScript template literals
   * JavaScript template literals are string literals that allow embedded JavaScript expressions (Template literals are encapsulated in backticks)
 
