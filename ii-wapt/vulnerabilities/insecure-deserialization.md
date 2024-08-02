@@ -1,33 +1,61 @@
 # Insecure deserialization
 
-## <mark style="color:yellow;">General info</mark>
+<details>
+
+<summary>General info</summary>
 
 * Serialization is the process of converting complex data structures, such as objects and their fields, into a "flatter" format that can be sent and received as a sequential stream of bytes.
+
+<!---->
+
 * Deserialization is the process of restoring this byte stream to a fully functional replica of the original object.
+
+<!---->
+
 * Some languages serialize objects into binary formats, whereas others use different string formats, with varying degrees of human readability.
+
+<!---->
+
 * To prevent a field from being serialized, it must be explicitly marked as "transient" in the class declaration.
+
+<!---->
+
 * Insecure deserialization arises because there is a general lack of understanding of how dangerous deserializing user-controllable data can be.
 
-## <mark style="color:yellow;">How to identify insecure deserialization</mark>
+</details>
 
-### <mark style="color:yellow;">PHP serialization format</mark>
+<details>
 
-```
+<summary>PHP serialization format</summary>
+
+```php
 $user->name = "carlos";
 $user->isLoggedIn = true;
 ```
 
-```
+```php
 O:4:"User":2:{s:4:"name":s:6:"carlos"; s:10:"isLoggedIn":b:1;}
 ```
 
 The native methods for PHP serialization are `serialize()` and `unserialize()`. If you have source code access, you should start by looking for `unserialize()` anywhere in the code and investigating further.
 
-### <mark style="color:yellow;">Java serialization format</mark>
+</details>
+
+<details>
+
+<summary>Java serialization format</summary>
 
 * Some languages, such as Java, use binary serialization formats
+
+<!---->
+
 * Serialized Java objects always begin with the same bytes, which are encoded as `ac ed` in hexadecimal and `rO0` in Base64.
+
+<!---->
+
 * Any class that implements the interface `java.io.Serializable` can be serialized and deserialized. If you have source code access, take note of any code that uses the `readObject()` method, which is used to read and deserialize data from an `InputStream`.
+
+</details>
 
 ## <mark style="color:yellow;">Manipulating serialized objects</mark>
 
@@ -36,36 +64,61 @@ The native methods for PHP serialization are `serialize()` and `unserialize()`. 
 
 ### <mark style="color:yellow;">Modifying object attributes</mark>
 
-* If an attacker spotted this serialized object in an HTTP request, they might decode it to find the following byte stream:
-* `O:4:"User":2:{s:8:"username";s:6:"carlos";s:7:"isAdmin";b:0;}`
-* An attacker could simply change the boolean value of the attribute to 1 (true), re-encode the object
+1. Identify serialized object. This example: in the cookie
+2. Decode it
 
+```php
+O:4:"User":2:{s:8:"username";s:6:"carlos";s:7:"isAdmin";b:0;}
 ```
+
+3. Modify attributes&#x20;
+
+```php
+O:4:"User":2:{s:8:"username";s:6:"carlos";s:7:"isAdmin";b:1;}
+```
+
+4. Re-encode the object and overwrite (the cookie)
+
+***
+
+```php
 $user = unserialize($_COOKIE);
 if ($user->isAdmin === true) {
 // allow access to admin interface
 }
 ```
 
-* NOTE 1: In isolation, this has no effect
-* NOTE 2: This simple scenario is not common in the wild
+{% hint style="info" %}
+**Note**: This simple scenario is not common in the wild
+{% endhint %}
 
 ### <mark style="color:yellow;">Modifying data types</mark>
 
-* PHP -> if you perform a loose comparison `(==)` between an integer and a string, PHP will attempt to convert the string to an integer, meaning that 5 == "5" evaluates to `true`
-* `0 == "Example string" // true`
+PHP -> if you perform a loose comparison `==` between an integer and a string, PHP will attempt to convert the string to an integer, meaning that `5 == "5"` evaluates to `true`
 
+```php
+0 == "Example string" // true
 ```
+
+```php
 $login = unserialize($_COOKIE)
 if ($login['password'] == $password) {
 // log in successfully
 }
 ```
 
-* Attacker modified the password attribute so that it contained the integer `0` -> authentication bypass
-* NOTE 1: this is only possible because deserialization preserves the data type
-* NOTE 2: When working directly with binary formats, use the Hackvertor extension (Burp Suite)
-* REMEMBER: when modifying data types in any serialized object format -> remember to update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized)
+Attacker modified the password attribute so that it contained the integer `0` -> authentication bypass
+
+{% hint style="info" %}
+Note:
+
+* This is only possible because deserialization preserves the data type
+* When working directly with binary formats, use the Hackvertor extension (Burp Suite)
+{% endhint %}
+
+{% hint style="info" %}
+REMEMBER: when modifying data types in any serialized object format, update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized)
+{% endhint %}
 
 ## <mark style="color:yellow;">Using application functionality</mark>
 
@@ -79,7 +132,7 @@ if ($login['password'] == $password) {
 * Some languages have magic methods that are invoked automatically during the deserialization process
 * In Java deserialization, the ObjectInputStream.readObject() method is used to read data from the initial byte stream and essentially acts like a constructor for "re-initializing" a serialized object.
 
-```
+```java
 private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
 {
     // implementation
@@ -118,15 +171,3 @@ private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundE
 ### <mark style="color:yellow;">Working with documented gadget chains</mark>
 
 If no dedicated tool exists for exploiting known gadget chains in the target application's framework, consider searching online for documented exploits to adapt manually
-
-## <mark style="color:yellow;">Creating your own exploit</mark>
-
-TO DO ...
-
-## <mark style="color:yellow;">PHAR deserialization</mark>
-
-TO DO ...
-
-## <mark style="color:yellow;">Exploiting deserialization using memory corruption</mark>
-
-TO DO ...
