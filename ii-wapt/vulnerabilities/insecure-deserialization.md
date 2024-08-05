@@ -127,9 +127,7 @@ REMEMBER: when modifying data types in any serialized object format, update any 
 
 ## <mark style="color:yellow;">Magic methods</mark>
 
-* Magic methods are a special subset of methods that you do not have to explicitly invoke. They are invoked automatically whenever a particular event or scenario occurs
-* Developers can add magic methods to a class in order to predetermine what code should be executed when the corresponding event or scenario occurs (example: `__construct()` )
-* Some languages have magic methods that are invoked automatically during the deserialization process
+* Magic methods are a special type of method that are automatically triggered by specific events or scenarios, without explicit invocation. Developers use them to define code execution for these events (e.g., `__construct()`). Some languages have magic methods that are invoked automatically during deserialization.
 * In Java deserialization, the ObjectInputStream.readObject() method is used to read data from the initial byte stream and essentially acts like a constructor for "re-initializing" a serialized object.
 
 ```java
@@ -143,13 +141,11 @@ private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundE
 
 ## <mark style="color:yellow;">Injecting arbitrary objects</mark>
 
-* Deserialization methods do not typically check what they are deserializing.
-* You can pass in objects of any serializable class that is available to the website, and the object will be deserialized.
-* This allows an attacker to create instances of arbitrary classes.
-* If an attacker has access to the source code, they can study all of the available classes in detail.
-  * To construct a simple exploit, look for classes containing deserialization magic methods,
-  * Then check whether any of them perform dangerous operations on controllable data.
-  * Then pass in a serialized object of this class to use its magic method for an exploit.
+Deserialization methods often don't validate the objects they process. Attackers can pass any serializable class, allowing them to instantiate arbitrary classes. With source code access, you can
+
+* Identify classes with deserialization magic methods
+* Check if they perform unsafe operations on controllable data
+* Then pass in a serialized object of this class to use its magic method for an exploit.
 
 ## <mark style="color:yellow;">Gadget chains</mark>
 

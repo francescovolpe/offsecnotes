@@ -24,6 +24,7 @@
 * Source code disclosure via backup files
   * Text editors often generate temporary backup files while the original file is being edited
     * appending a tilde (`~`) to the filename or adding a different file extension
+    * `/upload/code.php~`, `/upload/~code.php`
 * Information disclosure due to insecure configuration
   * Websites are sometimes vulnerable as a result of improper configuration especially common due to the widespread use of third-party technologies, whose vast array of configuration options are not necessarily.
   * Example `HTTP TRACE`. Occasionally could leads to information disclosure, such as the name of internal authentication headers that may be appended to requests by reverse proxies.

