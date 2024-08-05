@@ -64,6 +64,13 @@ The native methods for PHP serialization are `serialize()` and `unserialize()`. 
 
 ### <mark style="color:yellow;">Modifying object attributes</mark>
 
+```php
+$user = unserialize($_COOKIE);
+if ($user->isAdmin === true) {
+// allow access to admin interface
+}
+```
+
 1. Identify serialized object. This example: in the cookie
 2. Decode it
 
@@ -78,15 +85,6 @@ O:4:"User":2:{s:8:"username";s:6:"carlos";s:7:"isAdmin";b:1;}
 ```
 
 4. Re-encode the object and overwrite (the cookie)
-
-***
-
-```php
-$user = unserialize($_COOKIE);
-if ($user->isAdmin === true) {
-// allow access to admin interface
-}
-```
 
 {% hint style="info" %}
 **Note**: This simple scenario is not common in the wild
@@ -117,7 +115,7 @@ Note:
 {% endhint %}
 
 {% hint style="info" %}
-REMEMBER: when modifying data types in any serialized object format, update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized)
+Remember: when modifying data types in any serialized object format, update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized)
 {% endhint %}
 
 ## <mark style="color:yellow;">Using application functionality</mark>
@@ -146,6 +144,8 @@ Deserialization methods often don't validate the objects they process. Attackers
 * Identify classes with deserialization magic methods
 * Check if they perform unsafe operations on controllable data
 * Then pass in a serialized object of this class to use its magic method for an exploit.
+
+***
 
 **Important**: a serialized object may not be obvious at first view. Example:
 
