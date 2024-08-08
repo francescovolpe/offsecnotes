@@ -57,6 +57,24 @@ The native methods for PHP serialization are `serialize()` and `unserialize()`. 
 
 </details>
 
+**Important**: a serialized object may not be obvious at first view. Example:
+
+```url
+%7b%22token%22%3a%22Tzo0OiJVc2VyIjoyOntzOjg6InVzZXJuYW1lIjtzOjY6InRlc3QiO3M6MTI6ImFjY2Vzc190b2tlbiI7czozMjoiZmx6bnQ3ZTRwYTNobGpnN3dpejJkeGxuMHVyN3VkNjYiO30%3d%22%2c%22sig_hmac_sha1%22%3a%226d68c7db6f6b4d5abc5e84acea971fd72d217202%22%7d
+```
+
+URL decode
+
+```json
+{"token":"Tzo0OiJVc2VyIjoyOntzOjg6InVzZXJuYW1lIjtzOjY6InRlc3QiO3M6MTI6ImFjY2Vzc190b2tlbiI7czozMjoiZmx6bnQ3ZTRwYTNobGpnN3dpejJkeGxuMHVyN3VkNjYiO30=","sig_hmac_sha1":"6d68c7db6f6b4d5abc5e84acea971fd72d217202"}
+```
+
+Base64 token decoding&#x20;
+
+```php
+O:4:"User":2:{s:8:"username";s:6:"wiener";s:12:"access_token";s:32:"flznt7e4pa3hljg7wiz2dxln0ur7ud66";}
+```
+
 ## <mark style="color:yellow;">Manipulating serialized objects</mark>
 
 * You can either edit the object directly in its byte stream form
@@ -144,26 +162,6 @@ Deserialization methods often don't validate the objects they process. Attackers
 * Identify classes with deserialization magic methods
 * Check if they perform unsafe operations on controllable data
 * Then pass in a serialized object of this class to use its magic method for an exploit.
-
-***
-
-**Important**: a serialized object may not be obvious at first view. Example:
-
-```url
-%7b%22token%22%3a%22Tzo0OiJVc2VyIjoyOntzOjg6InVzZXJuYW1lIjtzOjY6InRlc3QiO3M6MTI6ImFjY2Vzc190b2tlbiI7czozMjoiZmx6bnQ3ZTRwYTNobGpnN3dpejJkeGxuMHVyN3VkNjYiO30%3d%22%2c%22sig_hmac_sha1%22%3a%226d68c7db6f6b4d5abc5e84acea971fd72d217202%22%7d
-```
-
-URL decode
-
-```json
-{"token":"Tzo0OiJVc2VyIjoyOntzOjg6InVzZXJuYW1lIjtzOjY6InRlc3QiO3M6MTI6ImFjY2Vzc190b2tlbiI7czozMjoiZmx6bnQ3ZTRwYTNobGpnN3dpejJkeGxuMHVyN3VkNjYiO30=","sig_hmac_sha1":"6d68c7db6f6b4d5abc5e84acea971fd72d217202"}
-```
-
-Base64 token decoding&#x20;
-
-```php
-O:4:"User":2:{s:8:"username";s:6:"wiener";s:12:"access_token";s:32:"flznt7e4pa3hljg7wiz2dxln0ur7ud66";}
-```
 
 ## <mark style="color:yellow;">Gadget chains</mark>
 
