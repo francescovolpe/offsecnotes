@@ -142,6 +142,8 @@ We can continue this process to systematically extract data.
 
 ### <mark style="color:yellow;">Error-based SQL injection</mark>
 
+**Blind SQLi with conditional errors**
+
 Problem: Some applications carry out SQL queries but their behavior doesn't change, regardless of whether the query returns any data. The technique "Triggering conditional responses" won't work, because injecting different boolean conditions makes no difference to the application's responses.
 
 * It's often possible to induce the application to return a different response depending on whether a SQL error occurs and extract or infer sensitive data from the database, even in blind contexts.
@@ -151,7 +153,10 @@ Problem: Some applications carry out SQL queries but their behavior doesn't chan
   * It evaluates to 1/0, which causes a divide-by-zero error.
 * You can use this to determine whether the injected condition is true.
 * `xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a`
-* Note: There are different ways of triggering conditional errors, and different techniques work best on different database types. See SQL cheat sheet
+
+{% hint style="info" %}
+**Note**: There are different ways of triggering conditional errors, and different techniques work best on different database types. See SQL cheat sheet from tib3rius -> (Boolean Error Inferential Exploitation)
+{% endhint %}
 
 <details>
 
@@ -189,6 +194,8 @@ Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM us
 </code></pre>
 
 </details>
+
+***
 
 **Extracting sensitive data via verbose SQL error messages**
 
