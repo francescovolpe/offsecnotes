@@ -46,6 +46,8 @@ JWTs can be signed with various algorithms or left unsigned (`alg` set to `none`
 
 ## <mark style="color:yellow;">Brute-forcing secret keys</mark> <a href="#brute-forcing-secret-keys" id="brute-forcing-secret-keys"></a>
 
+Some signing algorithms, such as HS256 (HMAC + SHA-256), use a string as the secret key. In this case you can perform brute force attack.
+
 Use this wordlist: [https://github.com/wallarm/jwt-secrets/blob/master/jwt.secrets.list](https://github.com/wallarm/jwt-secrets/blob/master/jwt.secrets.list)
 
 ```sh
@@ -54,7 +56,7 @@ hashcat -a 0 -m 16500 <jwt> <wordlist>
 
 Once you have the secret key you can create tamper the JWT and recalculate signature.
 
-## JWT header parameter injections <a href="#jwt-header-parameter-injections" id="jwt-header-parameter-injections"></a>
+## <mark style="color:yellow;">JWT header parameter injections</mark> <a href="#jwt-header-parameter-injections" id="jwt-header-parameter-injections"></a>
 
 <details>
 
@@ -63,7 +65,119 @@ Once you have the secret key you can create tamper the JWT and recalculate signa
 According to the JWS specification, only the `alg` header parameter is mandatory. However, JWT headers often contain additional parameters of interest to attackers:
 
 * `jwk` (JSON Web Key): An embedded JSON object representing the key.
+
+```json
+"jwk": {
+    "kty": "RSA",
+    "e": "AQAB",
+    "kid": "ed2Nf8sb-sD6ng0-scs5390g-fFD8sfxG",
+    "n": "yy1wpYmffgXBxhAUJzHHocCuJolwDqql75ZWuCQ_cb33K2vh9m"
+}
+```
+
 * `jku` (JSON Web Key Set URL): A URL for servers to fetch the correct key set.
+
+```json
+"jku": "https://example.com/.well-known/jwks.json"
+```
+
+https://example.com/.well-known/jwks.json
+
+```json
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "kid": "1234567890",
+      "use": "sig",
+      "n": "modulus_value_here",
+      "e": "AQAB"
+    }
+  ]
+}
+```
+
 * `kid` (Key ID): An ID for servers to identify the correct key among multiple keys.
 
 </details>
+
+### <mark style="color:yellow;">Injecting self-signed JWTs via jwk</mark> <a href="#injecting-self-signed-jwts-via-the-jwk-parameter" id="injecting-self-signed-jwts-via-the-jwk-parameter"></a>
+
+Servers should use a limited whitelist of public keys to verify JWTs. However, misconfigured servers may accept any key in the `jwk` parameter. This can be exploited by signing a modified JWT with your own RSA private key and embedding the matching public key in the `jwk` header.
+
+**Detect/Exploit with JWT Editor Burp extension**
+
+1. Go to the JWT Editor and create new RSA Key
+2. Go to the request in Burp Repeater and switch to the extension-generated JSON Web Token tab.
+3. Tamper the data (in exploit phase)
+4. Finally, click on Attack -> Embedded JWK. (you can do it manually but pay attention to match `kid`) &#x20;
+
+{% hint style="info" %}
+**Tip**: you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
+{% endhint %}
+
+### <mark style="color:yellow;">Injecting self-signed JWTs via jku</mark>
+
+Some servers use the `jku`  header parameter to reference a JWK Set containing the key instead of embedding keys directly with the `jwk` parameter. The server fetches the key from this URL to verify the signature. Secure websites fetch keys from trusted domains, but URL parsing issues can sometimes bypass this.
+
+**Detect/Exploit with JWT Editor Burp extension**
+
+1. Go to the JWT Editor and create new RSA Key
+2. Go to the request in Burp Repeater and switch to the extension-generated JSON Web Token tab.
+3. Create webpage on your exploit server with JWK Set (JSON Web Token tab -> select key -> create JWK Set). \[you can also select Copy Public Key and paste inside "keys" array]
+
+```json
+{
+    "keys": [
+        {
+            "p": "1w_iGEEXth1HKIhNQdOOfBRiWNIpGccQPhfp4qKmsNo0jLOgqvncXA07Qv4HnSTKRDMQcZPNQctItBPpM35URzOOjMO94QB00xnHRINK9cTfFTFyahOHkdCFXCcpkcv5dQ9q1qRCJi-cCI4_-pD1BlwI18BnCtBy7HledvK__e0",
+            "kty": "RSA",
+            "q": "vazYFn29raZrk6rOS_hAkJRaGV5JMFQS59wz_FtV7EswVdgCWf_-t2PK6Z21ElWRbYhBeBkrtJimvVp6KFwDOJtkOvBT8plb8aFEcTgfCzdJGF3RAJien85gRIng45gJC_JAJRae1fLvDEbQ4vPt4TU3OIkY2KoQ22rM9q5dnCk",
+            "d": "IAYgwDjOddZTad1gntLlQRW1cK8KQrKu3tfOVpcChR18RhO8BU56p7FLRSgvfDJ2BFOa6viI3brFxu1GycaspYnADiR9UJzc3lIaPgkmsN-9Zix3RJ8sRRsIab0-dlYaN24PUZmlocTnzIEDDpUuafaJykluXnnoxnYtCCfktq2NcXYmFJ9Ui6evn6ceKAcWu-Hcd4gTxgQURjxx6jMmnrYsgyp-oGxgOL6T17_KWHal80RkhsQgLMSwhEPU8NQCTdOpy-Ms3rtLMWVpKmtmOlqtFxgf8yvAGWytL8RkB5Yv6KFzsxKqH3cnGAa8ld0rwvFLQ0wXvkkqvdJYmZKX2Q",
+            "e": "AQAB",
+            "kid": "1413b1ea-1d9d-42c0-b619-9361c28b9fa5",
+            "qi": "XRO3NCBUWiwsZ1WEZInxb_5zbz3KlFNJnWK-e1nNDROPU0VRJseZyzAy3fevYQTy0VH-LiNWkV_pqSByx4pPGlIOcMgWTkDQKoFh91H5mjj4DHZ4x7Wn8MCnDEyY52rR5QejeUtmT6jFVqHEhjCHipjxuJh5h7OV5bWfxW8CPyo",
+            "dp": "q21tvAem7vPHlPeRHbeVDDLzcfmT6YhT2isVtCIS3UYSPVWx7Jfen0Gsy2nSh-CbmmFZ6i72nkt8WI7GhNVeOKNQLcSZxpCmjt8th99gESgs6qfPm96VYhXlN9-_swf0gOsZLp8gW2_34JoDRafmqHsUUWZ8vJIMCZN1STuW7sE",
+            "dq": "qdF6loh1rmd1oXwnv7TAebGZCWV1OaPMWXK5yJMt1qVq3TDMyi98qkzae1cLqyKZVevMUe6XRtX1U0sSW9gluiTGFE7fmjDcNPYiBQwuHyicdQhp-5KpUoK_hh28D4krcFqwO4SJKRycEe3FT6z9qcivbBqy-CkrdoekgqeSgCE",
+            "n": "n1fuIBwePGThDmmsuq0NZ-Gco8KKmsyRbrKm6qusSlgGU-WWh6VPQnTcH-JkQACqPPlVT-gNJODPTSr7jhLVDgks_O9O6wlc8WXfIFDKkLica-NcCY1BgDPir4gy4EHIeKB6_HKF5RTcfjcpTI8q4lMiRIHnxVjD9rVhEPsiL1kv_9F2lRKvbLmxo0O0nPocWTbmvxmN4w-P6CXwpx4dFmebAxKkjRIs_OrqpKQ2UTJns8GW8ETJfZLxErvCS300DWV-0EGsiDlYCDluGK4nt3jfFgilqZUn6SsYWFNTeBT6X2493gRZIB0_hwzdFW8cTNmoa-OlYxUlLikONJUW9Q"
+        }
+    ]
+}
+```
+
+4. Tamper the data (in exploit phase)
+5. Add a new `jku` parameter to the header and set its value to the URL of your JWK Set on the exploit server.
+6. Sign and update `kid` parameter
+
+{% hint style="info" %}
+**Tips**:&#x20;
+
+* you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
+* To see if the server makes the request, add `jku` header and insert Burp collaborator.
+{% endhint %}
+
+### <mark style="color:yellow;">Injecting self-signed JWTs via kid</mark>
+
+The `kid` in JWS is an arbitrary string set by the developer, possibly pointing to a database entry or file. If vulnerable to directory traversal, an attacker could force the server to use any file as the verification key.
+
+```json
+{
+    "kid": "../../path/to/file",
+    "typ": "JWT",
+    "alg": "HS256",
+    "k": "asGsADas3421-dfh9DGN-AFDFDbasfd8-anfjkvc"
+}
+```
+
+This is especially dangerous if the server supports JWTs signed with a symmetric algorithm. An attacker could point the `kid` to a predictable static file, then sign the JWT using a secret that matches the contents of this file. The best way is to use `/dev/null` (empty file), and sign the JWT with an empty string to create a valid signature.
+
+**Detect/Exploit with JWT Editor Burp extension**
+
+1. Go to the request in Burp Repeater and switch to the extension-generated JSON Web Token tab.
+2. Modify  `kid` parameter to test path traversal
+3. Sign with empty string
+4. Repeat the process with different path traversal payload
+
+{% hint style="info" %}
+**Tip**: try also SQL injection
+{% endhint %}
