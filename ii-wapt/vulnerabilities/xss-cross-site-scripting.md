@@ -2,6 +2,8 @@
 
 Cross-site scripting works by manipulating a vulnerable web site so that it returns malicious JavaScript to users
 
+XSS cheatsheet: [https://portswigger.net/web-security/cross-site-scripting/cheat-sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
+
 <details>
 
 <summary>Do not use alert(1)</summary>

