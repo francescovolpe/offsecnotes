@@ -8,6 +8,8 @@ JSON web tokens (JWTs) are a standardized format for sending cryptographically s
 
 A JWT consists of 3 parts: a header, a payload, and a signature. These are each separated by a dot.
 
+<mark style="color:red;">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</mark>.<mark style="color:purple;">eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ</mark>.<mark style="color:green;">SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV\_adQssw5c</mark>
+
 The header and payload parts of a JWT are base64url-encoded JSON objects.
 
 #### JWT signature <a href="#jwt-signature" id="jwt-signature"></a>
@@ -32,9 +34,9 @@ So, tamper the jwt and ignore the signature.
 
 ## <mark style="color:yellow;">Accepting tokens with no signature</mark> <a href="#accepting-tokens-with-no-signature" id="accepting-tokens-with-no-signature"></a>
 
-the JWT header contains an `alg` parameter.
+The JWT header contains an `alg` parameter.
 
-JWTs can be signed with various algorithms or left unsigned (`alg` set to `none`). Servers usually reject unsigned tokens for security, but filters can sometimes be bypassed using obfuscation techniques like mixed capitalization and unexpected encodings.
+JWTs can be signed with various algorithms or left unsigned (`alg` set to `none`). Servers usually reject unsigned tokens, but obfuscation (mixed capitalization) can bypass filters.
 
 {% hint style="info" %}
 **Note**: even if unsigned, the token's payload must end with a trailing **dot**.
@@ -113,7 +115,7 @@ Servers should use a limited whitelist of public keys to verify JWTs. However, m
 4. Finally, click on Attack -> Embedded JWK. (you can do it manually but pay attention to match `kid`) &#x20;
 
 {% hint style="info" %}
-**Tip**: you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
+**Note**: you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
 {% endhint %}
 
 ### <mark style="color:yellow;">Injecting self-signed JWTs via jku</mark>
@@ -149,11 +151,12 @@ Some servers use the `jku`  header parameter to reference a JWK Set containing t
 5. Add a new `jku` parameter to the header and set its value to the URL of your JWK Set on the exploit server.
 6. Sign and update `kid` parameter
 
-{% hint style="info" %}
-**Tips**:&#x20;
+{% hint style="success" %}
+**Tip**: to see if the server makes the request, add `jku` header and insert Burp collaborator.
+{% endhint %}
 
-* you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
-* To see if the server makes the request, add `jku` header and insert Burp collaborator.
+{% hint style="info" %}
+**Note**: you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
 {% endhint %}
 
 ### <mark style="color:yellow;">Injecting self-signed JWTs via kid</mark>
@@ -169,7 +172,7 @@ The `kid` in JWS is an arbitrary string set by the developer, possibly pointing 
 }
 ```
 
-This is especially dangerous if the server supports JWTs signed with a symmetric algorithm. An attacker could point the `kid` to a predictable static file, then sign the JWT using a secret that matches the contents of this file. The best way is to use `/dev/null` (empty file), and sign the JWT with an empty string to create a valid signature.
+This is especially dangerous if the server supports JWTs signed with a symmetric algorithm. You could point the `kid` to a predictable static file, then sign the JWT using a secret that matches the contents of this file. The best way is to use `/dev/null` (empty file), and sign the JWT with an empty string to create a valid signature.
 
 **Detect/Exploit with JWT Editor Burp extension**
 
@@ -178,6 +181,6 @@ This is especially dangerous if the server supports JWTs signed with a symmetric
 3. Sign with empty string
 4. Repeat the process with different path traversal payload
 
-{% hint style="info" %}
+{% hint style="success" %}
 **Tip**: try also SQL injection
 {% endhint %}

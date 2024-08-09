@@ -18,7 +18,7 @@
 
 ## <mark style="color:yellow;">Retrieve files</mark>
 
-1. Introduce (or edit) a DOCTYPE element defining an external entity with the file path.
+1. Introduce (or edit) a `DOCTYPE` element defining an external entity with the file path.
 2. Edit a data value in the XML returned in the app's response to use the defined external entity.
 
 {% hint style="info" %}
@@ -99,7 +99,7 @@ Trigger an XML parsing error message with the file contents.&#x20;
 
 * **First case** - Requests that contain data in XML format
 * **Second case -** Requests that do not contain any XML
-  * **Detection**: Add entity reference that doesn't exist to cause an error  -> ok it's XML ...
+  * **Detection**: Add entity reference that doesn't exist to cause an error  -> ok it's XML
 
 ### <mark style="color:yellow;">XInclude attacks</mark>
 

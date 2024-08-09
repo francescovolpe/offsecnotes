@@ -79,7 +79,7 @@ First step is to test what happens when you supply an arbitrary, unrecognized do
   * You may encounter servers that only perform thorough validation on the first request they receive over a new connection. So, you can potentially bypass this validation by sending an innocent-looking initial request then following up with your malicious one down the same connection.
   * NOTE: you need to set up a single connection!!!
 
-### <mark style="color:yellow;">Bypass validation</mark>
+## <mark style="color:yellow;">Bypass validation</mark>
 
 You might find that your request is blocked as a result of some kind of security measure. For example, some websites will validate whether the Host header matches the SNI from the TLS handshake. You should try to understand how the website parses the Host header
 

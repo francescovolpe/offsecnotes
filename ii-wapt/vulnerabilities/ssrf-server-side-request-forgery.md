@@ -32,9 +32,9 @@ It is more difficult to exploit because you will be able to exploit only well-kn
 
 * Alternative IP representation of `127.0.0.1`, such as `2130706433`, `017700000001`, or `127.1`
 * Obfuscating blocked strings using URL encoding
-* Case variation
+* Case variation `admin` -> `aDmIn`
 * Double encoding (bypass blacklist for the path)
-* Registering your own domain name that resolves to 127.0.0.1. You can use spoofed.burpcollaborator.net for this purpose
+* Registering your own domain name that resolves to `127.0.0.1`. You can use `spoofed.burpcollaborator.net` for this purpose
 * Providing a URL that you control, which subsequently redirects to the target URL. Try using different redirect codes, as well as different protocols for the target URL. For example, switching from an http to https
 
 ### <mark style="color:yellow;">Whitelist-based</mark>
@@ -42,12 +42,14 @@ It is more difficult to exploit because you will be able to exploit only well-kn
 * Add credentials: `https://expected-host:fakepassword@evil-host`
 * `https://expected-host.evil-host`
 * URL encode and URL double encode
-* Many other ways
 
 ### <mark style="color:yellow;">Bypassing SSRF filters via open redirection</mark>
 
-* It works because the application first validates that the supplied api URL is on an allowed domain
-* `api=http://domain.net/product?productId=6&path=http://192.168.0.68/admin`
+It works because the application first validates that the supplied api URL is on an allowed domain
+
+```
+api=http://domain.net/product?productId=6&path=http://192.168.0.68/admin
+```
 
 ## <mark style="color:yellow;">Finding hidden attack surface for SSRF vulnerabilities</mark>
 

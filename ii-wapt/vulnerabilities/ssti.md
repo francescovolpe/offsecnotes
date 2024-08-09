@@ -49,7 +49,7 @@ If this results in an error or blank output, you may have used the wrong templat
 Hello user<tag>
 ```
 
-## <mark style="color:yellow;">Identify</mark> <a href="#identify" id="identify"></a>
+## <mark style="color:yellow;">Identification</mark>
 
 * Smarty (PHP)
   * `${7*7}`&#x20;
@@ -77,6 +77,3 @@ Hello user<tag>
 {% endhint %}
 
 ## <mark style="color:yellow;">Exploitation</mark>
-
-
-

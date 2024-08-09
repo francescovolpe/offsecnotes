@@ -1,6 +1,6 @@
 # XSS
 
-Cross-site scripting works by manipulating a vulnerable web site so that it returns malicious JavaScript to users
+Cross-site scripting (XSS) works by manipulating a vulnerable web site so that it returns malicious JavaScript to users
 
 XSS cheatsheet: [https://portswigger.net/web-security/cross-site-scripting/cheat-sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
 
@@ -210,10 +210,6 @@ element.innerHTML = comment.author
 <img src=1 onerror=alert(1)>
 ```
 
-**Bypass WAF**
-
-If you receive an error like "tag  is not allowed" or "event is not allowed", use XSS cheat sheet to discover a tag and event that work.
-
 {% hint style="info" %}
 **Note**: understand how a payload works
 
@@ -320,6 +316,10 @@ var input = `controllable data here`;
 </script>
 ${alert(document.domain)}
 ```
+
+## <mark style="color:yellow;">**Bypass WAF**</mark>
+
+If you receive an error like "tag  is not allowed" or "event is not allowed", use XSS cheat sheet ([https://portswigger.net/web-security/cross-site-scripting/cheat-sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)) to discover a tag and event that work.
 
 ## <mark style="color:yellow;">Exploitation</mark>
 
