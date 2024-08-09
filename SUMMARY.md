@@ -33,6 +33,7 @@
   * [SQL injection](ii-wapt/vulnerabilities/sqli-injection.md)
   * [SSRF](ii-wapt/vulnerabilities/ssrf-server-side-request-forgery.md)
   * [SSTI](ii-wapt/vulnerabilities/ssti.md)
+  * [Web cache deception](ii-wapt/vulnerabilities/web-cache-deception.md)
   * [Web cache poisoning](ii-wapt/vulnerabilities/web-cache-poisoning.md)
   * [Web LLM](ii-wapt/vulnerabilities/web-llm.md)
   * [WebSockets](ii-wapt/vulnerabilities/websockets.md)
