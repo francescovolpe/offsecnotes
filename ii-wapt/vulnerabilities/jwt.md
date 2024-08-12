@@ -28,7 +28,7 @@ JWT attacks involve users sending modified JWTs to the server to achieve malicio
 
 ## <mark style="color:yellow;">Accepting arbitrary signatures</mark> <a href="#accepting-arbitrary-signatures" id="accepting-arbitrary-signatures"></a>
 
-JWT libraries typically provide one method for verifying tokens and another that just decodes them. Occasionally, developers confuse these methods and only pass incoming tokens to the decode method, meaning the application doesn't verify the signature.
+Occasionally, developers only pass incoming tokens to the decode method, meaning the application doesn't verify the signature.
 
 So, tamper the jwt and ignore the signature.
 
@@ -48,15 +48,15 @@ JWTs can be signed with various algorithms or left unsigned (`alg` set to `none`
 
 ## <mark style="color:yellow;">Brute-forcing secret keys</mark> <a href="#brute-forcing-secret-keys" id="brute-forcing-secret-keys"></a>
 
-Some signing algorithms, such as HS256 (HMAC + SHA-256), use a string as the secret key. In this case you can perform brute force attack.
+Some signing algorithms, such as HS256 (HMAC + SHA-256), use a string as the secret key -> crack it.
 
-Use this wordlist: [https://github.com/wallarm/jwt-secrets/blob/master/jwt.secrets.list](https://github.com/wallarm/jwt-secrets/blob/master/jwt.secrets.list)
+Wordlist: [https://github.com/wallarm/jwt-secrets/blob/master/jwt.secrets.list](https://github.com/wallarm/jwt-secrets/blob/master/jwt.secrets.list)
 
 ```sh
 hashcat -a 0 -m 16500 <jwt> <wordlist>
 ```
 
-Once you have the secret key you can create tamper the JWT and recalculate signature.
+With the key, you can alter the JWT and sign.
 
 ## <mark style="color:yellow;">JWT header parameter injections</mark> <a href="#jwt-header-parameter-injections" id="jwt-header-parameter-injections"></a>
 
@@ -109,8 +109,8 @@ Servers should use a limited whitelist of public keys to verify JWTs. However, m
 
 **Detect/Exploit with JWT Editor Burp extension**
 
-1. Go to the JWT Editor and create new RSA Key
-2. Go to the request in Burp Repeater and switch to the extension-generated JSON Web Token tab.
+1. In JWT Editor, create new RSA Key
+2. In Burp Repeater, switch to the extension-generated JSON Web Token tab.
 3. Tamper the data (in exploit phase)
 4. Finally, click on Attack -> Embedded JWK. (you can do it manually but pay attention to match `kid`) &#x20;
 
@@ -124,8 +124,8 @@ Some servers use the `jku`  header parameter to reference a JWK Set containing t
 
 **Detect/Exploit with JWT Editor Burp extension**
 
-1. Go to the JWT Editor and create new RSA Key
-2. Go to the request in Burp Repeater and switch to the extension-generated JSON Web Token tab.
+1. In JWT Editor, create new RSA Key
+2. In Burp Repeater, switch to the extension-generated JSON Web Token tab.
 3. Create webpage on your exploit server with JWK Set (JSON Web Token tab -> select key -> create JWK Set). \[you can also select Copy Public Key and paste inside "keys" array]
 
 ```json
@@ -176,7 +176,7 @@ This is especially dangerous if the server supports JWTs signed with a symmetric
 
 **Detect/Exploit with JWT Editor Burp extension**
 
-1. Go to the request in Burp Repeater and switch to the extension-generated JSON Web Token tab.
+1. In Burp Repeater, switch to the extension-generated JSON Web Token tab.
 2. Modify  `kid` parameter to test path traversal
 3. Sign with empty string
 4. Repeat the process with different path traversal payload
