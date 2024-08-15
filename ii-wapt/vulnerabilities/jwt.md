@@ -28,7 +28,7 @@ JWT attacks involve users sending modified JWTs to the server to achieve malicio
 
 ## <mark style="color:yellow;">Accepting arbitrary signatures</mark> <a href="#accepting-arbitrary-signatures" id="accepting-arbitrary-signatures"></a>
 
-Occasionally, developers only pass incoming tokens to the decode method, meaning the application doesn't verify the signature.
+Sometimes, developers decode tokens without verifying the signature.
 
 So, tamper the jwt and ignore the signature.
 
@@ -36,7 +36,7 @@ So, tamper the jwt and ignore the signature.
 
 The JWT header contains an `alg` parameter.
 
-JWTs can be signed with various algorithms or left unsigned (`alg` set to `none`). Servers usually reject unsigned tokens, but obfuscation (mixed capitalization) can bypass filters.
+JWTs can be left unsigned (`alg` set to `none`). Servers usually reject unsigned tokens, but obfuscation (mixed capitalization) can bypass filters.
 
 {% hint style="info" %}
 **Note**: even if unsigned, the token's payload must end with a trailing **dot**.
@@ -105,14 +105,14 @@ https://example.com/.well-known/jwks.json
 
 ### <mark style="color:yellow;">Injecting self-signed JWTs via jwk</mark> <a href="#injecting-self-signed-jwts-via-the-jwk-parameter" id="injecting-self-signed-jwts-via-the-jwk-parameter"></a>
 
-Servers should use a limited whitelist of public keys to verify JWTs. However, misconfigured servers may accept any key in the `jwk` parameter. This can be exploited by signing a modified JWT with your own RSA private key and embedding the matching public key in the `jwk` header.
+Servers should use a limited whitelist of public keys to verify JWTs. However, misconfigured servers may accept any key in the `jwk` parameter. So you can sign JWT with your own RSA private key and embedding the matching public key in the `jwk` header.
 
 **Detect/Exploit with JWT Editor Burp extension**
 
 1. In JWT Editor, create new RSA Key
-2. In Burp Repeater, switch to the extension-generated JSON Web Token tab.
+2. In Burp Repeater -> JSON Web Token tab.
 3. Tamper the data (in exploit phase)
-4. Finally, click on Attack -> Embedded JWK. (you can do it manually but pay attention to match `kid`) &#x20;
+4. Finally, click on Attack -> Embedded JWK. (you can do it manually but pay attention to match `kid`)&#x20;
 
 {% hint style="info" %}
 **Note**: you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
@@ -120,12 +120,12 @@ Servers should use a limited whitelist of public keys to verify JWTs. However, m
 
 ### <mark style="color:yellow;">Injecting self-signed JWTs via jku</mark>
 
-Some servers use the `jku`  header parameter to reference a JWK Set containing the key instead of embedding keys directly with the `jwk` parameter. The server fetches the key from this URL to verify the signature. Secure websites fetch keys from trusted domains, but URL parsing issues can sometimes bypass this.
+Some servers use the `jku`  header parameter to reference a JWK Set containing the key instead of embedding keys directly with the `jwk` parameter. Secure sites fetch keys (to verify the signature) from trusted domains, but URL parsing issues can bypass this.
 
 **Detect/Exploit with JWT Editor Burp extension**
 
 1. In JWT Editor, create new RSA Key
-2. In Burp Repeater, switch to the extension-generated JSON Web Token tab.
+2. In Burp Repeater -> JSON Web Token tab.
 3. Create webpage on your exploit server with JWK Set (JSON Web Token tab -> select key -> create JWK Set). \[you can also select Copy Public Key and paste inside "keys" array]
 
 ```json
@@ -161,7 +161,7 @@ Some servers use the `jku`  header parameter to reference a JWK Set containing t
 
 ### <mark style="color:yellow;">Injecting self-signed JWTs via kid</mark>
 
-The `kid` in JWS is an arbitrary string set by the developer, possibly pointing to a database entry or file. If vulnerable to directory traversal, an attacker could force the server to use any file as the verification key.
+The `kid` in JWS is an arbitrary string set by the developer, possibly pointing to a database entry or file. If vulnerable to directory traversal, you could force the server to use any file as the verification key.
 
 ```json
 {
@@ -172,11 +172,11 @@ The `kid` in JWS is an arbitrary string set by the developer, possibly pointing 
 }
 ```
 
-This is especially dangerous if the server supports JWTs signed with a symmetric algorithm. You could point the `kid` to a predictable static file, then sign the JWT using a secret that matches the contents of this file. The best way is to use `/dev/null` (empty file), and sign the JWT with an empty string to create a valid signature.
+If the server supports JWTs signed with a symmetric algorithm, you could point the `kid` to a predictable static file, then sign the JWT using a secret that matches the contents of this file. The best way is to use `/dev/null` (empty file), and sign the JWT with an empty string to create a valid signature.
 
 **Detect/Exploit with JWT Editor Burp extension**
 
-1. In Burp Repeater, switch to the extension-generated JSON Web Token tab.
+1. In Burp Repeater -> JSON Web Token tab.
 2. Modify  `kid` parameter to test path traversal
 3. Sign with empty string
 4. Repeat the process with different path traversal payload

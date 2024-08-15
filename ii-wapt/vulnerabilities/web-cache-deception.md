@@ -23,38 +23,41 @@ Cache rules dictate what can be cached and for how long. They usually store stat
 
 </details>
 
-## Constructing a web cache deception attack <a href="#constructing-a-web-cache-deception-attack" id="constructing-a-web-cache-deception-attack"></a>
+## <mark style="color:yellow;">Constructing a web cache deception attack</mark> <a href="#constructing-a-web-cache-deception-attack" id="constructing-a-web-cache-deception-attack"></a>
 
-1. Identify a target endpoint returning dynamic responses with sensitive information. Use Burp to review responses, as some sensitive data may not appear on the rendered page. Focus on endpoints supporting GET, HEAD, or OPTIONS methods since requests that alter the server’s state are usually not cached.
+1. Identify a target endpoint returning dynamic responses with sensitive information. Focus on endpoints supporting GET, HEAD, or OPTIONS methods since requests that alter the server’s state are usually not cached.
 2. Identify a discrepancy in how the cache and origin server parse the URL path. This could be a discrepancy in how they:
    * Map URLs to resources.
    * Process delimiter characters.
    * Normalize paths.
 3. Craft a malicious URL to trick the cache into storing a dynamic response. When the victim accesses it, their data is cached. Use Burp to request the same URL and retrieve the cached response. Avoid using a browser to prevent redirects or data invalidation.
 
-## Using a cache buster
+<details>
+
+<summary>Using a cache buster</summary>
 
 When testing for discrepancies and crafting a web cache deception exploit, ensure each request has a unique cache key to avoid receiving cached responses, which could skew your results.
 
 Since the cache key typically includes the URL path and query parameters, change the key by adding a different query string with each request. Automate this with the Param Miner extension by selecting _Add dynamic cachebuster_ under the Param Miner > Settings menu in Burp. This will add a unique query string to every request, viewable in the Logger tab.
 
-## Detecting cached responses
+</details>
 
-* The `X-Cache` header provides information about whether a response was served from the cache. Typical values include:
-  * `X-Cache: hit` - The response was served from the cache.
-  * `X-Cache: miss` - The cache did not contain a response for the request's key, so it was fetched from the origin server. In most cases, the response is then cached. To confirm this, send the request again to see whether the value updates to hit.
-  * `X-Cache: dynamic` - The origin server dynamically generated the content. Generally this means the response is not suitable for caching.
-  * `X-Cache: refresh` - The cached content was outdated and needed to be refreshed or revalidated.
+## <mark style="color:yellow;">Detecting cached responses</mark>
+
+* The `X-Cache` header indicates if a response came from the cache. Typical values include:
+  * `X-Cache: hit` - The response came from the cache.
+  * `X-Cache: miss` - The cache had no response for the request's key, so it was fetched from the origin server and, in most cases, cached. Send the request again to check if the value updates to "hit."
+  * `X-Cache: dynamic` - The origin server dynamically generated the content, making it generally unsuitable for caching.
+  * `X-Cache: refresh` - The cached content was outdated and needed refreshing or revalidation.
 * The `Cache-Control` header may include a directive that indicates caching, like `public` with a `max-age` that has a value over `0`. Note that this only suggests that the resource is cacheable. It isn't always indicative of caching, as the cache may sometimes override this header.
 
-If you notice a big difference in response time for the same request, this may also indicate that the faster response is served from the cache.\
+If you notice a big difference in response time for the same request, this may also indicate that the faster response is served from the cache.
 
-
-## Exploiting static extension cache rules
+## <mark style="color:yellow;">Exploiting static extension cache rules</mark>
 
 Cache rules often target static resources by matching common file extensions like `.css` or `.js`. This is the default behavior in most CDNs.
 
-### Exploiting path mapping discrepancies <a href="#exploiting-path-mapping-discrepancies" id="exploiting-path-mapping-discrepancies"></a>
+### <mark style="color:yellow;">Exploiting path mapping discrepancies</mark> <a href="#exploiting-path-mapping-discrepancies" id="exploiting-path-mapping-discrepancies"></a>
 
 <details>
 
@@ -75,17 +78,16 @@ Consider the following example:
 * The cache interprets the full URL path with the static extension.
 * There’s a cache rule for requests ending in `.js`.
 
-```sh
-https://vulnerable.website.com/my-account        # Contains sensitive data -> Good endpoint
-https://vulnerable.website.com/my-account/abc    # The response is identical to the original -> REST-style 
-https://vulnerable.website.com/my-account/abc.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
+<pre class="language-sh"><code class="lang-sh">https://vulnerable.website.com/my-account        # Contains sensitive data -> Good endpoint
+<strong>https://vulnerable.website.com/my-account/abc    # The response is identical to the original -> REST-style 
+</strong>https://vulnerable.website.com/my-account/abc.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
 https://vulnerable.website.com/my-account/abc.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
 # Now https://vulnerable.website.com/my-account/abc.js contains your sensitive data cached
 
 # Find a way to send the victim on https://vulnerable.website.com/my-account/xyz.js
 
 # Note: I omitted cache buster for for simplicity
-```
+</code></pre>
 
 {% hint style="info" %}
 **Note**:&#x20;
@@ -94,7 +96,7 @@ https://vulnerable.website.com/my-account/abc.js # 2 time "X-Cache: hit" -> Perf
 * Try various extensions, such as `.css`, `.ico`, and `.exe`, as caches may have rules for specific extensions.
 {% endhint %}
 
-### Exploiting delimiter discrepancies <a href="#exploiting-delimiter-discrepancies" id="exploiting-delimiter-discrepancies"></a>
+### <mark style="color:yellow;">Exploiting delimiter discrepancies</mark> <a href="#exploiting-delimiter-discrepancies" id="exploiting-delimiter-discrepancies"></a>
 
 <details>
 
@@ -140,11 +142,11 @@ https://vulnerable.website.com/my-account;abc.js # 2 time "X-Cache: hit" -> Perf
 * Make sure to test all ASCII characters and a range of common extensions, including `.css`, `.ico`, and `.exe`
 {% endhint %}
 
-### Exploiting delimiter decoding discrepancies <a href="#exploiting-delimiter-decoding-discrepancies" id="exploiting-delimiter-decoding-discrepancies"></a>
+### <mark style="color:yellow;">Exploiting delimiter decoding discrepancies</mark> <a href="#exploiting-delimiter-decoding-discrepancies" id="exploiting-delimiter-decoding-discrepancies"></a>
 
 to understand
 
-## Exploiting static directory cache rules <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
+## <mark style="color:yellow;">Exploiting static directory cache rules</mark> <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
 
 Web servers often store static resources in specific directories. Cache rules typically target these by matching URL path prefixes like /static, /assets, /scripts, or /images.
 
