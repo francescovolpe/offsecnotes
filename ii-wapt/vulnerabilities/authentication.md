@@ -6,7 +6,7 @@
 * Are you able to access user profiles without logging in?
 * Check HTTP responses to see if any email addresses are disclosed
 * Compares responses between a valid user and an invalid user (and incorrect password). \[One character out of place makes the messages distinct, even if not visible on the page]
-* Create account (pay attention)
+* Create account
 * Response times (a website may only check the password if the username is valid) entering an excessively long password causes a noticeable delay.
 * Account locking? (after a certain number of trials). It could mean that the account exists
 
