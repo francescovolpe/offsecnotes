@@ -36,7 +36,7 @@ curl https://website.com/whoami.txt
 ### <mark style="color:yellow;">Bypass restriction</mark>
 
 * There are so many ways ...
-  * https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions
+  * [https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions](https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions)
 
 ### <mark style="color:yellow;">Metacharacters</mark>
 

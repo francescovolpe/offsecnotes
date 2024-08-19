@@ -2,11 +2,11 @@
 
 ## <mark style="color:yellow;">Identify hash</mark>
 
-* [hashes.com](https://hashes.com/en/tools/hash\_identifier) _Identify and detect unknown hashes_
+* [_https://hashes.com/en/tools/hash\_identifier_](https://hashes.com/en/tools/hash\_identifier)
 
 ## <mark style="color:yellow;">Cracking hash</mark>
 
-* [**crackstation**](https://crackstation.net/) _CrackStation uses massive pre-computed lookup tables to crack password hashes_
+* [https://crackstation.net](https://crackstation.net/) _CrackStation uses massive pre-computed lookup tables to crack password hashes_
 
 ## <mark style="color:yellow;">Cracking shadow</mark>
 

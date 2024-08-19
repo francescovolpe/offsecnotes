@@ -42,4 +42,4 @@ Personal collection of continuously updated offensive security notes.
 
 [uncategorized.md](uncategorized.md "mention")
 
-[resources.md](resources.md "mention")
+[references.md](references.md "mention")
