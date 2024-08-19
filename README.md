@@ -16,30 +16,30 @@ Personal collection of continuously updated offensive security notes.
 
 **I - NPT**
 
-* [information-gathering.md](i-npt/information-gathering.md "mention")
-* [network-services-exploitation.md](i-npt/network-services-exploitation.md "mention")
-* [post-exploitation.md](i-npt/post-exploitation.md "mention")
-* [privilege-escalation.md](i-npt/privilege-escalation.md "mention")
+* [Information gathering](i-npt/information-gathering.md "mention")
+* [Network services exploitation](i-npt/network-services-exploitation.md "mention")
+* [Post exploitation](i-npt/post-exploitation.md "mention")
+* [Privilege escalation](i-npt/privilege-escalation.md "mention")
 
 **II - WAPT**
 
-* [vulnerabilities](ii-wapt/vulnerabilities/ "mention")
-* [web-security](ii-wapt/web-security/ "mention")
-* [automation.md](ii-wapt/automation.md "mention")
+* [Vulnerabilities](ii-wapt/vulnerabilities/ "mention")
+* [Web security](ii-wapt/web-security/ "mention")
+* [Automation](ii-wapt/automation.md "mention")
 
 **III - MAPT**
 
-* [apk-building.md](iii-mapt/apk-building.md "mention")
-* [reversing.md](iii-mapt/reversing.md "mention")
-* [android-testing.md](iii-mapt/android-testing.md "mention")
+* [Apk building](iii-mapt/apk-building.md "mention")
+* [Reversing](iii-mapt/reversing.md "mention")
+* [Android testing](iii-mapt/android-testing.md "mention")
 
 **IV - MISCELLANEOUS**
 
-* [password-cracking.md](iv-miscellaneous/password-cracking.md "mention")
-* [burp-suite.md](iv-miscellaneous/burp-suite.md "mention")
-* [av-evasion.md](iv-miscellaneous/av-evasion.md "mention")
-* [ctf-methodology.md](iv-miscellaneous/ctf-methodology.md "mention")
+* [Password Ccacking](iv-miscellaneous/password-cracking.md "mention")
+* [Burp Suite](iv-miscellaneous/burp-suite.md "mention")
+* [AV evasion](iv-miscellaneous/av-evasion.md "mention")
+* [CTF methodology](iv-miscellaneous/ctf-methodology.md "mention")
 
-[uncategorized.md](uncategorized.md "mention")
+[Uncategorized](uncategorized.md "mention")
 
-[references.md](references.md "mention")
+[References](references.md "mention")
