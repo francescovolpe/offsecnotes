@@ -35,7 +35,7 @@ Personal collection of continuously updated offensive security notes.
 
 **IV - MISCELLANEOUS**
 
-* [Password Ccacking](iv-miscellaneous/password-cracking.md "mention")
+* [Password cacking](iv-miscellaneous/password-cracking.md "mention")
 * [Burp Suite](iv-miscellaneous/burp-suite.md "mention")
 * [AV evasion](iv-miscellaneous/av-evasion.md "mention")
 * [CTF methodology](iv-miscellaneous/ctf-methodology.md "mention")
