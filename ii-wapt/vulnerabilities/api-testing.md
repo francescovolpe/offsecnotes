@@ -21,7 +21,11 @@
 ## <mark style="color:yellow;">API endpoints</mark>
 
 * Browsing application (even if you have access to documentation, as it may be inaccurate)
-* Look out for JavaScript files (tip: JS Link Finder BApp)
+* Look out for JavaScript files&#x20;
+
+{% hint style="info" %}
+**Tip**: JS Link Finder BApp (Burp extension)
+{% endhint %}
 
 ## <mark style="color:yellow;">Supported HTTP methods</mark>
 
@@ -55,7 +59,7 @@ Consider `PUT /api/user/update`
 ## <mark style="color:yellow;">Hidden parameters</mark>
 
 * Bruteforce with wordlists
-* Param miner BApp
+* Param miner (Burp extension)
 
 ## <mark style="color:yellow;">Mass assignment vulnerabilities</mark>
 

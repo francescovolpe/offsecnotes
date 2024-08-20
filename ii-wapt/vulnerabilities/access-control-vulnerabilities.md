@@ -75,7 +75,7 @@ X-Original-URL: /donotexist1
 /admin/deleteUser.anything
 ```
 
-There are many other techniques: search on google or hacktricks \[403 & 401 Bypasses]. https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses
+There are many other techniques: search on google or hacktricks \[403 & 401 Bypasses]. [https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses)
 
 ## <mark style="color:yellow;">IDOR</mark>
 

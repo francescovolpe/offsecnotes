@@ -21,7 +21,7 @@ semgrep -c <path>/rules/ <path>/target_src/sources
 
 ## <mark style="color:yellow;">SSL Pinning</mark>
 
-* **Missing SSL Pinning**
+* **Missing SSL pinning**
 * **Bypass with objection**
 
 ```sh
@@ -43,7 +43,7 @@ frida -U --codeshare akabe1/frida-multiple-unpinning -f <com.package.app>
 frida -U --codeshare pcipolloni/universal-android-ssl-pinning-bypass-with-frida -f <com.package.app>
 ```
 
-* **Replacing Hard-Coded Sha 256 Hash**
+* **Replacing hard-Coded Sha256 hash**
 
 ```sh
 # Detection
@@ -59,7 +59,7 @@ openssl x509 -inform DER -in cacert.cer -out cacert.crt
 openssl x509 -in cacert.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
 ```
 
-* **Intercept Network Traffic Using Remote Debugging**
+* **Intercept network traffic using remote debugging**
 
 This allow you to intercpet the traffic in the webview. It's especially useful in cordova-based apps.&#x20;
 
@@ -71,7 +71,7 @@ See [#webview-debug](android-testing.md#webview-debug "mention")
 
 ## <mark style="color:yellow;">Root Detection</mark>
 
-* **Missing Root Detection**
+* **Missing root detection**
 * **Bypass with frida**
 
 ```sh
@@ -86,7 +86,7 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
 
 ## <mark style="color:yellow;">Emulator Detection</mark>
 
-* Missing Emulator Detection
+* Missing emulator detection
 * Bypass protection analyzing the code and/or with frida
 
 ## <mark style="color:yellow;">Sensitive data</mark>

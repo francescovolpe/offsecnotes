@@ -16,7 +16,7 @@ When we upload binary files (like png) the content type multipart/form-data is p
 
 </details>
 
-Change `Content-Type` to an allow MIME type. Ex. `image/jpeg`
+Change `Content-Type` to an allow MIME type. (e.g. `image/jpeg`)
 
 ### <mark style="color:yellow;">Blacklisted extensions</mark>
 

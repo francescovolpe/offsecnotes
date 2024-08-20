@@ -2,7 +2,7 @@
 
 ## <mark style="color:yellow;">Conditions</mark>
 
-* A relevant action. Ex: change password
+* A relevant action. (e.g. change password)
 * Cookie-based session handling
 * No unpredictable request parameters. If you need to know the value of the existing password it's not vulnerable
 
@@ -154,4 +154,4 @@ redirectOnConfirmation = () => {
   * Tip: Instead of use `http://attacker-website.com/vulnerable-website.com` that looks strange you can use `http://attacker-website.com/` and add `<script>history.pushState('', '', '/attacker-website.com')</script>`
   * Note: Add `Referrer-Policy: unsafe-url`. One way to set it in html: `<meta name="referrer" content="unsafe-url"/>`
 
-Firefox 87 new default Referrer Policy ‘`strict-origin-when-cross-origin`’ trimming user sensitive information like path and query string to protect privacy. (https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/)
+Firefox 87 new default Referrer Policy `strict-origin-when-cross-origin` trimming user sensitive information like path and query string to protect privacy. ([https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/](https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/))
