@@ -13,7 +13,7 @@ When the cache gets an HTTP request, it decides whether to serve a cached respon
 
 </details>
 
-## <mark style="color:yellow;">Impact of a web cache poisoning attack</mark>
+## <mark style="color:grey;">Impact of a web cache poisoning attack</mark>
 
 Depend on two key factors:
 
