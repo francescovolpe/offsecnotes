@@ -18,10 +18,10 @@ LLMs are AI algorithms that generate plausible responses by predicting word sequ
 
 The idea is to map the APIs and then send classic web exploits to all identified APIs.
 
-* Suppose you normally have access to a "Newsletter Subscription" feature but no parameters can be controlled.&#x20;
-* Imagine that also LLM has access to "Newsletter Subscription" API. you can try to control how this API is called...&#x20;
-* For example, if a system command is used you might get an RCE if you ask the LLM to call the Newsletter Subscription API with the argument `$(whoami)@your-email.com`
+* Suppose you normally have access to a "Newsletter Subscription" feature but you can't control any parameters.&#x20;
+* Imagine that also LLM has access to "Newsletter Subscription" API. You can try to control how this API is called...&#x20;
+* E.g., if a system command is used you might get an RCE if you ask the LLM to call the Newsletter Subscription API with the argument `$(whoami)@your-email.com`
 
 ## <mark style="color:yellow;">Insecure output handling</mark> <a href="#insecure-output-handling" id="insecure-output-handling"></a>
 
-A web app uses an LLM to generate content from user prompts without sanitization. You could submit a crafted prompt causing the LLM to return unsanitized JavaScript, leading to XSS / CSRF etc.
+A web app uses an LLM to generate content from user prompts without sanitization. You could submit a crafted prompt causing the LLM to return unsanitized JavaScript, leading to XSS/CSRF etc.

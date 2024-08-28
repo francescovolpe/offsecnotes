@@ -71,4 +71,4 @@ If your requests are processed sequentially, **try using a different session tok
 
 ## <mark style="color:yellow;">Time-sensitive attacks</mark>
 
-Example: A password reset token generated solely using a timestamp, can result in identical tokens for different users if **two reset requests are timed to produce the same timestamp**.
+E.g., a password reset token generated solely using a timestamp, can result in identical tokens for different users if **two reset requests are timed to produce the same timestamp**.

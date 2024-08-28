@@ -52,7 +52,7 @@ Hello user<tag>
 ## <mark style="color:yellow;">Identification</mark>
 
 * Smarty (PHP)
-  * `${7*7}`&#x20;
+  * `${7*7}`
   * &#x20;`a{*comment*}b`
 * Mako (Python)
   * `${7*7}`
@@ -77,3 +77,6 @@ Hello user<tag>
 {% endhint %}
 
 ## <mark style="color:yellow;">Exploitation</mark>
+
+* [https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection)
+* [https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection)

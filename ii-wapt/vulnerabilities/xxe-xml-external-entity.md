@@ -25,11 +25,16 @@
 **Note**: to systematically test for XXE, test each data node in the XML individually using your defined entity to see if it appears in the response.
 {% endhint %}
 
+***
+
+Original
+
 ```xml
-<! -- Original -->
 <?xml version="1.0" encoding="UTF-8"?>
 <stockCheck><productId>381</productId></stockCheck> 
 ```
+
+Exploitation
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -103,9 +108,9 @@ Trigger an XML parsing error message with the file contents.&#x20;
 
 ### <mark style="color:yellow;">XInclude attacks</mark>
 
-Some applications receive client-submitted data, embed it on the server-side into an XML document, and then parse the document
+Some applications receive client-submitted data, embed it on the server-side into an XML document, and then parse the document.
 
-`XInclude` is a part of the XML specification that allows an XML document to be built from sub-documents
+`XInclude` is a part of the XML specification that allows an XML document to be built from sub-documents.
 
 ```xml
 <foo xmlns:xi="http://www.w3.org/2001/XInclude">
@@ -125,7 +130,7 @@ productId=<foo+xmlns%3axi%3d"http%3a//www.w3.org/2001/XInclude">
 
 ### <mark style="color:yellow;">Via file upload</mark>
 
-Some common file formats use XML or contain XML subcomponents. Examples of XML-based formats are office document formats like DOCX and image formats like SVG
+Some common file formats use XML or contain XML subcomponents. Examples of XML-based formats are office document formats like DOCX and image formats like SVG.
 
 ```xml
 <?xml version="1.0" standalone="yes"?>
@@ -135,7 +140,7 @@ Some common file formats use XML or contain XML subcomponents. Examples of XML-b
 </svg>
 ```
 
-This works if it's used image processing library & support SVG images & allow external entity
+This works if it's used image processing library & support SVG images & allow external entity.
 
 ### <mark style="color:yellow;">Via modified content type</mark>
 

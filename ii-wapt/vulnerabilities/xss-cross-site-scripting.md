@@ -86,6 +86,7 @@ https://insecure-website.com/index?search="><script>alert(document.domain)</scri
 ### <mark style="color:yellow;">DOM-based web message</mark> <a href="#what-is-the-impact-of-dom-based-web-message-vulnerabilities" id="what-is-the-impact-of-dom-based-web-message-vulnerabilities"></a>
 
 ```html
+<!-- Vulnerable website -->
 <script>
     window.addEventListener('message', function(e) {
         document.getElementById('test').innerHTML = e.data;
@@ -103,11 +104,10 @@ Exploit
 
 jQuery's `attr()` function can change the attributes of DOM elements
 
-```javascript
-$(function() {
-	$('#backLink').attr("href",(new URLSearchParams(window.location.search)).get('returnUrl'));
+<pre class="language-javascript"><code class="lang-javascript"><strong>$(function() {
+</strong>	$('#backLink').attr("href",(new URLSearchParams(window.location.search)).get('returnUrl'));
 });
-```
+</code></pre>
 
 Exploit
 
@@ -247,7 +247,7 @@ element.innerHTML = comment.author
 ```
 
 {% hint style="info" %}
-Tips:
+**Tips**:
 
 * Substitute `'` `"` and viceversa
 * Space is not needed
@@ -282,7 +282,7 @@ var input = 'controllable data here';
 
 ***
 
-Breaking out of a JavaScript string
+**Breaking out of a JavaScript string**
 
 * It's essential to repair the script following the XSS context, because any syntax errors there will prevent the whole script from executing
 
@@ -360,7 +360,7 @@ body:username.value+':'+this.value
 
 ## <mark style="color:yellow;">Content security policy</mark>
 
-CSP restrit the resources (such as scripts and images) that a page can load and restricting whether a page can be framed by other pages
+CSP restrict the resources (such as scripts and images) that a page can load and restricting whether a page can be framed by other pages
 
 CSP defends against XSS attacks in the following ways
 
@@ -369,4 +369,4 @@ CSP defends against XSS attacks in the following ways
 * Restricting Remote Scripts
   * `<script src="https://evil.com/hacked.js"></script>` will not work
 * Restricting Unsafe JavaScript
-* Others https://cheatsheetseries.owasp.org/cheatsheets/Content\_Security\_Policy\_Cheat\_Sheet.html
+* Others [https://cheatsheetseries.owasp.org/cheatsheets/Content\_Security\_Policy\_Cheat\_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/Content\_Security\_Policy\_Cheat\_Sheet.html)

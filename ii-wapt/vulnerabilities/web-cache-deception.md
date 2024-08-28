@@ -8,11 +8,11 @@ Web cache deception is a vulnerability where an attacker tricks a web cache into
 
 A web cache is an intermediary system between the origin server and the user. When a client requests a static resource, the cache checks if it has a copy. If not (a cache miss), the request is sent to the origin server, which processes and responds.
 
-#### Cache keys <a href="#cache-keys" id="cache-keys"></a>
+**Cache keys**
 
-When the cache gets an HTTP request, it decides whether to serve a cached response or forward the request to the origin server by generating a 'cache key.' This key is usually based on the URL path and query parameters but can also include headers and content type.
+When the cache gets an HTTP request, it decides whether to serve a cached response or forward the request to the origin server by generating a "cache key". Typically, this would contain the request line and `Host` header but can also include headers and content type.
 
-#### Cache rules <a href="#cache-rules" id="cache-rules"></a>
+**Cache rules**
 
 Cache rules dictate what can be cached and for how long. They usually store static resources, which change infrequently and are used across multiple pages. Dynamic content isn't cached, as it often contains sensitive information, ensuring users receive the most up-to-date data from the server.
 

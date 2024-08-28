@@ -14,17 +14,19 @@
 
 If you can control the protocol you can change it.
 
-* file://
-* SFTP://
-* Gopher:// -> in some case it is possibile to get a shell
-  * For example, interact with mysql, redis PostgreSQL, etc.
-* Etc.
+`file://`, `sftp://`, `gopher://`, etc.
+
+{% hint style="success" %}
+**Tip**: with gopher in some case it is possibile to get a shell. E.g. interacting with mysql, redis PostgreSQL, etc.&#x20;
+
+[https://github.com/tarunkant/Gopherus](https://github.com/tarunkant/Gopherus)
+{% endhint %}
 
 ## <mark style="color:yellow;">Blind</mark>
 
 It is more difficult to exploit because you will be able to exploit only well-known vulnerabilities.
 
-**Detection:** Out-of-band
+**Detection:** Out-of-band techniques
 
 ## <mark style="color:yellow;">Bypass SSRF defenses</mark>
 
@@ -51,8 +53,8 @@ It works because the application first validates that the supplied api URL is on
 api=http://domain.net/product?productId=6&path=http://192.168.0.68/admin
 ```
 
-## <mark style="color:yellow;">Finding hidden attack surface for SSRF vulnerabilities</mark>
+## <mark style="color:yellow;">Finding hidden attack surface for SSRF</mark>
 
 * Partial URLs in requests
-* URLs within data formats (ex. in XML)
+* URLs within data formats (e.g. in XML)
 * SSRF via the Referer header (Some applications use server-side analytics software to tracks visitors)
