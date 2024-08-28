@@ -27,8 +27,11 @@ Depend on two key factors:
 ## <mark style="color:yellow;">Constructing a web cache poisoning attack</mark>
 
 1. Identify and evaluate unkeyed inputs
+   - Adding random inputs to requests and observing their effect on the response, whether it's directly reflected or triggers a different response.
 2. Elicit a harmful response from the back-end server
+   - Evaluate exactly how the website processes it. E.g. see if the input is reflected in the response from the server without being properly sanitized.
 3. Get the response cached
+   - A cached response may depend on all kinds of factors, such as the file extension, content type, route, status code, and response headers.
 
 ### <mark style="color:yellow;">Identify and evaluate unkeyed inputs</mark>
 
