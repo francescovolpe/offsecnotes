@@ -7,7 +7,7 @@ Two phases:
 
 <details>
 
-<summary><strong>Cache keys</strong></summary>
+<summary>Cache keys</summary>
 
 When the cache gets an HTTP request, it decides whether to serve a cached response or forward the request to the origin server by generating a "cache key". Typically, this would contain the request line and `Host` header but can also include headers and content type.
 
@@ -206,3 +206,77 @@ GET /?first=test1&utm_content=b HTTP/2
 HTTP/2 200 OK
 X-Cache: hit
 ```
+
+### **Exploiting parameter parsing quirks**
+
+This happen when back-end identifies distinct parameters that the cache does not. The Ruby on Rails framework, for example, interprets both ampersands (`&`) and semicolons (`;`) as delimiters
+
+```
+GET /?keyed_param=abc&excluded_param=123;keyed_param=bad-stuff-here
+```
+
+As the names suggest, `keyed_param` is included in the cache key, but `excluded_param` is not. Many caches will only interpret this as two parameters, delimited by the ampersand:
+
+```
+1.    keyed_param=abc
+2.    excluded_param=123;keyed_param=bad-stuff-here
+```
+
+Once the parsing algorithm removes the `excluded_param`, the cache key will only contain `keyed_param=abc`. On the back-end, however, Ruby on Rails sees the semicolon and splits the query string into three separate parameters:
+
+```
+1.    keyed_param=abc
+2.    excluded_param=123
+3.    keyed_param=bad-stuff-here
+```
+
+But now there is a duplicate `keyed_param`. This is where the second quirk comes into play. If there are duplicate parameters, each with different values, Ruby on Rails gives precedence to the final occurrence. The end result is that the cache key contains an innocent, expected parameter value, allowing the cached response to be served as normal to other users. On the back-end, however, the same parameter has a completely different value, which is our injected payload. It is this second value that will be passed into the gadget and reflected in the poisoned response.
+
+### **Exploiting fat GET support**
+
+Although this scenario is pretty rare, you can sometimes simply add a body to a `GET` request to create a "fat" `GET` request:
+
+```http
+GET /?param=innocent HTTP/1.1
+[…]
+param=bad-stuff-here
+```
+
+### Normalized cache keys <a href="#normalized-cache-keys" id="normalized-cache-keys"></a>
+
+Problem: when you find reflected XSS in a parameter, it is often unexploitable in practice. This is because modern browsers typically URL-encode the necessary characters when sending the request, and the server doesn't decode them.
+
+Example:
+
+You send the follow URL to a victim
+
+```
+https://vulnerable.website.net/test<script>alert(1)</script>
+```
+
+His browser send the following request
+
+```
+GET /test%3Cscript%3Ealert(1)%3C/script%3E HTTP/2
+Host: vulnerable.website.net
+[...]
+
+
+HTTP/2 404 Not Found
+[...]
+
+<p>Not Found: /test<script>alert(1)</script></p>
+```
+
+So, normally this XSS is unexploitable.
+
+**Exploitation with normalized cache keys**
+
+Some caching implementations normalize keyed input when adding it to the cache key. In this case, both of the following requests would have the same key:
+
+```
+GET /example?param="><test>
+GET /example?param=%22%3e%3ctest%3e
+```
+
+When the victim visits the malicious URL, the payload will still be URL-encoded by their browser; however, once the URL is normalized by the cache, it will have the same cache key as the response containing your unencoded payload.
