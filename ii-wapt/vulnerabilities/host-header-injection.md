@@ -50,9 +50,7 @@ Some intercepting proxies derive the target IP address from the Host header dire
 First step is to test what happens when you supply an arbitrary, unrecognized domain name via the Host header
 
 * Sometimes, you can still access the target website even if you supply an unexpected Host header.
-  * For example, servers are sometimes configured with a default or fallback option
-  * Other reasons
-* Invalid Host header error ...
+* Or get an invalid Host header error ...
 
 ## <mark style="color:yellow;">Exploit the HTTP Host header</mark>
 
@@ -63,13 +61,12 @@ First step is to test what happens when you supply an arbitrary, unrecognized do
 * Exploiting classic server-side vulnerabilities
   * Ex. SQLi, etc.
 * Accessing restricted functionality
-  * Admin panel with host: localhost
+  * Admin panel with host: `localhost`
 * Accessing internal websites with virtual host brute-forcing
   * Note: companies sometimes make the mistake of hosting publicly accessible websites and private, internal sites on the same server
 * Web cache poisoning via the Host header
   * Client-side vulnerabilities like XSS aren't exploitable if they're caused by the Host header, as attackers can't manipulate a victim's browser to generate a harmful host.
   * However, if the target uses a web cache, it may be possible to turn this useless
-* Accessing internal websites with virtual host brute-forcing
 * Routing-based SSRF
   * If load balancers and reverse proxies are insecurely configured to forward requests based on an unvalidated Host header, they can be manipulated into misrouting requests to an arbitrary system of the attacker's choice
   * The next step is to see if you can exploit this behavior to access internal-only systems
