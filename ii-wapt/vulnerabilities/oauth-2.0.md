@@ -10,22 +10,6 @@
 * **Resource owner** - The user whose data the client application wants to access.
 * **OAuth service provider** - The website or application that controls the user's data and access to it. They support OAuth by providing an API for interacting with both an authorization server and a resource server.
 
-## <mark style="color:yellow;">OAuth grant type / OAuth flows</mark>
-
-* The OAuth grant type determines the exact sequence of steps that are involved in the OAuth process.
-* There are several different grant types, each with varying levels of complexity and security considerations.
-* Note: (We'll focus on the "authorization code" and "implicit" grant types as these are by far the most common.)
-* TO DO....
-
-## <mark style="color:yellow;">OAuth authentication</mark>
-
-* Although not originally intended for this purpose, OAuth has evolved into a means of authenticating users as well.
-* From an end-user perspective, the result of OAuth authentication is something that broadly resembles SAML-based single sign-on (SSO).
-* OAuth authentication is generally implemented as follows:
-  * The user chooses the option to log in with their social media account. The client application then uses the social media site's OAuth service to request access to some data that it can use to identify the user. This could be the email address that is registered with their account, for example.
-  * After receiving an access token, the client application requests this data from the resource server, typically from a dedicated /userinfo endpoint.
-  * Once it has received the data, the client application uses it in place of a username to log the user in. The access token that it received from the authorization server is often used instead of a traditional password.
-
 ## <mark style="color:yellow;">Identifying OAuth authentication</mark>
 
 * If you see an option to log in using your account from a different website, this is a strong indication that OAuth is being used.
@@ -33,10 +17,52 @@
 
 ### <mark style="color:yellow;">Recon</mark>
 
-* TO DO...
+If using an external OAuth service, identify the provider by the hostname in the authorization request. Public API documentation typically provides detailed information, including endpoint names and configuration options. Try sending a request to the following standard endpoints:
+
+* `/.well-known/oauth-authorization-server`
+* `/.well-known/openid-configuration`
 
 ## <mark style="color:yellow;">Vulnerabilities in the OAuth client application</mark>
 
 ### <mark style="color:yellow;">Improper implementation of the implicit grant type</mark>
 
+In this flow, the access token is sent from the OAuth service to the client application via the user's browser as a URL fragment. The client application then accesses the token using JavaScript. The trouble is, if the application wants to maintain the session after the user closes the page, it needs to store the current user data (normally a user ID and the access token) somewhere.
+
+```http
+GET /auth?client_id=rgerdgreg&redirect_uri=https://app.net/oauth-callback&response_type=token&nonce=567731209&scope=openid%20profile%20email HTTP/2
+Host: oauth.app-server.net
+[...]
+
+HTTP/2 302 Found
+Location: https://app.net/oauth-callback#access_token=ckNqkfxB&expires_in=3600&token_type=Bearer&scope=openid%20profile%20email
+
+GET /oauth-callback HTTP/2
+Host: app.net
+```
+
+To solve this problem, the client application will often submit this data to the server in a `POST` request and then assign the user a session cookie, effectively logging them in. This request is roughly equivalent to the form submission request that might be sent as part of a classic, password-based login. However, in this scenario, the server does not have any secrets or passwords to compare with the submitted data, which means that it is implicitly trusted.
+
+```http
+POST /authenticate HTTP/2
+Host: 0a55005703e1680182bd7f6100b60068.web-security-academy.net
+[..]
+
+{"email":"lebron@cleveland.com","username":"lebron","token":"ckNqkfxB"}
+```
+
+Exploitation: repeat this request with an arbitrary account (changing email and username)
+
 ### <mark style="color:yellow;">Flawed CSRF protection</mark>
+
+Although many components of the OAuth flows are optional, some of them are strongly recommended unless there's an important reason not to use them. One such example is the `state` parameter.
+
+if you notice that the authorization request does not send a `state` parameter, It potentially means that you can initiate an OAuth flow yourself before tricking a user's browser into completing it, similar to a traditional CSRF attack.
+
+Consider a website that allows users to log in using either a classic, password-based mechanism or by linking their account to a social media profile using OAuth. In this case, if the application fails to use the `state` parameter, an attacker could potentially hijack a victim user's account on the client application by binding it to their own social media account.
+
+Note that if the site allows users to log in exclusively via OAuth, the `state` parameter is arguably less critical. However, not using a `state` parameter can still allow attackers to construct login CSRF attacks, whereby the user is tricked into logging in to the attacker's account.
+
+\
+TO DO
+
+## Vulnerabilities in the OAuth service

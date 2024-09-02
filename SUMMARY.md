@@ -43,6 +43,7 @@
   * [Method & Headers](ii-wapt/web-security/method-and-headers.md)
   * [Javascript](ii-wapt/web-security/javascript-security-considerations.md)
   * [Web cache](ii-wapt/web-security/web-cache.md)
+  * [OAuth](ii-wapt/web-security/oauth.md)
 * [Automation](ii-wapt/automation.md)
 
 ## III - MAPT

@@ -193,7 +193,7 @@ HTTP/2 200 OK
 X-Cache: hit
 ```
 
-### **Exploiting parameter parsing quirks**
+### <mark style="color:yellow;">**Exploiting parameter parsing quirks**</mark>
 
 This happen when back-end identifies distinct parameters that the cache does not. The Ruby on Rails framework, for example, interprets both ampersands (`&`) and semicolons (`;`) as delimiters
 
@@ -218,7 +218,7 @@ Once the parsing algorithm removes the `excluded_param`, the cache key will only
 
 But now there is a duplicate `keyed_param`. This is where the second quirk comes into play. If there are duplicate parameters, each with different values, Ruby on Rails gives precedence to the final occurrence. The end result is that the cache key contains an innocent, expected parameter value, allowing the cached response to be served as normal to other users. On the back-end, however, the same parameter has a completely different value, which is our injected payload. It is this second value that will be passed into the gadget and reflected in the poisoned response.
 
-### **Exploiting fat GET support**
+### <mark style="color:yellow;">**Exploiting fat GET support**</mark>
 
 Although this scenario is pretty rare, you can sometimes simply add a body to a `GET` request to create a "fat" `GET` request:
 
@@ -228,7 +228,7 @@ GET /?param=innocent HTTP/1.1
 param=bad-stuff-here
 ```
 
-### Normalized cache keys <a href="#normalized-cache-keys" id="normalized-cache-keys"></a>
+### <mark style="color:yellow;">Normalized cache keys</mark> <a href="#normalized-cache-keys" id="normalized-cache-keys"></a>
 
 Problem: when you find reflected XSS in a parameter, it is often unexploitable in practice. This is because modern browsers typically URL-encode the necessary characters when sending the request, and the server doesn't decode them.
 

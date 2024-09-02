@@ -31,7 +31,7 @@
   * `this.category == 'fizzy'`
 * Inject: `'` -> `this.category == '''`
   * If this causes a change from the original response, this may indicate that the `'` character has broken the query syntax and caused a syntax error.&#x20;
-* Confirm this by submitting a valid query string in the input, ex: `\'` -> `this.category == '\''`
+* Confirm this by submitting a valid query string in the input, e.g.: `\'` -> `this.category == '\''`
   * If this doesn't cause a syntax error, this may mean that the application is vulnerable to an injection attack.
 
 ### <mark style="color:yellow;">**Confirming conditional behavior**</mark>
