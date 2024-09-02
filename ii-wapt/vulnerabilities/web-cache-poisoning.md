@@ -1,25 +1,11 @@
 # Web cache poisoning
 
+More info about web cache: [web-cache.md](../web-security/web-cache.md "mention")
+
 Two phases:
 
 1. You need to find a way to trigger a response from the back-end server that unintentionally includes a dangerous payload.
 2. After success, you must ensure the response is cached and served to the intended victims.
-
-<details>
-
-<summary>Cache keys</summary>
-
-When the cache gets an HTTP request, it decides whether to serve a cached response or forward the request to the origin server by generating a "cache key". Typically, this would contain the request line and `Host` header but can also include headers and content type.
-
-</details>
-
-<details>
-
-<summary>Cache buster</summary>
-
-A "cache buster" is a technique to ensure that users get the most recent version of a file (like CSS, JavaScript, or images) by bypassing the browser's cache. This is done by appending a unique query string (e.g., `?v=1.1` or `?ts=1689876543` or whatever you want) to the file URL. The browser treats this as a different file and loads the latest version, preventing issues with outdated cached files.
-
-</details>
 
 ## <mark style="color:yellow;">Constructing a web cache poisoning attack</mark>
 

@@ -67,9 +67,9 @@ Software frameworks sometime allow developers to automatically bind HTTP request
 
 **Premise**
 
-Consider `PATCH /api/users/` which enables users to update their username and email `{"username": "wiener", "email": "wiener@example.com"}`
+Consider `PATCH /api/users/` which enables users to update their username and email `{"username": "lebron", "email": "lebron@example.com"}`
 
-A concurrent `GET /api/users/123` request returns the following JSON: `{"id": 123, "name": "John Doe", "email": "john@example.com", "isAdmin": "false"}`
+A concurrent `GET /api/users/123` request returns the following JSON: `{"id": 123, "name": "Lebron James", "email": "leb@example.com", "isAdmin": "false"}`
 
 This may indicate that the hidden id and isAdmin parameters are bound to the internal user object, alongside the updated username and email parameters.
 
@@ -79,8 +79,8 @@ This may indicate that the hidden id and isAdmin parameters are bound to the int
 
 To test whether you can modify the enumerated isAdmin parameter value, send two PATCH request:
 
-* `{"username": "wiener", "email": "wiener@example.com", "isAdmin": false}`
-* `{"username": "wiener","email": "wiener@example.com", "isAdmin": "foo",}`
+* `{"username": "lebron", "email": "leb@example.com", "isAdmin": false}`
+* `{"username": "lebron","email": "leb@example.com", "isAdmin": "foo",}`
 
 If the application behaves differently, may suggest that the invalid value impacts the query logic, but the valid value doesn't. This may indicate that the parameter can be successfully updated by the user. (Set it to true)
 
