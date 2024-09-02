@@ -27,14 +27,14 @@
 
 ***
 
-Original
+**Original**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <stockCheck><productId>381</productId></stockCheck> 
 ```
 
-Exploitation
+**Exploitation**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

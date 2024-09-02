@@ -101,11 +101,11 @@ Objective: identify a character that is used as a delimiter by the origin server
 * Make sure to test all ASCII characters and a range of common extensions, including `.css`, `.ico`, and `.exe`
 {% endhint %}
 
-### <mark style="color:yellow;">Exploiting delimiter decoding discrepancies</mark> <a href="#exploiting-delimiter-decoding-discrepancies" id="exploiting-delimiter-decoding-discrepancies"></a>
+### <mark style="color:yellow;">Delimiter decoding discrepancies</mark> <a href="#exploiting-delimiter-decoding-discrepancies" id="exploiting-delimiter-decoding-discrepancies"></a>
 
 to understand
 
-## <mark style="color:yellow;">Static directory cache rules (normalization discrepancies)</mark> <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
+## <mark style="color:yellow;">Static directory cache rules (with normalization discrepancies)</mark> <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
 
 Web servers often store static resources in specific directories. Cache rules typically target these by matching URL path prefixes like `/static`, `/assets`, `/scripts`, or `/images`.
 

@@ -360,9 +360,7 @@ body:username.value+':'+this.value
 
 ## <mark style="color:yellow;">Content security policy</mark>
 
-CSP restrict the resources (such as scripts and images) that a page can load and restricting whether a page can be framed by other pages
-
-CSP defends against XSS attacks in the following ways
+CSP restrict the resources (such as scripts and images) that a page can load and restricting whether a page can be framed by other pages. CSP defends against XSS attacks in the following ways
 
 * Restricting Inline Scripts
   * `<script>document.body.innerHTML='defaced'</script>` will not work
