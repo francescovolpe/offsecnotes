@@ -29,7 +29,7 @@ Consider the following example:
 
 </details>
 
-<pre class="language-markdown"><code class="lang-markdown"># 1. Find good endpoint
+<pre class="language-python"><code class="lang-python"># 1. Find good endpoint
 /my-account        # Contains sensitive data -> Good endpoint
 <strong>
 </strong># 2. Check if web cache is used
@@ -114,7 +114,7 @@ Premise
 * If you type in your browser `https://website/test/../account`, it'll make the following request `GET /account HTTP/2`. &#x20;
 * If you type in your browser`https://website/test/..%2faccount`, it'll make the following request `GET /test/..%2faccount HTTP/2`. &#x20;
 
-<pre><code># 1. Find good endpoint
+<pre class="language-python"><code class="lang-python"># 1. Find good endpoint
 /my-account            # Contains sensitive data -> Good endpoint
 
 # 2. Check if web cache is used (with static resources)
@@ -124,7 +124,7 @@ Premise
 
 ### <mark style="color:yellow;">Normalization by the origin server</mark> <a href="#exploiting-normalization-by-the-origin-server" id="exploiting-normalization-by-the-origin-server"></a>
 
-<pre class="language-sh"><code class="lang-sh"># 3. Confirm that the cache rule is based on the static directory
+<pre class="language-python"><code class="lang-python"># 3. Confirm that the cache rule is based on the static directory
 /static/../xxx         # 1 time "X-Cache: miss"
 /static/../xxx         # 2 time "X-Cache: hit" -> so all subpages in /static/ will be cached 
 
@@ -145,7 +145,7 @@ Premise
 
 ### <mark style="color:yellow;">Normalization by the cache server</mark>
 
-<pre class="language-sh"><code class="lang-sh"># 3. Confirm that the cache rule is based on the static directory
+<pre class="language-python"><code class="lang-python"># 3. Confirm that the cache rule is based on the static directory
 # This step is useless, so you can't confirm if the cache decodes 
 # dot-segments and URL paths without trying an exploit.
 <strong>
