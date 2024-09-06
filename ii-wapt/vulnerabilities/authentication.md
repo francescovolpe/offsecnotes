@@ -3,12 +3,11 @@
 ## <mark style="color:yellow;">Usernames enumeration</mark>
 
 * Some username: `admin`, `administrator` ,`firstname.lastname@somecompany.com`
-* Are you able to access user profiles without logging in?
-* Check HTTP responses to see if any email addresses are disclosed
 * Compares responses between a valid user and an invalid user (and incorrect password). \[One character out of place makes the messages distinct, even if not visible on the page]
-* Create account
-* Response times (a website may only check the password if the username is valid) entering an excessively long password causes a noticeable delay.
+* Create account and see if there's error like "account already exists"
 * Account locking? (after a certain number of trials). It could mean that the account exists
+* Response times (a website may only check the password if the username is valid) entering an excessively long password causes a noticeable delay
+* Check HTTP responses to see if any email addresses are disclosed
 
 ## <mark style="color:yellow;">Passwords</mark>
 
@@ -32,8 +31,7 @@
 ## <mark style="color:yellow;">2FA</mark> <a href="#bypassing-two-factor-authentication" id="bypassing-two-factor-authentication"></a>
 
 * Brute-force
-* Bypassing two-factor authentication
-  * Check if you can directly skip to "logged-in" pages. Sometimes the webapp doesn't check whether or not you completed the second step.
+* Bypassing two-factor authentication -> check if you can directly skip to "logged-in" pages
 * Flawed logic
 
 <pre class="language-http"><code class="lang-http"><strong># 1.1 step - Normal login with attacker account

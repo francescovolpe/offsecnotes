@@ -4,15 +4,11 @@ Access control is the application of constraints on who or what is authorized to
 
 ## <mark style="color:yellow;">Unprotected functionality</mark>
 
-* Direct access
-
-```markdown
+```sh
+# Direct access
 https://insecure-website.com/admin
-```
 
-* Less predictable URL -> maybe the URL is in JS constructing the user UI
-
-```
+# Less predictable URL -> maybe the URL is in JS constructing the user UI
 https://insecure-website.com/administrator-panel-yb556
 ```
 
@@ -87,18 +83,13 @@ https://insecure-website.com/myaccount?id=123
 
 ## <mark style="color:yellow;">Access control vulnerabilities in multi-step processes</mark>
 
-Imagine a website where access controls are correctly applied to the first and second steps, but not to the third step (skip the first two steps):
+Imagine a website where steps 1 and 2 have access controls, but step 3 doesn't. -> skip the first two steps.
 
-* Load the form that contains details for a specific user.
-* Submit the changes.
-* Review the changes and confirm.
+&#x20;(1) Load user details, (2) Submit changes, (3) Review and confirm.
 
 ## <mark style="color:yellow;">Tips</mark>
 
-*   Application might use globally unique identifiers (GUID) to identify users
-
-    * However, the GUIDs belonging to other users might be disclosed elsewhere in the application where users are referenced, such as user messages or reviews.
+*   An application might use GUIDs to identify users, but GUIDs of other users could be exposed elsewhere in the app, such as in user messages or reviews.
 
 
-* An application does detect when the user is not permitted to access the resource and returns a redirect to the login page
-  * The response containing the redirect might still include some sensitive data belonging to the targeted user
+* An application may detect unauthorized access and redirect to the login page, but the response might still expose sensitive data of the targeted user.

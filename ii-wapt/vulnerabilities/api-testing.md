@@ -27,11 +27,7 @@
 **Tip**: JS Link Finder BApp (Burp extension)
 {% endhint %}
 
-### <mark style="color:yellow;">Hidden endpoints</mark>
-
-Consider `PUT /api/user/update`
-
-* Fuzz the `/update` with a list of other common functions, such as `delete` and `add`
+* Consider `PUT /api/user/update`, fuzz the `/update` with a list of other common functions, such as `delete` and `add`
 * Use wordlists based on common API naming
 
 ## <mark style="color:yellow;">HTTP methods</mark>

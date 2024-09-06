@@ -1,110 +1,14 @@
 # CORS
 
-<details>
-
-<summary>Same-origin policy (SOP)</summary>
-
-* The same-origin policy restricts scripts on one origin from accessing data from another origin.
-
-<!---->
-
-* An origin consists of a URI scheme, domain and port number.
-
-<!---->
-
-* The SOP prevents a malicious website from running JS in a browser to read data from a third-party website. (There are various exceptions)
-
-<!---->
-
-* The SOP allows embedding of images via the `<img>` `<video>` `<script>`.
-  * However, while these external resources can be loaded by the page, any JavaScript on the page won't be able to read the contents of these resources.
-
-</details>
-
-<details>
-
-<summary>Cross-origin resource sharing</summary>
-
-The cross-origin resource sharing specification provides controlled relaxation of the same-origin policy. The CORS specification identifies a collection of protocol headers
-
-* `Origin` header added by the browser.
-  * ```
-    Origin : https://normal-website.com
-    ```
-* `Access-Control-Allow-Origin` returned by a server when a website requests a cross-domain resource.
-  * ```http
-    Access-Control-Allow-Origin: https://normal-website.com
-    ```
-
-This means that the browser will allow code running on normal-website.com to access the response because the origins match.
-
-Note: `Access-Control-Allow-Origin` is returned only if the whitelisted values or `*` or `null` matched the Origin.
-
-
-
-**Access-Control-Allow-Origin: \***
-
-The use of the wildcard `*` is restricted in the specification as you cannot combine the wildcard with the cross-origin transfer of credentials (authentication, cookies or client-side certificates). This following response is not permitted
-
-```http
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-```
-
-
-
-**Access-Control-Allow-Origin: null**
-
-Specifies that only origins with a `null` origin are allowed to access the resource. Browsers might send the value `null` in the Origin header in various unusual situations:
-
-* Cross-origin redirects.
-* Requests from serialized data.
-* Request using the `file` protocol.
-* Sandboxed cross-origin requests.
-
-</details>
-
-<details>
-
-<summary>Pre-flight checks</summary>
-
-Under certain circumstances, when a cross-domain request includes a non-standard HTTP method or headers, the cross-origin request is preceded by a request using the OPTIONS method.
-
-For example, this is a pre-flight request that is seeking to use the PUT method together with a custom request header called Special-Request-Header
-
-```http
-OPTIONS /data HTTP/1.1
-Host: <some website>
-...
-Origin: https://normal-website.com
-Access-Control-Request-Method: PUT
-Access-Control-Request-Headers: Special-Request-Header
-```
-
-```http
-HTTP/1.1 204 No Content
-...
-Access-Control-Allow-Origin: https://normal-website.com
-Access-Control-Allow-Methods: PUT, POST, OPTIONS
-Access-Control-Allow-Headers: Special-Request-Header
-Access-Control-Allow-Credentials: true
-Access-Control-Max-Age: 240
-```
-
-* This response sets out the allowed methods (PUT, POST and OPTIONS) and permitted request headers (Special-Request-Header). In this particular case the cross-domain server also allows the sending of credentials (authentication, cookies or client-side certificates), and the Access-Control-Max-Age header defines a maximum timeframe for caching the pre-flight response for reuse
-* More info about preflight: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflighted\_requests
-
-</details>
-
 ## <mark style="color:yellow;">**Server-generated ACAO header from client-specified Origin header**</mark>
 
 Some app read the Origin header from requests and including a response header stating that the requesting origin is allowed.
 
-Detection&#x20;
+**Detection**&#x20;
 
 Send request with `Origin: https://example.com` and see if the origin is reflected in the `Access-Control-Allow-Origin` header.
 
-Exploit
+**Exploit**
 
 ```html
 <script>
@@ -122,9 +26,7 @@ function reqListener() {
 
 ## <mark style="color:yellow;">**Errors parsing Origin headers**</mark>
 
-* Some apps enable access from various sources through a whitelist of permitted origins
-* Suppose `normal-website.com`
-* Use as origin: `hackersnormal-website.com` or `normal-website.com.evil-user.net`
+Suppose `normal-website.com.` Bypass with`hackersnormal-website.com` or `normal-website.com.evil-user.net`
 
 {% hint style="info" %}
 **Note**: you need to know the whitelisted origins.
@@ -134,11 +36,11 @@ function reqListener() {
 
 ## <mark style="color:yellow;">**Whitelisted null origin value**</mark>
 
-Detection
+**Detection**
 
 Send request with `Origin: null` and see if the response has `Access-Control-Allow-Origin: null`
 
-Exploit
+**Exploit**
 
 ```html
 <iframe sandbox="allow-scripts allow-top-navigation allow-forms" src="data:text/html,<script>

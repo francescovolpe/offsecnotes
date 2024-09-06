@@ -1,11 +1,5 @@
 # CSRF
 
-## <mark style="color:yellow;">Conditions</mark>
-
-* A relevant action. (e.g. change password)
-* Cookie-based session handling
-* No unpredictable request parameters. If you need to know the value of the existing password it's not vulnerable
-
 ## <mark style="color:yellow;">**Exploit**</mark>
 
 **With POST**
