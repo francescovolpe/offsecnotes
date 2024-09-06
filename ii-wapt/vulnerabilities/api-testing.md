@@ -27,7 +27,14 @@
 **Tip**: JS Link Finder BApp (Burp extension)
 {% endhint %}
 
-## <mark style="color:yellow;">Supported HTTP methods</mark>
+### <mark style="color:yellow;">Hidden endpoints</mark>
+
+Consider `PUT /api/user/update`
+
+* Fuzz the `/update` with a list of other common functions, such as `delete` and `add`
+* Use wordlists based on common API naming
+
+## <mark style="color:yellow;">HTTP methods</mark>
 
 Test all potential methods when you're investigating API endpoints
 
@@ -35,7 +42,7 @@ Test all potential methods when you're investigating API endpoints
 **Tip**: Use HTTP verbs list in Burp Intruder
 {% endhint %}
 
-## <mark style="color:yellow;">Supported content types</mark>
+## <mark style="color:yellow;">Content types</mark>
 
 Changing the content type may enable you to
 
@@ -48,13 +55,6 @@ To change the content type, modify the Content-Type header and reformat the requ
 {% hint style="success" %}
 **Tip**: Content type converter BApp automatically converts request data between XML and JSON.
 {% endhint %}
-
-## <mark style="color:yellow;">Hidden endpoints</mark>
-
-Consider `PUT /api/user/update`
-
-* Fuzz the `/update` with a list of other common functions, such as `delete` and `add`
-* Use wordlists based on common API naming
 
 ## <mark style="color:yellow;">Hidden parameters</mark>
 

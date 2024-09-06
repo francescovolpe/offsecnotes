@@ -41,13 +41,12 @@
 Host: vulnerable-website.com
 [...]
 username=attacker&#x26;password=qwerty
-</code></pre>
 
-```http
+
 # 1.2 step - The server sets cookie
 HTTP/1.1 200 OK
 Set-Cookie: account=attacker
-```
+</code></pre>
 
 ```http
 # 2 step - request two-factor

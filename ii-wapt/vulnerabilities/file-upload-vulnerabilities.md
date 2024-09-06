@@ -64,6 +64,8 @@ Payload example:
 <?php echo system($_GET['cmd']); ?>
 ```
 
+***
+
 **(2) Polyglot (on exiftool)**: verify certain intrinsic properties of an image, such as its dimensions.
 
 Create a polyglot JPEG file containing malicious code within its metadata
@@ -76,7 +78,7 @@ This works if you can upload a php extension file. This works why you have a rea
 
 ## <mark style="color:yellow;">Overriding server configuration</mark>
 
-Many servers let developers create configuration files in individual directories to override or add to global settings. Web servers use these files when present, but they are not accessible via HTTP requests.
+Many servers allow configuration files in directories to override global settings. Web servers use them when present, but they're not accessible via HTTP requests.
 
 If the file extension is blacklisted, you might trick the server into mapping a custom file extension to an executable MIME type.
 

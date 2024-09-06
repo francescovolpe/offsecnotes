@@ -2,7 +2,9 @@
 
 <details>
 
-<summary>Virtual hosting</summary>
+<summary>Introduction</summary>
+
+**Virtual hosting**
 
 * Single web server hosts multiple websites or applications.
 
@@ -14,11 +16,7 @@
 
 * Websites hosted in this way on a single server are known as "virtual hosts".
 
-</details>
-
-<details>
-
-<summary>Routing traffic via an intermediary</summary>
+**Routing traffic via an intermediary**
 
 * Websites are hosted on distinct back-end servers, but all traffic between the client and servers is routed through an intermediary system.
 
@@ -26,11 +24,7 @@
 
 * This could be a simple load balancer or a reverse proxy server of some kind.
 
-</details>
-
-<details>
-
-<summary>HTTP Host header</summary>
+**HTTP Host header**
 
 Http host header refers to the Host header to determine the intended back-end
 
@@ -54,27 +48,40 @@ First step is to test what happens when you supply an arbitrary, unrecognized do
 
 ## <mark style="color:yellow;">Exploit the HTTP Host header</mark>
 
-* Password reset poisoning
-  * The website sends an email to the user that contains a link for resetting their password: `https://normal-website.com/reset?token=0a1b2c3d4e5f6g7h8i9j`.
-  * Intercept the resulting HTTP request and modify the Host header so that it points to a domain that they control.
-    * The attacker can now visit the real URL for the vulnerable website and supply the victim's stolen token via the corresponding parameter.
-* Exploiting classic server-side vulnerabilities
-  * Ex. SQLi, etc.
-* Accessing restricted functionality
-  * Admin panel with host: `localhost`
-* Accessing internal websites with virtual host brute-forcing
-  * Note: companies sometimes make the mistake of hosting publicly accessible websites and private, internal sites on the same server
-* Web cache poisoning via the Host header
-  * Client-side vulnerabilities like XSS aren't exploitable if they're caused by the Host header, as attackers can't manipulate a victim's browser to generate a harmful host.
-  * However, if the target uses a web cache, it may be possible to turn this useless
-* Routing-based SSRF
-  * If load balancers and reverse proxies are insecurely configured to forward requests based on an unvalidated Host header, they can be manipulated into misrouting requests to an arbitrary system of the attacker's choice
-  * The next step is to see if you can exploit this behavior to access internal-only systems
-    * Identify private IP addresses...
-    * Or you can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
-* Connection state attacks
-  * You may encounter servers that only perform thorough validation on the first request they receive over a new connection. So, you can potentially bypass this validation by sending an innocent-looking initial request then following up with your malicious one down the same connection.
-  * NOTE: you need to set up a single connection!!!
+### <mark style="color:yellow;">Password reset poisoning</mark>
+
+* The website sends an email to the user that contains a link for resetting their password: `https://normal-website.com/reset?token=0a1b2c3d4e5f6g7h8i9j`.
+* Intercept the resulting HTTP request and modify the Host header so that it points to a domain that they control.
+  * The attacker can now visit the real URL for the vulnerable website and supply the victim's stolen token via the corresponding parameter.
+
+### <mark style="color:yellow;">Exploiting classic server-side vulnerabilities</mark>
+
+* Ex. SQLi, etc.
+
+### <mark style="color:yellow;">Accessing restricted functionality</mark>
+
+* Admin panel with host: `Host: localhost`
+
+### <mark style="color:yellow;">Accessing internal websites with virtual host brute-forcing</mark>
+
+* Note: companies sometimes make the mistake of hosting publicly accessible websites and private, internal sites on the same server
+
+### <mark style="color:yellow;">Web cache poisoning via the Host header</mark>
+
+* Client-side vulnerabilities like XSS aren't exploitable if they're caused by the Host header, as attackers can't manipulate a victim's browser to generate a harmful host.
+* However, if the target uses a web cache, it may be possible to turn this useless
+
+### <mark style="color:yellow;">Routing-based SSRF</mark>
+
+* If load balancers and reverse proxies are insecurely configured to forward requests based on an unvalidated Host header, they can be manipulated into misrouting requests to an arbitrary system of the attacker's choice
+* The next step is to see if you can exploit this behavior to access internal-only systems
+  * Identify private IP addresses...
+  * Or you can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
+
+### <mark style="color:yellow;">Connection state attacks</mark>
+
+* You may encounter servers that only perform thorough validation on the first request they receive over a new connection. So, you can potentially bypass this validation by sending an innocent-looking initial request then following up with your malicious one down the same connection.
+* NOTE: you need to set up a single connection!!!
 
 ## <mark style="color:yellow;">Bypass validation</mark>
 

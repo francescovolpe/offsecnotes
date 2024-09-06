@@ -80,14 +80,13 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 
 ## <mark style="color:yellow;">CSRF tokens bypass</mark>
 
-* Switch from POST to the GET method to bypass
-* Remove the entire parameter containing the token
-* Sometimes you don't need a valid token (the app doesn't keep valid server-side tokens).
-  * Simply invent a token in the required format
-* Some apps don't validate if the token belongs to the same session as the requesting user.
-  * Log in to the application with your account, obtain a valid token, and then feed that token to the victim user in their CSRF attack
-*   Some apps do tie the CSRF token to a cookie, but not to the session cookie. So there are two token: one in a cookie and one in hidden input. (this can also have the same value)
+* Switch from POST to the GET method
+* Remove the parameter containing the token
+* Invent a token in the required format (the app doesn't keep valid server-side tokens).
+* Log in to the application with your account, obtain a valid token, and then feed that token to the victim user in their CSRF attack  (some apps don't validate if the token belongs to the same session as the requesting user).
+*   Are there two token: one in a cookie and one in hidden input? (this can also have the same value)
 
+    * Some apps do tie the CSRF token to a cookie, but not to the session cookie.
     * Can you set a cookie? Ex. Header injection with `CRLF`.(`%0d%0a`)
     * ```
       /?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None

