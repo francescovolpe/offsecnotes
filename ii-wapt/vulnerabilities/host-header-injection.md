@@ -36,14 +36,14 @@ Host: portswigger.net
 </details>
 
 {% hint style="warning" %}
-Some intercepting proxies derive the target IP address from the Host header directly, which makes this kind of testing all but impossible. Burp Suite maintains the separation between the Host header and the target IP address (Very important)
+Some intercepting proxies use the Host header to determine the target IP address, making testing difficult. Burp Suite keeps the Host header and target IP address separate, which is crucial.
 {% endhint %}
 
 ### <mark style="color:yellow;">Supply an arbitrary Host header</mark>
 
-First step is to test what happens when you supply an arbitrary, unrecognized domain name via the Host header
+Start by testing the effect of providing an arbitrary domain name in the Host header
 
-* Sometimes, you can still access the target website even if you supply an unexpected Host header.
+* Occasionally, you can still reach the target website with an unexpected Host header
 * Or get an invalid Host header error ...
 
 ## <mark style="color:yellow;">Exploit the HTTP Host header</mark>
@@ -51,41 +51,41 @@ First step is to test what happens when you supply an arbitrary, unrecognized do
 ### <mark style="color:yellow;">Password reset poisoning</mark>
 
 * The website sends an email to the user that contains a link for resetting their password: `https://normal-website.com/reset?token=0a1b2c3d4e5f6g7h8i9j`.
-* Intercept the resulting HTTP request and modify the Host header so that it points to a domain that they control.
-  * The attacker can now visit the real URL for the vulnerable website and supply the victim's stolen token via the corresponding parameter.
+* Intercept the HTTP request, change the Host header to a domain you control, then visit the vulnerable website and use the stolen token in the appropriate parameter
 
 ### <mark style="color:yellow;">Exploiting classic server-side vulnerabilities</mark>
 
-* Ex. SQLi, etc.
+E.g. SQLi, etc.
 
 ### <mark style="color:yellow;">Accessing restricted functionality</mark>
 
-* Admin panel with host: `Host: localhost`
+Admin panel with host: `Host: localhost`
 
 ### <mark style="color:yellow;">Accessing internal websites with virtual host brute-forcing</mark>
 
-* Note: companies sometimes make the mistake of hosting publicly accessible websites and private, internal sites on the same server
+Companies sometimes mistakenly host both public websites and private internal sites on the same server.
 
 ### <mark style="color:yellow;">Web cache poisoning via the Host header</mark>
 
 * Client-side vulnerabilities like XSS aren't exploitable if they're caused by the Host header, as attackers can't manipulate a victim's browser to generate a harmful host.
-* However, if the target uses a web cache, it may be possible to turn this useless
+* However, if the target uses a web cache, it may be possible to turn this useless [web-cache-poisoning.md](web-cache-poisoning.md "mention")
 
 ### <mark style="color:yellow;">Routing-based SSRF</mark>
 
-* If load balancers and reverse proxies are insecurely configured to forward requests based on an unvalidated Host header, they can be manipulated into misrouting requests to an arbitrary system of the attacker's choice
-* The next step is to see if you can exploit this behavior to access internal-only systems
-  * Identify private IP addresses...
-  * Or you can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
+If load balancers and reverse proxies are misconfigured to forward requests based on an unvalidated Host header, attackers can exploit this to reroute requests to any system they choose -> exploit this to have access internal-only systems.
+
+* Identify private IP addresses...
+* Or you can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
 
 ### <mark style="color:yellow;">Connection state attacks</mark>
 
-* You may encounter servers that only perform thorough validation on the first request they receive over a new connection. So, you can potentially bypass this validation by sending an innocent-looking initial request then following up with your malicious one down the same connection.
-* NOTE: you need to set up a single connection!!!
+You may encounter servers that only perform thorough validation on the first request they receive over a new connection. So, you can potentially bypass this validation by sending an innocent-looking initial request then following up with your malicious one down the same connection.
+
+{% hint style="info" %}
+Note: you need to set up a single connection
+{% endhint %}
 
 ## <mark style="color:yellow;">Bypass validation</mark>
-
-You might find that your request is blocked as a result of some kind of security measure. For example, some websites will validate whether the Host header matches the SNI from the TLS handshake. You should try to understand how the website parses the Host header
 
 * Some parsing algorithms will omit the port from the Host header (maybe you can also supply a non-numeric port)
 

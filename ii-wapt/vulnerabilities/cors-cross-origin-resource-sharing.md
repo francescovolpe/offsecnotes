@@ -26,7 +26,7 @@ function reqListener() {
 
 ## <mark style="color:yellow;">**Errors parsing Origin headers**</mark>
 
-Suppose `normal-website.com.` Bypass with`hackersnormal-website.com` or `normal-website.com.evil-user.net`
+Suppose `normal-website.com`. Bypass with`hackersnormal-website.com` or `normal-website.com.evil-user.net`
 
 {% hint style="info" %}
 **Note**: you need to know the whitelisted origins.

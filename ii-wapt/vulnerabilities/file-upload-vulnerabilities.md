@@ -98,7 +98,7 @@ Content-Length: 49
 
 ## <mark style="color:yellow;">**FU + PT**</mark>
 
-One defense: prevent the server from executing scripts that slip through. Web servers use the filename field in `multipart/form-data` requests to determine the file's name and location. -> Change filename field combining path traversal
+Defense: Servers block script execution in the file upload folder. Web servers use the filename field in `multipart/form-data` requests to determine the file's name and location. -> Change filename field combining path traversal
 
 ```http
 Content-Disposition: form-data; name="avatar"; filename="../exploit.php"

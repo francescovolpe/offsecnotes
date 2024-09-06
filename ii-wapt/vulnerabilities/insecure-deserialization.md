@@ -89,7 +89,7 @@ if ($user->isAdmin === true) {
 }
 ```
 
-1. Identify serialized object. This example: in the cookie
+1. Identify serialized object (here in the cookie)
 2. Decode it
 
 ```php
