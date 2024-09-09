@@ -26,13 +26,13 @@ By design, servers don't store information about the JWTs they issue. Each token
 
 JWT attacks involve users sending modified JWTs to the server to achieve malicious goals.
 
-## <mark style="color:yellow;">Accepting arbitrary signatures</mark> <a href="#accepting-arbitrary-signatures" id="accepting-arbitrary-signatures"></a>
+## <mark style="color:yellow;">Arbitrary signatures</mark> <a href="#accepting-arbitrary-signatures" id="accepting-arbitrary-signatures"></a>
 
 Sometimes, developers decode tokens without verifying the signature.
 
 So, tamper the jwt and ignore the signature.
 
-## <mark style="color:yellow;">Accepting tokens with no signature</mark> <a href="#accepting-tokens-with-no-signature" id="accepting-tokens-with-no-signature"></a>
+## <mark style="color:yellow;">No signature</mark> <a href="#accepting-tokens-with-no-signature" id="accepting-tokens-with-no-signature"></a>
 
 The JWT header contains an `alg` parameter.
 
