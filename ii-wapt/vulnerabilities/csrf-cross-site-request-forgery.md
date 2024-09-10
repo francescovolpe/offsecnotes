@@ -150,7 +150,7 @@ redirectOnConfirmation = () => {
     ```
   * To sed referer you need to add `Referrer-Policy: unsafe-url`. One way to set it in html: `<meta name="referrer" content="unsafe-url"/>`
 
-{% hint style="info" %}
+{% hint style="success" %}
 **Tip**: Instead of use `http://attacker-website.com/vulnerable-website.com` that looks strange you can use `http://attacker-website.com/` and add `<script>history.pushState('', '', '/vulnerable-website.com')</script>`
 
 <pre class="language-html"><code class="lang-html">&#x3C;!-- http://attacker-website.com/ -->

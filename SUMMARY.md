@@ -20,6 +20,7 @@
   * [CORS](ii-wapt/vulnerabilities/cors-cross-origin-resource-sharing.md)
   * [CSRF](ii-wapt/vulnerabilities/csrf-cross-site-request-forgery.md)
   * [File upload](ii-wapt/vulnerabilities/file-upload-vulnerabilities.md)
+  * [GraphQL API](ii-wapt/vulnerabilities/graphql-api.md)
   * [Host header injection](ii-wapt/vulnerabilities/host-header-injection.md)
   * [HTTP request smuggling](ii-wapt/vulnerabilities/http-request-smuggling.md)
   * [Information disclosure](ii-wapt/vulnerabilities/information-disclosure-vulnerabilities.md)

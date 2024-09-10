@@ -73,4 +73,4 @@ Access-Control-Max-Age: 240
 ```
 
 * This response sets out the allowed methods (PUT, POST and OPTIONS) and permitted request headers (Special-Request-Header). In this particular case the cross-domain server also allows the sending of credentials (authentication, cookies or client-side certificates), and the Access-Control-Max-Age header defines a maximum timeframe for caching the pre-flight response for reuse
-* More info about preflight: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflighted\_requests
+* More info about preflight: [https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflighted\_requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflighted\_requests)
