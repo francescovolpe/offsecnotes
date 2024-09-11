@@ -34,7 +34,7 @@ Try to request a subpage and set Referer
 
 ```http
 GET /admin/deleteUser HTTP/1.0
-Referer: https://vulnerable-website.com/admin 
+Referer: https://vulnerable-website.com/admin
 ```
 
 You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action.
