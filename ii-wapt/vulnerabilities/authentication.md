@@ -66,7 +66,7 @@ verification-code=123456
 Some websites generate this cookie based on a predictable concatenation of static values, such as the username and a timestamp (or maybe even the password).
 
 * Study your cookie and deduce how it is generated
-* Sometimes this cookie is hashed or encoded (ex. base64)
+* Sometimes this cookie is hashed or encoded (e.g. base64)
 * Now try to brute-force other users' cookies to gain access to their accounts
 
 If the website uses salt it becomes much more complicated...
