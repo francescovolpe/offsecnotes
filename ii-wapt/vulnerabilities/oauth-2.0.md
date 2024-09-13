@@ -66,3 +66,11 @@ Note that if the site allows users to log in exclusively via OAuth, the `state` 
 TO DO
 
 ## Vulnerabilities in the OAuth service
+
+### Leaking authorization codes and access tokens <a href="#leaking-authorization-codes-and-access-tokens" id="leaking-authorization-codes-and-access-tokens"></a>
+
+Depending on the grant type, either a code or token is sent via the victim's browser to the `/callback` endpoint specified in the `redirect_uri` parameter of the authorization request. If the OAuth service fails to validate this URI properly, an attacker may be able to construct a CSRF-like attack, tricking the victim's browser into initiating an OAuth flow that will send the code or token to an attacker-controlled `redirect_uri` stealing it. They can then send this code to the client application's legitimate `/callback` endpoint (the original `redirect_uri`) to get access to the user's account
+
+Note that using `state` or `nonce` protection does not necessarily prevent these attacks because an attacker can generate new values from their own browser.
+
+\

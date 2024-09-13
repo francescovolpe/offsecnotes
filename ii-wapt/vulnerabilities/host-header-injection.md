@@ -46,24 +46,20 @@ Start by testing the effect of providing an arbitrary domain name in the Host he
 * Occasionally, you can still reach the target website with an unexpected Host header
 * Or get an invalid Host header error ...
 
-## <mark style="color:yellow;">Exploit the HTTP Host header</mark>
+## <mark style="color:yellow;">Exploitation</mark>
 
 ### <mark style="color:yellow;">Password reset poisoning</mark>
 
 * The website sends an email to the user that contains a link for resetting their password: `https://normal-website.com/reset?token=0a1b2c3d4e5f6g7h8i9j`.
 * Intercept the HTTP request, change the Host header to a domain you control, then visit the vulnerable website and use the stolen token in the appropriate parameter
 
-### <mark style="color:yellow;">Exploiting classic server-side vulnerabilities</mark>
-
-E.g. SQLi, etc.
-
 ### <mark style="color:yellow;">Accessing restricted functionality</mark>
 
 Admin panel with host: `Host: localhost`
 
-### <mark style="color:yellow;">Accessing internal websites with virtual host brute-forcing</mark>
+### <mark style="color:yellow;">Accessing internal websites with brute-forcing</mark>
 
-Companies sometimes mistakenly host both public websites and private internal sites on the same server.
+Bruteforce subdomain
 
 ### <mark style="color:yellow;">Web cache poisoning via the Host header</mark>
 
@@ -72,7 +68,7 @@ Companies sometimes mistakenly host both public websites and private internal si
 
 ### <mark style="color:yellow;">Routing-based SSRF</mark>
 
-If load balancers and reverse proxies are misconfigured to forward requests based on an unvalidated Host header, attackers can exploit this to reroute requests to any system they choose -> exploit this to have access internal-only systems.
+If load balancers and reverse proxies are misconfigured to forward requests based on an unvalidated Host header, you can exploit this to reroute requests to any system you choose -> exploit this to have access internal-only systems.
 
 * Identify private IP addresses...
 * Or you can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
@@ -82,30 +78,29 @@ If load balancers and reverse proxies are misconfigured to forward requests base
 You may encounter servers that only perform thorough validation on the first request they receive over a new connection. So, you can potentially bypass this validation by sending an innocent-looking initial request then following up with your malicious one down the same connection.
 
 {% hint style="info" %}
-Note: you need to set up a single connection
+**Note**: you need to set up a single connection
 {% endhint %}
+
+### <mark style="color:yellow;">Exploiting server-side vulnerabilities</mark>
+
+E.g. SQLi, etc.
 
 ## <mark style="color:yellow;">Bypass validation</mark>
 
-* Some parsing algorithms will omit the port from the Host header (maybe you can also supply a non-numeric port)
+* Parsing flaws
 
 ```http
-GET /example HTTP/1.1
 Host: vulnerable-website.com:bad-stuff-here
-```
-
-* Matching logic to allow for arbitrary subdomains
-
-```http
-GET /example HTTP/1.1
 Host: notvulnerable-website.com
+Host: hacked-subdomain.vulnerable-website.com
 ```
 
-* Alternatively, you could take advantage of a less-secure subdomain that you have already compromised:
+* Override headers (`X-Host`, `X-Forwarded-Server`, `Forwarded`, etc.). You can also find with param miner -> guess headers
 
 ```http
 GET /example HTTP/1.1
-Host: hacked-subdomain.vulnerable-website.com
+Host: vulnerable-website.com
+X-Forwarded-Host: bad-stuff-here
 ```
 
 * Inject duplicate Host headers
@@ -116,7 +111,7 @@ Host: vulnerable-website.com
 Host: bad-stuff-here
 ```
 
-* Supply an absolute URL (many servers are also configured to understand requests for absolute URLs)
+* Supply an absolute URL (many servers are also configured to understand requests for absolute URLs).
   * Officially, the request line should be given precedence when routing the request but, in practice, this isn't always the case
   * Try also change protocol `HTTP`, `HTTPS`
 
@@ -136,16 +131,4 @@ GET /example HTTP/1.1
 Host: vulnerable-website.com
 ```
 
-* Inject host override headers
-  * The front-end may inject the `X-Forwarded-Host` header, containing the original value of the Host header from the client's initial request.
-    * For this reason, when an `X-Forwarded-Host` header is present, many frameworks will refer to this instead.
-  * You may observe this behavior even when there is no front-end that uses this header.
-  * NOTE: there are other headers (`X-Host`, `X-Forwarded-Server`, `Forwarded`, etc.). You can also find with param miner (guess headers)
-
-```http
-GET /example HTTP/1.1
-Host: vulnerable-website.com
-X-Forwarded-Host: bad-stuff-here
-```
-
-* Other techniques you can find on the web `"common domain-validation flaws"`
+* Other techniques you can find on the web "common domain-validation flaws"

@@ -4,6 +4,7 @@
 
 * [https://tib3rius.com/sqli](https://tib3rius.com/sqli)
 * [https://portswigger.net/web-security/sql-injection/cheat-sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)
+* [https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)
 
 ## <mark style="color:yellow;">Overview</mark>
 

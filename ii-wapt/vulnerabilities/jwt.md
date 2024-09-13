@@ -22,9 +22,8 @@ Without the server's secret signing key, generating a correct signature for a gi
 
 </details>
 
-By design, servers don't store information about the JWTs they issue. Each token is a self-contained entity.
-
-JWT attacks involve users sending modified JWTs to the server to achieve malicious goals.
+* By design, servers don't store information about the JWTs they issue. Each token is a self-contained entity.
+* JWT attacks involve users sending modified JWTs to the server to achieve malicious goals.
 
 ## <mark style="color:yellow;">Arbitrary signatures</mark> <a href="#accepting-arbitrary-signatures" id="accepting-arbitrary-signatures"></a>
 

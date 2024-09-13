@@ -44,6 +44,7 @@
   * [Method & Headers](ii-wapt/web-security/method-and-headers.md)
   * [Javascript](ii-wapt/web-security/javascript-security-considerations.md)
   * [Web cache](ii-wapt/web-security/web-cache.md)
+  * [Obfuscating](ii-wapt/web-security/obfuscating.md)
   * [OAuth](ii-wapt/web-security/oauth.md)
   * [SOP, CORS, Pre-flight](ii-wapt/web-security/sop-cors-pre-flight.md)
 * [Automation](ii-wapt/automation.md)
