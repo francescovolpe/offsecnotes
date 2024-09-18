@@ -243,3 +243,11 @@ An application might carry out a SQL query asynchronously (another thread execut
 * Remember that **SQLi can occur at any location** (UPDATE, INSERT, SELECT \[column, table], ORDER BY)
 * **SQLi can be even in XML/JSON**...
   * If there are some protection, try **XML encode**.
+
+## <mark style="color:yellow;">Automatic exploitation</mark>
+
+```sh
+# SQL
+# Capture the request (burp/zap) and create a req.txt file
+sqlmap -r req.txt
+```

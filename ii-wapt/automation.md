@@ -30,11 +30,3 @@ waybackurls https://example.com
 ```sh
 nikto -h http://example.com
 ```
-
-## <mark style="color:yellow;">Automatic exploitation</mark>
-
-```sh
-# SQL
-# Capture the request (burp/zap) and create a req.txt file
-sqlmap -r req.txt
-```

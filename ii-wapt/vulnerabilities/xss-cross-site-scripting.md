@@ -218,19 +218,19 @@ element.innerHTML = comment.author
 
 ### <mark style="color:yellow;">In HTML tag attributes</mark>
 
-* When the XSS context is into an HTML tag attribute value, you might sometimes be able to terminate the attribute value, close the tag, and introduce a new one.
+* Terminate the attribute value, close the tag, and introduce a new one.
 
 ```html
 "><script>alert(document.domain)</script>
 ```
 
-* More commonly in this situation, angle brackets are blocked or encoded. In this case you can introduce a new attribute that creates a scriptable context.
+* If angle brackets are blocked or encoded, introduce a new attribute that creates a scriptable context.
 
 ```html
 " autofocus onfocus=alert(document.domain) x="
 ```
 
-* Sometimes the XSS context is into a type of HTML tag attribute that itself can create a scriptable context. If the XSS context is into the href attribute of an anchor tag, you can use the javascript pseudo-protocol to execute script
+* If XSS context is into the href attribute of an anchor tag, use the javascript pseudo-protocol to execute script
 
 ```html
 <a href="javascript:alert(document.domain)">
