@@ -31,6 +31,7 @@
   * [OS command injection](ii-wapt/vulnerabilities/os-command-injection.md)
   * [Path traversal](ii-wapt/vulnerabilities/path-traversal.md)
   * [Race conditions](ii-wapt/vulnerabilities/race-conditions.md)
+  * [Prototype pollution](ii-wapt/vulnerabilities/prototype-pollution.md)
   * [SQL injection](ii-wapt/vulnerabilities/sqli-injection.md)
   * [SSRF](ii-wapt/vulnerabilities/ssrf-server-side-request-forgery.md)
   * [SSTI](ii-wapt/vulnerabilities/ssti.md)

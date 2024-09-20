@@ -9,6 +9,7 @@
 
 * [https://portswigger.net/web-security](https://portswigger.net/web-security)
 * [https://portswigger.net/research/server-side-template-injection](https://portswigger.net/research/server-side-template-injection)
+* [https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/](https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/)
 
 **MAPT**
 
