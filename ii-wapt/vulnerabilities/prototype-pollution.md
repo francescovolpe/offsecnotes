@@ -135,7 +135,7 @@ https://example.com?param->__proto__->polluted=Polluted
 
 **In JSON**
 
-Any kind of JSON. E.g. a JWT could be parsed client-side for example, without any kind of validation.
+Test any kind of JSON. E.g. a JWT could be parsed client-side for example, without any kind of validation.
 
 ```json
 { 
@@ -153,7 +153,7 @@ Any kind of JSON. E.g. a JWT could be parsed client-side for example, without an
 Being able to affect the global `__proto__` property is not very useful unless you can use it to affect other parts of the code.
 
 {% hint style="success" %}
-**Tip**: Third-party libraries of prototype pollution gadgets[https://github.com/BlackFan/client-side-prototype-pollution](https://github.com/BlackFan/client-side-prototype-pollution)
+**Tip**: Third-party libraries of prototype pollution gadgets [https://github.com/BlackFan/client-side-prototype-pollution](https://github.com/BlackFan/client-side-prototype-pollution)
 {% endhint %}
 
 ## <mark style="color:yellow;">Client-side prototype pollution (with DOM Invader)</mark>
@@ -221,9 +221,9 @@ POST /user/update HTTP/1.1
 Host: vulnerable-website.com
 ...
 {
-    "user":"wiener",
-    "firstName":"Peter",
-    "lastName":"Wiener",
+    "user":"ithomas",
+    "firstName":"isaiah",
+    "lastName":"thomas",
     "__proto__":{
         "foo":"bar"
     }
@@ -234,9 +234,9 @@ Host: vulnerable-website.com
 HTTP/1.1 200 OK
 ...
 {
-    "username":"wiener",
-    "firstName":"Peter",
-    "lastName":"Wiener",
+    "username":"ithomas",
+    "firstName":"isaiah",
+    "lastName":"thomas",
     "foo":"bar"
 }
 ```

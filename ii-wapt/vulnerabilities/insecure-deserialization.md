@@ -133,7 +133,7 @@ Note:
 {% endhint %}
 
 {% hint style="info" %}
-Remember: when modifying data types in any serialized object format, update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized)
+**Remember**: when modifying data types in any serialized object format, update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized)
 {% endhint %}
 
 ## <mark style="color:yellow;">Using application functionality</mark>

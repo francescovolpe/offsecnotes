@@ -31,13 +31,15 @@ If the output is `49`, it means the mathematical operation is being processed se
 
 This context is easily missed during assessment because it doesn't result in obvious XSS.
 
-One method of testing for SSTI in this context is to first establish that the parameter doesn't contain a direct XSS vulnerability by injecting HTML
+1. First establish that the parameter doesn't contain a direct XSS vulnerability by injecting HTML
 
 ```
 http://vulnerable-website.com/?greeting=data.username<tag>
 ```
 
-Without XSS, this usually results in a blank output, encoded tags, or an error message. Next, break out of the statement with common templating syntax and inject arbitrary HTML
+Without XSS, this usually results in a blank output, encoded tags, or an error message.&#x20;
+
+2. Next, break out of the statement with common templating syntax and inject arbitrary HTML
 
 ```
 http://vulnerable-website.com/?greeting=data.username}}<tag>
@@ -47,6 +49,12 @@ If this results in an error or blank output, you may have used the wrong templat
 
 ```
 Hello user<tag>
+```
+
+3. Exploit
+
+```
+http://vulnerable-website.com/?greeting=data.username}}<PAYLOAD>
 ```
 
 ## <mark style="color:yellow;">Identification</mark>

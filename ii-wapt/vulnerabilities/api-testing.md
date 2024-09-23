@@ -10,7 +10,7 @@
 /openapi.json
 ```
 
-* If you identify the resource endpoint `/api/swagger/v1/users/123` use a list of common paths to directly fuzz for documentation
+* Use common paths to directly fuzz for doc. `/api/swagger/v1/users/123`
 
 ```
 /api/swagger/v1
@@ -21,14 +21,13 @@
 ## <mark style="color:yellow;">API endpoints</mark>
 
 * Browsing application (even if you have access to documentation, as it may be inaccurate)
-* Look out for JavaScript files&#x20;
-
-{% hint style="info" %}
-**Tip**: JS Link Finder BApp (Burp extension)
-{% endhint %}
-
 * Consider `PUT /api/user/update`, fuzz the `/update` with a list of other common functions, such as `delete` and `add`
 * Use wordlists based on common API naming
+* Look out for JavaScript files&#x20;
+
+{% hint style="success" %}
+**Tip**: JS Link Finder BApp (Burp extension)
+{% endhint %}
 
 ## <mark style="color:yellow;">HTTP methods</mark>
 

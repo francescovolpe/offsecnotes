@@ -4,11 +4,15 @@
 
 **SSRF attacks against the server itself**
 
-* `api=http://localhost/admin`
+```http
+api=http://localhost/admin
+```
 
 **SSRF attacks against other back-end systems**
 
-* `api=http://192.168.0.68/admin`
+```http
+api=http://192.168.0.68/admin
+```
 
 ## <mark style="color:yellow;">Protocols</mark>
 
@@ -22,7 +26,7 @@ If you can control the protocol you can change it.
 
 ## <mark style="color:yellow;">Blind</mark>
 
-It is more difficult to exploit because you will be able to exploit only well-known vulnerabilities.
+Fifficult to exploit because you will be able to exploit only well-known vulnerabilities.
 
 **Detection:** Out-of-band techniques
 
