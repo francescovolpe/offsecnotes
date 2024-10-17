@@ -32,6 +32,15 @@ adb shell pm list packages
 objection --gadget <com.package.app> explore --startup-command "android sslpinning disable"
 ```
 
+```sh
+─❯ frida-ps -Uai
+5682  TestApp     com.testapp.plus
+[...]
+
+─❯ objection -g 5682 explore # Attach to the app
+com.testapp.plus on (Android: 11) [usb] # android sslpinning disable
+```
+
 * **Bypass with frida**
 
 ```sh
@@ -248,8 +257,8 @@ adb shell am start -W -a android.intent.action.VIEW -d "geo://"
 **Testing**
 
 * **Testing Scheme URI:** Check if there are any scheme URL. These types of deep links are not secure.
-* **Testing Web Links:** Check if there are any Web Links. If the app can be installed on `Android < 12`, then they are not secure.
-* **Testing App Links:** Check if there are any App Links. If the app can be installed on `Android < 12`, then proceed with testing.
+* **Testing Web Links:** Check if there are any Web Links. If the app can be installed on `Android < 12` they are not secure.
+* **Testing App Links:** Check if there are any App Links. If the app can be installed on `Android < 12` proceed with testing.
   * Check for **missing**&#x20;
     * Digital Asset Links file: `https://myownpersonaldomain.com/.well-known/assetlinks.json` , `https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=myownpersonaldomain.com`
   * Misconfigured
