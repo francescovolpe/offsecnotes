@@ -43,22 +43,6 @@ Cache-Control: public
 
 ***
 
-**Unsafe handling of resource imports**
-
-Some websites use unkeyed headers to dynamically generate URLs for importing resources, such as externally hosted JavaScript files.
-
-```http
-GET / HTTP/1.1
-Host: innocent-website.com
-X-Forwarded-Host: evil-user.net
-User-Agent: Mozilla/5.0 Firefox/57.0
-
-HTTP/1.1 200 OK
-<script src="https://evil-user.net/static/analytics.js"></script>
-```
-
-***
-
 **Web cache poisoning to exploit cookie-handling vulns**
 
 ```http

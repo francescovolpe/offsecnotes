@@ -55,7 +55,7 @@ Wordlist: [https://github.com/wallarm/jwt-secrets/blob/master/jwt.secrets.list](
 hashcat -a 0 -m 16500 <jwt> <wordlist>
 ```
 
-With the key, you can alter the JWT and sign.
+Go on JWT Editor Keys tab -> New Symmetric Key -> specify secret -> generate the key -> and finally sign.
 
 ## <mark style="color:yellow;">JWT header parameter injections</mark> <a href="#jwt-header-parameter-injections" id="jwt-header-parameter-injections"></a>
 
