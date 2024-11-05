@@ -55,6 +55,7 @@
 * [APK Building](iii-mapt/apk-building.md)
 * [Reversing](iii-mapt/reversing.md)
 * [Android testing](iii-mapt/android-testing.md)
+* [Frida](iii-mapt/frida.md)
 
 ## IV - Miscellaneous
 

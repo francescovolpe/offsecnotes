@@ -25,10 +25,6 @@ semgrep -c <path>/rules/ <path>/target_src/sources
 * **Bypass with objection**
 
 ```sh
-# 1. Get package
-adb shell pm list packages
-
-# 2. Objection 
 objection --gadget <com.package.app> explore --startup-command "android sslpinning disable"
 ```
 
@@ -44,10 +40,6 @@ com.testapp.plus on (Android: 11) [usb] # android sslpinning disable
 * **Bypass with frida**
 
 ```sh
-# 1. Get package
-adb shell pm list packages
-
-# 2. Frida
 frida -U --codeshare akabe1/frida-multiple-unpinning -f <com.package.app>
 frida -U --codeshare pcipolloni/universal-android-ssl-pinning-bypass-with-frida -f <com.package.app>
 ```
@@ -91,7 +83,7 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
   * Analyze source code
   * `apkid --scan-depth 0 -r <apk_filename>.apk`
 * **Bypass protection analyzing the code and/or with frida**
-  * If the app return an error message (ex: "Your device appears to be rooted..."), search this string inside the code
+  * If the app return an error message (e.g.: "Your device appears to be rooted..."), search this string inside the code
 
 ## <mark style="color:yellow;">Emulator Detection</mark>
 
