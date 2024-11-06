@@ -158,6 +158,10 @@ Java.perform(function (){
 
 ## <mark style="color:yellow;">Native functions</mark>
 
+<details>
+
+<summary>Introduction</summary>
+
 **Loading the library**
 
 ```java
@@ -187,6 +191,8 @@ Java_com_android_interesting_Stuff_doThingsInNativeLibrary
 #### Static Linking <a href="#static-linking" id="static-linking"></a>
 
 Using the `RegisterNatives`. This function is called from the native code, not the Java code and is most often called in the `JNI_OnLoad` function since `RegisterNatives` must be executed prior to calling the Java-declared native method.
+
+</details>
 
 ## <mark style="color:yellow;">Hooking a native functions</mark>
 
@@ -249,7 +255,7 @@ Interceptor.attach(strcmp_adr, {
 
 </details>
 
-## <mark style="color:yellow;">Change the return value of a native function</mark>
+## <mark style="color:yellow;">Change the return of a native function</mark>
 
 ```javascript
 Interceptor.attach(targetAddress, {
