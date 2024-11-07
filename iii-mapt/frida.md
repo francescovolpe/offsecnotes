@@ -18,11 +18,17 @@ frida-ps -Uai
 # Connect Frida to the specific device
 frida-ps -D 0216027d1d6d3a03
 
-# Attaching frida with an application
+# Spawn application with frida
 frida -U -f <package_name>
 
-# Run app with a script
+# Spawn application with frida
+frida -U -f <package_name> --pause
+
+# Spawn application with a script
 frida -U -f <package_name> -l <script.js>
+
+# Attach to application
+frida -U <package_name>
 ```
 
 ## <mark style="color:yellow;">Hooking methods</mark>
