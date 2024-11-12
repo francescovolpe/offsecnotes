@@ -40,7 +40,7 @@
 
 ## <mark style="color:yellow;">Prefilled form input</mark>
 
-Some websites that require form completion and submission permit prepopulation of form inputs using GET parameters prior to submission
+Some websites allow prepopulating form inputs with `GET` parameters before submission.
 
 * `http://website.com/account?email=test@test.com`
 * In this case the email form field will be set to `test@test.com`
@@ -59,7 +59,7 @@ When this is set with the `allow-forms` or `allow-scripts` values and the `allow
 
 ## <mark style="color:yellow;">Clickjacking + DOM XSS</mark>
 
-The attacker has first identified the XSS exploit. The XSS exploit is then combined with the iframe target URL so that the user clicks on the button or link and consequently executes the DOM XSS attack.
+You must first identified the XSS exploit. The XSS exploit is then combined with the iframe target URL so that the user clicks on the button or link and consequently executes the DOM XSS attack.
 
 ## <mark style="color:yellow;">Multistep clickjacking</mark>
 

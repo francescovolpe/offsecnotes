@@ -1,8 +1,10 @@
 # API
 
-## <mark style="color:yellow;">API documentation</mark>
+## <mark style="color:yellow;">Discover</mark>
 
-* Endpoints that may refer to API documentation:
+#### 🔍📚 Documentation
+
+Endpoints that may refer to API documentation
 
 ```
 /api
@@ -10,7 +12,7 @@
 /openapi.json
 ```
 
-* Use common paths to directly fuzz for doc. `/api/swagger/v1/users/123`
+Use common paths to directly fuzz for doc: `/api/swagger/v1/users/123`
 
 ```
 /api/swagger/v1
@@ -18,7 +20,7 @@
 /api
 ```
 
-## <mark style="color:yellow;">API endpoints</mark>
+#### 🔍📂 Endpoints
 
 * Browsing application (even if you have access to documentation, as it may be inaccurate)
 * Consider `PUT /api/user/update`, fuzz the `/update` with a list of other common functions, such as `delete` and `add`
@@ -29,7 +31,7 @@
 **Tip**: JS Link Finder BApp (Burp extension)
 {% endhint %}
 
-## <mark style="color:yellow;">HTTP methods</mark>
+#### 📤📥 HTTP methods
 
 Test all potential methods when you're investigating API endpoints
 
@@ -37,7 +39,12 @@ Test all potential methods when you're investigating API endpoints
 **Tip**: Use HTTP verbs list in Burp Intruder
 {% endhint %}
 
-## <mark style="color:yellow;">Content types</mark>
+#### 👁️‍🗨️🔣 Hidden parameters
+
+* Bruteforce with wordlists
+* Param miner (Burp extension)
+
+## <mark style="color:yellow;">Change content types</mark>
 
 Changing the content type may enable you to
 
@@ -50,11 +57,6 @@ To change the content type, modify the Content-Type header and reformat the requ
 {% hint style="success" %}
 **Tip**: Content type converter BApp automatically converts request data between XML and JSON.
 {% endhint %}
-
-## <mark style="color:yellow;">Hidden parameters</mark>
-
-* Bruteforce with wordlists
-* Param miner (Burp extension)
 
 ## <mark style="color:yellow;">Mass assignment vulnerabilities</mark>
 
