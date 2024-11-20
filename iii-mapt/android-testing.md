@@ -238,7 +238,7 @@ Suppose that:
 * The victim user have malicious app installed
 * Both apps (victim and malicious) manage `geo://` , `https://google.com`
 
-<table><thead><tr><th width="111">Android </th><th width="187">Victim App installed</th><th>Link supported</th><th>URI</th><th>Behavior</th></tr></thead><tbody><tr><td>-</td><td>N</td><td></td><td><code>geo://</code></td><td><mark style="color:red;">Open in malicious</mark></td></tr><tr><td>&#x3C; 12</td><td>N</td><td></td><td><code>https://google.com</code></td><td><mark style="color:orange;">Dialog appear (browser, malicious app)</mark></td></tr><tr><td>-</td><td>Y</td><td>Scheme URL</td><td><code>geo://</code></td><td><mark style="color:orange;">Dialog appear (malicious app, victim app)</mark></td></tr><tr><td>&#x3C; 12</td><td>Y </td><td>Web Links</td><td> <code>https://google.com</code></td><td><mark style="color:orange;">Dialog appear (browser, malicious app, victim app)</mark></td></tr><tr><td>> 12</td><td>N | Y</td><td></td><td><code>https://google.com</code></td><td><mark style="color:green;">Open in default browser</mark></td></tr><tr><td>> 6 </td><td>Y</td><td>App Links</td><td><code>https://google.com</code></td><td><mark style="color:green;">Open Victim App</mark></td></tr></tbody></table>
+<table><thead><tr><th width="111">Android </th><th width="187">Victim App installed</th><th>Link supported</th><th>URI</th><th>Behavior</th></tr></thead><tbody><tr><td>-</td><td>N</td><td>Scheme URL</td><td><code>geo://</code></td><td><mark style="color:red;">Open in malicious</mark></td></tr><tr><td>&#x3C; 12</td><td>N</td><td>Web Links</td><td><code>https://google.com</code></td><td><mark style="color:orange;">Dialog appear (browser, malicious app)</mark></td></tr><tr><td>-</td><td>Y</td><td>Scheme URL</td><td><code>geo://</code></td><td><mark style="color:orange;">Dialog appear (malicious app, victim app)</mark></td></tr><tr><td>&#x3C; 12</td><td>Y </td><td>Web Links</td><td> <code>https://google.com</code></td><td><mark style="color:orange;">Dialog appear (browser, malicious app, victim app)</mark></td></tr><tr><td>> 12</td><td>N | Y</td><td>Web Links</td><td><code>https://google.com</code></td><td><mark style="color:green;">Open in default browser</mark></td></tr><tr><td>> 6 </td><td>Y</td><td>App Links</td><td><code>https://google.com</code></td><td><mark style="color:green;">Open Victim App</mark></td></tr></tbody></table>
 
 **Start an intent**
 
@@ -251,7 +251,7 @@ adb shell am start -W -a android.intent.action.VIEW -d "geo://"
 * **Testing Scheme URI:** Check if there are any scheme URL. These types of deep links are not secure.
 * **Testing Web Links:** Check if there are any Web Links. If the app can be installed on `Android < 12` they are not secure.
 * **Testing App Links:** Check if there are any App Links. If the app can be installed on `Android < 12` proceed with testing.
-  * Check for **missing**&#x20;
+  * Check for missing&#x20;
     * Digital Asset Links file: `https://myownpersonaldomain.com/.well-known/assetlinks.json` , `https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=myownpersonaldomain.com`
   * Misconfigured
     * If the OS prompts you to choose between Browser and one or more apps, then the app link Verification process is not correctly implemented.

