@@ -90,6 +90,14 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
 * Missing emulator detection
 * Bypass protection analyzing the code and/or with frida
 
+## <mark style="color:yellow;">Exploiting exported Activities</mark>
+
+If an activity involving sensitive information is exported, it could potentially bypass authentication mechanisms, allowing unauthorized access
+
+```sh
+adb shell am start -n com.example.demo/com.example.test.MainActivity
+```
+
 ## <mark style="color:yellow;">Sensitive data</mark>
 
 ### <mark style="color:yellow;">Logs</mark>
