@@ -64,6 +64,26 @@ https://oauth-xxx-server.com/?client_id=123&redirect_uri=client-app.com/callback
 https://localhost.evil-user.net
 ```
 
+**Chain vulns**&#x20;
+
+If you are unable to successfully submit an external domain as the `redirect_uri` you can chain vulnerabilities like open redirect, xss etc.
+
+1. Find open redirect
+
+```
+https://server.net/post/next?path=https://attacker.com
+```
+
+2. Use this url as `redirect_uri`&#x20;
+
+```
+https://oauth-xxx-server.com/?client_id=123&redirect_uri=https://server.net/post/next?path=https://attacker.com[...]
+```
+
+{% hint style="success" %}
+Tip: the default URI will often be on an OAuth-specific path, such as `/oauth/callback`, so you can use directory traversal tricks `https://client-app.com/oauth/callback/../../example/path`
+{% endhint %}
+
 ### <mark style="color:yellow;">Flawed CSRF protection</mark>
 
 Although many components of the OAuth flows are optional, some of them are strongly recommended unless there's an important reason not to use them. One such example is the `state` parameter.
