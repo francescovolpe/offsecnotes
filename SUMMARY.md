@@ -56,6 +56,7 @@
 * [Reversing](iii-mapt/reversing.md)
 * [Android testing](iii-mapt/android-testing.md)
 * [Frida](iii-mapt/frida.md)
+* [Framework](iii-mapt/framework.md)
 
 ## IV - Miscellaneous
 
