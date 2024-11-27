@@ -125,7 +125,7 @@ Java.perform(function() {
 
 </details>
 
-## <mark style="color:yellow;">Printing/Modifying a Class Variable</mark>
+## <mark style="color:yellow;">Printing/Modifying a class variable</mark>
 
 ```javascript
 Java.perform(function (){
