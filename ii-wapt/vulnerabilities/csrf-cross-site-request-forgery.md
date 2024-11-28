@@ -52,15 +52,13 @@ If the website doesn't explicitly set a `SameSite` attribute, Chrome automatical
 
 * `Strict` Means that the browser sends the cookie only for same-site requests
 
-<!---->
-
-*   `Lax` Means that browser sends the cookie in cross-site requests, if:
+-   `Lax` Means that browser sends the cookie in cross-site requests, if:
 
     * The request uses the `GET` method.
     * The request resulted from a top-level navigation by the user, such as clicking on a link.
 
     The cookie is not sent on cross-site requests, such as on requests to load images or frames.
-* `None` Means that the browser sends the cookie with both cross-site and same-site requests. The `Secure` attribute must also be set when setting this value, like so `SameSite=None; Secure`
+- `None` Means that the browser sends the cookie with both cross-site and same-site requests. The `Secure` attribute must also be set when setting this value, like so `SameSite=None; Secure`
 
 </details>
 
@@ -94,7 +92,7 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 
 ## <mark style="color:yellow;">SameSite cookies bypass</mark>
 
-### Lax bypass
+### <mark style="color:yellow;">Lax bypass</mark>
 
 * Using GET requests (bypass lax)
 
