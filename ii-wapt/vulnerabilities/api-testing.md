@@ -2,7 +2,7 @@
 
 ## <mark style="color:yellow;">Discover</mark>
 
-#### 🔍📚 Documentation
+**Documentation**
 
 Endpoints that may refer to API documentation
 
@@ -20,7 +20,7 @@ Use common paths to directly fuzz for doc: `/api/swagger/v1/users/123`
 /api
 ```
 
-#### 🔍📂 Endpoints
+**Endpoints**
 
 * Browsing application (even if you have access to documentation, as it may be inaccurate)
 * Consider `PUT /api/user/update`, fuzz the `/update` with a list of other common functions, such as `delete` and `add`
@@ -31,7 +31,7 @@ Use common paths to directly fuzz for doc: `/api/swagger/v1/users/123`
 **Tip**: JS Link Finder BApp (Burp extension)
 {% endhint %}
 
-#### 📤📥 HTTP methods
+**HTTP methods**
 
 Test all potential methods when you're investigating API endpoints
 
@@ -39,7 +39,7 @@ Test all potential methods when you're investigating API endpoints
 **Tip**: Use HTTP verbs list in Burp Intruder
 {% endhint %}
 
-#### 👁️‍🗨️🔣 Hidden parameters
+**Hidden parameters**
 
 * Bruteforce with wordlists
 * Param miner (Burp extension)
