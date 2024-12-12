@@ -1,14 +1,20 @@
 # OAuth 2.0
 
-## <mark style="color:yellow;">What is OAuth?</mark>
+<details>
+
+<summary>Introduction</summary>
+
+**What is OAuth?**
 
 * OAuth is a commonly used authorization framework that enables web applications to request limited access to a user's account on another application.
 
-## <mark style="color:yellow;">How does OAuth 2.0 work?</mark>
+**How does OAuth 2.0 work?**
 
 * **Client application** - The website that wants to access the user's data.
 * **Resource owner** - The user whose data the client application wants to access.
 * **OAuth service provider** - The website or application that controls the user's data and access to it. They support OAuth by providing an API for interacting with both an authorization server and a resource server.
+
+</details>
 
 ## <mark style="color:yellow;">Identifying OAuth authentication</mark>
 
@@ -129,4 +135,3 @@ HTTP/2 201 Created
 ```
 
 3. Make `GET /client/CLIENT-ID/logo` request and replace the `client_id`
-

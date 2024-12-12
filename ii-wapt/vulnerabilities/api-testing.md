@@ -60,6 +60,10 @@ To change the content type, modify the Content-Type header and reformat the requ
 
 ## <mark style="color:yellow;">Mass assignment vulnerabilities</mark>
 
+<details>
+
+<summary>Theory</summary>
+
 Software frameworks sometime allow developers to automatically bind HTTP request parameters into program code variables or objects to make using that framework easier on developers.
 
 **Premise**
@@ -70,9 +74,7 @@ A concurrent `GET /api/users/123` request returns the following JSON: `{"id": 12
 
 This may indicate that the hidden id and isAdmin parameters are bound to the internal user object, alongside the updated username and email parameters.
 
-***
-
-**Testing**
+</details>
 
 To test whether you can modify the enumerated isAdmin parameter value, send two PATCH request:
 
@@ -81,4 +83,6 @@ To test whether you can modify the enumerated isAdmin parameter value, send two 
 
 If the application behaves differently, may suggest that the invalid value impacts the query logic, but the valid value doesn't. This may indicate that the parameter can be successfully updated by the user. (Set it to true)
 
-Note: We change isAdmin to "foo" because we want see if the user input is processed. If we get an error may indicate that the user input is being processed.
+{% hint style="info" %}
+**Note**: We change isAdmin to "foo" because we want see if the user input is processed. If we get an error may indicate that the user input is being processed.
+{% endhint %}
