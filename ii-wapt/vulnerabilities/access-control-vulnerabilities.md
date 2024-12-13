@@ -18,11 +18,11 @@ If you have an admin account, repet the request with a normal user cookie. (auto
 
 Some applications determine the user's access rights or role at login, and then store this information in a user-controllable location. This could be:
 
-#### 👁️‍🗨️📄 A hidden field
+**A hidden field**
 
-#### 🔐🍪 A cookie value
+**A cookie value**
 
-#### 🔍🔣 A preset query string parameter
+**A preset query string parameter**
 
 * `https://insecure-website.com/login/home.jsp?admin=true`
 * `https://insecure-website.com/login/home.jsp?role=1`
@@ -44,7 +44,7 @@ You need to know sub-pages (you can brute-force them) and eventually parameters 
 
 ## <mark style="color:yellow;">Platform misconfiguration</mark>
 
-#### 📤📥 Try another HTTP method
+**Try another HTTP method**
 
 ```markdown
 GET
@@ -59,7 +59,7 @@ PATCH
 TEST
 ```
 
-#### 🔄🌐 Override the URL in the original request&#x20;
+**Override the URL in the original request**&#x20;
 
 E.g. `X-Original-URL` , `X-Rewrite-URL`. If it's not found it works.
 

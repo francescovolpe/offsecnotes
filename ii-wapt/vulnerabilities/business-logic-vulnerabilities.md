@@ -18,7 +18,7 @@
 * Remove one parameter at a time to ensure all relevant code paths are reached
 * Try deleting the name of the parameter as well as the value. The server will typically handle both cases differently.
 * Follow multi-stage processes through to completion. Sometimes tampering with a parameter in one step will have an effect on another step further along in the workflow
-* This applies to both URL and POST parameters, but don't forget to check the cookies too
+* This applies to both `GET` and `POST` parameters, but don't forget to check the cookies too
 
 #### 🔄❌🔢 **Users won't always follow the intended sequence**
 

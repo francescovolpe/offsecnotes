@@ -1,12 +1,18 @@
 # Web cache deception
 
+<details>
+
+<summary>Introduction</summary>
+
 Web cache deception is a vulnerability where an attacker tricks a web cache into storing sensitive content due to differences in how cache and origin servers handle requests. The attacker lures a victim into visiting a malicious URL, causing the cache to mistakenly store private data as a static resource. The attacker can then access the cached response, gaining unauthorized access to the sensitive information.
+
+</details>
 
 More info about web cache: [web-cache.md](../web-security/web-cache.md "mention")
 
 ## <mark style="color:yellow;">Constructing a web cache deception attack</mark> <a href="#constructing-a-web-cache-deception-attack" id="constructing-a-web-cache-deception-attack"></a>
 
-1. Identify a target endpoint that returns dynamic responses with sensitive information, focusing on those supporting GET, HEAD, or OPTIONS methods, as they are typically cached
+1. Identify a target endpoint that returns dynamic responses with sensitive information, focusing on those supporting `GET`, `HEAD`, or `OPTIONS` methods, as they are typically cached
 2. Look for discrepancies in how the cache and origin server parse the URL path
 3. Craft a malicious URL to trick the cache into storing a dynamic response. When the victim accesses it, their data is cached. Use Burp to request the same URL and retrieve the cached response. Avoid using a browser to prevent redirects or data invalidation.
 

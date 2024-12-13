@@ -86,3 +86,40 @@ If the application behaves differently, may suggest that the invalid value impac
 {% hint style="info" %}
 **Note**: We change isAdmin to "foo" because we want see if the user input is processed. If we get an error may indicate that the user input is being processed.
 {% endhint %}
+
+## <mark style="color:yellow;">Server-side parameter pollution</mark> <a href="#server-side-parameter-pollution" id="server-side-parameter-pollution"></a>
+
+You make the request and the server queries an internal API
+
+```sh
+# Your browser
+GET /userSearch?name=test&back=/home
+# Internal queries
+GET /users/search?name=test&publicProfile=true
+```
+
+**Truncating query strings**
+
+If you use a URL-encoded `#` you can truncate the server-side request
+
+```sh
+# Your browser
+GET /userSearch?name=test%23foo&back=/home
+# Internal queries
+GET /users/search?name=test#foo&publicProfile=true
+```
+
+**Injecting invalid parameters**
+
+You can use an URL-encoded `&` character and review the response for clue about the additional parameter is parsed. (if the response is unchanged it may indicate that the parameter was successfully injected but ignored by the application)
+
+```sh
+# Your browser
+GET /userSearch?name=test%26foo=xyz&back=/home
+# Internal queries
+GET /users/search?name=test&foo=xyz&publicProfile=true
+```
+
+#### Injecting valid or override parameters <a href="#injecting-valid-parameters" id="injecting-valid-parameters"></a>
+
+The impact of this depends on how the application processes the second parameter.

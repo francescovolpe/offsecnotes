@@ -1,7 +1,5 @@
 # Prototype pollution
 
-More info: [https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/](https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/)
-
 <details>
 
 <summary>Introduction</summary>
@@ -86,6 +84,8 @@ console.log(obj.z)                    // Output: undefined
 
 </details>
 
+More info: [https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/](https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/)
+
 ## <mark style="color:yellow;">Prototype pollution sources</mark> <a href="#prototype-pollution-sources" id="prototype-pollution-sources"></a>
 
 The three most common JavaScript patterns that can lead to prototype pollution are merging, cloning, and value setting operations. Anytime an object is dynamically built from user input, there's a risk of prototype pollution.
@@ -155,6 +155,41 @@ Being able to affect the global `__proto__` property is not very useful unless y
 {% hint style="success" %}
 **Tip**: Third-party libraries of prototype pollution gadgets [https://github.com/BlackFan/client-side-prototype-pollution](https://github.com/BlackFan/client-side-prototype-pollution)
 {% endhint %}
+
+## <mark style="color:yellow;">Browser APIs</mark>
+
+**Fetch**
+
+```javascript
+fetch('https://website.com/change-email', {
+    method: 'POST',
+    body: 'user=test&email=test%40test.test'
+})
+```
+
+Basically, here are defined `method` and `body` properties, but there are a number of other possible properties that we've left undefined. So, if you find a source, you can pollute `Object.prototype` with your own `headers` property.
+
+```
+?__proto__[headers][x-username]=<img/src/onerror=alert(1)>
+```
+
+More info: [https://portswigger.net/web-security/prototype-pollution/client-side/browser-apis#prototype-pollution-via-fetch](https://portswigger.net/web-security/prototype-pollution/client-side/browser-apis#prototype-pollution-via-fetch)
+
+***
+
+**Object.defineProperty()**
+
+```javascript
+Object.defineProperty(config, 'transport_url', {configurable: false, writable: false});
+```
+
+Same thing. `defineProperty` accept other "descriptor" a.g. `value`.&#x20;
+
+```javascript
+/?__proto__[value]=foo
+```
+
+[https://portswigger.net/web-security/prototype-pollution/client-side/browser-apis#prototype-pollution-via-object-defineproperty](https://portswigger.net/web-security/prototype-pollution/client-side/browser-apis#prototype-pollution-via-object-defineproperty)
 
 ## <mark style="color:yellow;">Client-side prototype pollution (with DOM Invader)</mark>
 
