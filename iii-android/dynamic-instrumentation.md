@@ -71,7 +71,7 @@ frida -U <package_name>
 
 </details>
 
-## <mark style="color:yellow;">Cammands</mark>
+## <mark style="color:yellow;">Commands</mark>
 
 ```sh
 # To list the available devices for frida
