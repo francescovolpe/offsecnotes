@@ -1,11 +1,11 @@
-# Android testing
+# Vulnerabilities
 
 ## <mark style="color:yellow;">Identify compilers, packers, obfuscators</mark>
 
 ```sh
 # https://github.com/rednaga/APKiD
 
-apkid --scan-depth 0 -r <apk_filename>.apk
+apkid --scan-depth 0 -r target.apk
 ```
 
 ## <mark style="color:yellow;">Automatic Static Tests</mark>
@@ -14,7 +14,7 @@ apkid --scan-depth 0 -r <apk_filename>.apk
 # https://github.com/mindedsecurity/semgrep-rules-android-security
 
 # 1. Decompile apk
-jadx <apk_filename>.apk
+jadx target.apk
 # 2. Use semgrep
 semgrep -c <path>/rules/ <path>/target_src/sources
 ```
@@ -81,7 +81,7 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
 
 * **Identify RASP**
   * Analyze source code
-  * `apkid --scan-depth 0 -r <apk_filename>.apk`
+  * `apkid --scan-depth 0 -r` target`.apk`
 * **Bypass protection analyzing the code and/or with frida**
   * If the app return an error message (e.g.: "Your device appears to be rooted..."), search this string inside the code
 
@@ -92,10 +92,25 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
 
 ## <mark style="color:yellow;">Exploiting exported Activities</mark>
 
-If an activity involving sensitive information is exported, it could potentially bypass authentication mechanisms, allowing unauthorized access
+If an activity involving sensitive information is exported, it could potentially bypass authentication mechanisms, allowing unauthorized access.
 
 ```sh
 adb shell am start -n com.example.demo/com.example.test.MainActivity
+```
+
+You need to start the activity with the intent filtered declared:
+
+```xml
+<activity android:name="io.hextree.adbtestapplication.HiddenActivity" android:exported="true">
+    <intent-filter>
+        <action android:name="android.intent.action.QUICK_VIEW"/>
+        <category android:name="android.intent.category.INFO"/>
+    </intent-filter>
+</activity>
+```
+
+```
+adb shell am start -n com.example.demo/.HiddenActivity -a android.intent.action.QUICK_VIEW -c android.intent.category.INFO
 ```
 
 ## <mark style="color:yellow;">Sensitive data</mark>
@@ -279,7 +294,7 @@ When the back button is pressed on `Bank-Main-Activity`, the user will go to the
 {% hint style="info" %}
 **Note**:&#x20;
 
-* There are many other scenarios, in this case we focus only on this one. For more details on other scenarios: [https://www.youtube.com/watch?v=lLBeoufO\_Bc](https://www.youtube.com/watch?v=lLBeoufO\_Bc). Slides: [https://www.slideshare.net/slideshow/android-task-hijacking/76515201](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)
+* There are many other scenarios, in this case we focus only on this one. For more details on other scenarios: [https://www.youtube.com/watch?v=lLBeoufO\_Bc](https://www.youtube.com/watch?v=lLBeoufO_Bc). Slides: [https://www.slideshare.net/slideshow/android-task-hijacking/76515201](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)
 * The only real remediation is update to `android:minSdkVersion="28"`.
 {% endhint %}
 

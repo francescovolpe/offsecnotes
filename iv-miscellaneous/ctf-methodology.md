@@ -109,4 +109,4 @@
 
 ## PrivEsc
 
-[privilege-escalation.md](../i-npt/privilege-escalation.md "mention")
+[privilege-escalation.md](../i-network/privilege-escalation.md "mention")

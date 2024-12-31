@@ -147,11 +147,12 @@ But now there is a duplicate `keyed_param`. This is where the second quirk comes
 
 ### <mark style="color:yellow;">**Exploiting fat GET support**</mark>
 
-Although this scenario is pretty rare, you can sometimes simply add a body to a `GET` request to create a "fat" `GET` request:
+Although this scenario is pretty rare, you can sometimes simply add a body to a `GET` request to create a "fat" `GET` request. In this case you can "overwrite" the param value
 
 ```http
 GET /?param=innocent HTTP/1.1
 […]
+
 param=bad-stuff-here
 ```
 
@@ -169,7 +170,7 @@ https://vulnerable.website.net/test<script>alert(1)</script>
 
 His browser send the following request
 
-```
+```http
 GET /test%3Cscript%3Ealert(1)%3C/script%3E HTTP/2
 Host: vulnerable.website.net
 [...]
@@ -187,7 +188,7 @@ So, normally this XSS is unexploitable.
 
 Some caching implementations normalize keyed input when adding it to the cache key. In this case, both of the following requests would have the same key:
 
-```
+```http
 GET /example?param="><test>
 GET /example?param=%22%3e%3ctest%3e
 ```

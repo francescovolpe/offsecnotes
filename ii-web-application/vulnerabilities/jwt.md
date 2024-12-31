@@ -29,7 +29,7 @@ Without the server's secret signing key, generating a correct signature for a gi
 
 Sometimes, developers decode tokens without verifying the signature.
 
-So, tamper the jwt and ignore the signature.
+So, tamper the JWT and ignore the signature.
 
 ## <mark style="color:yellow;">No signature</mark> <a href="#accepting-tokens-with-no-signature" id="accepting-tokens-with-no-signature"></a>
 
@@ -108,10 +108,10 @@ Servers should use a limited whitelist of public keys to verify JWTs. However, m
 
 **Detect/Exploit with JWT Editor Burp extension**
 
-1. In JWT Editor, create new RSA Key
+1. In JWT Editor, create new RSA Key.
 2. In Burp Repeater -> JSON Web Token tab.
-3. Tamper the data (in exploit phase)
-4. Finally, click on Attack -> Embedded JWK. (you can do it manually but pay attention to match `kid`)&#x20;
+3. Tamper the data (in exploit phase).
+4. Finally, click on Attack -> Embedded JWK. (you can do it manually but pay attention to match `kid`) .
 
 {% hint style="info" %}
 **Note**: you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
@@ -123,39 +123,30 @@ Some servers use the `jku`  header parameter to reference a JWK Set containing t
 
 **Detect/Exploit with JWT Editor Burp extension**
 
-1. In JWT Editor, create new RSA Key
+1. In JWT Editor, create new RSA Key.
 2. In Burp Repeater -> JSON Web Token tab.
-3. Create webpage on your exploit server with JWK Set (JSON Web Token tab -> select key -> create JWK Set). \[you can also select Copy Public Key and paste inside "keys" array]
+3. Create JWK Set (JSON Web Token tab -> select key -> create JWK Set).
+4. Create webpage on your exploit server with JWK Set. So, from JWT Editor, select "Copy Public Key" and paste inside "keys" array.
 
 ```json
 {
     "keys": [
         {
-            "p": "1w_iGEEXth1HKIhNQdOOfBRiWNIpGccQPhfp4qKmsNo0jLOgqvncXA07Qv4HnSTKRDMQcZPNQctItBPpM35URzOOjMO94QB00xnHRINK9cTfFTFyahOHkdCFXCcpkcv5dQ9q1qRCJi-cCI4_-pD1BlwI18BnCtBy7HledvK__e0",
-            "kty": "RSA",
-            "q": "vazYFn29raZrk6rOS_hAkJRaGV5JMFQS59wz_FtV7EswVdgCWf_-t2PK6Z21ElWRbYhBeBkrtJimvVp6KFwDOJtkOvBT8plb8aFEcTgfCzdJGF3RAJien85gRIng45gJC_JAJRae1fLvDEbQ4vPt4TU3OIkY2KoQ22rM9q5dnCk",
-            "d": "IAYgwDjOddZTad1gntLlQRW1cK8KQrKu3tfOVpcChR18RhO8BU56p7FLRSgvfDJ2BFOa6viI3brFxu1GycaspYnADiR9UJzc3lIaPgkmsN-9Zix3RJ8sRRsIab0-dlYaN24PUZmlocTnzIEDDpUuafaJykluXnnoxnYtCCfktq2NcXYmFJ9Ui6evn6ceKAcWu-Hcd4gTxgQURjxx6jMmnrYsgyp-oGxgOL6T17_KWHal80RkhsQgLMSwhEPU8NQCTdOpy-Ms3rtLMWVpKmtmOlqtFxgf8yvAGWytL8RkB5Yv6KFzsxKqH3cnGAa8ld0rwvFLQ0wXvkkqvdJYmZKX2Q",
+           "kty": "RSA",
             "e": "AQAB",
-            "kid": "1413b1ea-1d9d-42c0-b619-9361c28b9fa5",
-            "qi": "XRO3NCBUWiwsZ1WEZInxb_5zbz3KlFNJnWK-e1nNDROPU0VRJseZyzAy3fevYQTy0VH-LiNWkV_pqSByx4pPGlIOcMgWTkDQKoFh91H5mjj4DHZ4x7Wn8MCnDEyY52rR5QejeUtmT6jFVqHEhjCHipjxuJh5h7OV5bWfxW8CPyo",
-            "dp": "q21tvAem7vPHlPeRHbeVDDLzcfmT6YhT2isVtCIS3UYSPVWx7Jfen0Gsy2nSh-CbmmFZ6i72nkt8WI7GhNVeOKNQLcSZxpCmjt8th99gESgs6qfPm96VYhXlN9-_swf0gOsZLp8gW2_34JoDRafmqHsUUWZ8vJIMCZN1STuW7sE",
-            "dq": "qdF6loh1rmd1oXwnv7TAebGZCWV1OaPMWXK5yJMt1qVq3TDMyi98qkzae1cLqyKZVevMUe6XRtX1U0sSW9gluiTGFE7fmjDcNPYiBQwuHyicdQhp-5KpUoK_hh28D4krcFqwO4SJKRycEe3FT6z9qcivbBqy-CkrdoekgqeSgCE",
-            "n": "n1fuIBwePGThDmmsuq0NZ-Gco8KKmsyRbrKm6qusSlgGU-WWh6VPQnTcH-JkQACqPPlVT-gNJODPTSr7jhLVDgks_O9O6wlc8WXfIFDKkLica-NcCY1BgDPir4gy4EHIeKB6_HKF5RTcfjcpTI8q4lMiRIHnxVjD9rVhEPsiL1kv_9F2lRKvbLmxo0O0nPocWTbmvxmN4w-P6CXwpx4dFmebAxKkjRIs_OrqpKQ2UTJns8GW8ETJfZLxErvCS300DWV-0EGsiDlYCDluGK4nt3jfFgilqZUn6SsYWFNTeBT6X2493gRZIB0_hwzdFW8cTNmoa-OlYxUlLikONJUW9Q"
+            "kid": "893d8f0b-061f-42c2-a4aa-5056e12b8ae7",
+            "n": "yy1wpYmffgXBxhAUJzHHocCuJolwDqql75ZWuCQ_cb33K2vh9mk6GPM9gNN4Y_qTVX67WhsN3JvaFYw
         }
     ]
 }
 ```
 
-4. Tamper the data (in exploit phase)
-5. Add a new `jku` parameter to the header and set its value to the URL of your JWK Set on the exploit server.
-6. Sign and update `kid` parameter
+5. Tamper the data (in exploit phase).
+6. Add a new `jku` parameter to the header and set its value to the URL of your JWK Set on the exploit server.
+7. Sign and update `kid` parameter.
 
 {% hint style="success" %}
 **Tip**: to see if the server makes the request, add `jku` header and insert Burp collaborator.
-{% endhint %}
-
-{% hint style="info" %}
-**Note**: you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
 {% endhint %}
 
 ### <mark style="color:yellow;">Injecting self-signed JWTs via kid</mark>

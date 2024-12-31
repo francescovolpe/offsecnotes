@@ -86,5 +86,4 @@ http://vulnerable-website.com/?greeting=data.username}}<PAYLOAD>
 
 ## <mark style="color:yellow;">Exploitation</mark>
 
-* [https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection)
 * [https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection)

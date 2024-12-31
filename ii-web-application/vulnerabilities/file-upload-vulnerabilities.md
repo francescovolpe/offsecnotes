@@ -104,6 +104,10 @@ Defense: Servers block script execution in the file upload folder. Web servers u
 Content-Disposition: form-data; name="avatar"; filename="../exploit.php"
 ```
 
+{% hint style="success" %}
+Tip: pay attention to stripping. In that case, obfuscate with `filename="..%2fexploit.php"`.
+{% endhint %}
+
 ## <mark style="color:yellow;">FU without RCE</mark>
 
 If you can upload HTML files or SVG images, you can use tags to create stored XSS payloads. If the server parses XML-based files like `.doc` or `.xls`, it could be a vector for XXE injection attacks.

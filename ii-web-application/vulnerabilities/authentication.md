@@ -83,6 +83,7 @@ Check if you can directly skip to "logged-in" pages.
 </strong>POST /login-steps/first HTTP/1.1
 Host: vulnerable-website.com
 [...]
+
 username=attacker&#x26;password=qwerty
 </code></pre>
 
@@ -103,7 +104,8 @@ Cookie: account=attacker
 POST /login-steps/second HTTP/1.1
 Host: vulnerable-website.com
 Cookie: account=victim-user
-...
+[...]
+
 verification-code=123456
 ```
 

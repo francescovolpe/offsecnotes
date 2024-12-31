@@ -80,10 +80,10 @@ In this way you can read .smali code (so you don't need baksmali), AndroidManife
 **Disassemble**
 
 ```sh
-apktool d <app_name>.apk # Default output is in dist directory
+apktool d target.apk # Default output is in dist directory
 
 # If you have errors when you assemble try this
-apktool d -f -r <app_name>.apk
+apktool d -f -r target.apk
 # Note: This do not decode resources
 ```
 
@@ -93,16 +93,16 @@ apktool d -f -r <app_name>.apk
 # Assemble (inside the folder of the disassembled apk)
 apktool b .
 # Sign
-java -jar uber-apk-signer.jar -apk <app_name>.apk
+java -jar uber-apk-signer.jar -apk target.apk
 ```
 
 **Assemble (Splitted apk)**
 
 ```sh
 # Assemble (inside the folder of the disassembled apk)
-java -jar APKEditor.jar m -i <path_splitted_apk> -o <merged.apk>
+java -jar APKEditor.jar m -i <path_splitted_apk> -o merged.apk
 # Sign
-java -jar uber-apk-signer.jar -a <merged.apk> --allowResign -o <merged_signed>
+java -jar uber-apk-signer.jar -a merged.apk --allowResign -o <merged_signed>
 ```
 
 ## <mark style="color:yellow;">Dex to Java</mark>
@@ -113,7 +113,8 @@ Decompile to (near) source code. (Dex to Java).
 </strong><strong>
 </strong># Open jadx-gui
 jadx-gui
+
 <strong># Decompile
-</strong>jadx &#x3C;app_name>.apk
-jadx -d App &#x3C;app_name>.apk
+</strong>jadx target.apk
+jadx -d App target.apk
 </code></pre>

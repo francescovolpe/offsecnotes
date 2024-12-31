@@ -1,10 +1,6 @@
 # offsecnotes
 
-<div align="center">
-
-<img src=".gitbook/assets/logo.png" alt="" width="188">
-
-</div>
+<div align="center"><img src=".gitbook/assets/logo.png" alt="" width="188"></div>
 
 ***
 
@@ -16,30 +12,33 @@ Personal collection of continuously updated offensive security notes.
 
 **I - NPT**
 
-* [Information gathering](i-npt/information-gathering.md "mention")
-* [Network services exploitation](i-npt/network-services-exploitation.md "mention")
-* [Post exploitation](i-npt/post-exploitation.md "mention")
-* [Privilege escalation](i-npt/privilege-escalation.md "mention")
+* [information-gathering.md](i-network/information-gathering.md "mention")
+* [network-services-exploitation.md](i-network/network-services-exploitation.md "mention")
+* [post-exploitation.md](i-network/post-exploitation.md "mention")
+* [privilege-escalation.md](i-network/privilege-escalation.md "mention")
 
 **II - WAPT**
 
-* [Vulnerabilities](ii-wapt/vulnerabilities/ "mention")
-* [Web security](ii-wapt/web-security/ "mention")
-* [Automation](ii-wapt/automation.md "mention")
+* [vulnerabilities](ii-web-application/vulnerabilities/ "mention")
+* [web-security](ii-web-application/web-security/ "mention")
+* [automation.md](ii-web-application/automation.md "mention")
 
 **III - MAPT**
 
-* [Apk building](iii-mapt/apk-building.md "mention")
-* [Reversing](iii-mapt/reversing.md "mention")
-* [Android testing](iii-mapt/android-testing.md "mention")
+* [android-testing.md](iii-android/android-testing.md "mention")
+* [reverse-engineering](iii-android/reverse-engineering/ "mention")
+* [network-interception.md](iii-android/network-interception.md "mention")
+* [dynamic-instrumentation.md](iii-android/dynamic-instrumentation.md "mention")
+* [adb.md](iii-android/adb.md "mention")
+* [framework.md](iii-android/framework.md "mention")
 
 **IV - MISCELLANEOUS**
 
-* [Password cacking](iv-miscellaneous/password-cracking.md "mention")
-* [Burp Suite](iv-miscellaneous/burp-suite.md "mention")
-* [AV evasion](iv-miscellaneous/av-evasion.md "mention")
-* [CTF methodology](iv-miscellaneous/ctf-methodology.md "mention")
+* [password-cracking.md](iv-miscellaneous/password-cracking.md "mention")
+* [burp-suite.md](iv-miscellaneous/burp-suite.md "mention")
+* [av-evasion.md](iv-miscellaneous/av-evasion.md "mention")
+* [ctf-methodology.md](iv-miscellaneous/ctf-methodology.md "mention")
 
-[Uncategorized](uncategorized.md "mention")
+[uncategorized.md](uncategorized.md "mention")
 
-[References](references.md "mention")
+[references.md](references.md "mention")
