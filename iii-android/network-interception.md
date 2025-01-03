@@ -10,7 +10,7 @@ By default, Android strives to prevent developers from unintentionally sending c
 
 ## <mark style="color:yellow;">SSL interception</mark>
 
-To intercept TLS/SSL traffic, the proxy certificate must be trusted by the device. Android recognizes two types of certificates: **user** certificates and **system** certificates.  Applications can explicitly configure which certificate types they trust using `network security config`.
+To intercept TLS/SSL traffic, the proxy certificate must be trusted by the device. Android recognizes two types of certificates: **user** certificates and **system** certificates. Applications can explicitly configure which certificate types they trust using **network security config**.
 
 Example `network_security_config.xml`:
 
@@ -66,16 +66,16 @@ If the application doesn't accept user certificates you need to install system c
 
 ### <mark style="color:yellow;">User Certificate</mark>
 
-Install it in the user CA store via Android settings. (in general apps trust `user certificates` if it targets Android 6 (API 23) or lower, or network security config allows it.
+Install it in the user CA store via Android settings. In general apps trust user certificates if it targets Android 6 (API 23) or lower, or network security config allows it.
 
 <details>
 
 <summary>Install user certificate guide</summary>
 
-1. Download the certificate from http://\<burp\_proxy\_listener>
+1. Download the certificate from `http://<burp_proxy_listener>`
 2. Go on setting, search certificate and install by selected it
 
-On older Android ≤ 11:
+**Install on older Android ≤ 11**
 
 Same as above but you need to run this command because it expected another file format.
 

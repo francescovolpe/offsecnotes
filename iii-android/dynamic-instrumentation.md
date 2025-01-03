@@ -145,6 +145,25 @@ Java.perform(() => {
 })
 ```
 
+## <mark style="color:yellow;">Frida-trace</mark>
+
+Frida trace allows us to directly trace function calls.&#x20;
+
+```sh
+# Trace all calls on com.package.*
+# class!method
+frida-trace -U -j 'com.package.*!*' <package_name>
+```
+
+{% hint style="info" %}
+**Note**: Keep in mind that not all classes are loaded at startup. Therefore, you may need to execute `frida-trace` after the application has started running (and when your class/method has been loaded) .
+{% endhint %}
+
+
+
+\
+
+
 
 
 

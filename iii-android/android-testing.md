@@ -83,7 +83,7 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
   * Analyze source code
   * `apkid --scan-depth 0 -r` target`.apk`
 * **Bypass protection analyzing the code and/or with frida**
-  * If the app return an error message (e.g.: "Your device appears to be rooted..."), search this string inside the code
+  * If the app return an error message (e.g. "Your device appears to be rooted..."), search this string inside the code
 
 ## <mark style="color:yellow;">Emulator Detection</mark>
 

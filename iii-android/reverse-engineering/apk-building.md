@@ -3,7 +3,7 @@
 ### <mark style="color:yellow;">Android Application Project</mark> <a href="#proj" id="proj"></a>
 
 {% hint style="info" %}
-Note that the directory names are conventional — they could be any name. Additionally, the contents of each directory could be spread across multiple folders.
+**Note**: the directory names are conventional — they could be any name. Additionally, the contents of each directory could be spread across multiple folders.
 {% endhint %}
 
 * 🗎 **AndroidManifest.xml** declares mainly the app's package name, components, access permissions, as well as hardware and software features the app requires and the API libraries the app needs to be linked against.

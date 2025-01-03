@@ -1,4 +1,4 @@
-# Method & Headers
+# Methods & Headers
 
 ## <mark style="color:yellow;">TRACE Method</mark>
 
@@ -16,17 +16,11 @@ This can reveal sensitive information, like internal authentication headers adde
 
 * This is a de-facto standard header for identifying the originating IP address of a client connecting to a web server through a proxy server.
 
-<!---->
-
-* The header is an HTTP multi-valued header, which means that it can have one or more values, each separated by a comma.
-
-<!---->
+- The header is an HTTP multi-valued header, which means that it can have one or more values, each separated by a comma.
 
 * This header is not added by default
 
-<!---->
-
-* `X-Forwarded-For: 2001:DB8::6, 192.0.2.1` Let us consider an incoming TCP connection from 127.0.0.1. This implies that the client had IPv6 address 2001:DB8::6 when connecting to the first proxy, then that proxy used IPv4 to connect from 192.0.2.1 to the final proxy, which was running on localhost.
+- `X-Forwarded-For: 2001:DB8::6, 192.0.2.1` Let us consider an incoming TCP connection from 127.0.0.1. This implies that the client had IPv6 address 2001:DB8::6 when connecting to the first proxy, then that proxy used IPv4 to connect from 192.0.2.1 to the final proxy, which was running on localhost.
 
 </details>
 
@@ -63,4 +57,4 @@ Some applications support non-standard headers such these in order to allow over
 **Security implication**
 
 * Bypass validation CSRF attack when an application use referer header to defende against CSRF attacks
-* https://github.com/francescovolpe/Offensive-Security-Notes/blob/main/WAPT/Vulnerabilities/CSRF%20(Cross-site%20request%20forgery).md#referer-based-validation-bypass
+* [#referer-based-validation](../vulnerabilities/csrf-cross-site-request-forgery.md#referer-based-validation "mention")

