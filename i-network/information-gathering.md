@@ -118,6 +118,6 @@ nmap --script "default or safe" # Load all scripts that are in the default, safe
   * httrack
 * **Google Dorks**
   * site,filetype,inurl,intitle,cache
-  * _exploit-db.com/google-hacking-database_
+  * [_https://www.exploit-db.com/google-hacking-database_](https://www.exploit-db.com/google-hacking-database)
 * **waybackmachine**
-  * _web.archive.org_
+  * [_https://web.archive.org_](https://web.archive.org/)

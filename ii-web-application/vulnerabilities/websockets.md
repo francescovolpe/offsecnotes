@@ -53,13 +53,13 @@ Sec-WebSocket-Accept: 0FFP+2nmNIf/h+4BP36k9uzrYGk=
 
 <summary>What do WebSocket messages look like?</summary>
 
-* WebSocket messages can contain any content or data format
+WebSocket messages can contain any content or data format
 
 ```javascript
 ws.send("Peter Wiener");
 ```
 
-* It is common to use json
+It is common to use json
 
 ```json
 {"user":"Hal Pline","content":"Hello"}

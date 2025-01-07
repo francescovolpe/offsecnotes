@@ -30,7 +30,7 @@ This can reveal sensitive information, like internal authentication headers adde
 **Security implication**
 
 * Use it to check some reflected parameter that contains your IP
-* Use it to bypass controls that are placed on your IP (ex. rate limit)
+* Use it to bypass controls that are placed on your IP (e.g. rate limit)
 
 ## <mark style="color:yellow;">X-Forwarded-Host</mark>
 

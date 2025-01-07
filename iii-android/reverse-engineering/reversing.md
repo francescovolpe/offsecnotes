@@ -74,7 +74,7 @@ Apktool is a tool for reverse engineering Android apps. It can decode (and disas
 In this way you can read .smali code (so you don't need baksmali), AndroidManifest.xml, etc.
 
 {% hint style="info" %}
-**Note**: even if you can extract apk like it was a zip, you can't read file such as AndroidManifest.xml because it's compiled...
+**Note**: even if you can extract apk like it was a zip, you can't read file such as AndroidManifest.xml because it's compiled.
 {% endhint %}
 
 **Disassemble**

@@ -6,25 +6,23 @@
 **Note**: the directory names are conventional — they could be any name. Additionally, the contents of each directory could be spread across multiple folders.
 {% endhint %}
 
+Mandatory:
+
 * 🗎 **AndroidManifest.xml** declares mainly the app's package name, components, access permissions, as well as hardware and software features the app requires and the API libraries the app needs to be linked against.
 * 🗎 **Signing key** to sign the `.apk` file. This is required to install or update the app on an Android device.
 * 🗎 **android.jar** includes a set of Android platform API classes. Usually this file is already integrated into the toolchain and the programmer doesn't need to take care himself.
-* Optionals:
-  *   #### Resources <a href="#proj-res" id="proj-res"></a>
 
-      * 📁 **res**: primarily includes elements appearing in or describing the UI.
-      * 📁 **assets:** stores further files and will be integrated as-is into an APK to access them with ordinary file I/O.
+Optionals:
 
-
-  *   **Sources**
-
-      * 📁 **java**: contains code targeting the Java Virtual Machine (JVM), so written in Java and/or Kotlin.
-      * 📁 **cpp**: holds native code written in C/C++.
-
-
-  * #### Libraries <a href="#proj-lib" id="proj-lib"></a>
-    * 📁 **libs**: comprises Java `.jar` and/or Android `.aar` archive files mostly for the compilation phase.
-    * 📁 **lib**: contains native shared `.so` and/or static `.a` library files.
+* #### Resources <a href="#proj-res" id="proj-res"></a>
+  * 📁 **res**: primarily includes elements appearing in or describing the UI.
+  * 📁 **assets:** stores further files and will be integrated as-is into an APK to access them with ordinary file I/O.
+* **Sources**
+  * 📁 **java**: contains code targeting the Java Virtual Machine (JVM), so written in Java and/or Kotlin.
+  * 📁 **cpp**: holds native code written in C/C++.
+* #### Libraries <a href="#proj-lib" id="proj-lib"></a>
+  * 📁 **libs**: comprises Java `.jar` and/or Android `.aar` archive files mostly for the compilation phase.
+  * 📁 **lib**: contains native shared `.so` and/or static `.a` library files.
 
 ## <mark style="color:yellow;">Android Package (apk)</mark>
 

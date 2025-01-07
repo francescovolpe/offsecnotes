@@ -39,6 +39,4 @@ Personal collection of continuously updated offensive security notes.
 * [av-evasion.md](iv-miscellaneous/av-evasion.md "mention")
 * [ctf-methodology.md](iv-miscellaneous/ctf-methodology.md "mention")
 
-[uncategorized.md](uncategorized.md "mention")
-
 [references.md](references.md "mention")

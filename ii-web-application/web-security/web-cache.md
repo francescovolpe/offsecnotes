@@ -18,7 +18,7 @@ Cache rules dictate what can be cached and for how long. They usually store stat
 ## <mark style="color:yellow;">Detecting cached responses</mark>
 
 * The `X-Cache` header indicates if a response came from the cache. Typical values include:
-  * `X-Cache: hit` - The response came from the cache.
+  * `X-Cache: hit` - The response come from the cache.
   * `X-Cache: miss` - The cache had no response for the request's key, so it was fetched from the origin server and, in most cases, cached. Send the request again to check if the value updates to "hit."
   * `X-Cache: dynamic` - The origin server dynamically generated the content, making it generally unsuitable for caching.
   * `X-Cache: refresh` - The cached content was outdated and needed refreshing or revalidation.

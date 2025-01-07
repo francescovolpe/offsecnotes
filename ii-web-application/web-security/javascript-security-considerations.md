@@ -20,7 +20,7 @@
 * The replace() method of String values returns a new string with one, some, or all matches of a pattern replaced by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function called for each match.
 * If pattern is a string, only the first occurrence will be replaced. The original string is left unchanged.
 
-```
+```javascript
 function escapeHTML(html) {
     return html.replace('<', '&lt;').replace('>', '&gt;');
 }
@@ -30,7 +30,7 @@ function escapeHTML(html) {
 
 ## <mark style="color:yellow;">Javascript innerHTML</mark>
 
-```
+```html
 name = "<script>alert('I am John in an annoying alert!')</script>";
 el.innerHTML = name; // harmless in this case
 ```
@@ -42,7 +42,7 @@ el.innerHTML = name; // harmless in this case
 
 * In JavaScript, the location variable represents the object that provides information about the URL (Uniform Resource Locator) of the current document
 
-```
+```html
 <script>
 location = 'https://google.it';
 </script>

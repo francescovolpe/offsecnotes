@@ -4,7 +4,7 @@
 
 Sometimes, WAFs may fail to properly URL decode your input during checks.
 
-\-> Encode the keywords, so `SELECT` becomes `%53%45%4C%45%43%54`.
+-> Encode the keywords, so `SELECT` becomes `%53%45%4C%45%43%54`.
 
 ### <mark style="color:yellow;">Double URL encoding</mark> <a href="#obfuscation-via-double-url-encoding" id="obfuscation-via-double-url-encoding"></a>
 
@@ -46,6 +46,16 @@ XML supports character encoding with the same numeric escape sequences as HTML.
     </storeId>
 </stockCheck>
 ```
+
+## <mark style="color:yellow;">Javascript eval() + atob()</mark> <a href="#obfuscation-via-unicode-escaping" id="obfuscation-via-unicode-escaping"></a>
+
+```javascript
+eval(atob("YWxlcnQoKQ=="))    // alert()
+```
+
+`atob()` decode a base-64 encoded string.&#x20;
+
+This can be useful to bypass char/string blocked.
 
 ## <mark style="color:yellow;">Unicode escaping</mark> <a href="#obfuscation-via-unicode-escaping" id="obfuscation-via-unicode-escaping"></a>
 

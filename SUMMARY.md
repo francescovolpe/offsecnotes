@@ -70,5 +70,4 @@
 
 ***
 
-* [Uncategorized](uncategorized.md)
 * [References](references.md)

@@ -86,4 +86,4 @@ http://vulnerable-website.com/?greeting=data.username}}<PAYLOAD>
 
 ## <mark style="color:yellow;">Exploitation</mark>
 
-* [https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection)
+* [https://book.hacktricks.wiki/en/pentesting-web/ssti-server-side-template-injection/index.html](https://book.hacktricks.wiki/en/pentesting-web/ssti-server-side-template-injection/index.html)

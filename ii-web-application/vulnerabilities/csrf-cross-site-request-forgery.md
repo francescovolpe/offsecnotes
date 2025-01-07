@@ -79,7 +79,7 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 *   Are there two token: one in a cookie and one in hidden input? (this can also have the same value)
 
     * Some apps do tie the CSRF token to a cookie, but not to the session cookie.
-    * Can you set a cookie? Ex. Header injection with `CRLF`.(`%0d%0a`)
+    * Can you set a cookie? E.g. Header injection with `CRLF`.(`%0d%0a`)
     * ```
       /?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None
       ```

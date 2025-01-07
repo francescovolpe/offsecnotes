@@ -114,11 +114,10 @@ if ($login['password'] == $password) {
 Attacker can modify the password attribute so that it contained the integer `0` -> authentication bypass.
 
 {% hint style="info" %}
-**Note**: This is only possible because deserialization preserves the data type.
-{% endhint %}
+**Note**:&#x20;
 
-{% hint style="info" %}
-**Remember**: when modifying data types in any serialized object format, update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized).
+* This is only possible because deserialization preserves the data type.
+* When modifying data types in any serialized object format, update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized).
 {% endhint %}
 
 ## <mark style="color:yellow;">Using application functionality</mark>
@@ -162,6 +161,8 @@ They lets you select a provided gadget chain for a target library, input a comma
 ```bash
 # Tool: https://github.com/frohoff/ysoserial
 java -jar ysoserial-all.jar CommonsCollections4 "rm /tmp/file.txt"
+# Probably you need to encode the payload into base64
+java -jar ysoserial-all.jar CommonsCollections4 "rm /tmp/file.txt" | base64 -w 0
 ```
 
 **PHP**
@@ -172,7 +173,10 @@ java -jar ysoserial-all.jar CommonsCollections4 "rm /tmp/file.txt"
 ```
 
 {% hint style="info" %}
-**Note**: a payload might work even if the server returns an error...
+**Note**:&#x20;
+
+* Pay attention if you need to encode (e.g. URL encode) your payload
+* A payload might work even if the server returns an error...
 {% endhint %}
 
 ### <mark style="color:yellow;">Working with documented gadget chains</mark>

