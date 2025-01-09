@@ -13,7 +13,10 @@
 
 * The OAuth grant type determines the exact sequence of steps that are involved in the OAuth process.
 * There are several different grant types, each with varying levels of complexity and security considerations.
-* Note: (We'll focus on the "authorization code" and "implicit" grant types as these are by far the most common.)
+
+{% hint style="info" %}
+**Note**: We'll focus on the "authorization code" and "implicit" grant types as these are by far the most common.
+{% endhint %}
 
 ## <mark style="color:yellow;">OAuth scopes</mark> <a href="#oauth-scopes" id="oauth-scopes"></a>
 
@@ -28,7 +31,7 @@ scope=contact-list-r
 scope=https://oauth-authorization-server.com/auth/scopes/user/contacts.readonly
 ```
 
-When OAuth is used for authentication, however, the standardized OpenID Connect scopes are often used instead. MORE INFO TO DO
+When OAuth is used for authentication, however, the standardized OpenID Connect scopes are often used instead.
 
 ## <mark style="color:yellow;">Authorization code grant type</mark> <a href="#authorization-code-grant-type" id="authorization-code-grant-type"></a>
 

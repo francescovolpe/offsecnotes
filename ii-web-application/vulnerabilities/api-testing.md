@@ -20,6 +20,8 @@ Use common paths to directly fuzz for doc: `/api/swagger/v1/users/123`
 /api
 ```
 
+***
+
 **Endpoints**
 
 * Browsing application (even if you have access to documentation, as it may be inaccurate)
@@ -31,6 +33,8 @@ Use common paths to directly fuzz for doc: `/api/swagger/v1/users/123`
 **Tip**: JS Link Finder BApp (Burp extension)
 {% endhint %}
 
+***
+
 **HTTP methods**
 
 Test all potential methods when you're investigating API endpoints
@@ -38,6 +42,8 @@ Test all potential methods when you're investigating API endpoints
 {% hint style="success" %}
 **Tip**: Use HTTP verbs list in Burp Intruder
 {% endhint %}
+
+***
 
 **Hidden parameters**
 
@@ -109,6 +115,8 @@ GET /userSearch?name=test%23foo&back=/home
 GET /users/search?name=test#foo&publicProfile=true
 ```
 
+***
+
 **Injecting invalid parameters**
 
 You can use an URL-encoded `&` character and review the response for clue about the additional parameter is parsed. (if the response is unchanged it may indicate that the parameter was successfully injected but ignored by the application)
@@ -120,6 +128,8 @@ GET /userSearch?name=test%26foo=xyz&back=/home
 GET /users/search?name=test&foo=xyz&publicProfile=true
 ```
 
-#### Injecting valid or override parameters <a href="#injecting-valid-parameters" id="injecting-valid-parameters"></a>
+***
+
+**Injecting valid or override parameters**
 
 The impact of this depends on how the application processes the second parameter.

@@ -13,7 +13,7 @@ Cache rules dictate what can be cached and for how long. They usually store stat
 * **Static file extension** rules match the file extensions of requested resources, like `.css` or `.js`&#x20;
 * **Static directory** rules match URL paths starting with a specific prefix, typically used for directories containing static resources, such as `/static` or `/assets`.&#x20;
 * **File name** rules target specific files that are essential and rarely change, like `robots.txt` and `favicon.ico`.
-* **Custom** rules
+* **Custom** rules.
 
 ## <mark style="color:yellow;">Detecting cached responses</mark>
 

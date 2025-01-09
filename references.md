@@ -10,6 +10,7 @@
 * [https://portswigger.net/web-security](https://portswigger.net/web-security)
 * [https://portswigger.net/research/server-side-template-injection](https://portswigger.net/research/server-side-template-injection)
 * [https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/](https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/)
+* Gareth Heyes. (2022). JavaScript for hackers: Learn to think like a hacker.
 
 **MAPT**
 

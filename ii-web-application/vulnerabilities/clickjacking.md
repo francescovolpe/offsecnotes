@@ -6,11 +6,7 @@
 
 * Clickjacking is a type of attack where a user is deceived into clicking on something on a hidden website by making them click on something else on a decoy website.
 
-<!---->
-
-* The method involves embedding an invisible, interactive web page (or multiple pages) that contains a button or hidden link, typically within an iframe. This iframe is then placed over the expected content of the user's decoy web page.
-
-<!---->
+- The method involves embedding an invisible, interactive web page (or multiple pages) that contains a button or hidden link, typically within an iframe. This iframe is then placed over the expected content of the user's decoy web page.
 
 * Clickjacking attacks are not mitigated by the CSRF token as a target session is established with content loaded from an authentic website and with all requests happening on-domain
 
@@ -35,7 +31,7 @@
     }
 </style>
 <div>Test</div>
-<iframe src=""></iframe>
+<iframe src="http://victim-site.com"></iframe>
 ```
 
 ## <mark style="color:yellow;">Prefilled form input</mark>
@@ -55,7 +51,7 @@ An effective attacker workaround against frame busters is to use the HTML5 ifram
 <iframe id="victim_site" src="https://victim-site.com" sandbox="allow-forms"></iframe>
 ```
 
-When this is set with the `allow-forms` or `allow-scripts` values and the `allow-top-navigation` value is omitted then the frame buster script can be neutralized as the iframe cannot check whether or not it is the top window
+When this is set with the `allow-forms` or `allow-scripts` values and the `allow-top-navigation` value is omitted then the frame buster script can be neutralized as the iframe cannot check whether or not it is the top window.
 
 ## <mark style="color:yellow;">Clickjacking + DOM XSS</mark>
 
@@ -63,6 +59,4 @@ You must first identified the XSS exploit. The XSS exploit is then combined with
 
 ## <mark style="color:yellow;">Multistep clickjacking</mark>
 
-Attacker manipulation of inputs to a target website may necessitate multiple actions
-
-These actions can be implemented by the attacker using multiple divisions or iframes
+Attacker manipulation of inputs to a target website may necessitate multiple actions. These actions can be implemented by the attacker using multiple divisions or iframes.

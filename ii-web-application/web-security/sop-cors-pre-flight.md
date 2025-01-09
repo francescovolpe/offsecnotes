@@ -13,7 +13,7 @@
 The cross-origin resource sharing specification provides controlled relaxation of the same-origin policy. The CORS specification identifies a collection of protocol headers
 
 * `Origin` header added by the browser.
-  * ```
+  * ```http
     Origin : https://normal-website.com
     ```
 * `Access-Control-Allow-Origin` returned by a server when a website requests a cross-domain resource.
@@ -56,21 +56,20 @@ For example, this is a pre-flight request that is seeking to use the PUT method 
 ```http
 OPTIONS /data HTTP/1.1
 Host: <some website>
-...
+[...]
 Origin: https://normal-website.com
 Access-Control-Request-Method: PUT
 Access-Control-Request-Headers: Special-Request-Header
 ```
 
-```http
-HTTP/1.1 204 No Content
-...
-Access-Control-Allow-Origin: https://normal-website.com
+<pre class="language-http"><code class="lang-http">HTTP/1.1 204 No Content
+<strong>[...]
+</strong>Access-Control-Allow-Origin: https://normal-website.com
 Access-Control-Allow-Methods: PUT, POST, OPTIONS
 Access-Control-Allow-Headers: Special-Request-Header
 Access-Control-Allow-Credentials: true
 Access-Control-Max-Age: 240
-```
+</code></pre>
 
-* This response sets out the allowed methods (PUT, POST and OPTIONS) and permitted request headers (Special-Request-Header). In this particular case the cross-domain server also allows the sending of credentials (authentication, cookies or client-side certificates), and the Access-Control-Max-Age header defines a maximum timeframe for caching the pre-flight response for reuse
-* More info about preflight: [https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflighted\_requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflighted\_requests)
+* This response sets out the allowed methods (`PUT`, `POST` and `OPTIONS`) and permitted request headers (`Special-Request-Header`). In this particular case the cross-domain server also allows the sending of credentials (authentication, cookies or client-side certificates), and the Access-Control-Max-Age header defines a maximum timeframe for caching the pre-flight response for reuse.
+* More info about preflight: [https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflighted\_requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflighted_requests)

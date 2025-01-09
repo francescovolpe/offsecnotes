@@ -1,4 +1,8 @@
-# Obfuscating
+# General Obfuscation
+
+{% hint style="info" %}
+**Note**: for Javascript obfuscation go on [javascript-security-considerations.md](javascript-security-considerations.md "mention")
+{% endhint %}
 
 ## <mark style="color:yellow;">URL encoding</mark> <a href="#obfuscation-via-url-encoding" id="obfuscation-via-url-encoding"></a>
 
@@ -46,48 +50,6 @@ XML supports character encoding with the same numeric escape sequences as HTML.
     </storeId>
 </stockCheck>
 ```
-
-## <mark style="color:yellow;">Javascript eval() + atob()</mark> <a href="#obfuscation-via-unicode-escaping" id="obfuscation-via-unicode-escaping"></a>
-
-```javascript
-eval(atob("YWxlcnQoKQ=="))    // alert()
-```
-
-`atob()` decode a base-64 encoded string.&#x20;
-
-This can be useful to bypass char/string blocked.
-
-## <mark style="color:yellow;">Unicode escaping</mark> <a href="#obfuscation-via-unicode-escaping" id="obfuscation-via-unicode-escaping"></a>
-
-Prefix `\u`. Most programming languages, including JavaScript, decode Unicode escapes. To obfuscate client-side payloads, you can use Unicode in strings.&#x20;
-
-For example, if input is passed to eval() as a string and blocked, try escaping a character like this: `eval("\u0061lert(1)")`.&#x20;
-
-This encoding may go undetected until decoded by the browser.
-
-{% hint style="info" %}
-**Note**: Inside a string, you can escape characters, but outside a string, escaping some characters, like parentheses, will cause a syntax error.
-{% endhint %}
-
-ES6-style Unicode escapes allow optional leading zeros, so some WAFs might be fooled similarly to HTML encodings. For example:
-
-```html
-<a href="javascript:\u{00000000061}alert(1)">Click me</a>
-```
-
-## <mark style="color:yellow;">Hex escaping</mark> <a href="#obfuscation-via-hex-escaping" id="obfuscation-via-hex-escaping"></a>
-
-Prefixed with `\x`. Like Unicode escapes, these will be decoded client-side if the input is evaluated as a string: `eval("\x61lert")`
-
-{% hint style="info" %}
-**Note**: sometimes, you can obfuscate SQL statements using the `0x` prefix. For example, `0x53454c454354` decodes to the `SELECT` keyword.
-{% endhint %}
-
-## <mark style="color:yellow;">Octal escaping</mark> <a href="#obfuscation-via-octal-escaping" id="obfuscation-via-octal-escaping"></a>
-
-Prefixed with `\`.
-
-`eval("\141lert(1)")`
 
 ## <mark style="color:yellow;">Multiple encodings</mark> <a href="#obfuscation-via-multiple-encodings" id="obfuscation-via-multiple-encodings"></a>
 
