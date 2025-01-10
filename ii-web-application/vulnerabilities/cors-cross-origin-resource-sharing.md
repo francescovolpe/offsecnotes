@@ -34,8 +34,6 @@ Suppose `normal-website.com`. Bypass with`hackersnormal-website.com` or `normal-
 **Note**: you need to know the whitelisted origins.
 {% endhint %}
 
-***
-
 ## <mark style="color:yellow;">**Whitelisted null origin value**</mark>
 
 **Detection**

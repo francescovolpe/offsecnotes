@@ -3,7 +3,7 @@
 ## <mark style="color:yellow;">Windows</mark>
 
 {% hint style="info" %}
-**Note**: if you have a valid user credential you can authenticate in windows target from SMB, RDP, WinRM
+**Note**: if you have a valid user credential you can authenticate in windows target from SMB, RDP, WinRM.
 {% endhint %}
 
 ### <mark style="color:yellow;">Automation script</mark>

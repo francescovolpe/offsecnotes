@@ -41,7 +41,7 @@
   * [WebSockets](ii-web-application/vulnerabilities/websockets.md)
   * [XXE](ii-web-application/vulnerabilities/xxe-xml-external-entity.md)
   * [XSS](ii-web-application/vulnerabilities/xss-cross-site-scripting.md)
-* [Web security theory](ii-web-application/web-security/README.md)
+* [Web security](ii-web-application/web-security/README.md)
   * [General Obfuscation](ii-web-application/web-security/general-obfuscation.md)
   * [Javascript & Obfuscation](ii-web-application/web-security/javascript-security-considerations.md)
   * [Methods & Headers](ii-web-application/web-security/method-and-headers.md)

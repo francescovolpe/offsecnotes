@@ -199,6 +199,16 @@ function escapeHTML(html) {
 
 You can easy bypass this with `<><img src=1 onerror=alert(1)>`
 
+## <mark style="color:yellow;">document.location</mark>
+
+In JavaScript, the `location` variable (`document.location`) represents the URL of the current document. Assigning a value to it redirects the page to that URL.
+
+```html
+<script>
+location = 'https://google.it';
+</script>
+```
+
 ## <mark style="color:yellow;">Javascript in innerHTML</mark>
 
 ```html
@@ -210,17 +220,7 @@ HTML specifies that a `<script>` tag inserted with innerHTML should not execute
 
 In this case you can use `const name = "<img src='x' onerror='alert(1)'>";`
 
-## <mark style="color:yellow;">Javascript location</mark>
-
-In JavaScript, the `location` variable represents the URL of the current document. Assigning a value to it redirects the page to that URL.
-
-```html
-<script>
-location = 'https://google.it';
-</script>
-```
-
-## <mark style="color:yellow;">Javascript href Attribute</mark>
+## <mark style="color:yellow;">Javascript in href attribute</mark>
 
 Possible values:
 

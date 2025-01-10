@@ -1,7 +1,7 @@
 # File upload
 
 {% hint style="warning" %}
-Servers typically won't execute files unless they have been configured to do so. In some cases the contents of the file may still be served as plain text
+Servers typically won't execute files unless they have been configured to do so. In some cases the contents of the file may still be served as plain text.
 {% endhint %}
 
 ## <mark style="color:yellow;">Flawed validation of FU</mark>
@@ -45,7 +45,7 @@ exploit.p.phphp
 
 ### <mark style="color:yellow;">File content validation</mark>
 
-More secure servers try to verify that the contents of the file actually match what is expected
+More secure servers try to verify that the contents of the file actually match what is expected.
 
 #### (1) Magic number: certain file types may always contain a specific sequence of bytes in their header or footer
 
@@ -66,7 +66,7 @@ Payload example:
 
 ***
 
-**(2) Polyglot (on exiftool)**: verify certain intrinsic properties of an image, such as its dimensions.
+#### **(2) Polyglot (on exiftool)**: verify certain intrinsic properties of an image, such as its dimensions.
 
 Create a polyglot JPEG file containing malicious code within its metadata
 
