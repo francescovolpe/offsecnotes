@@ -25,7 +25,7 @@ Personal collection of continuously updated offensive security notes.
 
 **III - MAPT**
 
-* [android-testing.md](iii-android/android-testing.md "mention")
+* [android-testing](iii-android/android-testing/ "mention")
 * [reverse-engineering](iii-android/reverse-engineering/ "mention")
 * [network-interception.md](iii-android/network-interception.md "mention")
 * [dynamic-instrumentation.md](iii-android/dynamic-instrumentation.md "mention")

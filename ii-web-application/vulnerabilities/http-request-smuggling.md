@@ -44,7 +44,10 @@ q=smuggling
 ## <mark style="color:yellow;">Identification</mark>
 
 {% hint style="warning" %}
-**Important**: use HTTP/1.1 protocol, not HTTP/2. In burp change it using Inspector.
+**Important**:&#x20;
+
+* `Connection` header mustn't be set to `close`. Set it to `keep-alive`.
+* In early techniques you must use `HTTP/1.1` protocol, not `HTTP/2`. In burp change it using Inspector.
 {% endhint %}
 
 ### <mark style="color:yellow;">**CL.TE**</mark>

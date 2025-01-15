@@ -248,7 +248,7 @@ If the proxy settings are ignored, use an Android VPN service app to intercept a
 Steps:
 
 1. Set DNS settings to "System DNS"
-2. Add an HTTP(S) CONNECT proxy
+2. Add an HTTP(S) CONNECT proxy (your burpsuite ip:port)
 3. Start the VPN service
 
 ### <mark style="color:yellow;">DNS Spoofing & Transparent Proxy</mark>

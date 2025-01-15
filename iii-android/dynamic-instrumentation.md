@@ -8,7 +8,7 @@
 # Install frida
 pip3 install frida-tools
 
-# Install objectio
+# Install objection
 pip3 install objection
 ```
 

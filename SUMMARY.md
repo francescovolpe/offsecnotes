@@ -52,7 +52,15 @@
 
 ## III - Android
 
-* [Vulnerabilities](iii-android/android-testing.md)
+* [Vulnerabilities](iii-android/android-testing/README.md)
+  * [Bypass Binary Protections](iii-android/android-testing/bypass-binary-protections.md)
+  * [Security Misconfiguration](iii-android/android-testing/security-misconfiguration.md)
+  * [Insecure Data Storage](iii-android/android-testing/insecure-data-storage.md)
+  * [Intent Attack Surface](iii-android/android-testing/intent-attack-surface.md)
+  * [Deep link](iii-android/android-testing/deep-link.md)
+  * [Task Hijacking](iii-android/android-testing/task-hijacking.md)
+  * [Tapjacking](iii-android/android-testing/tapjacking.md)
+  * [Exploiting exported Activities](iii-android/android-testing/exploiting-exported-activities.md)
 * [Reverse Engineering](iii-android/reverse-engineering/README.md)
   * [APK Building](iii-android/reverse-engineering/apk-building.md)
   * [Reversing](iii-android/reverse-engineering/reversing.md)

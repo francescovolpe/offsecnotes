@@ -2,6 +2,8 @@
 
 ## <mark style="color:yellow;">Usernames enumeration</mark>
 
+Test in every features that interact with user account. E.g. login, password recovery.
+
 **Default username**
 
 ```
