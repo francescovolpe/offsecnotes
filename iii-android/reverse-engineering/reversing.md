@@ -1,6 +1,6 @@
 # Reversing
 
-## <mark style="color:yellow;">Understanding .dex and .smali</mark>
+## <mark style="color:purple;">Understanding .dex and .smali</mark>
 
 * Binary Dalvik bytecode (.dex files) are not easy to read or modify
 
@@ -53,7 +53,7 @@ V&~~D8{"min-api":26,"version":"v0.1.14"}ÅÄÃ
     const/16 v0, 42    //smali
     ```
 
-## <mark style="color:yellow;">Extract APK</mark>
+## <mark style="color:purple;">Extract APK</mark>
 
 ```bash
 # Prints all packages
@@ -67,7 +67,7 @@ adb shell pm path <com.package.app>
 adb pull <path>
 ```
 
-## <mark style="color:yellow;">**Disassemble & Assemble**</mark>
+## <mark style="color:purple;">**Disassemble & Assemble**</mark>
 
 Apktool is a tool for reverse engineering Android apps. It can decode (and disassemble) resources to **nearly** original form and **rebuild** them after making some modifications. (and other stuff).
 
@@ -105,7 +105,7 @@ java -jar APKEditor.jar m -i <path_splitted_apk> -o merged.apk
 java -jar uber-apk-signer.jar -a merged.apk --allowResign -o <merged_signed>
 ```
 
-## <mark style="color:yellow;">Dex to Java</mark>
+## <mark style="color:purple;">Dex to Java</mark>
 
 Decompile to (near) source code. (Dex to Java).
 

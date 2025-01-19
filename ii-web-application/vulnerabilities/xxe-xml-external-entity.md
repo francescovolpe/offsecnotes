@@ -16,7 +16,7 @@
 
 </details>
 
-## <mark style="color:yellow;">Retrieve files</mark>
+## <mark style="color:purple;">Retrieve files</mark>
 
 1. Introduce (or edit) a `DOCTYPE` element defining an external entity with the file path.
 2. Edit a data value in the XML returned in the app's response to use the defined external entity.
@@ -42,7 +42,7 @@
 <stockCheck><productId>&xxe;</productId></stockCheck>
 ```
 
-## <mark style="color:yellow;">Perform SSRF attacks</mark>
+## <mark style="color:purple;">Perform SSRF attacks</mark>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -50,9 +50,9 @@
 <stockCheck><productId>1&xxe;</productId><storeId>1</storeId></stockCheck>
 ```
 
-## <mark style="color:yellow;">Blind XXE</mark>
+## <mark style="color:purple;">Blind XXE</mark>
 
-### <mark style="color:yellow;">Out-of-band (OAST) techniques</mark> <a href="#detecting-blind-xxe-using-out-of-band-oast-techniques" id="detecting-blind-xxe-using-out-of-band-oast-techniques"></a>
+### <mark style="color:purple;">Out-of-band (OAST) techniques</mark> <a href="#detecting-blind-xxe-using-out-of-band-oast-techniques" id="detecting-blind-xxe-using-out-of-band-oast-techniques"></a>
 
 **Detection**
 
@@ -87,7 +87,7 @@
 **Note**: This technique might not work with multiline files.
 {% endhint %}
 
-### <mark style="color:yellow;">Via error messages</mark> <a href="#exploiting-blind-xxe-to-retrieve-data-via-error-messages" id="exploiting-blind-xxe-to-retrieve-data-via-error-messages"></a>
+### <mark style="color:purple;">Via error messages</mark> <a href="#exploiting-blind-xxe-to-retrieve-data-via-error-messages" id="exploiting-blind-xxe-to-retrieve-data-via-error-messages"></a>
 
 Trigger an XML parsing error message with the file contents.
 
@@ -102,13 +102,13 @@ Trigger an XML parsing error message with the file contents.
 **Note**: This works if you notice an error in the response when detecting with OAST (e.g., the reflected URL entered).
 {% endhint %}
 
-## <mark style="color:yellow;">Hidden attack surface</mark>
+## <mark style="color:purple;">Hidden attack surface</mark>
 
 * **First case** - Requests that contain data in XML format
 * **Second case -** Requests that do not contain any XML
   * **Detection**: Add entity reference that doesn't exist to cause an error  -> ok it's XML
 
-### <mark style="color:yellow;">XInclude attacks</mark>
+### <mark style="color:purple;">XInclude attacks</mark>
 
 Some applications receive client-submitted data, embed it on the server-side into an XML document, and then parse the document.
 
@@ -130,7 +130,7 @@ productId=<foo+xmlns%3axi%3d"http%3a//www.w3.org/2001/XInclude">
 <xi%3ainclude+parse%3d"text"+href%3d"file%3a///etc/passwd"/></foo>&storeId=1
 ```
 
-### <mark style="color:yellow;">Via file upload</mark>
+### <mark style="color:purple;">Via file upload</mark>
 
 Some common file formats use XML or contain XML subcomponents. Examples of XML-based formats are office document formats like DOCX and image formats like SVG.
 
@@ -144,7 +144,7 @@ Some common file formats use XML or contain XML subcomponents. Examples of XML-b
 
 This works if it's used image processing library & support SVG images & allow external entity.
 
-### <mark style="color:yellow;">Via modified content type</mark>
+### <mark style="color:purple;">Via modified content type</mark>
 
 Some web app will tolerate other content types.
 

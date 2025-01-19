@@ -1,6 +1,6 @@
 # Security Misconfiguration
 
-## <mark style="color:yellow;">Backup</mark>
+## <mark style="color:purple;">Backup</mark>
 
 Check `android:allowBackup="true"` in the `AndroidManifest.xml`
 
@@ -12,7 +12,7 @@ adb backup -apk <package_name> -f <backup_name>.adb
 adb restore <backup_name>.ab
 ```
 
-## <mark style="color:yellow;">Debuggable</mark>
+## <mark style="color:purple;">Debuggable</mark>
 
 Check `android:debuggable="true"` in the `AndroidManifest.xml`
 
@@ -22,7 +22,7 @@ If it is enable you can read and extract without **root privileges** all files i
 adb exec-out run-as <package_name> tar c . > output.tar
 ```
 
-## <mark style="color:yellow;">WebView - Debug</mark>
+## <mark style="color:purple;">WebView - Debug</mark>
 
 **Requirements:**
 

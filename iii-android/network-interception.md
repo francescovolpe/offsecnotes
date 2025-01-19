@@ -1,14 +1,14 @@
 # Network Interception
 
-## <mark style="color:yellow;">Introduction</mark>
+## <mark style="color:purple;">Introduction</mark>
 
 In android there are several ways to make HTTP requests. For example using `HttpURLConnection` (low-level API built into Java), `OkHttp` (A popular third-party library) etc.
 
-## <mark style="color:yellow;">Cleartext Traffic</mark>
+## <mark style="color:purple;">Cleartext Traffic</mark>
 
 By default, Android strives to prevent developers from unintentionally sending cleartext HTTP traffic. However, if developers explicitly set `usesCleartextTraffic=true` in the manifest or network security configuration, cleartext traffic is permitted.
 
-## <mark style="color:yellow;">SSL interception</mark>
+## <mark style="color:purple;">SSL interception</mark>
 
 To intercept TLS/SSL traffic, the proxy certificate must be trusted by the device. Android recognizes two types of certificates: **user** certificates and **system** certificates. Applications can explicitly configure which certificate types they trust using **network security config**.
 
@@ -64,7 +64,7 @@ More detail: [https://developer.android.com/privacy-and-security/security-config
 
 If the application doesn't accept user certificates you need to install system certificate (or patching network security config).
 
-### <mark style="color:yellow;">User Certificate</mark>
+### <mark style="color:purple;">User Certificate</mark>
 
 Install it in the user CA store via Android settings. In general apps trust user certificates if it targets Android 6 (API 23) or lower, or network security config allows it.
 
@@ -85,7 +85,7 @@ openssl x509 -inform DER -in cacert.der -out cacert.pem
 
 </details>
 
-### <mark style="color:yellow;">System Certificate</mark>
+### <mark style="color:purple;">System Certificate</mark>
 
 **Requirement**: rooted device.
 
@@ -189,7 +189,7 @@ echo "System certificate injected"
 
 </details>
 
-### <mark style="color:yellow;">Patching Network Security Config</mark>
+### <mark style="color:purple;">Patching Network Security Config</mark>
 
 1. Unpack the apk
 
@@ -224,7 +224,7 @@ java -jar uber-apk-signer.jar -apk <app_name>.apk
 **Note**: unpacking and repacking an app can break stuff.
 {% endhint %}
 
-## <mark style="color:yellow;">Intercepting Without Proxy Support</mark>
+## <mark style="color:purple;">Intercepting Without Proxy Support</mark>
 
 If you configure an HTTP proxy in Android settings, you can intercept network traffic. However,&#x20;
 
@@ -239,7 +239,7 @@ OkHttpClient client = new OkHttpClient.Builder()
 
 * Also framework like **Flutter** and **Xamarin** application does not respect system proxy.
 
-### <mark style="color:yellow;">HTTP Interception with VPN</mark>
+### <mark style="color:purple;">HTTP Interception with VPN</mark>
 
 **Requirement**: the proxy certificate must be installed in the system certificate store.
 
@@ -251,7 +251,7 @@ Steps:
 2. Add an HTTP(S) CONNECT proxy (your burpsuite ip:port)
 3. Start the VPN service
 
-### <mark style="color:yellow;">DNS Spoofing & Transparent Proxy</mark>
+### <mark style="color:purple;">DNS Spoofing & Transparent Proxy</mark>
 
 **Requirement**: The proxy certificate must be installed in the system certificate store.
 

@@ -7,7 +7,7 @@ Two phases:
 1. Find a way to trigger a response that unintentionally includes a dangerous payload.
 2. Ensure the response is cached and served to the intended victims after success.
 
-## <mark style="color:yellow;">Exploiting cache design flaws</mark>
+## <mark style="color:purple;">Exploiting cache design flaws</mark>
 
 **Web cache poisoning to deliver XSS**
 
@@ -38,7 +38,7 @@ Location: https://innocent-site.com/random
 ```
 {% endhint %}
 
-### <mark style="color:yellow;">Exploiting responses that expose too much information</mark>
+### <mark style="color:purple;">Exploiting responses that expose too much information</mark>
 
 **Cache-control directives**
 
@@ -55,7 +55,7 @@ Cache-Control: public, max-age=1800
 
 The `Vary` header specifies a list of additional headers that should be treated as part of the cache key even if they are normally unkeyed. For example, it is commonly used to specify that the `User-Agent` header is keyed. If the mobile version of a website is cached, this won't be served to non-mobile users by mistake.
 
-## <mark style="color:yellow;">Exploiting cache implementation flaws</mark>
+## <mark style="color:purple;">Exploiting cache implementation flaws</mark>
 
 The methodology involves the following steps:
 
@@ -70,14 +70,14 @@ The methodology involves the following steps:
 **Tip**: use Param Miner extension to identify unkeyed inputs (Guess headers)
 {% endhint %}
 
-### <mark style="color:yellow;">Unkeyed port</mark> <a href="#unkeyed-port" id="unkeyed-port"></a>
+### <mark style="color:purple;">Unkeyed port</mark> <a href="#unkeyed-port" id="unkeyed-port"></a>
 
 In this way you can:
 
 * Enable a denial-of-service attack by adding an arbitrary port, redirecting users to a non-functional port.&#x20;
 * Enable XSS payload injection.
 
-### <mark style="color:yellow;">Unkeyed query string</mark> <a href="#unkeyed-query-string" id="unkeyed-query-string"></a>
+### <mark style="color:purple;">Unkeyed query string</mark> <a href="#unkeyed-query-string" id="unkeyed-query-string"></a>
 
 Like the Host header, the request line is usually keyed, but one of the most common cache-key transformations is the exclusion of the entire query string.
 
@@ -92,7 +92,7 @@ Cookie: cachebuster=1
 Origin: https://cachebuster.vulnerable-website.com
 ```
 
-### <mark style="color:yellow;">Unkeyed query parameters</mark> <a href="#unkeyed-query-parameters" id="unkeyed-query-parameters"></a>
+### <mark style="color:purple;">Unkeyed query parameters</mark> <a href="#unkeyed-query-parameters" id="unkeyed-query-parameters"></a>
 
 Some websites only exclude specific query parameters that are not relevant to the back-end application, such as parameters for analytics or serving targeted advertisements. UTM parameters like `utm_content`.
 
@@ -120,7 +120,7 @@ X-Cache: hit
 **Tip**: use Param Miner extension to identify unkeyed inputs (Guess query params)
 {% endhint %}
 
-### <mark style="color:yellow;">**Exploiting parameter parsing quirks**</mark>
+### <mark style="color:purple;">**Exploiting parameter parsing quirks**</mark>
 
 This happen when back-end identifies distinct parameters that the cache does not. The Ruby on Rails framework, for example, interprets both ampersands (`&`) and semicolons (`;`) as delimiters
 
@@ -145,7 +145,7 @@ Once the parsing algorithm removes the `excluded_param`, the cache key will only
 
 But now there is a duplicate `keyed_param`. This is where the second quirk comes into play. If there are duplicate parameters, each with different values, Ruby on Rails gives precedence to the final occurrence. The end result is that the cache key contains an innocent, expected parameter value, allowing the cached response to be served as normal to other users. On the back-end, however, the same parameter has a completely different value, which is our injected payload. It is this second value that will be passed into the gadget and reflected in the poisoned response.
 
-### <mark style="color:yellow;">**Exploiting fat GET support**</mark>
+### <mark style="color:purple;">**Exploiting fat GET support**</mark>
 
 Although this scenario is pretty rare, you can sometimes simply add a body to a `GET` request to create a "fat" `GET` request. In this case you can "overwrite" the param value
 
@@ -156,7 +156,7 @@ GET /?param=innocent HTTP/1.1
 param=bad-stuff-here
 ```
 
-### <mark style="color:yellow;">Normalized cache keys</mark> <a href="#normalized-cache-keys" id="normalized-cache-keys"></a>
+### <mark style="color:purple;">Normalized cache keys</mark> <a href="#normalized-cache-keys" id="normalized-cache-keys"></a>
 
 Problem: when you find reflected XSS in a parameter, it is often unexploitable in practice. This is because modern browsers typically URL-encode the necessary characters when sending the request, and the server doesn't decode them.
 

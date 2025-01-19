@@ -1,6 +1,6 @@
 # Intent Attack Surface
 
-## <mark style="color:yellow;">Introduction</mark>
+## <mark style="color:purple;">Introduction</mark>
 
 An intent is an abstract description of an operation to be performed.
 
@@ -23,7 +23,7 @@ startActivity(intent);
 
 `getIntent()` is a method in Android used to retrieve the **Intent.**
 
-## <mark style="color:yellow;">Send intent with adb</mark>
+## <mark style="color:purple;">Send intent with adb</mark>
 
 ```sh
 # Syntax

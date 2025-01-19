@@ -1,6 +1,6 @@
 # Task Hijacking
 
-## <mark style="color:yellow;">Introduction</mark>
+## <mark style="color:purple;">Introduction</mark>
 
 Task hijacking is a vulnerability that affects Android applications due to the configuration of Task Control features in the `AndroidManifest.xml` file. This flaw can allow an attacker or a malicious app to take over legitimate apps, potentially leading to information theft.
 
@@ -25,7 +25,7 @@ When the back button is pressed on `Bank-Main-Activity`, the user will go to the
   * This vulnerability is patched from **Android SDK version 28**. [https://developer.android.com/privacy-and-security/risks/strandhogg](https://developer.android.com/privacy-and-security/risks/strandhogg)
 * `android:launchMode="singleTask"` in `AndroidManifest.xml` (necessary for this scenario)
 
-## <mark style="color:yellow;">**Testing**</mark>
+## <mark style="color:purple;">**Testing**</mark>
 
 You can use malware apk by ivan sincek. [https://github.com/ivan-sincek/malware-apk](https://github.com/ivan-sincek/malware-apk)
 

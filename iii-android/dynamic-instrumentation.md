@@ -1,8 +1,8 @@
 # Dynamic Instrumentation
 
-## <mark style="color:yellow;">Installation</mark>
+## <mark style="color:purple;">Installation</mark>
 
-### <mark style="color:yellow;">Install frida & objection on your host</mark>
+### <mark style="color:purple;">Install frida & objection on your host</mark>
 
 ```sh
 # Install frida
@@ -12,7 +12,7 @@ pip3 install frida-tools
 pip3 install objection
 ```
 
-### <mark style="color:yellow;">Install frida on the device</mark>
+### <mark style="color:purple;">Install frida on the device</mark>
 
 <details>
 
@@ -71,7 +71,7 @@ frida -U <package_name>
 
 </details>
 
-## <mark style="color:yellow;">Commands</mark>
+## <mark style="color:purple;">Commands</mark>
 
 ```sh
 # To list the available devices for frida
@@ -102,9 +102,9 @@ frida -U -f <package_name> -l <script.js>
 frida -U <package_name>
 ```
 
-## <mark style="color:yellow;">Working with frida</mark>
+## <mark style="color:purple;">Working with frida</mark>
 
-### <mark style="color:yellow;">Instantiating Objects and Calling Methods</mark>
+### <mark style="color:purple;">Instantiating Objects and Calling Methods</mark>
 
 <pre class="language-javascript"><code class="lang-javascript"><strong>// Obtain a Javascript wrapper for Java class "java.lang.String"
 </strong><strong>var string_class = Java.use("java.lang.String");
@@ -114,7 +114,7 @@ frida -U <package_name>
 string_instance.charAt(0);
 </code></pre>
 
-### <mark style="color:yellow;">Override a method</mark>
+### <mark style="color:purple;">Override a method</mark>
 
 We can replace the implementation of a method by overwriting it on the class:
 
@@ -127,7 +127,7 @@ string_class.charAt.implementation = (c) => {
 
 To know which classes are actually available, call `Java.enumerateLoadedClasses(callbacks)` that will call a callback for each class that is loaded or `Java.enumerateLoadedClassesSync()` that return an array of all classes loaded.
 
-### <mark style="color:yellow;">Java.perform</mark>
+### <mark style="color:purple;">Java.perform</mark>
 
 If we run the following code we get an error that say it couldn't find the class.&#x20;
 
@@ -145,7 +145,7 @@ Java.perform(() => {
 })
 ```
 
-## <mark style="color:yellow;">Frida-trace</mark>
+## <mark style="color:purple;">Frida-trace</mark>
 
 Frida trace allows us to directly trace function calls.&#x20;
 
@@ -172,9 +172,9 @@ frida-trace -U -j 'com.package.*!*' <package_name>
 
 
 
-## <mark style="color:yellow;">Hooking methods</mark>
+## <mark style="color:purple;">Hooking methods</mark>
 
-### <mark style="color:yellow;">Hook a method</mark>
+### <mark style="color:purple;">Hook a method</mark>
 
 ```javascript
 Java.perform(function() {
@@ -205,7 +205,7 @@ Java.perform(function() {
 
 </details>
 
-### <mark style="color:yellow;">Hook method with arguments</mark>
+### <mark style="color:purple;">Hook method with arguments</mark>
 
 ```java
 Java.perform(function() {
@@ -219,7 +219,7 @@ Java.perform(function() {
 })
 ```
 
-## <mark style="color:yellow;">Call a static method</mark>
+## <mark style="color:purple;">Call a static method</mark>
 
 ```javascript
 Java.perform(function() {
@@ -241,7 +241,7 @@ Java.perform(function() {
 
 </details>
 
-## <mark style="color:yellow;">Create a class istance</mark>
+## <mark style="color:purple;">Create a class istance</mark>
 
 ```javascript
 Java.perform(function() {
@@ -266,7 +266,7 @@ Java.perform(function() {
 
 </details>
 
-## <mark style="color:yellow;">Printing/Modifying a class variable</mark>
+## <mark style="color:purple;">Printing/Modifying a class variable</mark>
 
 ```javascript
 Java.perform(function (){
@@ -303,7 +303,7 @@ Java.perform(function (){
 
 </details>
 
-## <mark style="color:yellow;">Native functions</mark>
+## <mark style="color:purple;">Native functions</mark>
 
 <details>
 
@@ -341,7 +341,7 @@ Using the `RegisterNatives`. This function is called from the native code, not t
 
 </details>
 
-## <mark style="color:yellow;">Hooking a native functions</mark>
+## <mark style="color:purple;">Hooking a native functions</mark>
 
 **Get the address of a particular function in frida**
 
@@ -402,7 +402,7 @@ Interceptor.attach(strcmp_adr, {
 
 </details>
 
-## <mark style="color:yellow;">Change the return of a native function</mark>
+## <mark style="color:purple;">Change the return of a native function</mark>
 
 ```javascript
 Interceptor.attach(targetAddress, {

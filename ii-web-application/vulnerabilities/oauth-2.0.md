@@ -16,21 +16,21 @@
 
 </details>
 
-## <mark style="color:yellow;">Identifying OAuth authentication</mark>
+## <mark style="color:purple;">Identifying OAuth authentication</mark>
 
 * If you see an option to log in using your account from a different website, this is a strong indication that OAuth is being used.
 * Regardless of which OAuth grant type is being used, the first request of the flow will always be a request to the `/authorization` endpoint containing a number of query parameters that are used specifically for OAuth. In particular, keep an eye out for the `client_id`, `redirect_uri`, and `response_type` parameters
 
-### <mark style="color:yellow;">Recon</mark>
+### <mark style="color:purple;">Recon</mark>
 
 If using an external OAuth service, identify the provider by the hostname in the authorization request. Public API documentation typically provides detailed information, including endpoint names and configuration options. Try sending a request to the following standard endpoints:
 
 * `/.well-known/oauth-authorization-server`
 * `/.well-known/openid-configuration`
 
-## <mark style="color:yellow;">Vulnerabilities</mark>
+## <mark style="color:purple;">Vulnerabilities</mark>
 
-### <mark style="color:yellow;">Improper implementation of the implicit grant type</mark>
+### <mark style="color:purple;">Improper implementation of the implicit grant type</mark>
 
 At the conclusion of the login process, the client application often sends the username and access token to the server via a `POST` request. The server then issues a session cookie, effectively completing the login and establishing the user session
 
@@ -50,7 +50,7 @@ Set-Cookie: session=OixJC365d0v7yaU1l1xEnCCtfnRZDhZe; Secure; HttpOnly; SameSite
 
 Exploitation: repeat this request with an arbitrary account (changing email and username) and leaving the access token
 
-### <mark style="color:yellow;">Account hijacking via redirect\_uri</mark>
+### <mark style="color:purple;">Account hijacking via redirect\_uri</mark>
 
 Replace `redirect_uri` with a attacker controlled domain
 
@@ -90,17 +90,17 @@ https://oauth-xxx-server.com/?client_id=123&redirect_uri=https://server.net/post
 Tip: the default URI will often be on an OAuth-specific path, such as `/oauth/callback`, so you can use directory traversal tricks `https://client-app.com/oauth/callback/../../example/path`
 {% endhint %}
 
-### <mark style="color:yellow;">Flawed CSRF protection</mark>
+### <mark style="color:purple;">Flawed CSRF protection</mark>
 
 if you notice that the authorization request does not send a `state` parameter, It potentially means that you can initiate an OAuth flow yourself before tricking a user's browser into completing it, similar to a traditional CSRF attack.
 
-## <mark style="color:yellow;">OpenID Connect</mark>
+## <mark style="color:purple;">OpenID Connect</mark>
 
-### <mark style="color:yellow;">Identifying OpenID Connect</mark> <a href="#identifying-openid-connect" id="identifying-openid-connect"></a>
+### <mark style="color:purple;">Identifying OpenID Connect</mark> <a href="#identifying-openid-connect" id="identifying-openid-connect"></a>
 
 Look for the mandatory `openid` scope
 
-### <mark style="color:yellow;">Unprotected dynamic client registration</mark>
+### <mark style="color:purple;">Unprotected dynamic client registration</mark>
 
 1. Identify configuration file `/.well-known/openid-configuration` to get registration\_endpoint
 2. Register your own client app. In the logo\_uri add a external url for SSRF

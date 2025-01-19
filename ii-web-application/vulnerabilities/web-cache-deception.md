@@ -10,17 +10,17 @@ Web cache deception is a vulnerability where an attacker tricks a web cache into
 
 More info about web cache: [web-cache.md](../web-security/web-cache.md "mention")
 
-## <mark style="color:yellow;">Constructing a web cache deception attack</mark> <a href="#constructing-a-web-cache-deception-attack" id="constructing-a-web-cache-deception-attack"></a>
+## <mark style="color:purple;">Constructing a web cache deception attack</mark> <a href="#constructing-a-web-cache-deception-attack" id="constructing-a-web-cache-deception-attack"></a>
 
 1. Identify a target endpoint that returns dynamic responses with sensitive information, focusing on those supporting `GET`, `HEAD`, or `OPTIONS` methods, as they are typically cached
 2. Look for discrepancies in how the cache and origin server parse the URL path
 3. Craft a malicious URL to trick the cache into storing a dynamic response. When the victim accesses it, their data is cached. Use Burp to request the same URL and retrieve the cached response. Avoid using a browser to prevent redirects or data invalidation.
 
-## <mark style="color:yellow;">Static extension cache rules</mark>
+## <mark style="color:purple;">Static extension cache rules</mark>
 
 Cache rules often target static resources by matching common file extensions like `.css` or `.js`. This is the default behavior in most CDNs.
 
-### <mark style="color:yellow;">Path mapping discrepancies</mark> <a href="#exploiting-path-mapping-discrepancies" id="exploiting-path-mapping-discrepancies"></a>
+### <mark style="color:purple;">Path mapping discrepancies</mark> <a href="#exploiting-path-mapping-discrepancies" id="exploiting-path-mapping-discrepancies"></a>
 
 <details>
 
@@ -61,7 +61,7 @@ Consider the following example:
 * Try various extensions, such as `.css`, `.ico`, and `.exe`, as caches may have rules for specific extensions.
 {% endhint %}
 
-### <mark style="color:yellow;">Delimiter discrepancies</mark> <a href="#exploiting-delimiter-discrepancies" id="exploiting-delimiter-discrepancies"></a>
+### <mark style="color:purple;">Delimiter discrepancies</mark> <a href="#exploiting-delimiter-discrepancies" id="exploiting-delimiter-discrepancies"></a>
 
 <details>
 
@@ -107,11 +107,11 @@ Objective: identify a character that is used as a delimiter by the origin server
 * Make sure to test all ASCII characters and a range of common extensions, including `.css`, `.ico`, and `.exe`
 {% endhint %}
 
-### <mark style="color:yellow;">Delimiter decoding discrepancies</mark> <a href="#exploiting-delimiter-decoding-discrepancies" id="exploiting-delimiter-decoding-discrepancies"></a>
+### <mark style="color:purple;">Delimiter decoding discrepancies</mark> <a href="#exploiting-delimiter-decoding-discrepancies" id="exploiting-delimiter-decoding-discrepancies"></a>
 
 to understand
 
-## <mark style="color:yellow;">Static directory cache rules (with normalization discrepancies)</mark> <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
+## <mark style="color:purple;">Static directory cache rules (with normalization discrepancies)</mark> <a href="#exploiting-static-directory-cache-rules" id="exploiting-static-directory-cache-rules"></a>
 
 Web servers often store static resources in specific directories. Cache rules typically target these by matching URL path prefixes like `/static`, `/assets`, `/scripts`, or `/images`.
 
@@ -128,7 +128,7 @@ Premise
 </strong>/static/js/info.js     # 2 time "X-Cache: hit" -> Perfect, the page is cached
 </code></pre>
 
-### <mark style="color:yellow;">Normalization by the origin server</mark> <a href="#exploiting-normalization-by-the-origin-server" id="exploiting-normalization-by-the-origin-server"></a>
+### <mark style="color:purple;">Normalization by the origin server</mark> <a href="#exploiting-normalization-by-the-origin-server" id="exploiting-normalization-by-the-origin-server"></a>
 
 <pre class="language-python"><code class="lang-python"># 3. Confirm that the cache rule is based on the static directory
 /static/../xxx         # 1 time "X-Cache: miss"
@@ -149,7 +149,7 @@ Premise
 <strong># The origin server interprets the path as: /my-account
 </strong></code></pre>
 
-### <mark style="color:yellow;">Normalization by the cache server</mark>
+### <mark style="color:purple;">Normalization by the cache server</mark>
 
 <pre class="language-python"><code class="lang-python"># 3. Confirm that the cache rule is based on the static directory
 # This step is useless, so you can't confirm if the cache decodes 

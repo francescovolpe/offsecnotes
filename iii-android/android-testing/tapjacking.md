@@ -1,12 +1,12 @@
 # Tapjacking
 
-## <mark style="color:yellow;">Introduction</mark>
+## <mark style="color:purple;">Introduction</mark>
 
 Tapjacking is the Android-app equivalent of the clickjacking web vulnerability: a malicious app tricks the user into clicking a security-relevant control (confirmation button etc.) by obscuring the UI with an overlay or by other means.
 
 More info: [https://developer.android.com/privacy-and-security/risks/tapjacking](https://developer.android.com/privacy-and-security/risks/tapjacking)
 
-## <mark style="color:yellow;">**Testing**</mark>
+## <mark style="color:purple;">**Testing**</mark>
 
 You can use the apk created by carlospolop: [https://github.com/carlospolop/Tapjacking-ExportedActivity](https://github.com/carlospolop/Tapjacking-ExportedActivity)
 

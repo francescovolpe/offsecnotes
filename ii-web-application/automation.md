@@ -1,6 +1,6 @@
 # Automation
 
-## <mark style="color:yellow;">Enumerating web resources</mark>
+## <mark style="color:purple;">Enumerating web resources</mark>
 
 <pre class="language-sh"><code class="lang-sh"># Web fuzzer 
 ffuf -w wordlist.txt -u https://example.com/file-FUZZ- c
@@ -13,7 +13,7 @@ feroxbuster -u https://example.com -x html,php,js,txt,pdf,json
 waybackurls https://example.com
 </code></pre>
 
-### <mark style="color:yellow;">**Wordlists**</mark>
+### <mark style="color:purple;">**Wordlists**</mark>
 
 **Full path**
 
@@ -25,7 +25,7 @@ waybackurls https://example.com
 
 [directory-list-2.3-medium.txt](https://github.com/daviddias/node-dirbuster/blob/master/lists/directory-list-2.3-medium.txt) (220.560 lines)
 
-## <mark style="color:yellow;">Vulnerability scanner</mark>
+## <mark style="color:purple;">Vulnerability scanner</mark>
 
 ```sh
 nikto -h http://example.com

@@ -1,10 +1,10 @@
 # Authentication
 
-## <mark style="color:yellow;">Usernames enumeration</mark>
+## <mark style="color:purple;">Usernames enumeration</mark>
 
 Test in every features that interact with user account. E.g. login, password recovery.
 
-**Default username**
+<mark style="color:purple;">⟩</mark> **Default username**
 
 ```
 admin
@@ -12,15 +12,11 @@ administrator
 firstname.lastname@somecompany.com
 ```
 
-***
-
-**Regisitration form**&#x20;
+<mark style="color:purple;">⟩</mark> **Regisitration form**&#x20;
 
 Create account and see if there's error like "account already exists".
 
-***
-
-**Comparing responses**
+<mark style="color:purple;">⟩</mark> **Comparing responses**
 
 Use a valid user and an invalid user (and incorrect password). One character out of place makes the messages distinct, even if not visible on the page.
 
@@ -28,23 +24,19 @@ Use a valid user and an invalid user (and incorrect password). One character out
 **Tip**: Use "Grep - match" in Burp Intruder to fetch the error message
 {% endhint %}
 
-***
-
-**Account locking**
+<mark style="color:purple;">⟩</mark> **Account locking**
 
 Try 3/5 login. If the account is locked, it could mean that there is.
 
-***
-
-**Response times**
+<mark style="color:purple;">⟩</mark> **Response times**
 
 A website may only check the password if the username is valid. So, entering an excessively long password causes a noticeable delay.
 
-## <mark style="color:yellow;">Passwords</mark>
+## <mark style="color:purple;">Passwords</mark>
 
 [password-cracking.md](../../iv-miscellaneous/password-cracking.md "mention")
 
-## <mark style="color:yellow;">Account locking</mark>
+## <mark style="color:purple;">Account locking</mark>
 
 **Guess password with locked account**&#x20;
 
@@ -72,7 +64,7 @@ See if you can change the password of an arbitrary user. E.g: look for a hidden 
 * current password: \<right>, new-password-1=XXX, new-password-2=YYY
 {% endhint %}
 
-## <mark style="color:yellow;">2FA</mark> <a href="#bypassing-two-factor-authentication" id="bypassing-two-factor-authentication"></a>
+## <mark style="color:purple;">2FA</mark> <a href="#bypassing-two-factor-authentication" id="bypassing-two-factor-authentication"></a>
 
 * **Brute-force OTP**
 * **Bypassing two-factor authentication**&#x20;
@@ -111,12 +103,12 @@ Cookie: account=victim-user
 verification-code=123456
 ```
 
-## <mark style="color:yellow;">Remember me option</mark>
+## <mark style="color:purple;">Remember me option</mark>
 
 * **Study your cookie and deduce how it is generated -** Sometimes this cookie is hashed or encoded (e.g. base64)
 * **Brute-force other users' cookies to gain access to their accounts**
 
-## <mark style="color:yellow;">Password reset</mark>
+## <mark style="color:purple;">Password reset</mark>
 
 **Control username parameter**
 

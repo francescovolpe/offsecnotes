@@ -2,7 +2,7 @@
 
 GraphQL syntax: [https://portswigger.net/web-security/graphql/what-is-graphql](https://portswigger.net/web-security/graphql/what-is-graphql)
 
-## <mark style="color:yellow;">Serving over HTTP</mark>
+## <mark style="color:purple;">Serving over HTTP</mark>
 
 **HTTP GET**&#x20;
 
@@ -24,15 +24,15 @@ JSON-encoded body
 }
 ```
 
-## <mark style="color:yellow;">GraphQL endpoints</mark> <a href="#finding-graphql-endpoints" id="finding-graphql-endpoints"></a>
+## <mark style="color:purple;">GraphQL endpoints</mark> <a href="#finding-graphql-endpoints" id="finding-graphql-endpoints"></a>
 
-### <mark style="color:yellow;">Universal queries</mark> <a href="#universal-queries" id="universal-queries"></a>
+### <mark style="color:purple;">Universal queries</mark> <a href="#universal-queries" id="universal-queries"></a>
 
 Sending `query{__typename}` to a GraphQL endpoint will return `{"data": {"__typename": "query"}}` in the response.
 
 Try with POST, GET or POST with `application/x-www-form-urlencoded`
 
-## <mark style="color:yellow;">Common endpoint names</mark> <a href="#common-endpoint-names" id="common-endpoint-names"></a>
+## <mark style="color:purple;">Common endpoint names</mark> <a href="#common-endpoint-names" id="common-endpoint-names"></a>
 
 ```
 /graphql
@@ -53,9 +53,9 @@ More endpoint: [https://github.com/danielmiessler/SecLists/blob/fe2aa9e7b04b98d9
 **Note**: Response could be "query not present" or similar. (meaning it's present)
 {% endhint %}
 
-## <mark style="color:yellow;">Discovering schema information</mark> <a href="#discovering-schema-information" id="discovering-schema-information"></a>
+## <mark style="color:purple;">Discovering schema information</mark> <a href="#discovering-schema-information" id="discovering-schema-information"></a>
 
-### <mark style="color:yellow;">Using introspection</mark> <a href="#using-introspection" id="using-introspection"></a>
+### <mark style="color:purple;">Using introspection</mark> <a href="#using-introspection" id="using-introspection"></a>
 
 To use introspection to discover schema information, query the `__schema` field. (could be disabled in production environments)
 
@@ -183,11 +183,11 @@ If introspection is enabled but the query fails, try removing the onOperation, o
 
 Now you can easily view relationships between schema entities using a GraphQL visualizer: [https://graphql-kit.com/graphql-voyager/](https://graphql-kit.com/graphql-voyager/)
 
-### <mark style="color:yellow;">Suggestions</mark>
+### <mark style="color:purple;">Suggestions</mark>
 
 Suggestions are a feature of the Apollo GraphQL platform where the server suggests query amendments in error messages. [Clairvoyance](https://github.com/nikitastupin/clairvoyance) is a tool that uses suggestions to automatically recover all or part of a GraphQL schema, even when introspection is disabled.
 
-## <mark style="color:yellow;">Bypassing GraphQL introspection defenses</mark> <a href="#bypassing-graphql-introspection-defenses" id="bypassing-graphql-introspection-defenses"></a>
+## <mark style="color:purple;">Bypassing GraphQL introspection defenses</mark> <a href="#bypassing-graphql-introspection-defenses" id="bypassing-graphql-introspection-defenses"></a>
 
 * Developers might use a regex to exclude the `__schema` keyword. Try spaces, new lines, and commas, which GraphQL ignores but flawed regex does not.
 
@@ -209,7 +209,7 @@ Suggestions are a feature of the Apollo GraphQL platform where the server sugges
 
 * POST request with a content-type of `x-www-form-urlencoded`
 
-## <mark style="color:yellow;">Bypassing rate limiting</mark> <a href="#bypassing-rate-limiting-using-aliases" id="bypassing-rate-limiting-using-aliases"></a>
+## <mark style="color:purple;">Bypassing rate limiting</mark> <a href="#bypassing-rate-limiting-using-aliases" id="bypassing-rate-limiting-using-aliases"></a>
 
 Use aliases to return multiple instances of the same type of object in one request.
 
@@ -229,7 +229,7 @@ Use aliases to return multiple instances of the same type of object in one reque
     }
 ```
 
-## <mark style="color:yellow;">GraphQL CSRF</mark> <a href="#graphql-csrf" id="graphql-csrf"></a>
+## <mark style="color:purple;">GraphQL CSRF</mark> <a href="#graphql-csrf" id="graphql-csrf"></a>
 
 GraphQL can be exploited for CSRF attacks. POST requests with `application/json` content type are secure against forgery if the content type is validated.
 

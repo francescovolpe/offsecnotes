@@ -1,10 +1,10 @@
 # Framework
 
-## <mark style="color:yellow;">React Native</mark>
+## <mark style="color:purple;">React Native</mark>
 
 **Read React Native JavaScript source code**
 
-### <mark style="color:yellow;">Without Hermes engine</mark> <a href="#react-native-without-hermes-engine" id="react-native-without-hermes-engine"></a>
+### <mark style="color:purple;">Without Hermes engine</mark> <a href="#react-native-without-hermes-engine" id="react-native-without-hermes-engine"></a>
 
 ```sh
 # 1. Dissasemble
@@ -19,7 +19,7 @@ cat index.android.bundle
 # 4. Build and sign the apk
 ```
 
-### <mark style="color:yellow;">With Hermes engine</mark> <a href="#react-native-without-hermes-engine" id="react-native-without-hermes-engine"></a>
+### <mark style="color:purple;">With Hermes engine</mark> <a href="#react-native-without-hermes-engine" id="react-native-without-hermes-engine"></a>
 
 You need [https://github.com/Kirlif/HBC-Tool](https://github.com/Kirlif/HBC-Tool)
 

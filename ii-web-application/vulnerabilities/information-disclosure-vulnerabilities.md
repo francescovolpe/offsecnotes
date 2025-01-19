@@ -1,11 +1,11 @@
 # Information disclosure
 
-## <mark style="color:yellow;">Fuzzing</mark>
+## <mark style="color:purple;">Fuzzing</mark>
 
 * Add payload positions to parameters and use pre-built wordlists of fuzz strings to test a high volume of different inputs in quick succession.
 * Use grep matching rules to quickly identify occurrences of keywords, such as error, invalid, SELECT, SQL, and so on.
 
-## <mark style="color:yellow;">Common sources of information disclosure</mark>
+## <mark style="color:purple;">Common sources of information disclosure</mark>
 
 * Files for web crawlers
   * `/robots.txt`

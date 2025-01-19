@@ -1,6 +1,6 @@
 # Javascript & Obfuscation
 
-## <mark style="color:yellow;">Strings</mark>
+## <mark style="color:purple;">Strings</mark>
 
 ```javascript
 '\b'    // Backspace
@@ -55,9 +55,9 @@ Tagged template strings
 alert`1337` // Calls the alert function with the argument 1337
 ```
 
-## <mark style="color:yellow;">Obfuscation</mark>
+## <mark style="color:purple;">Obfuscation</mark>
 
-### <mark style="color:yellow;">Hexadecimal</mark>
+### <mark style="color:purple;">Hexadecimal</mark>
 
 Hexadecimal encoding works only within strings. If you attempt to use it as an identifier, it will fail.
 
@@ -73,7 +73,7 @@ function a(){}
 \x61()    // Fails
 ```
 
-### <mark style="color:yellow;">Unicode</mark>
+### <mark style="color:purple;">Unicode</mark>
 
 Unicode escapes also work in strings but are also allowed in identifiers, but you cannot encode parentheses or other characters.
 
@@ -107,7 +107,7 @@ function a(){}
 \u{61}\u{6c}\u{65}\u{72}\u{74}() // Call alert()
 ```
 
-### <mark style="color:yellow;">Octal</mark>
+### <mark style="color:purple;">Octal</mark>
 
 Can only be used strings. Using a number outside the octal range returns the number itself in JavaScript.
 
@@ -119,7 +119,7 @@ Can only be used strings. Using a number outside the octal range returns the num
 `\9`      // number outside the octal range so 9 is returned
 ```
 
-### <mark style="color:yellow;">Eval and escapes</mark>
+### <mark style="color:purple;">Eval and escapes</mark>
 
 Since `eval()` operates on strings, it attempts to decode the input provided to it. As a result, when the JavaScript is executed, the engine processes the decoded string. This behavior allows us to **bypass some of the previously defined rules**.
 
@@ -159,7 +159,7 @@ eval('\\u\x300\661=123')
 // (3) a = 123
 ```
 
-### <mark style="color:yellow;">Javascript eval() + atob()</mark> <a href="#obfuscation-via-unicode-escaping" id="obfuscation-via-unicode-escaping"></a>
+### <mark style="color:purple;">Javascript eval() + atob()</mark> <a href="#obfuscation-via-unicode-escaping" id="obfuscation-via-unicode-escaping"></a>
 
 ```javascript
 eval(atob("YWxlcnQoKQ=="))    // alert()
@@ -169,7 +169,7 @@ eval(atob("YWxlcnQoKQ=="))    // alert()
 
 This can be useful to bypass char/string blocked.
 
-## <mark style="color:yellow;">eval() - DOM XSS</mark>
+## <mark style="color:purple;">eval() - DOM XSS</mark>
 
 * Consider `eval('var searchResultsObj = ' + this.responseText);`
   * If you can manipulate the `this.responseText` string you can execute an alert.
@@ -185,7 +185,7 @@ This can be useful to bypass char/string blocked.
 * This specific example is a case of Reflected DOM XSS
 {% endhint %}
 
-## <mark style="color:yellow;">replace()</mark>
+## <mark style="color:purple;">replace()</mark>
 
 The `replace()` method returns a new string with matches of a pattern replaced by a replacement, which can be a string or a function. The pattern can be a string or RegExp.
 
@@ -199,7 +199,7 @@ function escapeHTML(html) {
 
 You can easy bypass this with `<><img src=1 onerror=alert(1)>`
 
-## <mark style="color:yellow;">document.location</mark>
+## <mark style="color:purple;">document.location</mark>
 
 In JavaScript, the `location` variable (`document.location`) represents the URL of the current document. Assigning a value to it redirects the page to that URL.
 
@@ -209,7 +209,7 @@ location = 'https://google.it';
 </script>
 ```
 
-## <mark style="color:yellow;">Javascript in innerHTML</mark>
+## <mark style="color:purple;">Javascript in innerHTML</mark>
 
 ```html
 name = "<script>alert('I am John in an annoying alert!')</script>";
@@ -220,7 +220,7 @@ HTML specifies that a `<script>` tag inserted with innerHTML should not execute
 
 In this case you can use `const name = "<img src='x' onerror='alert(1)'>";`
 
-## <mark style="color:yellow;">Javascript in href attribute</mark>
+## <mark style="color:purple;">Javascript in href attribute</mark>
 
 Possible values:
 

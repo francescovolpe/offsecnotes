@@ -33,34 +33,34 @@ Host: portswigger.net
 Some intercepting proxies use the Host header to determine the target IP address, making testing difficult. Burp Suite keeps the Host header and target IP address separate, which is crucial.
 {% endhint %}
 
-### <mark style="color:yellow;">Supply an arbitrary Host header</mark>
+### <mark style="color:purple;">Supply an arbitrary Host header</mark>
 
 Start by testing the effect of providing an arbitrary domain name in the Host header
 
 * Occasionally, you can still reach the target website with an unexpected Host header
 * Or get an invalid Host header error
 
-## <mark style="color:yellow;">Exploitation</mark>
+## <mark style="color:purple;">Exploitation</mark>
 
-### <mark style="color:yellow;">Password reset poisoning</mark>
+### <mark style="color:purple;">Password reset poisoning</mark>
 
 * The website sends an email to the user that contains a link for resetting their password: `https://normal-website.com/reset?token=0a1b2c3d4e5f6g7h8i9j`.
 * Intercept the HTTP request, change the Host header to a domain you control, then visit the vulnerable website and use the stolen token in the appropriate parameter
 
-### <mark style="color:yellow;">Accessing restricted functionality</mark>
+### <mark style="color:purple;">Accessing restricted functionality</mark>
 
 Admin panel with host: `Host: localhost`
 
-### <mark style="color:yellow;">Accessing internal websites with brute-forcing</mark>
+### <mark style="color:purple;">Accessing internal websites with brute-forcing</mark>
 
 Bruteforce subdomain
 
-### <mark style="color:yellow;">Web cache poisoning via the Host header</mark>
+### <mark style="color:purple;">Web cache poisoning via the Host header</mark>
 
 * Client-side vulnerabilities like XSS aren't exploitable if they're caused by the Host header, as attackers can't manipulate a victim's browser to generate a harmful host.
 * However, if the target uses a web cache, it may be possible to turn this useless [web-cache-poisoning.md](web-cache-poisoning.md "mention")
 
-### <mark style="color:yellow;">Routing-based SSRF</mark>
+### <mark style="color:purple;">Routing-based SSRF</mark>
 
 If load balancers and reverse proxies are misconfigured to forward requests based on an unvalidated Host header, you can exploit this to reroute requests to any system you choose -> exploit this to have access internal-only systems.
 
@@ -70,7 +70,7 @@ In the host header add your `attacker.com` website. If it doesn't work try to id
 
 You can also brute force `192.168.0.0/16` , `10.0.0.0/8`, etc.
 
-### <mark style="color:yellow;">Connection state attacks</mark>
+### <mark style="color:purple;">Connection state attacks</mark>
 
 You may encounter servers that only perform thorough validation on the first request they receive over a new connection. So, you can potentially bypass this validation by sending an innocent-looking initial request then following up with your malicious one down the same connection.
 
@@ -78,11 +78,11 @@ You may encounter servers that only perform thorough validation on the first req
 **Note**: you need to set up a single connection.
 {% endhint %}
 
-### <mark style="color:yellow;">Exploiting server-side vulnerabilities</mark>
+### <mark style="color:purple;">Exploiting server-side vulnerabilities</mark>
 
 E.g. SQLi, etc.
 
-## <mark style="color:yellow;">Bypass validation</mark>
+## <mark style="color:purple;">Bypass validation</mark>
 
 * Parsing flaws
 

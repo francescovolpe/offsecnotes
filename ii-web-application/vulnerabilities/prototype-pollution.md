@@ -86,7 +86,7 @@ console.log(obj.z)                    // Output: undefined
 
 More info: [https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/](https://www.netspi.com/blog/technical-blog/web-application-pentesting/ultimate-guide-to-prototype-pollution/)
 
-## <mark style="color:yellow;">Prototype pollution sources</mark> <a href="#prototype-pollution-sources" id="prototype-pollution-sources"></a>
+## <mark style="color:purple;">Prototype pollution sources</mark> <a href="#prototype-pollution-sources" id="prototype-pollution-sources"></a>
 
 The three most common JavaScript patterns that can lead to prototype pollution are merging, cloning, and value setting operations. Anytime an object is dynamically built from user input, there's a risk of prototype pollution.
 
@@ -98,9 +98,9 @@ to do
 
 </details>
 
-## <mark style="color:yellow;">Client-side prototype pollution (manual)</mark> <a href="#finding-client-side-prototype-pollution-sources-using-dom-invader" id="finding-client-side-prototype-pollution-sources-using-dom-invader"></a>
+## <mark style="color:purple;">Client-side prototype pollution (manual)</mark> <a href="#finding-client-side-prototype-pollution-sources-using-dom-invader" id="finding-client-side-prototype-pollution-sources-using-dom-invader"></a>
 
-### <mark style="color:yellow;">**Finding sources**</mark>  <a href="#finding-client-side-prototype-pollution-sources-manually" id="finding-client-side-prototype-pollution-sources-manually"></a>
+### <mark style="color:purple;">**Finding sources**</mark>  <a href="#finding-client-side-prototype-pollution-sources-manually" id="finding-client-side-prototype-pollution-sources-manually"></a>
 
 **In the URL**
 
@@ -148,7 +148,7 @@ Test any kind of JSON. E.g. a JWT could be parsed client-side for example, witho
 } 
 ```
 
-### <mark style="color:yellow;">**Finding gadgets**</mark>
+### <mark style="color:purple;">**Finding gadgets**</mark>
 
 Being able to affect the global `__proto__` property is not very useful unless you can use it to affect other parts of the code.
 
@@ -156,7 +156,7 @@ Being able to affect the global `__proto__` property is not very useful unless y
 **Tip**: Third-party libraries of prototype pollution gadgets [https://github.com/BlackFan/client-side-prototype-pollution](https://github.com/BlackFan/client-side-prototype-pollution)
 {% endhint %}
 
-## <mark style="color:yellow;">Browser APIs</mark>
+## <mark style="color:purple;">Browser APIs</mark>
 
 **Fetch**
 
@@ -191,7 +191,7 @@ Same thing. `defineProperty` accept other "descriptor" a.g. `value`.&#x20;
 
 [https://portswigger.net/web-security/prototype-pollution/client-side/browser-apis#prototype-pollution-via-object-defineproperty](https://portswigger.net/web-security/prototype-pollution/client-side/browser-apis#prototype-pollution-via-object-defineproperty)
 
-## <mark style="color:yellow;">Client-side prototype pollution (with DOM Invader)</mark>
+## <mark style="color:purple;">Client-side prototype pollution (with DOM Invader)</mark>
 
 **Finding sources**
 
@@ -201,7 +201,7 @@ Same thing. `defineProperty` accept other "descriptor" a.g. `value`.&#x20;
 
 [https://portswigger.net/burp/documentation/desktop/tools/dom-invader/prototype-pollution#scanning-for-prototype-pollution-gadgets](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/prototype-pollution#scanning-for-prototype-pollution-gadgets)
 
-## <mark style="color:yellow;">Server-side prototype pollution</mark> <a href="#finding-client-side-prototype-pollution-sources-using-dom-invader" id="finding-client-side-prototype-pollution-sources-using-dom-invader"></a>
+## <mark style="color:purple;">Server-side prototype pollution</mark> <a href="#finding-client-side-prototype-pollution-sources-using-dom-invader" id="finding-client-side-prototype-pollution-sources-using-dom-invader"></a>
 
 Javascript in the backend
 
@@ -282,9 +282,9 @@ Server-Side Prototype Pollution Scanner (Burp extension)
 
 Right click on the request -> Extensions -> Server-Side Prototype Pollution Scanner -> Server-Side Prototype Pollution
 
-## <mark style="color:yellow;">Bypassing defenses</mark>
+## <mark style="color:purple;">Bypassing defenses</mark>
 
-### <mark style="color:yellow;">Via the constructor</mark>
+### <mark style="color:purple;">Via the constructor</mark>
 
 A common defense is to remove any properties with the key `__proto__` from user-controlled objects before merging them.
 
@@ -304,7 +304,7 @@ vulnerable-website.com/?foo.constructor.prototype=bar
 }
 ```
 
-### <mark style="color:yellow;">Bypassing flawed key sanitization</mark>
+### <mark style="color:purple;">Bypassing flawed key sanitization</mark>
 
 Read the js code to understand the defenses. E.g. bypass the strips of `__proto__`
 

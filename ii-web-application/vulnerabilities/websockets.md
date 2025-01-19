@@ -67,11 +67,11 @@ It is common to use json
 
 </details>
 
-## <mark style="color:yellow;">Manipulating WebSocket connections</mark>
+## <mark style="color:purple;">Manipulating WebSocket connections</mark>
 
 [https://portswigger.net/web-security/websockets#manipulating-websocket-connections](https://portswigger.net/web-security/websockets#manipulating-websocket-connections)
 
-## <mark style="color:yellow;">WebSockets vulnerabilities</mark>
+## <mark style="color:purple;">WebSockets vulnerabilities</mark>
 
 * If inputs are transmitted and processed server-side
   * Server-side attacks (SQLi, XXE, etc.)
@@ -81,7 +81,7 @@ It is common to use json
     * `{"message":"<img src=1 onerror='alert(1)'>"}`
 * Also blind vulnerabilities
 
-## <mark style="color:yellow;">Cross-site WebSocket hijacking</mark>
+## <mark style="color:purple;">Cross-site WebSocket hijacking</mark>
 
 An attacker can craft a malicious webpage on their domain, initiating a cross-site WebSocket connection to the susceptible application. (As CSRF, the websocket connection mustn't contain CSRF tokens)
 

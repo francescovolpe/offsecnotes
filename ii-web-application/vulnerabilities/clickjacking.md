@@ -12,7 +12,7 @@
 
 </details>
 
-## <mark style="color:yellow;">Example</mark>
+## <mark style="color:purple;">Example</mark>
 
 ```html
 <style>
@@ -34,14 +34,14 @@
 <iframe src="http://victim-site.com"></iframe>
 ```
 
-## <mark style="color:yellow;">Prefilled form input</mark>
+## <mark style="color:purple;">Prefilled form input</mark>
 
 Some websites allow prepopulating form inputs with `GET` parameters before submission.
 
 * `http://website.com/account?email=test@test.com`
 * In this case the email form field will be set to `test@test.com`
 
-## <mark style="color:yellow;">Frame busting scripts</mark>
+## <mark style="color:purple;">Frame busting scripts</mark>
 
 A common client-side defense implemented through web browsers is the use of frame-busting or frame-breaking scripts. These can be implemented via proprietary browser JavaScript add-ons or extensions such as NoScript (make all frames visible, prevent clicking on invisible frames, etc.)
 
@@ -53,10 +53,10 @@ An effective attacker workaround against frame busters is to use the HTML5 ifram
 
 When this is set with the `allow-forms` or `allow-scripts` values and the `allow-top-navigation` value is omitted then the frame buster script can be neutralized as the iframe cannot check whether or not it is the top window.
 
-## <mark style="color:yellow;">Clickjacking + DOM XSS</mark>
+## <mark style="color:purple;">Clickjacking + DOM XSS</mark>
 
 You must first identified the XSS exploit. The XSS exploit is then combined with the iframe target URL so that the user clicks on the button or link and consequently executes the DOM XSS attack.
 
-## <mark style="color:yellow;">Multistep clickjacking</mark>
+## <mark style="color:purple;">Multistep clickjacking</mark>
 
 Attacker manipulation of inputs to a target website may necessitate multiple actions. These actions can be implemented by the attacker using multiple divisions or iframes.

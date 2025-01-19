@@ -1,6 +1,6 @@
 # Burp Suite
 
-## <mark style="color:yellow;">**Burp Scanner**</mark>
+## <mark style="color:purple;">**Burp Scanner**</mark>
 
 **Active scan**
 
@@ -18,13 +18,13 @@ Highlight the insertion point, right-click, and select "**Scan selected insertio
 
 Highlight a character sequence, usually a parameter value, and select Extensions > "Scan manual insertion point".
 
-## <mark style="color:yellow;">**Broken Access Control**</mark>
+## <mark style="color:purple;">**Broken Access Control**</mark>
 
 * **Multi-Account Containers** (extension) _It create a separate browser environment for each account you are testing_
 * **Autorize** (burp extension)
   * Automatically repeats every request with the session of the low privileged user
 
-## <mark style="color:yellow;">**PwnFox**</mark>
+## <mark style="color:purple;">**PwnFox**</mark>
 
 PwnFox _provide useful tools for your security audit_
 
@@ -32,13 +32,13 @@ PwnFox _provide useful tools for your security audit_
 * Containers Profiles (it will automatically add a X-PwnFox-Color header to hightlight the query in Burp)
 * Other: https://github.com/yeswehack/PwnFox
 
-## <mark style="color:yellow;">**Out of band vulnerabilities**</mark>
+## <mark style="color:purple;">**Out of band vulnerabilities**</mark>
 
 Many companies filtering and block outbound traffic to the default collaborator domain.
 
 * **webhook.site** _Webhook.site generates a free, unique URL and e-mail address and lets you see everything that’s sent there instantly._
 
-## <mark style="color:yellow;">**Logger ++ filters: Top 25 Parameters**</mark>
+## <mark style="color:purple;">**Logger ++ filters: Top 25 Parameters**</mark>
 
 * Vulnerabilities (Cross-Site Scripting, Server-Side Request Forgery, Local File Inclusion, SQL Injection, Remote Code Execution, Open Redirect)
 * https://owasp.org/www-project-top-25-parameters/

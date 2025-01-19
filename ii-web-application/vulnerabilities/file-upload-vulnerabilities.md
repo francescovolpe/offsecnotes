@@ -4,9 +4,9 @@
 Servers typically won't execute files unless they have been configured to do so. In some cases the contents of the file may still be served as plain text.
 {% endhint %}
 
-## <mark style="color:yellow;">Flawed validation of FU</mark>
+## <mark style="color:purple;">Flawed validation of FU</mark>
 
-### <mark style="color:yellow;">**Content-Type**</mark>
+### <mark style="color:purple;">**Content-Type**</mark>
 
 <details>
 
@@ -18,7 +18,7 @@ When we upload binary files (like png) the content type multipart/form-data is p
 
 Change `Content-Type` to an allow MIME type. (e.g. `image/jpeg`)
 
-### <mark style="color:yellow;">Blacklisted extensions</mark>
+### <mark style="color:purple;">Blacklisted extensions</mark>
 
 * Change extensions
 
@@ -43,7 +43,7 @@ exploit.asp%00.jpg
 exploit.p.phphp
 ```
 
-### <mark style="color:yellow;">File content validation</mark>
+### <mark style="color:purple;">File content validation</mark>
 
 More secure servers try to verify that the contents of the file actually match what is expected.
 
@@ -76,7 +76,7 @@ exiftool -Comment="<?php echo 'START ' . file_get_contents('/etc/passwd') . ' EN
 
 This works if you can upload a php extension file. This works why you have a real image file (that bypass rescritions) but when you open the image it's executed as php script.
 
-## <mark style="color:yellow;">Overriding server configuration</mark>
+## <mark style="color:purple;">Overriding server configuration</mark>
 
 Many servers allow configuration files in directories to override global settings. Web servers use them when present, but they're not accessible via HTTP requests.
 
@@ -85,7 +85,7 @@ If the file extension is blacklisted, you might trick the server into mapping a 
 * Apache servers -> `.htaccess`
 * Example: `AddType application/x-httpd-php .<EXTENSION>`
 
-## <mark style="color:yellow;">PUT method</mark>
+## <mark style="color:purple;">PUT method</mark>
 
 ```http
 PUT /images/exploit.php HTTP/1.1
@@ -96,7 +96,7 @@ Content-Length: 49
 <?php echo file_get_contents('/path/to/file'); ?>
 ```
 
-## <mark style="color:yellow;">**FU + PT**</mark>
+## <mark style="color:purple;">**FU + PT**</mark>
 
 Defense: Servers block script execution in the file upload folder. Web servers use the filename field in `multipart/form-data` requests to determine the file's name and location. -> Change filename field combining path traversal
 
@@ -108,18 +108,18 @@ Content-Disposition: form-data; name="avatar"; filename="../exploit.php"
 Tip: pay attention to stripping. In that case, obfuscate with `filename="..%2fexploit.php"`.
 {% endhint %}
 
-## <mark style="color:yellow;">FU without RCE</mark>
+## <mark style="color:purple;">FU without RCE</mark>
 
 If you can upload HTML files or SVG images, you can use tags to create stored XSS payloads. If the server parses XML-based files like `.doc` or `.xls`, it could be a vector for XXE injection attacks.
 
-## <mark style="color:yellow;">FU + Race Conditions</mark>
+## <mark style="color:purple;">FU + Race Conditions</mark>
 
 Some websites upload files to the main filesystem and remove them if they fail validation. This is common in sites using anti-virus software to check for malware. During the short time the file exists on the server, an attacker could potentially execute it.
 
 * Race conditions
 * Difficult to detect
 
-### <mark style="color:yellow;">Race conditions in URL-based file uploads</mark>
+### <mark style="color:purple;">Race conditions in URL-based file uploads</mark>
 
 If a file is loaded into a temporary directory with a randomized name, it should be impossible for an attacker to exploit any race conditions.
 

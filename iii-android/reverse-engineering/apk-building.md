@@ -1,6 +1,6 @@
 # APK Building
 
-### <mark style="color:yellow;">Android Application Project</mark> <a href="#proj" id="proj"></a>
+### <mark style="color:purple;">Android Application Project</mark> <a href="#proj" id="proj"></a>
 
 {% hint style="info" %}
 **Note**: the directory names are conventional — they could be any name. Additionally, the contents of each directory could be spread across multiple folders.
@@ -24,7 +24,7 @@ Optionals:
   * 📁 **libs**: comprises Java `.jar` and/or Android `.aar` archive files mostly for the compilation phase.
   * 📁 **lib**: contains native shared `.so` and/or static `.a` library files.
 
-## <mark style="color:yellow;">Android Package (apk)</mark>
+## <mark style="color:purple;">Android Package (apk)</mark>
 
 Simply a ZIP archive with an `.apk` extension
 
@@ -39,7 +39,7 @@ It almost always embodies the following files and directories, though only `Andr
 * 📁 **lib**: contains native shared libraries of the package
 * An APK may contain further files and folders
 
-## <mark style="color:yellow;">Building process</mark>
+## <mark style="color:purple;">Building process</mark>
 
 1.  📁 res (withouth res/values) and 🗎 AndroidManifest.xml are compiled (aapt \[compile] tool)
 

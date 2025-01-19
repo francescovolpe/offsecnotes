@@ -1,12 +1,12 @@
 # Insecure Data Storage
 
-## <mark style="color:yellow;">Logs</mark>
+## <mark style="color:purple;">Logs</mark>
 
 ```sh
 adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"
 ```
 
-## <mark style="color:yellow;">Local Storage</mark>
+## <mark style="color:purple;">Local Storage</mark>
 
 ```sh
 # Print out applications Files, Caches and other directories
@@ -19,7 +19,7 @@ objection -g <package_name> run env
 * Check for sensitive information/data store on Shared Preferences or not
 * Check if sensitive information/data is stored in the local storage database using strong encryption on or not
 
-## <mark style="color:yellow;">Application Memory</mark>
+## <mark style="color:purple;">Application Memory</mark>
 
 Example: after login see how long the app keeps the password in memory
 

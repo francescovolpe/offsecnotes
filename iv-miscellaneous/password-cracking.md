@@ -1,14 +1,14 @@
 # Password Cracking
 
-## <mark style="color:yellow;">Identify hash</mark>
+## <mark style="color:purple;">Identify hash</mark>
 
-* [_https://hashes.com/en/tools/hash\_identifier_](https://hashes.com/en/tools/hash\_identifier)
+* [_https://hashes.com/en/tools/hash\_identifier_](https://hashes.com/en/tools/hash_identifier)
 
-## <mark style="color:yellow;">Cracking hash</mark>
+## <mark style="color:purple;">Cracking hash</mark>
 
 * [https://crackstation.net](https://crackstation.net/) _CrackStation uses massive pre-computed lookup tables to crack password hashes_
 
-## <mark style="color:yellow;">Cracking shadow</mark>
+## <mark style="color:purple;">Cracking shadow</mark>
 
 ```sh
 # unshadow use also GECOS information (field containing information about the user).
@@ -20,7 +20,7 @@ hashcat -a 0 -m 1800 hash.txt wordlist.txt
 hashcat -a 0 -m 1800 hash.txt wordlist.txt -r /usr/share/hashcat/rules/best64.rule
 ```
 
-## <mark style="color:yellow;">Cracking online passwords</mark>
+## <mark style="color:purple;">Cracking online passwords</mark>
 
 ```sh
 # Basic Authentication 
@@ -32,7 +32,7 @@ hydra -L <users_file> -P <password_file> <url> http[s]-[post|get]-form \ "index.
 hydra -L user.txt -P pass.txt <ip> <protocol> 
 ```
 
-## <mark style="color:yellow;">Rules (password bruteforce)</mark>
+## <mark style="color:purple;">Rules (password bruteforce)</mark>
 
 * **FIRST CHOICE**:  best64 (now best66).  Fast, works well.
   * [https://github.com/hashcat/hashcat/blob/master/rules/best66.rule](https://github.com/hashcat/hashcat/blob/master/rules/best66.rule)
@@ -41,7 +41,7 @@ hydra -L user.txt -P pass.txt <ip> <protocol>
   * (3) [https://github.com/hashcat/hashcat/blob/master/rules/InsidePro-HashManager.rule](https://github.com/hashcat/hashcat/blob/master/rules/InsidePro-HashManager.rule)
   * You can also combine them...
 * **FOURTH CHOICE**: OneRuleToRuleThemAll. (\~50k). The best
-  * [https://github.com/NotSoSecure/password\_cracking\_rules/blob/master/OneRuleToRuleThemAll.rule](https://github.com/NotSoSecure/password\_cracking\_rules/blob/master/OneRuleToRuleThemAll.rule)
+  * [https://github.com/NotSoSecure/password\_cracking\_rules/blob/master/OneRuleToRuleThemAll.rule](https://github.com/NotSoSecure/password_cracking_rules/blob/master/OneRuleToRuleThemAll.rule)
 
 **Generate wordlist based on rules**
 

@@ -63,12 +63,12 @@ Base64 token decoding&#x20;
 O:4:"User":2:{s:8:"username";s:6:"wiener";s:12:"access_token";s:32:"flznt7e4pa3hljg7wiz2dxln0ur7ud66";}
 ```
 
-## <mark style="color:yellow;">Manipulating serialized objects</mark>
+## <mark style="color:purple;">Manipulating serialized objects</mark>
 
 * You can either edit the object directly in its byte stream form
 * You can write a short script in the corresponding language to create and serialize the new object yourself
 
-### <mark style="color:yellow;">Modifying object attributes</mark>
+### <mark style="color:purple;">Modifying object attributes</mark>
 
 ```php
 $user = unserialize($_COOKIE);
@@ -96,7 +96,7 @@ O:4:"User":2:{s:8:"username";s:6:"carlos";s:7:"isAdmin";b:1;}
 **Note**: This simple scenario is not common in the wild
 {% endhint %}
 
-### <mark style="color:yellow;">Modifying data types</mark>
+### <mark style="color:purple;">Modifying data types</mark>
 
 PHP -> if you perform a loose comparison `==` between an integer and a string, PHP will attempt to convert the string to an integer, meaning that `5 == "5"` evaluates to `true`.
 
@@ -120,12 +120,12 @@ Attacker can modify the password attribute so that it contained the integer `0` 
 * When modifying data types in any serialized object format, update any type labels and length indicators in the serialized data too (Otherwise, the serialized object will be corrupted and will not be deserialized).
 {% endhint %}
 
-## <mark style="color:yellow;">Using application functionality</mark>
+## <mark style="color:purple;">Using application functionality</mark>
 
 * Consider "Delete user" functionality, the user's profile picture is deleted by accessing the file path in the $user->image\_location attribute
 * If this $user was created from a serialized object, an attacker could exploit this by passing in a modified object with the image\_location set to an arbitrary file path
 
-## <mark style="color:yellow;">Magic methods</mark>
+## <mark style="color:purple;">Magic methods</mark>
 
 * Magic methods are a special type of method that are automatically triggered by specific events or scenarios, without explicit invocation. Developers use them to define code execution for these events (e.g., `__construct()`). Some languages have magic methods that are invoked automatically during deserialization.
 * In Java deserialization, the `ObjectInputStream.readObject()` method is used to read data from the initial byte stream and essentially acts like a constructor for "re-initializing" a serialized object.
@@ -139,7 +139,7 @@ private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundE
 
 * They allow you to pass data from a serialized object into the website's code before the object is fully deserialized.
 
-## <mark style="color:yellow;">Injecting arbitrary objects</mark>
+## <mark style="color:purple;">Injecting arbitrary objects</mark>
 
 Deserialization methods often don't validate the objects they process. Attackers can pass any serializable class, allowing them to instantiate arbitrary classes. With source code access, you can:
 
@@ -147,12 +147,12 @@ Deserialization methods often don't validate the objects they process. Attackers
 * Check if they perform unsafe operations on controllable data
 * Then pass in a serialized object of this class to use its magic method for an exploit.
 
-## <mark style="color:yellow;">Gadget chains</mark>
+## <mark style="color:purple;">Gadget chains</mark>
 
 * A "gadget" is a code snippet in an application that helps an attacker achieve a goal, such as invoking a method to pass input into another gadget. Many insecure deserialization vulnerabilities are exploitable through gadget chains.
 * Identifying gadget chains manually is arduous and nearly impossible without source code access. But if a gadget chain in Java's Apache Commons Collections library is exploitable on one website, other websites using this library may also be vulnerable.
 
-### <mark style="color:yellow;">Tools (ysoserial , PHPGGC)</mark>
+### <mark style="color:purple;">Tools (ysoserial , PHPGGC)</mark>
 
 They lets you select a provided gadget chain for a target library, input a command to execute, and generates a serialized object. This reduces the manual effort of crafting gadget chains, though some trial and error is still needed.
 
@@ -179,6 +179,6 @@ java -jar ysoserial-all.jar CommonsCollections4 "rm /tmp/file.txt" | base64 -w 0
 * A payload might work even if the server returns an error...
 {% endhint %}
 
-### <mark style="color:yellow;">Working with documented gadget chains</mark>
+### <mark style="color:purple;">Working with documented gadget chains</mark>
 
 If no dedicated tool exists for exploiting known gadget chains in the target application's framework, consider searching online for documented exploits to adapt manually.

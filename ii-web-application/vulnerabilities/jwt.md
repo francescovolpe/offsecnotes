@@ -25,13 +25,13 @@ Without the server's secret signing key, generating a correct signature for a gi
 * By design, servers don't store information about the JWTs they issue. Each token is a self-contained entity.
 * JWT attacks involve users sending modified JWTs to the server to achieve malicious goals.
 
-## <mark style="color:yellow;">Arbitrary signatures</mark> <a href="#accepting-arbitrary-signatures" id="accepting-arbitrary-signatures"></a>
+## <mark style="color:purple;">Arbitrary signatures</mark> <a href="#accepting-arbitrary-signatures" id="accepting-arbitrary-signatures"></a>
 
 Sometimes, developers decode tokens without verifying the signature.
 
 So, tamper the JWT and ignore the signature.
 
-## <mark style="color:yellow;">No signature</mark> <a href="#accepting-tokens-with-no-signature" id="accepting-tokens-with-no-signature"></a>
+## <mark style="color:purple;">No signature</mark> <a href="#accepting-tokens-with-no-signature" id="accepting-tokens-with-no-signature"></a>
 
 The JWT header contains an `alg` parameter.
 
@@ -45,7 +45,7 @@ JWTs can be left unsigned (`alg` set to `none`). Servers usually reject unsigned
 **Tip**: Use JSON Web Tokens Burp Extension. Go to the request -> JSON Web Tokens and test "Alg None  Attack".
 {% endhint %}
 
-## <mark style="color:yellow;">Brute-forcing secret keys</mark> <a href="#brute-forcing-secret-keys" id="brute-forcing-secret-keys"></a>
+## <mark style="color:purple;">Brute-forcing secret keys</mark> <a href="#brute-forcing-secret-keys" id="brute-forcing-secret-keys"></a>
 
 Some signing algorithms, such as HS256 (HMAC + SHA-256), use a string as the secret key -> crack it.
 
@@ -57,7 +57,7 @@ hashcat -a 0 -m 16500 <jwt> <wordlist>
 
 Go on JWT Editor Keys tab -> New Symmetric Key -> specify secret -> generate the key -> and finally sign.
 
-## <mark style="color:yellow;">JWT header parameter injections</mark> <a href="#jwt-header-parameter-injections" id="jwt-header-parameter-injections"></a>
+## <mark style="color:purple;">JWT header parameter injections</mark> <a href="#jwt-header-parameter-injections" id="jwt-header-parameter-injections"></a>
 
 <details>
 
@@ -102,7 +102,7 @@ https://example.com/.well-known/jwks.json
 
 </details>
 
-### <mark style="color:yellow;">Injecting self-signed JWTs via jwk</mark> <a href="#injecting-self-signed-jwts-via-the-jwk-parameter" id="injecting-self-signed-jwts-via-the-jwk-parameter"></a>
+### <mark style="color:purple;">Injecting self-signed JWTs via jwk</mark> <a href="#injecting-self-signed-jwts-via-the-jwk-parameter" id="injecting-self-signed-jwts-via-the-jwk-parameter"></a>
 
 Servers should use a limited whitelist of public keys to verify JWTs. However, misconfigured servers may accept any key in the `jwk` parameter. So you can sign JWT with your own RSA private key and embedding the matching public key in the `jwk` header.
 
@@ -117,7 +117,7 @@ Servers should use a limited whitelist of public keys to verify JWTs. However, m
 **Note**: you can also perform this attack manually by adding the `jwk` header yourself. So test it even if the token doesn't have `jwk` header.
 {% endhint %}
 
-### <mark style="color:yellow;">Injecting self-signed JWTs via jku</mark>
+### <mark style="color:purple;">Injecting self-signed JWTs via jku</mark>
 
 Some servers use the `jku`  header parameter to reference a JWK Set containing the key instead of embedding keys directly with the `jwk` parameter. Secure sites fetch keys (to verify the signature) from trusted domains, but URL parsing issues can bypass this.
 
@@ -149,7 +149,7 @@ Some servers use the `jku`  header parameter to reference a JWK Set containing t
 **Tip**: to see if the server makes the request, add `jku` header and insert Burp collaborator.
 {% endhint %}
 
-### <mark style="color:yellow;">Injecting self-signed JWTs via kid</mark>
+### <mark style="color:purple;">Injecting self-signed JWTs via kid</mark>
 
 The `kid` in JWS is an arbitrary string set by the developer, possibly pointing to a database entry or file. If vulnerable to directory traversal, you could force the server to use any file as the verification key.
 

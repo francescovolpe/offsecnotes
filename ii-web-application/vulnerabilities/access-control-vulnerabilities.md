@@ -2,7 +2,7 @@
 
 Access control is the application of constraints on who or what is authorized to perform actions or access resources.
 
-## <mark style="color:yellow;">Unprotected functionality</mark>
+## <mark style="color:purple;">Unprotected functionality</mark>
 
 ```sh
 # Direct access
@@ -14,7 +14,7 @@ https://insecure-website.com/administrator-panel-yb556
 
 If you have an admin account, repet the request with a normal user cookie. (autorize burp extension can be useful)
 
-## <mark style="color:yellow;">Parameter-based</mark>
+## <mark style="color:purple;">Parameter-based</mark>
 
 Some applications determine the user's access rights or role at login, and then store this information in a user-controllable location. This could be:
 
@@ -24,7 +24,7 @@ Some applications determine the user's access rights or role at login, and then 
   * `https://insecure-website.com/login/home.jsp?admin=true`
   * `https://insecure-website.com/login/home.jsp?role=1`
 
-## <mark style="color:yellow;">Referer-based</mark>
+## <mark style="color:purple;">Referer-based</mark>
 
 ```
 GET /admin --> HTTP/1.1 401 Unauthorized
@@ -39,7 +39,7 @@ Referer: https://vulnerable-website.com/admin
 
 You need to know sub-pages (you can brute-force them) and eventually parameters to perform an action.
 
-## <mark style="color:yellow;">Platform misconfiguration</mark>
+## <mark style="color:purple;">Platform misconfiguration</mark>
 
 **Try another HTTP method**
 
@@ -66,7 +66,7 @@ X-Original-URL: /donotexist1
 X-Rewrite-URL: /donotexist1
 ```
 
-## <mark style="color:yellow;">URL-matching discrepancies</mark>
+## <mark style="color:purple;">URL-matching discrepancies</mark>
 
 ```markdown
 /admin/deleteUser
@@ -74,7 +74,7 @@ X-Rewrite-URL: /donotexist1
 /admin/deleteUser.anything
 ```
 
-## <mark style="color:yellow;">IDOR</mark>
+## <mark style="color:purple;">IDOR</mark>
 
 Try other ID / Brute force
 
@@ -82,13 +82,13 @@ Try other ID / Brute force
 https://insecure-website.com/myaccount?id=123
 ```
 
-## <mark style="color:yellow;">Multi-step processes</mark>
+## <mark style="color:purple;">Multi-step processes</mark>
 
 Imagine a website where steps 1 and 2 have access controls, but step 3 doesn't. -> skip the first two steps.
 
 &#x20;(1) Load user details, (2) Submit changes, (3) Review and confirm.
 
-## <mark style="color:yellow;">Tips</mark>
+## <mark style="color:purple;">Tips</mark>
 
 *   An application might use GUIDs to identify users, but GUIDs of other users could be exposed elsewhere in the app, such as in user messages or reviews.
 

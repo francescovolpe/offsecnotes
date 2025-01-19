@@ -1,6 +1,6 @@
 # OAuth
 
-## <mark style="color:yellow;">OAuth authentication</mark>
+## <mark style="color:purple;">OAuth authentication</mark>
 
 * Although not originally intended for this purpose, OAuth has evolved into a means of authenticating users as well.
 * From an end-user perspective, the result of OAuth authentication is something that broadly resembles SAML-based single sign-on (SSO).
@@ -9,7 +9,7 @@
   * After receiving an access token, the client application requests this data from the resource server, typically from a dedicated /userinfo endpoint.
   * Once it has received the data, the client application uses it in place of a username to log the user in. The access token that it received from the authorization server is often used instead of a traditional password.
 
-## <mark style="color:yellow;">OAuth grant type / OAuth flows</mark>
+## <mark style="color:purple;">OAuth grant type / OAuth flows</mark>
 
 * The OAuth grant type determines the exact sequence of steps that are involved in the OAuth process.
 * There are several different grant types, each with varying levels of complexity and security considerations.
@@ -18,7 +18,7 @@
 **Note**: We'll focus on the "authorization code" and "implicit" grant types as these are by far the most common.
 {% endhint %}
 
-## <mark style="color:yellow;">OAuth scopes</mark> <a href="#oauth-scopes" id="oauth-scopes"></a>
+## <mark style="color:purple;">OAuth scopes</mark> <a href="#oauth-scopes" id="oauth-scopes"></a>
 
 For any OAuth grant type, the client application has to specify which data it wants to access and what kind of operations it wants to perform. It does this using the `scope` parameter of the authorization request it sends to the OAuth service.
 
@@ -33,9 +33,9 @@ scope=https://oauth-authorization-server.com/auth/scopes/user/contacts.readonly
 
 When OAuth is used for authentication, however, the standardized OpenID Connect scopes are often used instead.
 
-## <mark style="color:yellow;">Authorization code grant type</mark> <a href="#authorization-code-grant-type" id="authorization-code-grant-type"></a>
+## <mark style="color:purple;">Authorization code grant type</mark> <a href="#authorization-code-grant-type" id="authorization-code-grant-type"></a>
 
-### <mark style="color:yellow;">**1. Authorization request**</mark>
+### <mark style="color:purple;">**1. Authorization request**</mark>
 
 ```http
 GET /authorization?client_id=12345&redirect_uri=https://client-app.com/callback&response_type=code&scope=openid%20profile&state=ae13d489bd00e3c24 HTTP/1.1
@@ -48,7 +48,7 @@ Host: oauth-authorization-server.com
 * `scope`: Used to specify which subset of the user's data the client application wants to access. Note that these may be custom scopes set by the OAuth provider or standardized scopes defined by the OpenID Connect specification.
 * `state`: Stores a unique, unguessable value that is tied to the current session on the client application. The OAuth service should return this exact value in the response, along with the authorization code. This parameter serves as a form of CSRF token for the client application by making sure that the request to its `/callback` endpoint is from the same person who initiated the OAuth flow.
 
-### <mark style="color:yellow;">**2. User login and consent**</mark>
+### <mark style="color:purple;">**2. User login and consent**</mark>
 
 When a user sends an initial request to an authorization server, they are redirected to a login page to access their account via an OAuth provider, such as a social media account.&#x20;
 
@@ -56,7 +56,7 @@ After logging in, the user is presented with a list of data that the client appl
 
 Once the user approves the access, future sessions with the same OAuth service will be automatic, allowing the user to quickly access the client application without needing to log in or give consent again.
 
-### <mark style="color:yellow;">**3. Authorization code grant**</mark>
+### <mark style="color:purple;">**3. Authorization code grant**</mark>
 
 If the user consents to the requested access, their browser will be redirected to the `/callback` endpoint that was specified in the `redirect_uri` parameter of the authorization request. The resulting `GET` request will contain the authorization code as a query parameter. Depending on the configuration, it may also send the `state` parameter with the same value as in the authorization request.
 
@@ -65,7 +65,7 @@ GET /callback?code=a1b2c3d4e5f6g7h8&state=ae13d489bd00e3c24 HTTP/1.1
 Host: client-app.com
 ```
 
-### <mark style="color:yellow;">**4. Access token request**</mark>
+### <mark style="color:purple;">**4. Access token request**</mark>
 
 Once the client application receives the authorization code, it needs to exchange it for an access token. To do this, it sends a server-to-server `POST` request to the OAuth service's `/token` endpoint. All communication from this point on takes place in a secure back-channel and, therefore, cannot usually be observed or controlled by an attacker.
 
@@ -81,7 +81,7 @@ In addition to the `client_id` and authorization `code`, you will notice the fol
 * `client_secret`: The client application must authenticate itself by including the secret key that it was assigned when registering with the OAuth service.
 * `grant_type`: Used to make sure the new endpoint knows which grant type the client application wants to use. In this case, this should be set to `authorization_code`.
 
-### <mark style="color:yellow;">**5. Access token grant**</mark>
+### <mark style="color:purple;">**5. Access token grant**</mark>
 
 The OAuth service will validate the access token request. If everything is as expected, the server responds by granting the client application an access token with the requested scope.
 
@@ -95,7 +95,7 @@ The OAuth service will validate the access token request. If everything is as ex
 }
 ```
 
-### <mark style="color:yellow;">**6. API call**</mark>
+### <mark style="color:purple;">**6. API call**</mark>
 
 Now the client application has the access code, it can finally fetch the user's data from the resource server. To do this, it makes an API call to the OAuth service's `/userinfo` endpoint. The access token is submitted in the `Authorization: Bearer` header to prove that the client application has permission to access this data.
 
@@ -105,7 +105,7 @@ Host: oauth-resource-server.com
 Authorization: Bearer z0y9x8w7v6u5
 ```
 
-### <mark style="color:yellow;">**7. Resource grant**</mark>
+### <mark style="color:purple;">**7. Resource grant**</mark>
 
 The resource server should verify that the token is valid and that it belongs to the current client application. If so, it will respond by sending the requested resource i.e. the user's data based on the scope of the access token.
 
@@ -119,7 +119,7 @@ The resource server should verify that the token is valid and that it belongs to
 
 The client application can finally use this data for its intended purpose. In the case of OAuth authentication, it will typically be used as an ID to grant the user an authenticated session, effectively logging them in.
 
-## <mark style="color:yellow;">Implicit grant type</mark>
+## <mark style="color:purple;">Implicit grant type</mark>
 
 The implicit grant type is much simpler. Rather than first obtaining an authorization code and then exchanging it for an access token, the client application receives the access token immediately after the user gives their consent.
 
@@ -127,7 +127,7 @@ You may be wondering why client applications don't always use the implicit grant
 
 The implicit grant type is more suited to single-page applications and native desktop applications, which cannot easily store the `client_secret` on the back-end, and therefore, don't benefit as much from using the authorization code grant type.
 
-### <mark style="color:yellow;">**1. Authorization request**</mark>
+### <mark style="color:purple;">**1. Authorization request**</mark>
 
 The implicit flow starts in much the same way as the authorization code flow. The only major difference is that the `response_type` parameter must be set to `token`.
 
@@ -136,11 +136,11 @@ GET /authorization?client_id=12345&redirect_uri=https://client-app.com/callback&
 Host: oauth-authorization-server.com
 ```
 
-### <mark style="color:yellow;">**2. User login and consent**</mark>
+### <mark style="color:purple;">**2. User login and consent**</mark>
 
 The user logs in and decides whether to consent to the requested permissions or not. This process is exactly the same as for the authorization code flow.
 
-### <mark style="color:yellow;">**3. Access token grant**</mark>
+### <mark style="color:purple;">**3. Access token grant**</mark>
 
 If the user gives their consent to the requested access, this is where things start to differ. The OAuth service will redirect the user's browser to the `redirect_uri` specified in the authorization request. However, instead of sending a query parameter containing an authorization code, it will send the access token and other token-specific data as a URL fragment.
 
@@ -151,7 +151,7 @@ Host: client-app.com
 
 As the access token is sent in a URL fragment, it is never sent directly to the client application. Instead, the client application must use a suitable script to extract the fragment and store it.
 
-### <mark style="color:yellow;">**4. API call**</mark>
+### <mark style="color:purple;">**4. API call**</mark>
 
 Once the client application has successfully extracted the access token from the URL fragment, it can use it to make API calls to the OAuth service's `/userinfo` endpoint. Unlike in the authorization code flow, this also happens via the browser.
 
@@ -161,7 +161,7 @@ Host: oauth-resource-server.com
 Authorization: Bearer z0y9x8w7v6u5
 ```
 
-### <mark style="color:yellow;">**5. Resource grant**</mark>
+### <mark style="color:purple;">**5. Resource grant**</mark>
 
 The resource server should verify that the token is valid and that it belongs to the current client application. If so, it will respond by sending the requested resource i.e. the user's data based on the scope associated with the access token.
 

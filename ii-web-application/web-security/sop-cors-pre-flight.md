@@ -1,6 +1,6 @@
 # SOP, CORS, Pre-flight
 
-## <mark style="color:yellow;">Same-origin policy (SOP)</mark>
+## <mark style="color:purple;">Same-origin policy (SOP)</mark>
 
 * The same-origin policy restricts scripts on one origin from accessing data from another origin.
 * An origin consists of a URI scheme, domain and port number.
@@ -8,7 +8,7 @@
 * The SOP allows embedding of images via the `<img>` `<video>` `<script>`.
   * However, while these external resources can be loaded by the page, any JavaScript on the page won't be able to read the contents of these resources.
 
-## <mark style="color:yellow;">**Cross-origin resource sharing**</mark>
+## <mark style="color:purple;">**Cross-origin resource sharing**</mark>
 
 The cross-origin resource sharing specification provides controlled relaxation of the same-origin policy. The CORS specification identifies a collection of protocol headers
 
@@ -47,7 +47,7 @@ Specifies that only origins with a `null` origin are allowed to access the resou
 * Request using the `file` protocol.
 * Sandboxed cross-origin requests.
 
-## <mark style="color:yellow;">Pre-flight checks</mark>
+## <mark style="color:purple;">Pre-flight checks</mark>
 
 Under certain circumstances, when a cross-domain request includes a non-standard HTTP method or headers, the cross-origin request is preceded by a request using the OPTIONS method.
 

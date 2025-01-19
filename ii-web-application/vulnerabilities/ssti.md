@@ -2,9 +2,9 @@
 
 Server-side template injection (SSTI) occurs when an attacker exploits native template syntax to inject and execute a malicious payload on the server.
 
-## <mark style="color:yellow;">Detect</mark>
+## <mark style="color:purple;">Detect</mark>
 
-### <mark style="color:yellow;">**Plaintext context**</mark>
+### <mark style="color:purple;">**Plaintext context**</mark>
 
 Most template languages support a 'text' context where you can directly input HTML
 
@@ -27,7 +27,7 @@ http://vulnerable-website.com/?username=${7*7}
 
 If the output is `49`, it means the mathematical operation is being processed server-side.
 
-### <mark style="color:yellow;">**Code context**</mark>
+### <mark style="color:purple;">**Code context**</mark>
 
 This context is easily missed during assessment because it doesn't result in obvious XSS.
 
@@ -57,7 +57,7 @@ Hello user<tag>
 http://vulnerable-website.com/?greeting=data.username}}<PAYLOAD>
 ```
 
-## <mark style="color:yellow;">Identification</mark>
+## <mark style="color:purple;">Identification</mark>
 
 * Smarty (PHP)
   * `${7*7}`
@@ -81,9 +81,9 @@ http://vulnerable-website.com/?greeting=data.username}}<PAYLOAD>
   * In this case these payloads don't have to work
 
 {% hint style="info" %}
-**Note**: there are many other template languages
+**Note**: there are many other template languages.
 {% endhint %}
 
-## <mark style="color:yellow;">Exploitation</mark>
+## <mark style="color:purple;">Exploitation</mark>
 
 * [https://book.hacktricks.wiki/en/pentesting-web/ssti-server-side-template-injection/index.html](https://book.hacktricks.wiki/en/pentesting-web/ssti-server-side-template-injection/index.html)

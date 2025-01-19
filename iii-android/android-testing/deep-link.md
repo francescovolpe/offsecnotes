@@ -1,6 +1,6 @@
 # Deep link
 
-## <mark style="color:yellow;">Introduction</mark>
+## <mark style="color:purple;">Introduction</mark>
 
 <details>
 
@@ -75,13 +75,13 @@ Suppose that:
 
 <table><thead><tr><th width="111">Android </th><th width="185">Victim App installed</th><th>Link supported</th><th>URI</th><th>Behavior</th></tr></thead><tbody><tr><td>-</td><td>N</td><td>Scheme URL</td><td><code>geo://</code></td><td><mark style="color:red;">Open in malicious</mark></td></tr><tr><td>-</td><td>Y</td><td>Scheme URL</td><td><code>geo://</code></td><td><mark style="color:orange;">Dialog appear (malicious app, victim app)</mark></td></tr><tr><td>&#x3C; 12</td><td>N</td><td>Web Links</td><td><code>https://google.com</code></td><td><mark style="color:orange;">Dialog appear (browser, malicious app)</mark></td></tr><tr><td>&#x3C; 12</td><td>Y </td><td>Web Links</td><td> <code>https://google.com</code></td><td><mark style="color:orange;">Dialog appear (browser, malicious app, victim app)</mark></td></tr><tr><td>> 12</td><td>N | Y</td><td>Web Links</td><td><code>https://google.com</code></td><td><mark style="color:green;">Open in default browser</mark></td></tr><tr><td>> 6 </td><td>Y</td><td>App Links</td><td><code>https://google.com</code></td><td><mark style="color:green;">Open Victim App</mark></td></tr></tbody></table>
 
-## <mark style="color:yellow;">**Start an intent**</mark>
+## <mark style="color:purple;">**Start an intent**</mark>
 
 ```sh
 adb shell am start -W -a android.intent.action.VIEW -d "geo://"
 ```
 
-## <mark style="color:yellow;">**Testing**</mark>
+## <mark style="color:purple;">**Testing**</mark>
 
 * **Testing Scheme URI:** Check if there are any scheme URL. These types of deep links are not secure.
 * **Testing Web Links:** Check if there are any Web Links. If the app can be installed on `Android < 12` they are not secure.

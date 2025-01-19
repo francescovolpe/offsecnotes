@@ -1,6 +1,6 @@
 # Bypass Binary Protections
 
-## <mark style="color:yellow;">Identify compilers, packers, obfuscators</mark>
+## <mark style="color:purple;">Identify compilers, packers, obfuscators</mark>
 
 ```sh
 # https://github.com/rednaga/APKiD
@@ -8,7 +8,7 @@
 apkid --scan-depth 0 -r target.apk
 ```
 
-## <mark style="color:yellow;">SSL Pinning</mark>
+## <mark style="color:purple;">SSL Pinning</mark>
 
 * **Missing SSL pinning**
 * **Bypass with objection**
@@ -59,7 +59,7 @@ See [#webview-debug](bypass-binary-protections.md#webview-debug "mention")
 **Tip**: if you can't use remote debugging, recompile the app and enable it.
 {% endhint %}
 
-## <mark style="color:yellow;">Root Detection</mark>
+## <mark style="color:purple;">Root Detection</mark>
 
 * **Missing root detection**
 * **Bypass with frida**
@@ -74,7 +74,7 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
 * **Bypass protection analyzing the code and/or with frida**
   * If the app return an error message (e.g. "Your device appears to be rooted..."), search this string inside the code
 
-## <mark style="color:yellow;">Emulator Detection</mark>
+## <mark style="color:purple;">Emulator Detection</mark>
 
 * Missing emulator detection
 * Bypass protection analyzing the code and/or with frida

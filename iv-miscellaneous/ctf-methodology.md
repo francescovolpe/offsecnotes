@@ -1,6 +1,6 @@
 # CTF Methodology
 
-## General
+## <mark style="color:purple;">General</mark>
 
 * Take note of CTF keywords
   * CTF name -> Reference to any technology?
@@ -38,7 +38,7 @@
     * Fasttrack.txt
     * Rockyou.txt
 
-## WebServer
+## <mark style="color:purple;">WebServer</mark>
 
 * View source code
 * Take note of any possible username, password, email, user info, subdomains
@@ -66,7 +66,7 @@
   * SSRF
   * XXE
 
-## Strange strings?
+## <mark style="color:purple;">Strange strings?</mark>
 
 * Hash? -> https://hashes.com/en/tools/hash\_identifier
   * https://crackstation.net/
@@ -78,7 +78,7 @@
 * Can I use this string/key somewhere? Ex. key to decrypt?
 * Google search
 
-## Steganography
+## <mark style="color:purple;">Steganography</mark>
 
 * General
   * `file <file>`
@@ -92,7 +92,7 @@
 * Audio
   * Spectogram https://convert.ing-now.com/audio-spectrogram-creator/
 
-## Cracking
+## <mark style="color:purple;">Cracking</mark>
 
 * PGP
   * Do you have .pgp and .asc files?
@@ -107,6 +107,6 @@
   * bkcrack (known plaintext attack) https://github.com/kimci86/bkcrack/tree/master
     * The newer scheme for password-protecting zip files (with AES-256, rather than "ZipCrypto") does not have this weakness.
 
-## PrivEsc
+## <mark style="color:purple;">PrivEsc</mark>
 
 [privilege-escalation.md](../i-network/privilege-escalation.md "mention")

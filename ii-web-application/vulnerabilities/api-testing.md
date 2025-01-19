@@ -1,6 +1,6 @@
 # API
 
-## <mark style="color:yellow;">Discover</mark>
+## <mark style="color:purple;">Discover</mark>
 
 **Documentation**
 
@@ -50,7 +50,7 @@ Test all potential methods when you're investigating API endpoints
 * Bruteforce with wordlists
 * Param miner (Burp extension)
 
-## <mark style="color:yellow;">Change content types</mark>
+## <mark style="color:purple;">Change content types</mark>
 
 Changing the content type may enable you to
 
@@ -64,7 +64,7 @@ To change the content type, modify the Content-Type header and reformat the requ
 **Tip**: Content type converter BApp automatically converts request data between XML and JSON.
 {% endhint %}
 
-## <mark style="color:yellow;">Mass assignment vulnerabilities</mark>
+## <mark style="color:purple;">Mass assignment vulnerabilities</mark>
 
 <details>
 
@@ -93,7 +93,7 @@ If the application behaves differently, may suggest that the invalid value impac
 **Note**: We change isAdmin to "foo" because we want see if the user input is processed. If we get an error may indicate that the user input is being processed.
 {% endhint %}
 
-## <mark style="color:yellow;">Server-side parameter pollution</mark> <a href="#server-side-parameter-pollution" id="server-side-parameter-pollution"></a>
+## <mark style="color:purple;">Server-side parameter pollution</mark> <a href="#server-side-parameter-pollution" id="server-side-parameter-pollution"></a>
 
 You make the request and the server queries an internal API
 
