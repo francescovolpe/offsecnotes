@@ -4,7 +4,7 @@
 
 Test in every features that interact with user account. E.g. login, password recovery.
 
-<mark style="color:purple;">⟩</mark> **Default username**
+**Default username**
 
 ```
 admin
@@ -12,11 +12,15 @@ administrator
 firstname.lastname@somecompany.com
 ```
 
-<mark style="color:purple;">⟩</mark> **Regisitration form**&#x20;
+***
+
+**Regisitration form**&#x20;
 
 Create account and see if there's error like "account already exists".
 
-<mark style="color:purple;">⟩</mark> **Comparing responses**
+***
+
+**Comparing responses**
 
 Use a valid user and an invalid user (and incorrect password). One character out of place makes the messages distinct, even if not visible on the page.
 
@@ -24,11 +28,15 @@ Use a valid user and an invalid user (and incorrect password). One character out
 **Tip**: Use "Grep - match" in Burp Intruder to fetch the error message
 {% endhint %}
 
-<mark style="color:purple;">⟩</mark> **Account locking**
+***
+
+**Account locking**
 
 Try 3/5 login. If the account is locked, it could mean that there is.
 
-<mark style="color:purple;">⟩</mark> **Response times**
+***
+
+**Response times**
 
 A website may only check the password if the username is valid. So, entering an excessively long password causes a noticeable delay.
 
@@ -53,7 +61,7 @@ With your account locked, send a request with an incorrect password and another 
 
 **With password change**
 
-See if you can change the password of an arbitrary user. E.g: look for a hidden username paramer (control it).  Brute-force password when you enter your current password.
+See if you can change the password of an arbitrary user. E.g. look for a hidden username paramer (control it). Brute-force password when you enter your current password.
 
 {% hint style="success" %}
 **Tip**: use your account and notice different behavior.
@@ -125,7 +133,7 @@ user=<victim>&new-pwd-1=<whatever>&new-pwd-2=<whatever>&token=xxx
 
 **Resetting passwords using a URL (static token)**
 
-Poor implementation can use guessable parameter: E.g.: `http://vulnerable-website.com/reset-password?user=victim-user`
+Poor implementation can use guessable parameter: E.g. `http://vulnerable-website.com/reset-password?user=victim-user`
 
 ***
 

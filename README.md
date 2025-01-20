@@ -1,6 +1,6 @@
 # offsecnotes
 
-<div align="center"><img src=".gitbook/assets/logo.png" alt="" width="188"></div>
+<figure><img src=".gitbook/assets/logo (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
 ***
 
