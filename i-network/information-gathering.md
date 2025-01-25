@@ -2,10 +2,20 @@
 
 ## <mark style="color:purple;">Whois</mark>
 
-It is a protocol used for querying databases that store an Internet resource's registered users or assignees
+It is a protocol used for querying databases that store an Internet resource's registered users or assignees. You can provide:
+
+* Domain -> info about it such as name server, registrar, etc.
+* IP ->  info about who is hostring the IP address
 
 ```sh
 whois example.com
+
+# whois by specifying a whois server
+whois example.com -h 192.168.5.5
+
+# Perform a reverse lookup
+whois 38.100.193.70
+whois 38.100.193.70 -h 192.168.5.5
 ```
 
 ## <mark style="color:purple;">DNS Enumeration</mark>
@@ -103,6 +113,44 @@ nmap --script "default or safe" # Load all scripts that are in the default, safe
 **Note**: there are many categories. Some of the scripts in this category are considered intrusive and may not run on a network target without permissions.
 {% endhint %}
 
+## <mark style="color:purple;">Google Dorks</mark>
+
+Example
+
+```sh
+# Restrict the search to example.com and subdomains
+site:example.com
+
+# Restrict the search to example.com and subdomains and exclude HTML pages
+site:example.com -filetype:html
+
+# Search for pages with 'index of' in the title and 'parent directory' in the content
+intitle:“index of” “parent directory”
+```
+
+* [_https://www.exploit-db.com/google-hacking-database_](https://www.exploit-db.com/google-hacking-database)
+* [https://dorksearch.com/](https://dorksearch.com/)
+
+## <mark style="color:purple;">Netcraft</mark>
+
+Netcraft is an ISP,  that offers a free web portal for information gathering (technologies, subdomains, etc.).
+
+[https://searchdns.netcraft.com/](https://searchdns.netcraft.com/)
+
+## <mark style="color:purple;">Open-Source Code</mark>
+
+Gather information through GitHub, GitLab, etc.&#x20;
+
+* Manual
+* Automatic
+  * [https://github.com/gitleaks/gitleaks](https://github.com/gitleaks/gitleaks)
+
+## <mark style="color:purple;">Shodan</mark>
+
+Shodan is a search engine for internet-connected devices, including servers, routers, and IoT devices.
+
+[https://www.shodan.io/](https://www.shodan.io/)
+
 ## <mark style="color:purple;">Website Recon</mark>
 
 * Web App **Technology** Fingerprinting
@@ -116,8 +164,5 @@ nmap --script "default or safe" # Load all scripts that are in the default, safe
   * `wafw00f http://example.com -a`
 * Download **website source**
   * httrack
-* **Google Dorks**
-  * site,filetype,inurl,intitle,cache
-  * [_https://www.exploit-db.com/google-hacking-database_](https://www.exploit-db.com/google-hacking-database)
 * **waybackmachine**
   * [_https://web.archive.org_](https://web.archive.org/)

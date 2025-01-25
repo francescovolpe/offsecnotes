@@ -338,7 +338,7 @@ HTTP/2 downgrading converts HTTP/2 requests into HTTP/1 syntax, allowing web ser
 
 ## <mark style="color:purple;">Identification</mark>
 
-### <mark style="color:yellow;">H2.CL</mark> <a href="#h2-cl-vulnerabilities" id="h2-cl-vulnerabilities"></a>
+### <mark style="color:purple;">H2.CL</mark> <a href="#h2-cl-vulnerabilities" id="h2-cl-vulnerabilities"></a>
 
 ```http
 POST / HTTP/2

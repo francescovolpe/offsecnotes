@@ -125,4 +125,4 @@ If a file is loaded into a temporary directory with a randomized name, it should
 
 * If the randomized directory name is generated using pseudo-random functions like PHP's `uniqid()`, it can potentially be brute-forced.
   * Try to extend the amount of time taken to process the file by uploading a larger file
-* If it is processed in chunks, you can potentially take advantage of this by creating a malicious file with the payload at the start, followed by a large number of arbitrary padding bytes
+* If it is processed in chunks, you can potentially take advantage of this by creating a malicious file with the payload at the start, followed by a large number of arbitrary padding bytes.
