@@ -6,7 +6,9 @@ In android there are several ways to make HTTP requests. For example using `Http
 
 ## <mark style="color:purple;">Cleartext Traffic</mark>
 
-By default, Android strives to prevent developers from unintentionally sending cleartext HTTP traffic. However, if developers explicitly set `usesCleartextTraffic=true` in the manifest or network security configuration, cleartext traffic is permitted.
+Starting from Android 9 (API level 28), HTTP clients like `URLConnection`, `Cronet`, and `OkHttp` enforce the use of HTTPS, thus disabling cleartext traffic by default. However, it's important to note that other HTTP client libraries, such as `Ktor`, may not enforce these restrictions \[[🔗](https://developer.android.com/privacy-and-security/risks/cleartext-communications#risk-http)].&#x20;
+
+However, if developers explicitly set `usesCleartextTraffic=true` \[[🔗](https://developer.android.com/reference/android/security/NetworkSecurityPolicy#isCleartextTrafficPermitted\(\))] in the manifest or network security configuration \[[🔗](https://developer.android.com/privacy-and-security/security-config#CleartextTrafficPermitted)], cleartext traffic is permitted.
 
 ## <mark style="color:purple;">SSL interception</mark>
 
@@ -25,40 +27,28 @@ Example `network_security_config.xml`:
 
 <details>
 
-<summary>Default configuration</summary>
+<summary>Default configuration [<a href="https://developer.android.com/privacy-and-security/security-config#CustomTrust">🔗</a>]</summary>
 
-Android 9 (API level 28) and higher
+Android 7.0 (API level 24) and higher.
 
 ```xml
-<base-config cleartextTrafficPermitted="false">
+<base-config>
     <trust-anchors>
         <certificates src="system" />
     </trust-anchors>
 </base-config>
 ```
 
-Android 7.0 (API level 24) to Android 8.1 (API level 27)
+Android 6.0 (API level 23) and lower.
 
 ```xml
-<base-config cleartextTrafficPermitted="true">
-    <trust-anchors>
-        <certificates src="system" />
-    </trust-anchors>
-</base-config>
-```
-
-Android 6.0 (API level 23) and lower
-
-```xml
-<base-config cleartextTrafficPermitted="true">
+<base-config>
     <trust-anchors>
         <certificates src="system" />
         <certificates src="user" />
     </trust-anchors>
 </base-config>
 ```
-
-More detail: [https://developer.android.com/privacy-and-security/security-config](https://developer.android.com/privacy-and-security/security-config)
 
 </details>
 
@@ -91,7 +81,7 @@ openssl x509 -inform DER -in cacert.der -out cacert.pem
 
 * Rooted physical device
 * Rooted emulator
-* With Android (AVD) using non-Google emulator  image
+* With Android (AVD) using non-Google emulator image
 
 <details>
 
@@ -127,7 +117,7 @@ chcon u:object_r:system_file:s0 /system/etc/security/cacerts/*
 
 1. Install the proxy certificate as a regular user certificate
 2. `adb shell`
-3. Run this script by Tim Perry from [HTTP Toolkit](https://httptoolkit.com/blog/android-14-install-system-ca-certificate/)
+3. Run this script by Tim Perry \[[🔗](https://httptoolkit.com/blog/android-14-install-system-ca-certificate/)]
 
 ```sh
 # Create a separate temp directory, to hold the current certificates
@@ -243,7 +233,7 @@ OkHttpClient client = new OkHttpClient.Builder()
 
 **Requirement**: the proxy certificate must be installed in the system certificate store.
 
-If the proxy settings are ignored, use an Android VPN service app to intercept app traffic. You can use the open-source RethinkDNS app [https://play.google.com/store/apps/details?id=com.celzero.bravedns](https://play.google.com/store/apps/details?id=com.celzero.bravedns).
+If the proxy settings are ignored, use an Android VPN service app to intercept app traffic. You can use the open-source RethinkDNS app \[[🔗](https://play.google.com/store/apps/details?id=com.celzero.bravedns)].
 
 Steps:
 
@@ -305,7 +295,7 @@ In a normal proxy, the client (e.g., a browser or app) is explicitly configured 
 * The request contains both the relative path (/path) and the full address (e.g. `GET http://www.example.com/path HTTP/1.1`)
 
 **Invisible Proxy**\
-An invisible proxy operates without the client being explicitly configured to use it. This is useful when the client does not support proxy configurations. Therefore, the client remains unaware of the proxy. However:
+An invisible proxy \[[🔗](https://portswigger.net/burp/documentation/desktop/tools/proxy/invisible)] operates without the client being explicitly configured to use it. This is useful when the client does not support proxy configurations. Therefore, the client remains unaware of the proxy. However:
 
 With plain HTTP, a proxy-style request looks like this:
 
@@ -322,7 +312,5 @@ Host: example.org
 ```
 
 Proxies usually use the full URL in the first line to determine the destination, ignoring the `Host` header. In invisible proxying, Burp parses the `Host` header from non-proxy-style requests to determine the destination.
-
-More info: [https://portswigger.net/burp/documentation/desktop/tools/proxy/invisible](https://portswigger.net/burp/documentation/desktop/tools/proxy/invisible)
 
 </details>

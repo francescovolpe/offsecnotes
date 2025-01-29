@@ -24,7 +24,7 @@ To inject Frida into an APK, use:
 objection patchapk -s target.apk
 ```
 
-This quickly extracts, patches, re-packs, aligns, and signs the APK. The patch is applied with the frida-gadget.so
+This quickly extracts, patches, re-packs, aligns, and signs the APK \[[🔗](https://github.com/sensepost/objection/wiki/Patching-Android-Applications#patching---patching-an-apk)]. The patch is applied with the frida-gadget.so
 
 **Note:** The app will pause at launch, waiting for Frida. Start it with:
 
@@ -104,12 +104,16 @@ frida -U <package_name>
 
 ## <mark style="color:purple;">Working with frida</mark>
 
+For additional details, refer to the [official documentation](https://frida.re/docs/javascript-api/).
+
 ### <mark style="color:purple;">Instantiating Objects and Calling Methods</mark>
 
 <pre class="language-javascript"><code class="lang-javascript"><strong>// Obtain a Javascript wrapper for Java class "java.lang.String"
 </strong><strong>var string_class = Java.use("java.lang.String");
+</strong><strong>
 </strong><strong>// Istantiate a class by calling $new
 </strong>var string_instance = string_class.$new("Teststring");
+
 // Call a method
 string_instance.charAt(0);
 </code></pre>
@@ -147,7 +151,7 @@ Java.perform(() => {
 
 ## <mark style="color:purple;">Frida-trace</mark>
 
-Frida trace allows us to directly trace function calls.&#x20;
+Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly trace function calls.&#x20;
 
 ```sh
 # Trace all calls on com.package.*

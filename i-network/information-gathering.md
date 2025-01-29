@@ -2,7 +2,7 @@
 
 ## <mark style="color:purple;">Whois</mark>
 
-It is a protocol used for querying databases that store an Internet resource's registered users or assignees. You can provide:
+It \[[🔗](https://datatracker.ietf.org/doc/html/rfc3912)] is a protocol used for querying databases that store an Internet resource's registered users or assignees. You can provide:
 
 * Domain -> info about it such as name server, registrar, etc.
 * IP ->  info about who is hostring the IP address
@@ -18,16 +18,56 @@ whois 38.100.193.70
 whois 38.100.193.70 -h 192.168.5.5
 ```
 
+## <mark style="color:purple;">Netcraft</mark>
+
+Netcraft is an ISP,  that offers a free web portal \[[🔗](https://searchdns.netcraft.com/)] for information gathering (technologies, subdomains, etc.).
+
+## <mark style="color:purple;">Open-Source Code</mark>
+
+Gather information through GitHub, GitLab, etc.&#x20;
+
+* Manual
+* Automatic
+  * [https://github.com/gitleaks/gitleaks](https://github.com/gitleaks/gitleaks)
+
+## <mark style="color:purple;">Google Dorks</mark>
+
+Example
+
+```sh
+# Restrict the search to example.com and subdomains
+site:example.com
+
+# Restrict the search to example.com and subdomains and exclude HTML pages
+site:example.com -filetype:html
+
+# Search for pages with 'index of' in the title and 'parent directory' in the content
+intitle:“index of” “parent directory”
+```
+
+* [https://www.exploit-db.com/google-hacking-database](https://www.exploit-db.com/google-hacking-database)
+* [https://dorksearch.com/](https://dorksearch.com/)
+
+## <mark style="color:purple;">Shodan</mark>
+
+Shodan \[[🔗](https://www.shodan.io/)] is a search engine for internet-connected devices, including servers, routers, and IoT devices.
+
 ## <mark style="color:purple;">DNS Enumeration</mark>
 
 **Manual**
 
 ```sh
+host example.com                  # List of ipv4 & ipv6 address
+host -t mx example.com            # List of email servers
+host -t txt example.com           # List of TXT records
+
 dig +short a zonetransfer.me      # List of ipv4 address
 dig +short mx zonetransfer.me     # List of email servers
 dig +short -x 192.246.126.3       # Reverse lookups
 dig +short ns zonetransfer.me     # List of DNS servers for the domain
 dig axfr zonetransfer.me @nsztm1.digi.ninja. # Get a copy of the zone from the primary server. (zone transfer attack)
+
+nslookup example.com              # Works on Windows
 ```
 
 {% hint style="info" %}
@@ -36,12 +76,16 @@ dig axfr zonetransfer.me @nsztm1.digi.ninja. # Get a copy of the zone from the p
 
 **Automatic**
 
-* dnsdumpster.com
-* dnsrecon (tool)
+There are several tools...
 
-## <mark style="color:purple;">Subdomain enumeration</mark>
+* **dnsrecon** \[[🔗](https://github.com/darkoperator/dnsrecon)]
 
-**sublist3r**: enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce
+```sh
+dnsrecon -d example.com -t std                # Standard enumeration
+dnsrecon -d example.com -t brt -D list.txt    # Brute force subdomain enum
+```
+
+* **sublist3r** \[[🔗](https://github.com/aboul3la/Sublist3r)] enumerates subdomains using search engines such as Google and using DNSdumpster etc. It support also bruteforce.
 
 ```sh
 sublist3r -d example.com
@@ -49,13 +93,49 @@ sublist3r -d example.com
 
 ## <mark style="color:purple;">All in one</mark>
 
-* **amass**: network mapping and external asset discovery using open source information gathering and active reconnaissance techniques
-* **sitereport.netcraft.com**: gives a lot of information about a domain
-* **theHarvester**: gathers names, emails, IPs, subdomains, and URLs by using multiple public resources
+* **amass** \[[🔗](https://github.com/owasp-amass/amass)]: network mapping and external asset discovery using open source information gathering and active reconnaissance techniques
+* **theHarvester** \[[🔗](https://github.com/laramies/theHarvester)]: gathers names, emails, IPs, subdomains, and URLs by using multiple public resources
 
 ```sh
 theHarvester -d example.com -b google,linkedin,dnsdumpster,duckduckgo
 ```
+
+## <mark style="color:purple;">Port Scanning</mark>
+
+**Netcat** \[[🔗](https://sourceforge.net/p/nc110/git/ci/master/tree/)]
+
+```sh
+# Scan TCP
+nc -nvv -w 1 -z 192.168.5.5 100-102
+
+# Scan UDP [Highly unreliable, as firewalls/routers may drop ICMP packets ->
+# leading to false positives]
+nc -nv -u -z -w 1 192.168.5.5 120-123
+```
+
+**Nmap** \[[🔗](https://nmap.org/)]
+
+```sh
+# [TCP] Stealth scan (default if you're root)
+# It will not appear in any app logs, but modern firewall log them
+sudo nmap -sS 192.168.5.5
+
+# TCP Connect Scanning (default if you're not root)
+nmap -sT 192.168.5.5
+
+# UDP Scan
+nmap -sU 192.168.5.5
+
+# Scan all TCP ports
+nmap -p- 192.168.5.5
+
+# Scan a single port
+nmap -p 5 192.168.5.5
+```
+
+{% hint style="info" %}
+**Note**: 1000-port scan generate around 72KB of traffic. Scanning all ports generate about 4 MB. 254 hosts \* 4 MB = 1000 MB of traffic.
+{% endhint %}
 
 ## <mark style="color:purple;">Host Discovery (nmap)</mark>
 
@@ -112,44 +192,6 @@ nmap --script "default or safe" # Load all scripts that are in the default, safe
 {% hint style="info" %}
 **Note**: there are many categories. Some of the scripts in this category are considered intrusive and may not run on a network target without permissions.
 {% endhint %}
-
-## <mark style="color:purple;">Google Dorks</mark>
-
-Example
-
-```sh
-# Restrict the search to example.com and subdomains
-site:example.com
-
-# Restrict the search to example.com and subdomains and exclude HTML pages
-site:example.com -filetype:html
-
-# Search for pages with 'index of' in the title and 'parent directory' in the content
-intitle:“index of” “parent directory”
-```
-
-* [_https://www.exploit-db.com/google-hacking-database_](https://www.exploit-db.com/google-hacking-database)
-* [https://dorksearch.com/](https://dorksearch.com/)
-
-## <mark style="color:purple;">Netcraft</mark>
-
-Netcraft is an ISP,  that offers a free web portal for information gathering (technologies, subdomains, etc.).
-
-[https://searchdns.netcraft.com/](https://searchdns.netcraft.com/)
-
-## <mark style="color:purple;">Open-Source Code</mark>
-
-Gather information through GitHub, GitLab, etc.&#x20;
-
-* Manual
-* Automatic
-  * [https://github.com/gitleaks/gitleaks](https://github.com/gitleaks/gitleaks)
-
-## <mark style="color:purple;">Shodan</mark>
-
-Shodan is a search engine for internet-connected devices, including servers, routers, and IoT devices.
-
-[https://www.shodan.io/](https://www.shodan.io/)
 
 ## <mark style="color:purple;">Website Recon</mark>
 

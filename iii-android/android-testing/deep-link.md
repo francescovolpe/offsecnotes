@@ -6,11 +6,11 @@
 
 <summary>Types of links</summary>
 
-**Scheme URL**
+**(Custom) Scheme URL**
 
 App developers customize any schemes and URIs for their app without any restriction
 
-Ex: `fb://profile`, `geo://`
+E.g. `fb://profile`, `geo://`
 
 ```xml
 <activity android:name=".MyMapActivity" android:exported="true"...>
@@ -83,7 +83,7 @@ adb shell am start -W -a android.intent.action.VIEW -d "geo://"
 
 ## <mark style="color:purple;">**Testing**</mark>
 
-* **Testing Scheme URI:** Check if there are any scheme URL. These types of deep links are not secure.
+* **Testing (custom) Scheme URI:** Check if there are any scheme URL. These types of deep links are not secure.
 * **Testing Web Links:** Check if there are any Web Links. If the app can be installed on `Android < 12` they are not secure.
 * **Testing App Links:** Check if there are any App Links. If the app can be installed on `Android < 12` proceed with testing.
   * Check for missing&#x20;

@@ -1,6 +1,6 @@
 # ADB
 
-**Commands**
+## <mark style="color:purple;">**Commands**</mark>
 
 ```sh
 # Install apk

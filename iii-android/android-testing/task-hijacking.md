@@ -15,7 +15,7 @@ When the back button is pressed on `Bank-Main-Activity`, the user will go to the
 {% hint style="info" %}
 **Note**:&#x20;
 
-* There are many other scenarios, in this case we focus only on this one. For more details on other scenarios: [https://www.youtube.com/watch?v=lLBeoufO\_Bc](https://www.youtube.com/watch?v=lLBeoufO_Bc). Slides: [https://www.slideshare.net/slideshow/android-task-hijacking/76515201](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)
+* There are many other scenarios, in this case we focus only on this one. For more details on other scenarios, refer to \[[🔗](https://www.youtube.com/watch?v=lLBeoufO_Bc)]. Slides \[[🔗](https://www.slideshare.net/slideshow/android-task-hijacking/76515201)].
 * The only real remediation is update to `android:minSdkVersion="28"`.
 {% endhint %}
 
@@ -27,7 +27,7 @@ When the back button is pressed on `Bank-Main-Activity`, the user will go to the
 
 ## <mark style="color:purple;">**Testing**</mark>
 
-You can use malware apk by ivan sincek. [https://github.com/ivan-sincek/malware-apk](https://github.com/ivan-sincek/malware-apk)
+You can use malware apk by ivan sincek \[[🔗](https://github.com/ivan-sincek/malware-apk)].
 
 To hijack a task, modify the task affinity in `AndroidManifest.xml` of `malware.apk` under `MainActivity`. Set it to `PackageNameVictim` and rebuild the APK.
 

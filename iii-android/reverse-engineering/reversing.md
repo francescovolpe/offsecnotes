@@ -2,11 +2,15 @@
 
 ## <mark style="color:purple;">Understanding .dex and .smali</mark>
 
-* Binary Dalvik bytecode (.dex files) are not easy to read or modify
+Binary Dalvik bytecode (.dex files) are not easy to read or modify
 
 <details>
 
 <summary>Dex format</summary>
+
+More details \[[🔗](https://www.bugsnag.com/blog/dex-and-d8/)].
+
+**HEX**
 
 ```
 6465780A 30333800 7A44CBBB FB4AE841 0286C06A 8DF19000
@@ -29,6 +33,11 @@
 05000000 02000000 9C000000 06000000 01000000 AC000000
 01200000 01000000 CC000000 02200000 05000000 E4000000
 00200000 01000000 57010000 00100000 01000000 64010000
+```
+
+**UTF-8**
+
+```
 dex
 038zDÀª˚JËAÜ¿jçÒê<]‡$–s&¢‡pxv4dpñêú¨ã‰ï, ˇˇˇˇwp<init="">Landroid/app/Application;</]‡$–s&¢‡pxv4dpñêú¨ã‰ï,>
 #Lcom/bugsnag/dexexample/BugsnagApp;
@@ -36,22 +45,21 @@ V&~~D8{"min-api":26,"version":"v0.1.14"}ÅÄÃ
 pÑêú¨ Ã ‰ Wd
 ```
 
-* More info: [https://www.bugsnag.com/blog/dex-and-d8/](https://www.bugsnag.com/blog/dex-and-d8/)
-
 </details>
 
-* So there are tools out there to convert to and from a human readable representation. The most common human readable format is known as **Smali.** We can say that Smali acting like assembly language.
-* You can convert ("disassembler") dex to smali using baksmali tool
-* **Example**
-  * ```java
-    int x = 42         //java
-    ```
-  * ```
-    13 00 2A 00        //dex file contains this hex sequence
-    ```
-  * ```
-    const/16 v0, 42    //smali
-    ```
+So there are tools out there to convert to and from a human readable representation. The most common human readable format is known as **Smali.** We can say that Smali acting like assembly language \[[🔗](https://payatu.com/blog/an-introduction-to-smali/)]. You can convert ("disassembler") dex to smali using baksmali \[[🔗](https://github.com/JesusFreke/smali)] tool.
+
+**Example**
+
+* ```java
+  int x = 42         //java
+  ```
+* ```
+  13 00 2A 00        //dex file contains this hex sequence
+  ```
+* ```
+  const/16 v0, 42    //smali
+  ```
 
 ## <mark style="color:purple;">Extract APK</mark>
 
@@ -69,12 +77,12 @@ adb pull <path>
 
 ## <mark style="color:purple;">**Disassemble & Assemble**</mark>
 
-Apktool is a tool for reverse engineering Android apps. It can decode (and disassemble) resources to **nearly** original form and **rebuild** them after making some modifications. (and other stuff).
+Apktool \[[🔗](https://github.com/iBotPeaches/Apktool)] is a tool for reverse engineering Android apps. It can decode (and disassemble) resources to **nearly** original form and **rebuild** them after making some modifications. (and other stuff).
 
 In this way you can read .smali code (so you don't need baksmali), AndroidManifest.xml, etc.
 
 {% hint style="info" %}
-**Note**: even if you can extract apk like it was a zip, you can't read file such as AndroidManifest.xml because it's compiled.
+**Note**: even if you can extract apk like it was a zip, you can't read file such as AndroidManifest.xml because it's compiled. Here's why you should use a tool like apktool.
 {% endhint %}
 
 **Disassemble**
@@ -107,11 +115,9 @@ java -jar uber-apk-signer.jar -a merged.apk --allowResign -o <merged_signed>
 
 ## <mark style="color:purple;">Dex to Java</mark>
 
-Decompile to (near) source code. (Dex to Java).
+Decompile to (near) source code (Dex to Java) using jadx \[[🔗](https://github.com/skylot/jadx)].
 
-<pre class="language-sh"><code class="lang-sh"><strong># https://github.com/skylot/jadx
-</strong><strong>
-</strong># Open jadx-gui
+<pre class="language-sh"><code class="lang-sh"># Open jadx-gui
 jadx-gui
 
 <strong># Decompile

@@ -2,6 +2,12 @@
 
 ## <mark style="color:purple;">Backup</mark>
 
+`adb backup` allows you to create a backup of an Android device's data. It can back up app data, system setting, etc.&#x20;
+
+{% hint style="info" %}
+**Note**: For apps targeting Android 12 (API level 31), `adb backup` excludes app data, except for debuggable apps \[[🔗](https://developer.android.com/about/versions/12/behavior-changes-12#adb-backup-restrictions)].
+{% endhint %}
+
 Check `android:allowBackup="true"` in the `AndroidManifest.xml`
 
 ```sh
@@ -14,9 +20,15 @@ adb restore <backup_name>.ab
 
 ## <mark style="color:purple;">Debuggable</mark>
 
-Check `android:debuggable="true"` in the `AndroidManifest.xml`
+The `android:debuggable` attribute indicates if the application is debuggable and it is set to `false` by default \[[🔗](https://developer.android.com/privacy-and-security/risks/android-debuggable)].&#x20;
 
-If it is enable you can read and extract without **root privileges** all files inside the app internal storage.
+{% hint style="info" %}
+**Note**: you cannot release a debuggable app on Google Play Store \[[🔗](https://developer.android.com/studio/publish/preparing.html#turn-off-debugging)] \[[🔗](https://stackoverflow.com/questions/53030583/uploaded-a-debuggable-apk-to-google-play)].
+{% endhint %}
+
+**Testing**
+
+Check `android:debuggable="true"` in the `AndroidManifest.xml`.If it is enable you can read and extract without **root privileges** all files inside the app internal storage.
 
 ```sh
 adb exec-out run-as <package_name> tar c . > output.tar
