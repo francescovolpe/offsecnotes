@@ -8,7 +8,9 @@
 **Note**: For apps targeting Android 12 (API level 31), `adb backup` excludes app data, except for debuggable apps \[[🔗](https://developer.android.com/about/versions/12/behavior-changes-12#adb-backup-restrictions)].
 {% endhint %}
 
-Check `android:allowBackup="true"` in the `AndroidManifest.xml`
+**Testing**
+
+**Requirement**: `android:allowBackup="true"` in the `AndroidManifest.xml`
 
 ```sh
 # Backup one application with its apk
@@ -16,6 +18,16 @@ adb backup -apk <package_name> -f <backup_name>.adb
 
 # Restore backup
 adb restore <backup_name>.ab
+```
+
+```sh
+# Alternative way
+adb shell
+bu backup <package_name>
+
+# Restore
+adb shell
+bu restore backup.adb
 ```
 
 ## <mark style="color:purple;">Debuggable</mark>

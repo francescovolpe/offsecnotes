@@ -151,7 +151,7 @@ Java.perform(() => {
 
 ## <mark style="color:purple;">Frida-trace</mark>
 
-Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly trace function calls.&#x20;
+Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly trace function calls.  This is usefull to see what happen when you perform an action. For example: open an app -> start frida-trace -> perform an action (press a button). In this way you can see what happen when you press a button.
 
 ```sh
 # Trace all calls on com.package.*
@@ -159,13 +159,31 @@ Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly 
 frida-trace -U -j 'com.package.*!*' <package_name>
 ```
 
+Example
+
+```sh
+$ frida-trace -U -j 'com.package.*!*' Package
+Instrumenting...
+[...]
+Started tracing 73 functions. Press Ctrl+C to stop.
+ 14972 ms  InterceptionFragment$4.onClick("<instance: android.view.View, $className: com.google.android.material.button.MaterialButton>")
+ 14973 ms     | InterceptionFragment.license_check_2()
+
+# You know the class (InterceptionFragment) and the method called (license_check_2())
+# Now you want to interpect and override that method. 
+# So you need to know the package of the class.
+$ ls __handlers__
+[...]
+com.package.ui.InterceptionFragment
+[...]
+
+# Now, you can write your script
+```
+
 {% hint style="info" %}
-**Note**: Keep in mind that not all classes are loaded at startup. Therefore, you may need to execute `frida-trace` after the application has started running (and when your class/method has been loaded) .
+**Note**: Keep in mind that not all classes are loaded at startup. Therefore, you may need to execute `frida-trace` after the application has started running (and when your class/method has been loaded).
 {% endhint %}
 
-
-
-\
 
 
 
