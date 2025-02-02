@@ -1,135 +1,76 @@
-# Dynamic Instrumentation
-
-## <mark style="color:purple;">Installation</mark>
-
-### <mark style="color:purple;">Install frida & objection on your host</mark>
-
-```sh
-# Install frida
-pip3 install frida-tools
-
-# Install objection
-pip3 install objection
-```
-
-### <mark style="color:purple;">Install frida on the device</mark>
-
-<details>
-
-<summary>(1 way) Patching APKs with Objection</summary>
-
-To inject Frida into an APK, use:
-
-```sh
-objection patchapk -s target.apk
-```
-
-This quickly extracts, patches, re-packs, aligns, and signs the APK \[[🔗](https://github.com/sensepost/objection/wiki/Patching-Android-Applications#patching---patching-an-apk)]. The patch is applied with the frida-gadget.so
-
-**Note:** The app will pause at launch, waiting for Frida. Start it with:
-
-```sh
-frida -U <package_name>
-```
-
-</details>
-
-<details>
-
-<summary>(2 way) Running the Frida Server</summary>
-
-**Requirement**: a rooted device
-
-1. Download frida-server from [Github](https://github.com/frida/frida/releases)
-2. Extract it
-3. Push it on the device
-
-```sh
-adb push frida-server /data/local/tmp/
-```
-
-**Note**: We chose this path because other parts, such as `/sdcard`, are commonly mounted no-exec.
-
-4. Run frida-server
-
-```sh
-adb shell
-
-su
-cd /data/local/tmp
-chmod +x frida-server
-
-# Launch the server
-./frida-server
-```
-
-5. Now we can connect to the application by running:
-
-```sh
-frida -U <package_name>
-```
-
-</details>
-
-## <mark style="color:purple;">Commands</mark>
-
-```sh
-# To list the available devices for frida
-frida-ls-devices
-
-# Connect Frida to a device over USB and list running processes
-frida-ps -U
-
-# List running applications
-frida-ps -Ua
-
-# List installed applications
-frida-ps -Uai
-
-# Connect Frida to the specific device
-frida-ps -D 0216027d1d6d3a03
-
-# Spawn application with frida
-frida -U -f <package_name>
-
-# Spawn application with frida
-frida -U -f <package_name> --pause
-
-# Spawn application with a script
-frida -U -f <package_name> -l <script.js>
-
-# Attach to application
-frida -U <package_name>
-```
+# Working with Frida
 
 ## <mark style="color:purple;">Working with frida</mark>
 
 For additional details, refer to the [official documentation](https://frida.re/docs/javascript-api/).
 
-### <mark style="color:purple;">Instantiating Objects and Calling Methods</mark>
+## <mark style="color:purple;">Frida-trace</mark>
 
-<pre class="language-javascript"><code class="lang-javascript"><strong>// Obtain a Javascript wrapper for Java class "java.lang.String"
-</strong><strong>var string_class = Java.use("java.lang.String");
-</strong><strong>
-</strong><strong>// Istantiate a class by calling $new
-</strong>var string_instance = string_class.$new("Teststring");
+Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly trace function calls.  This is usefull to see what happen when you perform an action. For example: open an app -> start frida-trace -> perform an action (press a button). In this way you can see what happen when you press a button.
 
-// Call a method
-string_instance.charAt(0);
-</code></pre>
-
-### <mark style="color:purple;">Override a method</mark>
-
-We can replace the implementation of a method by overwriting it on the class:
-
-```javascript
-string_class.charAt.implementation = (c) => {
-    console.log("charAt overridden!");
-    return "X";
-}
+```sh
+$ frida-ps -Uai
+ PID  Name                   Identifier                
+----  ---------------------  --------------------------
+[...] [...]                  [...]      
+6615  AppTarget              com.package.target
 ```
 
-To know which classes are actually available, call `Java.enumerateLoadedClasses(callbacks)` that will call a callback for each class that is loaded or `Java.enumerateLoadedClassesSync()` that return an array of all classes loaded.
+```sh
+# Trace all calls on com.package.*
+# class!method
+frida-trace -U -j 'com.package.target.*!*' AppTarget
+```
+
+Example
+
+```sh
+$ frida-trace -U -j 'com.package.target.*!*' AppTarget
+Instrumenting...
+[...]
+Started tracing 73 functions. Press Ctrl+C to stop.
+ 14972 ms  InterceptionFragment$4.onClick("<instance: android.view.View, $className: com.google.android.material.button.MaterialButton>")
+ 14973 ms     | InterceptionFragment.license_check_2()
+
+# You know the class (InterceptionFragment) and the method called (license_check_2())
+# Now you want to interpect/override that method. 
+```
+
+Unfortunately, the package name is missing here. So you can use two ways to get it:
+
+1. Inspect `__handlers__`
+
+```sh
+$ ls __handlers__
+[...]
+com.package.target.ui.InterceptionFragment
+[...]
+```
+
+2. By using frida. E.g. inside frida REPL
+
+```sh
+$ frida -U Package
+# Call Java.enumerateMethods("class!method")
+[...] -> Java.enumerateMethods("*InterceptionFragment!*license_check_2*")
+[
+    {
+        "classes": [
+            {
+                "methods": [
+                    "license_check_2"
+                ],
+                "name": "com.package.target.ui.InterceptionFragment"
+            }
+        ],
+        "loader": "<instance: java.lang.ClassLoader, $className: dalvik.system.PathClassLoader>"
+    }
+]
+```
+
+{% hint style="info" %}
+**Note**: Keep in mind that not all classes are loaded at startup. Therefore, you may need to execute `frida-trace` after the application has started running (and when your class/method has been loaded).
+{% endhint %}
 
 ### <mark style="color:purple;">Java.perform</mark>
 
@@ -149,66 +90,38 @@ Java.perform(() => {
 })
 ```
 
-## <mark style="color:purple;">Frida-trace</mark>
-
-Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly trace function calls.  This is usefull to see what happen when you perform an action. For example: open an app -> start frida-trace -> perform an action (press a button). In this way you can see what happen when you press a button.
-
-```sh
-# Trace all calls on com.package.*
-# class!method
-frida-trace -U -j 'com.package.*!*' <package_name>
-```
-
-Example
-
-```sh
-$ frida-trace -U -j 'com.package.*!*' Package
-Instrumenting...
-[...]
-Started tracing 73 functions. Press Ctrl+C to stop.
- 14972 ms  InterceptionFragment$4.onClick("<instance: android.view.View, $className: com.google.android.material.button.MaterialButton>")
- 14973 ms     | InterceptionFragment.license_check_2()
-
-# You know the class (InterceptionFragment) and the method called (license_check_2())
-# Now you want to interpect and override that method. 
-# So you need to know the package of the class.
-$ ls __handlers__
-[...]
-com.package.ui.InterceptionFragment
-[...]
-
-# Now, you can write your script
-```
-
-{% hint style="info" %}
-**Note**: Keep in mind that not all classes are loaded at startup. Therefore, you may need to execute `frida-trace` after the application has started running (and when your class/method has been loaded).
-{% endhint %}
-
-
-
-
-
-
-
-
-
-
-
 ## <mark style="color:purple;">Hooking methods</mark>
 
+To know which classes are actually available, call `Java.enumerateLoadedClasses(callbacks)` that will call a callback for each class that is loaded or `Java.enumerateLoadedClassesSync()` that return an array of all classes loaded.
+
 ### <mark style="color:purple;">Hook a method</mark>
+
+Use this script when you want to:
+
+* See the arguments passed
+* Change the implementation of the method (e.g: print/change return value )
 
 ```javascript
 Java.perform(function() {
   var <class_reference> = Java.use("<package_name>.<class>");
-  <class_reference>.<method_to_hook>.implementation = function(<args>) {
+  <class_reference>.<method_to_hook>.implementation = function(<arg>, <arg2>) {
     /*
      OUR OWN IMPLEMENTATION OF THE METHOD
+     
      console.log("This method is hooked");
+     console.log("First argument: " + <arg>);
+     console.log("Second argument: " + <arg2>);
+     console.log("Original return value: " + this.<method_to_hook>());
+     return true;
+     
     */
   }
 })
 ```
+
+{% hint style="info" %}
+**Note**: you don't need to specify the arguments. Do it when you want to see or manipulate their value.
+{% endhint %}
 
 <details>
 
@@ -227,16 +140,24 @@ Java.perform(function() {
 
 </details>
 
-### <mark style="color:purple;">Hook method with arguments</mark>
+### <mark style="color:purple;">Hook method by changing arguments</mark>
+
+Use this script when you want to change the values ​​of the arguments passed into the method.
 
 ```java
 Java.perform(function() {
   var <class_reference> = Java.use("<package_name>.<class>");
   <class_reference>.<method_to_hook>.overload('int', 'int').implementation = function(a, b) { 
+    
     // The function takes two arguments - check(first, second)
     console.log("The first input is " + a);
     console.log("The second input is " + b);
-    this.<method_to_hook>(a, b) // Call the method with the correct arguments
+    
+    // Call the method with the correct arguments
+    this.<method_to_hook>(a, b)
+    
+    // Do nothing. Obviously, you must comment the line: this.<method_to_hook>(a, b)
+    // console.log("Do nothing");
   }
 })
 ```

@@ -2,12 +2,26 @@
 
 * [offsecnotes](README.md)
 
-## I - Network
+## I - Android
 
-* [Information Gathering](i-network/information-gathering.md)
-* [Network Services Exploitation](i-network/network-services-exploitation.md)
-* [Post-Exploitation & Commands](i-network/post-exploitation.md)
-* [Privilege Escalation](i-network/privilege-escalation.md)
+* [Vulnerabilities](i-android/android-testing/README.md)
+  * [Bypass Binary Protections](i-android/android-testing/bypass-binary-protections.md)
+  * [Security Misconfiguration](i-android/android-testing/security-misconfiguration.md)
+  * [Insecure Data Storage](i-android/android-testing/insecure-data-storage.md)
+  * [Intent Attack Surface](i-android/android-testing/intent-attack-surface.md)
+  * [Deep link](i-android/android-testing/deep-link.md)
+  * [Task Hijacking](i-android/android-testing/task-hijacking.md)
+  * [Tapjacking](i-android/android-testing/tapjacking.md)
+  * [Exploiting exported Activities](i-android/android-testing/exploiting-exported-activities.md)
+* [Reverse Engineering](i-android/reverse-engineering/README.md)
+  * [APK Building](i-android/reverse-engineering/apk-building.md)
+  * [Reversing](i-android/reverse-engineering/reversing.md)
+* [Network Interception](i-android/network-interception.md)
+* [Frida](i-android/frida/README.md)
+  * [Installation & Commands](i-android/frida/installation-and-commands.md)
+  * [Working with Frida](i-android/frida/working-with-frida.md)
+* [ADB](i-android/adb.md)
+* [Framework](i-android/framework.md)
 
 ## II - Web Application
 
@@ -50,24 +64,12 @@
   * [SOP, CORS, Pre-flight](ii-web-application/web-security/sop-cors-pre-flight.md)
 * [Automation](ii-web-application/automation.md)
 
-## III - Android
+## III - Network
 
-* [Vulnerabilities](iii-android/android-testing/README.md)
-  * [Bypass Binary Protections](iii-android/android-testing/bypass-binary-protections.md)
-  * [Security Misconfiguration](iii-android/android-testing/security-misconfiguration.md)
-  * [Insecure Data Storage](iii-android/android-testing/insecure-data-storage.md)
-  * [Intent Attack Surface](iii-android/android-testing/intent-attack-surface.md)
-  * [Deep link](iii-android/android-testing/deep-link.md)
-  * [Task Hijacking](iii-android/android-testing/task-hijacking.md)
-  * [Tapjacking](iii-android/android-testing/tapjacking.md)
-  * [Exploiting exported Activities](iii-android/android-testing/exploiting-exported-activities.md)
-* [Reverse Engineering](iii-android/reverse-engineering/README.md)
-  * [APK Building](iii-android/reverse-engineering/apk-building.md)
-  * [Reversing](iii-android/reverse-engineering/reversing.md)
-* [Network Interception](iii-android/network-interception.md)
-* [Dynamic Instrumentation](iii-android/dynamic-instrumentation.md)
-* [ADB](iii-android/adb.md)
-* [Framework](iii-android/framework.md)
+* [Information Gathering](iii-network/information-gathering.md)
+* [Network Services Exploitation](iii-network/network-services-exploitation.md)
+* [Post-Exploitation & Commands](iii-network/post-exploitation.md)
+* [Privilege Escalation](iii-network/privilege-escalation.md)
 
 ## IV - Miscellaneous
 

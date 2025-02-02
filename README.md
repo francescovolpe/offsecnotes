@@ -10,27 +10,29 @@ Personal collection of continuously updated offensive security notes.
 
 ## Table of contents
 
-**I - NPT**
 
-* [information-gathering.md](i-network/information-gathering.md "mention")
-* [network-services-exploitation.md](i-network/network-services-exploitation.md "mention")
-* [post-exploitation.md](i-network/post-exploitation.md "mention")
-* [privilege-escalation.md](i-network/privilege-escalation.md "mention")
 
-**II - WAPT**
+**I - ANDROID**
+
+* [android-testing](i-android/android-testing/ "mention")
+* [reverse-engineering](i-android/reverse-engineering/ "mention")
+* [network-interception.md](i-android/network-interception.md "mention")
+* [frida](i-android/frida/ "mention")
+* [adb.md](i-android/adb.md "mention")
+* [framework.md](i-android/framework.md "mention")
+
+**II - WEB APPLICATION**
 
 * [vulnerabilities](ii-web-application/vulnerabilities/ "mention")
 * [web-security](ii-web-application/web-security/ "mention")
 * [automation.md](ii-web-application/automation.md "mention")
 
-**III - MAPT**
+**III - NETWORK**
 
-* [android-testing](iii-android/android-testing/ "mention")
-* [reverse-engineering](iii-android/reverse-engineering/ "mention")
-* [network-interception.md](iii-android/network-interception.md "mention")
-* [dynamic-instrumentation.md](iii-android/dynamic-instrumentation.md "mention")
-* [adb.md](iii-android/adb.md "mention")
-* [framework.md](iii-android/framework.md "mention")
+* [information-gathering.md](iii-network/information-gathering.md "mention")
+* [network-services-exploitation.md](iii-network/network-services-exploitation.md "mention")
+* [post-exploitation.md](iii-network/post-exploitation.md "mention")
+* [privilege-escalation.md](iii-network/privilege-escalation.md "mention")
 
 **IV - MISCELLANEOUS**
 

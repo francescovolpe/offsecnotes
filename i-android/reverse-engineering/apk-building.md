@@ -41,12 +41,14 @@ It almost always embodies the following files and directories, though only `Andr
 
 ## <mark style="color:purple;">Building process</mark>
 
-1.  📁 res (withouth res/values) and 🗎 AndroidManifest.xml are compiled (aapt \[compile] tool)
+Awesome resource written by Michael Zent \[[🔗](https://timeout.userpage.fu-berlin.de/apk-building-on-mobile/en/index.php)] .
 
-    * -> 🗎 R.java, 🗎 resouces.asrc, 📁 res (compiled), 🗎 AndroidManifest.xml (compiled)
+1.  `📁 res` (without `res/values`) and `🗎 AndroidManifest.xml` are compiled (aapt \[compile] tool)
+
+    * -> `🗎 R.java`, `🗎 resouces.asrc`, `📁 res (compiled)`, `🗎 AndroidManifest.xml` (compiled)
 
 
-2. 📁 java,  📁 lib&#x73;**,** 🗎 R.java, 🗎 android.jar are compiled (java compiler \[ex. javac] and/or kotlin compiler \[ex. kotlinc])
+2. `📁 java`,  `📁 libs`**,** `🗎 R.java`, `🗎 android.jar` are compiled (java compiler \[e.g. javac] and/or kotlin compiler \[e.g. kotlinc])
    *   &#x20;-> Java bytecode (`.class`) files. These are then compiled/converted (d8 tool)
 
        * -> Dalvik bytecode (`.dex`) file/s
