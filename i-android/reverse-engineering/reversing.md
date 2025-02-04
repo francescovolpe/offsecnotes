@@ -77,22 +77,18 @@ adb pull <path>
 
 ## <mark style="color:purple;">**Disassemble & Assemble**</mark>
 
-Apktool \[[🔗](https://github.com/iBotPeaches/Apktool)] is a tool for reverse engineering Android apps. It can decode (and disassemble) resources to **nearly** original form and **rebuild** them after making some modifications. (and other stuff).
+Apktool \[[🔗](https://github.com/iBotPeaches/Apktool)] is a tool for reverse engineering Android apps. It can decode (and disassemble) resources to **nearly** original form and **rebuild** them after making some modifications (and other stuff).
 
-In this way you can read .smali code (so you don't need baksmali), AndroidManifest.xml, etc.
+In this way you can read `.smali` code (so you don't need baksmali), `AndroidManifest.xml`, etc.
 
 {% hint style="info" %}
-**Note**: even if you can extract apk like it was a zip, you can't read file such as AndroidManifest.xml because it's compiled. Here's why you should use a tool like apktool.
+**Note**: even if you can extract apk like it was a zip, you can't read file such as `AndroidManifest.xml` because it's compiled. Here's why you should use a tool like apktool.
 {% endhint %}
 
 **Disassemble**
 
 ```sh
 apktool d target.apk # Default output is in dist directory
-
-# If you have errors when you assemble try this
-apktool d -f -r target.apk
-# Note: This do not decode resources
 ```
 
 **Assemble (Single apk)**
@@ -111,6 +107,17 @@ java -jar uber-apk-signer.jar -apk target.apk
 java -jar APKEditor.jar m -i <path_splitted_apk> -o merged.apk
 # Sign
 java -jar uber-apk-signer.jar -a merged.apk --allowResign -o <merged_signed>
+```
+
+## <mark style="color:purple;">Troubleshooting apktool</mark> <a href="#troubleshooting-install-errors" id="troubleshooting-install-errors"></a>
+
+* **INSTALL\_FAILED\_INVALID\_APK:** Failed to extract native libraries
+  * This error occurs in some apktool versions with apps containing native libraries. To fix it, set `extractNativeLibs` to `true` in `AndroidManifest.xml`, then repackage and re-sign the APK.
+* If you have errors when you assemble try this:
+
+```sh
+apktool d -f -r target.apk
+# Note: This do not decode resources
 ```
 
 ## <mark style="color:purple;">Dex to Java</mark>

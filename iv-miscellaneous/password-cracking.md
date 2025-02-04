@@ -34,13 +34,13 @@ hydra -L user.txt -P pass.txt <ip> <protocol>
 
 ## <mark style="color:purple;">Rules (password bruteforce)</mark>
 
-* **FIRST CHOICE**:  best64 (now best66).  Fast, works well.
+* **FIRST CHOICE**:  best64 (now best66). Fast, works well.
   * [https://github.com/hashcat/hashcat/blob/master/rules/best66.rule](https://github.com/hashcat/hashcat/blob/master/rules/best66.rule)
 * **SECOND/THIRD CHOICE**: InsidePro-PasswordsPro (\~3000) && InsidePro-Hashmanager (\~7000)
   * (2) [https://github.com/hashcat/hashcat/blob/master/rules/InsidePro-PasswordsPro.rule](https://github.com/hashcat/hashcat/blob/master/rules/InsidePro-PasswordsPro.rule)
   * (3) [https://github.com/hashcat/hashcat/blob/master/rules/InsidePro-HashManager.rule](https://github.com/hashcat/hashcat/blob/master/rules/InsidePro-HashManager.rule)
   * You can also combine them...
-* **FOURTH CHOICE**: OneRuleToRuleThemAll. (\~50k). The best
+* **FOURTH CHOICE**: OneRuleToRuleThemAll. (\~50k). The best.
   * [https://github.com/NotSoSecure/password\_cracking\_rules/blob/master/OneRuleToRuleThemAll.rule](https://github.com/NotSoSecure/password_cracking_rules/blob/master/OneRuleToRuleThemAll.rule)
 
 **Generate wordlist based on rules**

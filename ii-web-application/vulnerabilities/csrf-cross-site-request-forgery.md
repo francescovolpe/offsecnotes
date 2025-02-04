@@ -168,4 +168,4 @@ redirectOnConfirmation = () => {
 </code></pre>
 {% endhint %}
 
-Firefox 87 new default Referrer Policy `strict-origin-when-cross-origin` trimming user sensitive information like path and query string to protect privacy. ([https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/](https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/))
+Firefox 87 new default Referrer Policy `strict-origin-when-cross-origin` trimming user sensitive information like path and query string to protect privacy. \[[🔗](https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/)]

@@ -53,7 +53,7 @@ openssl x509 -in cacert.crt -pubkey -noout | openssl pkey -pubin -outform der | 
 
 This allow you to intercpet the traffic in the webview. It's especially useful in cordova-based apps.&#x20;
 
-See [#webview-debug](bypass-binary-protections.md#webview-debug "mention")
+See [#webview-debug](security-misconfiguration.md#webview-debug "mention")
 
 {% hint style="success" %}
 **Tip**: if you can't use remote debugging, recompile the app and enable it.
@@ -72,7 +72,7 @@ frida --codeshare dzonerzy/fridantiroot -f <com.package.app> -U
   * Analyze source code
   * `apkid --scan-depth 0 -r target.apk`
 * **Bypass protection analyzing the code and/or with frida**
-  * If the app return an error message (e.g. "Your device appears to be rooted..."), search this string inside the code
+  * If the app return an error message (e.g. "Your device appears to be rooted"), search this string inside the code
 
 ## <mark style="color:purple;">Emulator Detection</mark>
 

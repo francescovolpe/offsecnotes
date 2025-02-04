@@ -1,12 +1,8 @@
 # Working with Frida
 
-## <mark style="color:purple;">Working with frida</mark>
-
-For additional details, refer to the [official documentation](https://frida.re/docs/javascript-api/).
-
 ## <mark style="color:purple;">Frida-trace</mark>
 
-Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly trace function calls.  This is usefull to see what happen when you perform an action. For example: open an app -> start frida-trace -> perform an action (press a button). In this way you can see what happen when you press a button.
+Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly trace function calls.  This is useful to see what happen when you perform an action. For example: open an app -> start frida-trace -> perform an action (press a button). In this way you can see what happen when you press a button.
 
 ```sh
 $ frida-ps -Uai
@@ -72,7 +68,7 @@ $ frida -U Package
 **Note**: Keep in mind that not all classes are loaded at startup. Therefore, you may need to execute `frida-trace` after the application has started running (and when your class/method has been loaded).
 {% endhint %}
 
-### <mark style="color:purple;">Java.perform</mark>
+## <mark style="color:purple;">Java.perform(fn)</mark>
 
 If we run the following code we get an error that say it couldn't find the class.&#x20;
 
@@ -89,6 +85,10 @@ Java.perform(() => {
     console.log(exampleIstance.method);
 })
 ```
+
+## <mark style="color:purple;">Working with frida</mark>
+
+For additional details, refer to the [official documentation](https://frida.re/docs/javascript-api/).
 
 ## <mark style="color:purple;">Hooking methods</mark>
 
@@ -140,7 +140,7 @@ Java.perform(function() {
 
 </details>
 
-### <mark style="color:purple;">Hook method by changing arguments</mark>
+### <mark style="color:purple;">Hook a method by changing arguments</mark>
 
 Use this script when you want to change the values ​​of the arguments passed into the method.
 
@@ -209,13 +209,13 @@ Java.perform(function() {
 
 </details>
 
-## <mark style="color:purple;">Printing/Modifying a class variable</mark>
+## <mark style="color:purple;">Class variable</mark>
 
 ```javascript
 Java.perform(function (){
     var <class_reference> = Java.use("<package_name>.<class>");
-    console.log(<class_reference>.<variable>.value); // print the value
-    <class_reference>.<variable>.value = <value>; // change the value 
+    console.log(<class_reference>.<variable>.value);  // print the value
+    <class_reference>.<variable>.value = <value>;     // change the value 
 })
 ```
 
@@ -261,7 +261,7 @@ System.load("lib/armeabi/libcalc.so")
 
 **The Java to Native Code Connection**
 
-```
+```java
 public native String doThingsInNativeLibrary(int var0);
 ```
 
@@ -274,7 +274,7 @@ There are 2 different ways to do this pairing, or linking:
 
 The developer names the method and the function according to the specs. E.g. class `com.android.interesting.Stuff`. The function in the native library would need to be named
 
-```
+```c
 Java_com_android_interesting_Stuff_doThingsInNativeLibrary
 ```
 

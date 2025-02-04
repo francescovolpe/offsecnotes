@@ -2,7 +2,7 @@
 
 ## <mark style="color:purple;">Whois</mark>
 
-It \[[🔗](https://datatracker.ietf.org/doc/html/rfc3912)] is a protocol used for querying databases that store an Internet resource's registered users or assignees. You can provide:
+Whois \[[🔗](https://datatracker.ietf.org/doc/html/rfc3912)] is a protocol used for querying databases that store an Internet resource's registered users or assignees. You can provide:
 
 * Domain -> info about it such as name server, registrar, etc.
 * IP ->  info about who is hostring the IP address
@@ -32,7 +32,7 @@ Gather information through GitHub, GitLab, etc.&#x20;
 
 ## <mark style="color:purple;">Google Dorks</mark>
 
-Example
+**Example**
 
 ```sh
 # Restrict the search to example.com and subdomains

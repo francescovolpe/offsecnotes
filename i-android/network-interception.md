@@ -218,7 +218,7 @@ java -jar uber-apk-signer.jar -apk <app_name>.apk
 
 If you configure an HTTP proxy in Android settings, you can intercept network traffic. However,&#x20;
 
-* Connections made directly via `TCP sockets` bypass the proxy and cannot be intercepted.
+* Connections made directly via TCP sockets bypass the proxy and cannot be intercepted.
 * Applications may bypass the HTTP proxy settings if the developer configures them to disallow proxy usage. E.g. with **OkHttp**:
 
 ```java

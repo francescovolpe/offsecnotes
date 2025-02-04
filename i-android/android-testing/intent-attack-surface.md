@@ -6,11 +6,12 @@ An intent is an abstract description of an operation to be performed.
 
 **Starting Activities**
 
-<pre class="language-java"><code class="lang-java"><strong>// 1 way
-</strong><strong>Intent intent = new Intent();
-</strong>intent.setComponent(new ComponentName("com.package.test", "com.package.test.SecondActivity"));
+```java
+// 1 way
+Intent intent = new Intent();
+intent.setComponent(new ComponentName("com.package.test", "com.package.test.SecondActivity"));
 startActivity(intent);
-</code></pre>
+```
 
 ```java
 // 2 way

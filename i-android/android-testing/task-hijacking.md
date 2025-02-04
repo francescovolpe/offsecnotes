@@ -22,7 +22,7 @@ When the back button is pressed on `Bank-Main-Activity`, the user will go to the
 **Requirements:**
 
 * The app can be installed on **Android SDK version < 28 (Android 9)**. Check `android:minSdkVersion` is < 28 in `AndroidManifest.xml`
-  * This vulnerability is patched from **Android SDK version 28**. [https://developer.android.com/privacy-and-security/risks/strandhogg](https://developer.android.com/privacy-and-security/risks/strandhogg)
+  * This vulnerability is patched from **Android SDK version 28**. \[[🔗](https://developer.android.com/privacy-and-security/risks/strandhogg)]&#x20;
 * `android:launchMode="singleTask"` in `AndroidManifest.xml` (necessary for this scenario)
 
 ## <mark style="color:purple;">**Testing**</mark>

