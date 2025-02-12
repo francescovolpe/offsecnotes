@@ -94,19 +94,19 @@ For additional details, refer to the [official documentation](https://frida.re/d
 
 To know which classes are actually available, call `Java.enumerateLoadedClasses(callbacks)` that will call a callback for each class that is loaded or `Java.enumerateLoadedClassesSync()` that return an array of all classes loaded.
 
-### <mark style="color:purple;">Hook a method</mark>
+***
 
 Use this script when you want to:
 
 * See the arguments passed
-* Change the implementation of the method (e.g: print/change return value )
+* Change the implementation of the method (e.g. print/change return value)
 
 ```javascript
 Java.perform(function() {
   var <class_reference> = Java.use("<package_name>.<class>");
   <class_reference>.<method_to_hook>.implementation = function(<arg>, <arg2>) {
     /*
-     OUR OWN IMPLEMENTATION OF THE METHOD
+     YOUR OWN IMPLEMENTATION OF THE METHOD
      
      console.log("This method is hooked");
      console.log("First argument: " + <arg>);
@@ -140,27 +140,28 @@ Java.perform(function() {
 
 </details>
 
-### <mark style="color:purple;">Hook a method by changing arguments</mark>
-
-Use this script when you want to change the values ​​of the arguments passed into the method.
+If a method has more than one overload (it means that the method can be called with different parameters), you must use `overloads` and specify which signature you want to choose.
 
 ```java
 Java.perform(function() {
   var <class_reference> = Java.use("<package_name>.<class>");
   <class_reference>.<method_to_hook>.overload('int', 'int').implementation = function(a, b) { 
+    /*
+    YOUR OWN IMPLEMENTATION OF THE METHOD
     
-    // The function takes two arguments - check(first, second)
     console.log("The first input is " + a);
     console.log("The second input is " + b);
-    
-    // Call the method with the correct arguments
     this.<method_to_hook>(a, b)
+    return true;
     
-    // Do nothing. Obviously, you must comment the line: this.<method_to_hook>(a, b)
-    // console.log("Do nothing");
+    */
   }
 })
 ```
+
+{% hint style="success" %}
+**Tip**: if you don't know what are the overload available, try to hook the method without the overload. Frida automatically tell you that the method has more than one overload and it will show you the ones available.
+{% endhint %}
 
 ## <mark style="color:purple;">Call a static method</mark>
 

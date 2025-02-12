@@ -4,16 +4,24 @@
 
 ### <mark style="color:purple;">Install frida & objection on your host</mark>
 
+**Install the latest version**
+
 ```sh
 # Install frida
 pip3 install frida-tools
 
-# Install a specific version of frida
-pip3 install "frida-tools==9.2.5"
-
 # Install objection
 pip3 install objection
 ```
+
+**Install an older version**
+
+1. Choose a frida version. E.g. frida 15.2.2.
+2. Go on [https://github.com/frida/frida-tools/blob/13.6.1/setup.py](https://github.com/frida/frida-tools/blob/13.6.1/setup.py)
+3. Switch branches/tags and select a version. (You can also modify the URL)
+4. In the `setup.py` look at `install_requires`. It tells you what frida version it's supported. In this case **frida-tools 13.6.1** supports `frida >= 16.2.2, < 17.0.0`. If we choose **frida-tools 11.0.0**, it supports `frida >= 15.2.0, < 16.0.0`.
+5. Install: `pip install frida==15.2.0 frida-tools==11.0.0`
+6. Verify installation: `pip list`
 
 ### <mark style="color:purple;">Install frida on the device</mark>
 
@@ -29,7 +37,7 @@ objection patchapk -s target.apk
 objection patchapk -V 14.2.8 -s target.apk
 ```
 
-This quickly extracts, patches, re-packs, aligns, and signs the APK \[[🔗](https://github.com/sensepost/objection/wiki/Patching-Android-Applications#patching---patching-an-apk)]. The patch is applied with the frida-gadget.so
+This quickly extracts, patches, re-packs, aligns, and signs the APK \[[🔗](https://github.com/sensepost/objection/wiki/Patching-Android-Applications#patching---patching-an-apk)]. The patch is applied with the **frida-gadget.so**
 
 **Note:** The app will pause at launch, waiting for Frida. Start it with:
 
