@@ -71,3 +71,7 @@ If you find an XSS on `subdomain.vulnerable-website.com` inject JavaScript that 
 ```
 https://subdomain.vulnerable-website.com/?xss=<script>cors-stuff-here</script>
 ```
+
+## <mark style="color:purple;">Cookie SameSite</mark>
+
+It is important to note that all this works in according with SameSite cookie attribute. This means that if your session cookie is set with `SameSite=Strict` the browser send the cookie only for same-site requests. For more information about this topic and how to bypass it, refer to [#samesite-cookies](csrf-cross-site-request-forgery.md#samesite-cookies "mention").

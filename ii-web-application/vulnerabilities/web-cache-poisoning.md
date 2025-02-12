@@ -117,7 +117,7 @@ X-Cache: hit
 ```
 
 {% hint style="success" %}
-**Tip**: use Param Miner extension to identify unkeyed inputs (Guess query params)
+**Tip**: use Param Miner extension to identify unkeyed inputs.
 {% endhint %}
 
 ### <mark style="color:purple;">**Exploiting parameter parsing quirks**</mark>

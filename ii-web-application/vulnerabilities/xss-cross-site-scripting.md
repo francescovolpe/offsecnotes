@@ -106,10 +106,11 @@ Exploit
 
 jQuery's `attr()` function can change the attributes of DOM elements
 
-<pre class="language-javascript"><code class="lang-javascript"><strong>$(function() {
-</strong>	$('#backLink').attr("href",(new URLSearchParams(window.location.search)).get('returnUrl'));
+```javascript
+$(function() {
+	$('#backLink').attr("href",(new URLSearchParams(window.location.search)).get('returnUrl'));
 });
-</code></pre>
+```
 
 Exploit
 

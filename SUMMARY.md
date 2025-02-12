@@ -16,10 +16,10 @@
 * [Reverse Engineering](i-android/reverse-engineering/README.md)
   * [APK Building](i-android/reverse-engineering/apk-building.md)
   * [Reversing](i-android/reverse-engineering/reversing.md)
-* [Network Interception](i-android/network-interception.md)
 * [Frida](i-android/frida/README.md)
   * [Installation & Commands](i-android/frida/installation-and-commands.md)
   * [Working with Frida](i-android/frida/working-with-frida.md)
+* [Network Interception](i-android/network-interception.md)
 * [ADB](i-android/adb.md)
 * [Framework](i-android/framework.md)
 

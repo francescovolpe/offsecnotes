@@ -81,13 +81,14 @@ Check if you can directly skip to "logged-in" pages.
 
 * **Flawed logic**
 
-<pre class="language-http"><code class="lang-http"><strong># 1 step - (REQUEST) Normal login with attacker account
-</strong>POST /login-steps/first HTTP/1.1
+```http
+# 1 step - (REQUEST) Normal login with attacker account
+POST /login-steps/first HTTP/1.1
 Host: vulnerable-website.com
 [...]
 
-username=attacker&#x26;password=qwerty
-</code></pre>
+username=attacker&password=qwerty
+```
 
 ```http
 # 1 step - (RESPONSE) The server sets cookie
