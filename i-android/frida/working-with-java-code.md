@@ -6,7 +6,7 @@ For additional details, refer to the [official documentation](https://frida.re/d
 
 There are two ways to know which classes are actually available:
 
-(1) `Java.enumerateLoadedClasses(callbacks)` use this if you want to do something when the class is loaded or when the enumeration is terminated.
+1. &#x20;`Java.enumerateLoadedClasses(callbacks)` use this if you want to do something when the class is loaded or when the enumeration is terminated.
 
 ```javascript
 Java.enumerateLoadedClasses({
@@ -26,7 +26,7 @@ Java.enumerateLoadedClasses({
 */
 ```
 
-(2) `Java.enumerateLoadedClassesSync()` that returns the class names in an array.
+2. `Java.enumerateLoadedClassesSync()` that returns the class names in an array.
 
 ```javascript
 var classes = Java.enumerateLoadedClassesSync();
@@ -48,11 +48,11 @@ console.log("[*] Loaded classes: " + classes.length);
 `Java.enumerateMethods("class!method")`
 
 ```javascript
-// Print all methods of *com.example*
+// Print all methods of classes *com.example*
 const allExampleMethods = Java.enumerateMethods('*com.example*!*')
 console.log(JSON.stringify(allExampleMethods, null, 2));
 
-// Print all methods of *mainactivity* (Case-insensitive) 
+// Print all methods of classes *mainactivity* (Case-insensitive) 
 const activity = Java.enumerateMethods('*mainactivity*!*/i')
 console.log(JSON.stringify(activity, null, 2));
 ```

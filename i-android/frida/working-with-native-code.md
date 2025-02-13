@@ -1,5 +1,7 @@
 # Working with native code
 
+For additional details, refer to the [official documentation](https://frida.re/docs/javascript-api/).
+
 ## <mark style="color:purple;">Native functions</mark>
 
 <details>
@@ -38,27 +40,74 @@ Using the `RegisterNatives`. This function is called from the native code, not t
 
 </details>
 
-## <mark style="color:purple;">Hooking a native functions</mark>
-
-**Get the address of a particular function in frida**
+## <mark style="color:purple;">Detecting external native library load</mark>
 
 ```javascript
-// 1 way ---> Module.enumerateExports(modulename)
-Module.enumerateExports("libyouwant.so")
-Module.enumerateExports("libyouwant.so")[0]["address"] // 0 is the index, you need to change it
+var library = "libyouwant.so";
+var flag =  0;
 
-// 2 way --> Module.getExportByName(modulename, exportName)
-Module.getExportByName("libyouwant.so", "Java_com_ad2001_frida_MainActivity_cmpstr")
-
-// 3 way
-Module.getBaseAddress("libyouwant.so") // Base address of the given module
-// Find the address of function using ghidra. e.g -> 00010720
-// Ghidra loads binaries with a default base address of 0x100000, 
-// so we should subtract the base address from the offset to obtain the offset.
-Module.getBaseAddress("libyouwant.so").add(0x720)
+Interceptor.attach(Module.findExportByName(null, "android_dlopen_ext"), {
+    onEnter: function(args){
+        var library_path = Memory.readCString(args[0])
+        if (library_path.indexOf(library) >= 0) {
+            console.log("Loading library: " + library_path)
+            flag = 1;
+        }
+    },
+    onLeave: function(retval){
+        if (flag == 1){
+            console.log("Library loaded");
+            flag = 0;
+        }
+    }
+});
 ```
 
-**Code**
+The `android_dlopen_ext` API  \[[🔗](https://developer.android.com/ndk/reference/group/libdl#android_dlopen_ext)] is invoked every time an application attempts to load an external library.&#x20;
+
+When `onEnter` is called, it is checked whether the library that `android_dlopen_ext` is loading is the desired library. If so, it sets `flag = 1`.&#x20;
+
+`onLeave` checks whether the `flag == 1`. If this check is omitted, the code within onLeave will be executed each time any library is loaded.
+
+## <mark style="color:purple;">Working with native library</mark>
+
+```javascript
+var library = "libyouwant.so";
+var flag =  0;
+
+Interceptor.attach(Module.findExportByName(null, "android_dlopen_ext"), {
+    onEnter: function(args){
+        var library_path = Memory.readCString(args[0])
+        if (library_path.indexOf(library) >= 0) {
+            console.log("Loading library: " + library_path)
+            flag = 1;
+        }
+    },
+    onLeave: function(retval){
+        if (flag == 1){
+            console.log("Library loaded");
+            
+            // Create a Module object
+            var module = Process.findModuleByName(library);
+            
+            // Print base address of the library
+            console.log("[*] Base address of " + library + ": " + module.base);
+            
+            // Enumerate exports of the library
+            console.log("[*] Enumerating imports of " + library);
+            console.log(JSON.stringify(module.enumerateExports(), null, 2));
+            
+            flag = 0;
+        }
+    }
+});
+```
+
+To work with the native library, you can create a `Module` object. Once you have created it you can perform various actions. Refer to [https://frida.re/docs/javascript-api/#module](https://frida.re/docs/javascript-api/#module).
+
+## <mark style="color:purple;">Hooking a native functions</mark>
+
+You first need to get the address of a particular function in frida.
 
 ```javascript
 Interceptor.attach(targetAddress, {
@@ -77,10 +126,13 @@ Interceptor.attach(targetAddress, {
 
 <summary>Example</summary>
 
-```javascript
+<pre class="language-javascript"><code class="lang-javascript">// In this case we want to hook the strcmp function of the libc.so.
+// Since the libc.so library is interal and loaded soon, we can directly use
+// Module.findExportByName() to find the absolute address of the function.
 var strcmp_adr = Module.findExportByName("libc.so", "strcmp");
-Interceptor.attach(strcmp_adr, {
-    onEnter: function (args) {
+<strong>
+</strong><strong>Interceptor.attach(strcmp_adr, {
+</strong>    onEnter: function (args) {
         var arg0 = Memory.readUtf8String(args[0]); // first argument
         var flag = Memory.readUtf8String(args[1]); // second argument
         if (arg0.includes("Hello")) {
@@ -95,7 +147,7 @@ Interceptor.attach(strcmp_adr, {
         // Modify or log return value if needed
     }
 });
-```
+</code></pre>
 
 </details>
 
