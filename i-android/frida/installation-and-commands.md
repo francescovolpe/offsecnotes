@@ -16,7 +16,7 @@ pip3 install objection
 
 **Install an older version**
 
-1. Choose a frida version. E.g. frida 15.2.2.
+1. Choose a frida version. E.g. **frida 15.2.2**.
 2. Go on [https://github.com/frida/frida-tools/blob/13.6.1/setup.py](https://github.com/frida/frida-tools/blob/13.6.1/setup.py)
 3. Switch branches/tags and select a version. (You can also modify the URL)
 4. In the `setup.py` look at `install_requires`. It tells you what frida version it's supported. In this case **frida-tools 13.6.1** supports `frida >= 16.2.2, < 17.0.0`. If we choose **frida-tools 11.0.0**, it supports `frida >= 15.2.0, < 16.0.0`.

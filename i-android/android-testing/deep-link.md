@@ -6,7 +6,7 @@
 
 <summary>Types of links</summary>
 
-**(Custom) Scheme URL**
+**(Custom) Scheme URL** \[[🔗](https://developer.android.com/training/app-links#deep-links)]
 
 App developers customize any schemes and URIs for their app without any restriction
 
@@ -27,11 +27,11 @@ When the user clicks a deep link, a disambiguation dialog might appear. This dia
 
 ***
 
-**Web links**
+**Web links** \[[🔗](https://developer.android.com/training/app-links#web-links)]
 
 Web links are deep links that use the HTTP and HTTPS schemes.
 
-**Note**: On Android 12 and higher, clicking a web link (not an Android App Link) opens it in a web browser. On earlier Android versions, users may see a disambiguation dialog if multiple apps can handle the web link.
+**Note**: On Android 12 and higher, clicking a web link (not an Android App Link) opens it in a web browser. On earlier Android versions, users may see a disambiguation dialog if multiple apps can handle the web link.&#x20;
 
 ```xml
 <intent-filter>
@@ -45,9 +45,9 @@ Web links are deep links that use the HTTP and HTTPS schemes.
 
 ***
 
-**Android App Links**
+**Android App Links** \[[🔗](https://developer.android.com/training/app-links#android-app-links)]
 
-Android App Links, available on Android 6.0 (API level 23) and higher, are web links with the `autoVerify` attribute. This lets your app become the default handler for the link type, so when a user clicks an Android App Link, your app opens immediately if installed, without a disambiguation dialog.
+Android App Links, available on Android 6.0 (API level 23) and higher, are web links with the `autoVerify` attribute. This lets your app become the default handler for the link type, so when a user clicks an Android App Link, your app opens immediately if installed, without a disambiguation dialog.&#x20;
 
 ```xml
 <intent-filter android:autoVerify="true">

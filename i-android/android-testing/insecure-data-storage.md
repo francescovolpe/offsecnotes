@@ -21,7 +21,7 @@ objection -g <package_name> run env
 
 ## <mark style="color:purple;">Application Memory</mark>
 
-Example: after login see how long the app keeps the password in memory
+Example: after login see how long the app keeps the password in memory.
 
 ```sh
 # Start objection

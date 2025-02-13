@@ -16,8 +16,8 @@ Personal collection of continuously updated offensive security notes.
 
 * [android-testing](i-android/android-testing/ "mention")
 * [reverse-engineering](i-android/reverse-engineering/ "mention")
-* [network-interception.md](i-android/network-interception.md "mention")
 * [frida](i-android/frida/ "mention")
+* [network-interception.md](i-android/network-interception.md "mention")
 * [adb.md](i-android/adb.md "mention")
 * [framework.md](i-android/framework.md "mention")
 

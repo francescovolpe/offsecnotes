@@ -124,10 +124,11 @@ apktool d -f -r target.apk
 
 Decompile to (near) source code (Dex to Java) using jadx \[[🔗](https://github.com/skylot/jadx)].
 
-<pre class="language-sh"><code class="lang-sh"># Open jadx-gui
+```sh
+# Open jadx-gui
 jadx-gui
 
-<strong># Decompile
-</strong>jadx target.apk
+# Dcompile
+jadx target.apk
 jadx -d App target.apk
-</code></pre>
+```
