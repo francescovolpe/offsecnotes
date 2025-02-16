@@ -1,6 +1,6 @@
 # frida-trace
 
-Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly trace function calls.  This is useful to see what happen when you perform an action. For example: open an app -> start frida-trace -> perform an action (press a button). In this way you can see what happen when you press a button.
+Frida trace \[[🔗](https://frida.re/docs/frida-trace/)] allows us to directly trace function calls. This is useful to see what happen when you perform an action. For example: open an app -> start frida-trace -> perform an action (press a button). In this way you can see what happen when you press a button.
 
 ```sh
 $ frida-ps -Uai
@@ -63,5 +63,5 @@ $ frida -U Package
 ```
 
 {% hint style="info" %}
-**Note**: Keep in mind that not all classes are loaded at startup. Therefore, you may need to execute `frida-trace` after the application has started running (and when your class/method has been loaded).
+**Note**: keep in mind that not all classes are loaded at startup. Therefore, you may need to execute `frida-trace` after the application has started running (and when your class/method has been loaded).
 {% endhint %}

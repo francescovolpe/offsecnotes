@@ -34,7 +34,7 @@ The developer names the method and the function according to the specs. E.g. cla
 Java_com_android_interesting_Stuff_doThingsInNativeLibrary
 ```
 
-#### Static Linking <a href="#static-linking" id="static-linking"></a>
+**Static Linking**
 
 Using the `RegisterNatives`. This function is called from the native code, not the Java code and is most often called in the `JNI_OnLoad` function since `RegisterNatives` must be executed prior to calling the Java-declared native method.
 
@@ -67,7 +67,7 @@ The `android_dlopen_ext` API  \[[🔗](https://developer.android.com/ndk/referen
 
 When `onEnter` is called, it is checked whether the library that `android_dlopen_ext` is loading is the desired library. If so, it sets `flag = 1`.&#x20;
 
-`onLeave` checks whether the `flag == 1`. If this check is omitted, the code within onLeave will be executed each time any library is loaded.
+`onLeave` checks whether the `flag == 1`. If this check is omitted, the code within `onLeave` will be executed each time any library is loaded.
 
 ## <mark style="color:purple;">Working with native library</mark>
 
@@ -126,13 +126,14 @@ Interceptor.attach(targetAddress, {
 
 <summary>Example</summary>
 
-<pre class="language-javascript"><code class="lang-javascript">// In this case we want to hook the strcmp function of the libc.so.
+```javascript
+// In this case we want to hook the strcmp function of the libc.so.
 // Since the libc.so library is interal and loaded soon, we can directly use
 // Module.findExportByName() to find the absolute address of the function.
 var strcmp_adr = Module.findExportByName("libc.so", "strcmp");
-<strong>
-</strong><strong>Interceptor.attach(strcmp_adr, {
-</strong>    onEnter: function (args) {
+
+Interceptor.attach(strcmp_adr, {
+    onEnter: function (args) {
         var arg0 = Memory.readUtf8String(args[0]); // first argument
         var flag = Memory.readUtf8String(args[1]); // second argument
         if (arg0.includes("Hello")) {
@@ -147,7 +148,7 @@ var strcmp_adr = Module.findExportByName("libc.so", "strcmp");
         // Modify or log return value if needed
     }
 });
-</code></pre>
+```
 
 </details>
 

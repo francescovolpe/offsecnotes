@@ -62,7 +62,7 @@ console.log(JSON.stringify(activity, null, 2));
 If we run the following code we get an error that say it couldn't find the class.&#x20;
 
 ```javascript
-var exampleClass = Java.use("com.package.ExampleClass"); // return an error
+var exampleClass = Java.use("com.package.ExampleClass"); // Return an error
 ```
 
 If we use `Java.perform(fn)`, the code will be executed when the JVM is available, but not immediately.
@@ -171,8 +171,8 @@ Java.perform(function() {
 ```javascript
 Java.perform(function() {
   var <class_reference> = Java.use("<package_name>.<class>");
-  var <class_instance> = <class_reference>.$new(); // Class Object
-  <class_instance>.<method>(); // Calling the method
+  var <class_instance> = <class_reference>.$new();      // Class Object
+  <class_instance>.<method>();                          // Calling the method
 })
 ```
 
@@ -196,8 +196,8 @@ Java.perform(function() {
 ```javascript
 Java.perform(function (){
     var <class_reference> = Java.use("<package_name>.<class>");
-    console.log(<class_reference>.<variable>.value);  // print the value
-    <class_reference>.<variable>.value = <value>;     // change the value 
+    console.log(<class_reference>.<variable>.value);  // Print the value
+    <class_reference>.<variable>.value = <value>;     // Change the value 
 })
 ```
 
