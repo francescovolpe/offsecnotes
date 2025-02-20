@@ -70,7 +70,7 @@ list_tokens -u
 
 ```sh
 impersonate_token <token_name>
-# Ex: impersonate_token ANYTHING\\Administrator 
+# E.g. impersonate_token ANYTHING\\Administrator 
 # Note: the two backslashes
 ```
 
@@ -194,9 +194,10 @@ ps aux
 
 ### <mark style="color:purple;">Sudo</mark>
 
-<pre class="language-sh"><code class="lang-sh">sudo -l
-<strong># Search on https://gtfobins.github.io/ how to exploit
-</strong></code></pre>
+```sh
+sudo -l
+# Search on https://gtfobins.github.io/ how to exploit
+```
 
 ### <mark style="color:purple;">SUID - custom binary</mark>
 

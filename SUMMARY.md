@@ -16,6 +16,7 @@
 * [Reverse Engineering](i-android/reverse-engineering/README.md)
   * [APK Building](i-android/reverse-engineering/apk-building.md)
   * [Reversing](i-android/reverse-engineering/reversing.md)
+  * [Analyze native libraries](i-android/reverse-engineering/analyze-native-libraries.md)
 * [Frida](i-android/frida/README.md)
   * [Installation & Commands](i-android/frida/installation-and-commands.md)
   * [frida-trace](i-android/frida/frida-trace.md)

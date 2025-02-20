@@ -2,16 +2,17 @@
 
 ## <mark style="color:purple;">Enumerating web resources</mark>
 
-<pre class="language-sh"><code class="lang-sh"># Web fuzzer 
+```sh
+# Web fuzzer 
 ffuf -w wordlist.txt -u https://example.com/file-FUZZ- c
 
-<strong># Recursive content discovery
-</strong># You can set depth (recursion), extract links from response body
+# Recursive content discovery
+# You can set depth (recursion), extract links from response body
 feroxbuster -u https://example.com -x html,php,js,txt,pdf,json
 
 # Fetch all the URLs that the Wayback Machine knows about for a domain
 waybackurls https://example.com
-</code></pre>
+```
 
 ### <mark style="color:purple;">**Wordlists**</mark>
 

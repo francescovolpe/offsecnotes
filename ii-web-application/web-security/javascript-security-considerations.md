@@ -64,13 +64,13 @@ Hexadecimal encoding works only within strings. If you attempt to use it as an i
 **Prefix**: `\x`
 
 ```javascript
-'\x61'    // a
-"\x61"    // a
-`\x61`    // a
-x='\x74\x65\x73\x74'    // x='test'
+'\x61'                    // a
+"\x61"                    // a
+`\x61`                    // a
+x='\x74\x65\x73\x74'      // x='test'
 
 function a(){}
-\x61()    // Fails
+\x61()                    // Fails
 ```
 
 ### <mark style="color:purple;">Unicode</mark>
@@ -80,13 +80,13 @@ Unicode escapes also work in strings but are also allowed in identifiers, but yo
 **First form**: `\u` (you must specify four hexadecimal characters)
 
 ```javascript
-'\u0061'    //a
-"\u0061"    //a
-`\u0061`    //a
-\u0074\u0065\u0073\u0074='cool'    // Variable test='cool'
+'\u0061'                            //a
+"\u0061"                            //a
+`\u0061`                            //a
+\u0074\u0065\u0073\u0074='cool'     // Variable test='cool'
 
 function a(){}
-\u0061()    // Correctly calls the function
+\u0061()                            // Correctly calls the function
 
 \u0061\u006c\u0065\u0072\u0074()    // Call alert()
 ```
@@ -96,15 +96,15 @@ function a(){}
 Unlike standard unicode escapes you are not restricted tofour hexadecimal characters.
 
 ```javascript
-'\u{61}'//a
-"\u{000000000061}"//a
-`\u{0061}`//a
-\u{74}\u{65}\u{73}\u{74}='cool'    // // Variable test='cool'
+'\u{61}'                              //a
+"\u{000000000061}"                    //a
+`\u{0061}`                            //a
+\u{74}\u{65}\u{73}\u{74}='cool'       // Variable test='cool'
 
 function a(){}
-\u{61}()    //correctly calls the function
+\u{61}()                              //correctly calls the function
 
-\u{61}\u{6c}\u{65}\u{72}\u{74}() // Call alert()
+\u{61}\u{6c}\u{65}\u{72}\u{74}()      // Call alert()
 ```
 
 ### <mark style="color:purple;">Octal</mark>
@@ -151,7 +151,7 @@ eval('\\u\x30061=123')
 // (2) \\u0061 -> \u0061 -> a
 // (3) a = 123
 
-eval('\u\x30061=123') // Error, you need to escape backslash
+eval('\u\x30061=123')         // Error, you need to escape backslash
 
 eval('\\u\x300\661=123')
 // (1) \x30 -> 0    \6 -> 6

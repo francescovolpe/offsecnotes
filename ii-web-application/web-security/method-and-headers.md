@@ -2,7 +2,7 @@
 
 ## <mark style="color:purple;">TRACE Method</mark>
 
-The web server responds to TRACE method requests by echoing the received request.
+The web server responds to `TRACE` method requests by echoing the received request.
 
 **Security implication**
 

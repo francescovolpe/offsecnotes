@@ -3,6 +3,7 @@
 ## <mark style="color:purple;">Logs</mark>
 
 ```sh
+# Open the app and then run this command
 adb logcat | grep "$(adb shell ps | grep <package-name> | awk '{print $2}')"
 ```
 
